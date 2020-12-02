@@ -1,0 +1,77 @@
+#right-side .events_list .event-details:after,#right-side .events_list .todo-details:after,#right-side .to-do-list .event-details:after,#right-side .to-do-list .todo-details:after {display: none!important}
+
+
+
+#kl_content_block_0 h3:nth-child(1),#kl_custom_block_0 h3:nth-child(1),#kl_custom_block_1 h3:nth-child(1),#kl_custom_block_2 h3:nth-child(1), #kl_wrapper_3.kl_colored_headings_box_left #kl_modules h3, #kl_wrapper_3.kl_colored_headings #kl_modules h3, #kl_wrapper_3.kl_colored_headings_box_left > div > h3:not(.ui-state-default), #kl_wrapper_3.kl_colored_headings > div > h3:not(.ui-state-default), .kl_flex_column h4, #kl_wrapper_3.kl_emta h3:not(.ui-state-default), #kl_wrapper_3.kl_colored_headings_box_left > div > h3 i, #kl_wrapper_3.kl_colored_headings > div > h3:not(.ui-state-default) i, #kl_wrapper_3.kl_colored_headings_box_left #kl_modules h3 i, #kl_wrapper_3.kl_colored_headings #kl_modules h3:not(.ui-state-default) i{background-color: #1d1c1c!important;color: #c0c9d0!important}
+.ic-app-header__menu-list-link .menu-item__text, .ui-tabs .ui-tabs-nav li.ui-tabs-active a {color: #c0c9d0!important}
+.ic-app-header__menu-list-link svg {fill: #c0c9d0!important}
+
+
+
+.tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary, .tox:not(.tox-tinymce-inline) .tox-editor-header, .tox .tox-menubar, .canvas-rce__skins--root, #kl_banner, .kl_image_round_white_border, .kl_image_white_border, img.kl_image_round_white_border, img.kl_image_white_border, #announcementWrapper>div>div,#breadcrumbs,#calendar-app .fc-event,#calendar-app .fc-month-view .fc-body,#calendar-drag-and-drop-container .fc-event,#calendar-drag-and-drop-container .fc-month-view .fc-body,#context-list-holder,#kl_content_block_0,#kl_custom_block_0,#kl_custom_block_1,#kl_custom_block_2,#kl_wrapper_3 .ic-Table,#kl_wrapper_3 .table,#minical,#nav-tray-portal>span>span,#syllabus tr.date.date_passed td,#syllabus tr.date.date_passed th,#undated-events,#undated-events .event,.ac-result-container,.al-options,.closed-for-comments-discussions-v2__wrapper,.conversations .panel,.discussion_entry,.discussions-v2__container-image,.discussions-v2__placeholder,.dropdown-menu,.dropdown-menu .divider,.header-bar,.ic-Dashboard-header__layout,.ic-Dashboard-header__title,.ic-DashboardCard,.ic-DashboardCard__header_content,.ic-app-header__menu-list-item.ic-app-header__menu-list-item--active .ic-app-header__menu-list-link,.ic-discussion-row,.ic-notification__content,.ig-list .ig-row.ig-row-empty,.item-group-condensed .ig-header,.item-group-condensed .ig-row,.item-group-condensed .item-group-expandable,.item-group-container,.message-list .messages>li,.module-sequence-footer .module-sequence-footer-content,.pagination ul>li>a,.pagination ul>li>span,.pinned-discussions-v2__wrapper,.popover,.toolbarView .headerBar,.ui-datepicker .ui-datepicker-time,.ui-datepicker .ui-dialog .ui-datepicker-time,.ui-datepicker .ui-dialog .ui-widget-header.ui-datepicker-header,.ui-dialog .ui-datepicker .ui-datepicker-time,.ui-dialog .ui-datepicker .ui-widget-header.ui-datepicker-header,.ui-dialog .ui-dialog-buttonpane,.ui-dialog .ui-dialog-titlebar.ui-widget-header,.ui-kyle-menu,.ui-tabs .ui-tabs-nav li.ui-state-hover,.ui-tabs .ui-tabs-nav li.ui-tabs-active,.ui-tabs .ui-tabs-nav li:hover,.ui-tabs .ui-tabs-panel,.ui-widget-content,.unpinned-discussions-v2__wrapper,body,table.summary tbody th,table.summary td, .ui-tabs .ui-tabs-nav .kl_panel_heading.ui-state-default:not(.ui-tabs-active), #kl_wrapper_3.kl_colored_headings_box_left > div, #kl_wrapper_3.kl_colored_headings > div, #kl_wrapper_3.kl_colored_headings #kl_banner .kl_subtitle, .instructure_file_link, .quiz-submission, .question_editing, .question, .Day-styles__root, .PlannerHeader-styles__root, .item-group-expandable .emptyMessage, #kl_wrapper_3.kl_colored_headings #kl_banner #kl_banner_left, .Grouping-styles__title, .Grouping-styles__title::after, .tox .tox-split-button .tox-tbtn.tox-split-button__chevron, .bottom-reply-with-box, #kl_banner_left, .kl_mod_text, #kl_banner_right{background: #0c0c0c!important}
+#minical .fc-widget-content {border: 1px solid #0c0c0c!important}
+#kl_wrapper_3.kl_colored_headings #kl_banner .kl_subtitle {border-top: 3px solid #0c0c0c;border-bottom: 3px solid #0c0c0c;}
+
+
+
+#breadcrumbs>ul>li+li:last-of-type a,#kl_wrapper_3.kl_colored_headings h4,#kl_wrapper_3.kl_colored_headings_box_left h4,#minical .fc-widget-content,#nav-tray-portal>span>span>div>div>.navigation-tray-container.courses-tray>.tray-with-space-for-global-nav>div>ul>li>div,#right-side .right-side-list li em,#right-side .right-side-list li p,.Button,.ac-input-box,.accessible-toggler,.btn,.discussion-points,.discussion-pubdate,.discussion-tododate,.discussions-v2__container-image>span>div,.dropdown-menu li>a,.ef-plain-link,.ef-plain-link:hover,.extension-ac a:hover,.extension-al,.extension-al a,.extension-at,.ic-Dashboard-header__title,.ic-DashboardCard__header-subtitle,.ic-DashboardCard__header-term,.ic-discussion-content-container,.ig-header .name,.ig-list .ig-row a.ig-title,.ig-type-icon,.list-view a.active,.message-detail.conversations__message-detail .no-messages,.message-detail.span8 .no-messages,.message-list .summary,.mini-cal-header,.mini_calendar .day,.tray-with-space-for-global-nav>div>span>form>button>span,.ui-button,.ui-tabs .ui-tabs-nav li a,.ui-widget-content,.uneditable-input,body,button,input[type=color],input[type=date],input[type=datetime-local],input[type=datetime],input[type=email],input[type=month],input[type=number],input[type=password],input[type=search],input[type=tel],input[type=text],input[type=time],input[type=url],input[type=week],select,textarea, .fc-event, .fc-event:hover, .ui-widget .fc-event, .item-group-condensed .ig-header, .discussion-reply-action, .discussion-rate-action, #kl_wrapper_3.kl_colored_headings #kl_banner .kl_subtitle, #kl_wrapper_3.kl_emta, .close, .item-group-expandable .emptyMessage, #kl_wrapper_3.kl_colored_headings #kl_banner #kl_banner_left, .kl_readings span, .extension-linkpreview, .hypodivcalc, .Day-styles__root h2, #kl_wrapper_3.kl_colored_headings_box_left > div > h3 i, #kl_wrapper_3.kl_colored_headings > div > h3:not(.ui-state-default) i, #kl_wrapper_3.kl_colored_headings_box_left #kl_modules h3 i, #kl_wrapper_3.kl_colored_headings #kl_modules h3:not(.ui-state-default) i, #kl_custom_block_0, #kl_banner_left, .kl_mod_text, #kl_banner_right{color: #adbcc7!important}
+.list-view a.active {border-left: 2px solid #adbcc7!important}
+.ToDoSidebarItem svg,.discussions-v2__wrapper>span>span>span>span>button>span>span>svg,.ic-DashboardCard__action-layout svg, .tox .tox-split-button__chevron svg, .tox .tox-tbtn svg, .tox .tox-tbtn svg g, .tox .tox-tbtn svg path {fill: #adbcc7!important}
+.caret {border-top: 4px solid #adbcc7!important}
+.message-list .author,.message-list .subject,.mini_calendar .day.other_month, .ig-list .ig-row {color: #adbcc7b8!important}
+
+
+.discussions-v2__wrapper>span>span>span>span>button>span, .ic-app-header__logomark-container,.ic-app-header__main-navigation,.ic-app-header__secondary-navigation, #context-list .context_list_context:hover,#syllabus tr.date.related td,#syllabus tr.date.related th,#syllabus tr.date.selected td,#syllabus tr.date.selected th,.Button,.ac-input-box,.btn,.discussions-v2__wrapper>span>span>span>span>button>span,.dropdown-menu li>a:focus,.dropdown-menu li>a:hover,.dropdown-submenu:hover>a,.ef-item-row:hover,.ic-Table.ic-Table--striped tbody tr:nth-child(odd),.ic-app-header__logomark-container,.ic-app-header__main-navigation,.ic-app-header__secondary-navigation,.mini_calendar .day.has_event,.stream_header:hover,.tray-with-space-for-global-nav>div>span>form>button>span,.ui-button,.uneditable-input,input[type=color],input[type=date],input[type=datetime-local],input[type=datetime],input[type=email],input[type=month],input[type=number],input[type=password],input[type=search],input[type=tel],input[type=text],input[type=time],input[type=url],input[type=week],select,textarea,thead th, .discussion-reply-box, .ui-tabs .ui-tabs-nav li.ui-tabs-active, #questions.assessment_results .question .header, .question .header, #planner-today-btn, .stream-details tr:hover, .extension-linkpreview, .hypodivcalc, #google_docs_tree li.file:hover{background: #151515!important}
+.ic-DashboardCard__placeholder-svg .ic-DashboardCard__placeholder-animates>*{fill: #151515!important}
+
+
+
+.ajas-search-widget__form input, .Button,.ac-input-box,.btn,.discussions-v2__wrapper>span>span>span>span>button>span,.tray-with-space-for-global-nav>div>span>form>button>span,.ui-button,.uneditable-input,input[type=color],input[type=date],input[type=datetime-local],input[type=datetime],input[type=email],input[type=month],input[type=number],input[type=password],input[type=search],input[type=tel],input[type=text],input[type=time],input[type=url],input[type=week],select,textarea, .discussion-reply-box{border: 1px solid #1c1c1c!important}
+#planner-today-btn {border-color: #1c1c1c;}
+.dropdown-menu .divider {border-bottom: 1px solid #1c1c1c!important}
+::-webkit-scrollbar-track, #kl_content_block_0 h3:nth-child(1) i,#kl_custom_block_0 h3:nth-child(1) i,#kl_custom_block_1 h3:nth-child(1) i,#kl_custom_block_2 h3:nth-child(1) i, .ic-flash-error,.ic-flash-info,.ic-flash-success,.ic-flash-warning {background: #1c1c1c;}
+.no-touch .ic-DashboardCard:hover {box-shadow: 0 2px 5px #1c1c1c!important}
+
+
+
+#calendar-app .fc-month-view .fc-today,#calendar-drag-and-drop-container .fc-month-view .fc-today,.ajas-search-widget__btn--search,.alert-info,.ic-Table.ic-Table--hover-row tbody tr.ic-Table__row--bg-alert:hover,.ic-Table.ic-Table--hover-row tbody tr.ic-Table__row--bg-danger:hover,.ic-Table.ic-Table--hover-row tbody tr.ic-Table__row--bg-neutral:hover,.ic-Table.ic-Table--hover-row tbody tr.ic-Table__row--bg-success:hover,.ic-Table.ic-Table--hover-row tbody tr:hover,.ig-list .ig-row:hover, .extension-assignment:hover, #content-wrapper .user_content.not_design_tools table tbody tr:nth-child(even) td, .extension-linkpreview:hover, .tox .tox-tbtn:hover, .tox .tox-split-button:hover, .tox .tox-tbtn.tox-tbtn--enabled:hover, .tox .tox-split-button .tox-tbtn.tox-split-button__chevron:hover {background: #1f2121!important}
+
+
+
+#calendar-drag-and-drop-container .fc-row .fc-content-skeleton td,#calendar-drag-and-drop-container .fc-row .fc-helper-skeleton td,#kl_content_block_0,#kl_custom_block_0,#kl_custom_block_1,#kl_custom_block_2,#minical,.ac-result-container,.calendar .fc-row .fc-content-skeleton td,.calendar .fc-row .fc-helper-skeleton td,.closed-for-comments-discussions-v2__wrapper,.discussion-entries .entry,.ic-flash-error,.ic-flash-info,.ic-flash-success,.ic-flash-warning,.ig-list .ig-row,.item-group-condensed .ig-header,.mini-cal-header,.mini_calendar,.pinned-discussions-v2__wrapper,.table-bordered,.toolbarView .headerBar,.unpinned-discussions-v2__wrapper, .discussion_entry>.discussion-entry-reply-area, #kl_wrapper_3.kl_colored_headings_box_left > div, #kl_wrapper_3.kl_colored_headings > div , .question .header, .question, .quiz-submission, .question_editing, .item-group-condensed .item-group-expandable{border: 1px solid #333!important}
+#grades_summary th.title,#kl_wrapper_3.kl_colored_headings h4,#kl_wrapper_3.kl_colored_headings_box_left h4,#minical .fc-toolbar,#right-side .h2,#right-side h2,.conversations .panel,.course_details td,.ef-directory-header,.ef-header,.header-bar,.ic-Dashboard-header__layout,.ic-Table td,.ic-Table th,.ic-app-nav-toggle-and-crumbs,.item-group-condensed .ig-row,.message-list .messages>li,.ui-datepicker .ui-dialog .ui-widget-header.ui-datepicker-header,.ui-dialog .ui-datepicker .ui-widget-header.ui-datepicker-header,.ui-dialog .ui-dialog-titlebar.ui-widget-header,table.summary caption,table.summary tbody th,table.summary td,table.summary thead th, .quiz-header, .CompletedItemsFacade-styles__root, .PlannerItem-styles__root {border-bottom: 1px solid #333!important}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active,.ui-tabs .ui-tabs-nav li.ui-tabs-active.ui-state-hover,.ui-tabs .ui-tabs-nav li.ui-tabs-active:hover,.ui-tabs .ui-tabs-nav li:hover,.ui-tabs .ui-tabs-panel, .fc-unthemed .fc-divider,.fc-unthemed .fc-popover,.fc-unthemed .fc-row,.fc-unthemed tbody,.fc-unthemed td,.fc-unthemed th,.fc-unthemed thead{border-color: #333!important}
+.ef-main .ef-folder-content, body.responsive_awareness .message-list-scroller, .topic .entry-content {border-right: 1px solid #333!important}
+.table-bordered td,.table-bordered th, .topic .entry-content {border-left: 1px solid #333!important}
+.ef-footer,.table td,.table th, .ic-app-footer, .discussion-entries .entry .entry, .entry>.bottom-reply-with-box .discussion-entry-reply-area{border-top: 1px solid #333!important}
+.discussions-v2__container-image {border: .125rem dashed #333}
+.mini_calendar .day.today, ::-webkit-scrollbar-thumb {background: #333!important}
+.discussion-entries .entry .entry, .kl_image_white_border {border: 0!important;}
+.ac-result-wrapper:before {border-bottom: 10px solid #333}
+.ui-tabs .ui-tabs-nav {border-bottom-color: #333!important}
+.ic-item-row {box-shadow: 0 -1px #333,inset 0 -1px #333!important}
+
+
+
+.ic-app-header__menu-list-item.ic-app-header__menu-list-item--active .menu-item__text {color: #fff!important}
+.ic-app-header__menu-list-item.ic-app-header__menu-list-item--active svg {fill: #fff!important}
+
+
+
+.extension-linkpreview, .hypodivcalc, .kl_shadow_2,.kl_shadow_b2, .tox .tox-split-button:hover {box-shadow: none!important;}
+
+
+
+a, a:hover, a:focus, #nav-tray-portal a, .ToDoSidebarItem__Title a, .message-list .date, #content-wrapper .user_content.not_design_tools a {color: #5ca5f6;}
+
+
+
+#kl_wrapper_3.kl_colored_headings_box_left > div > h3 i, #kl_wrapper_3.kl_colored_headings > div > h3:not(.ui-state-default) i, #kl_wrapper_3.kl_colored_headings_box_left #kl_modules h3 i, #kl_wrapper_3.kl_colored_headings #kl_modules h3:not(.ui-state-default) i {border: none!important}
+.ic-DashboardCard, .extension-aldue:hover, .navigation-tray-container {box-shadow: 0 1px 5px rgb(157 165 171/.15)!important}
+::-webkit-scrollbar {width: 15px;}
+::-webkit-scrollbar-thumb:hover{background: #444!important;}
+.ui-datepicker .ui-datepicker-time,.ui-datepicker .ui-dialog .ui-datepicker-time,.ui-dialog .ui-datepicker .ui-datepicker-time,.ui-dialog .ui-dialog-buttonpane,hr {border-top: none}
+#right-side .shared-space h2 {border-bottom-style: none!important}
+#kl_content_block_0 h3:nth-child(1) i,#kl_custom_block_0 h3:nth-child(1) i,#kl_custom_block_1 h3:nth-child(1) i,#kl_custom_block_2 h3:nth-child(1) i {background-color: #1c1c1c!important;color: #c0c9d0!important;border: 0!important}
+.ig-header .name {text-shadow: none!important}
+.quiz_score .score_value {color: #74c69d;}

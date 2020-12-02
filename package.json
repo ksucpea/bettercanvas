@@ -1,0 +1,10 @@
+{
+  "name": "better-canvas",
+  "version": "2.4.0",
+  "description": "Adds dark mode and other features to the Canvas Instructure website.",
+  "private": true,
+  "homepage": "",
+  "devDependencies": {
+    "svgexport": "^0.2.8"
+  }
+}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Better Canvas</title>
+    <link href="../css/popup.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="main">
+    <h1>Better Canvas</h1>
+    <div class="options">
+        <div class="option" id="dark_mode"><input type="radio" id="on" name="dark_mode"><input type="radio" id="off" name="dark_mode"><div class="slider"></div><div class="sliderbg"></div><span>Dark mode</span></div>
+        <div class="option" id="assignments_due"><input type="radio" id="on" name="assignments_due"><input type="radio" id="off" name="assignments_due"><div class="slider"></div><div class="sliderbg"></div><span>Dashboard assignments</span></div>
+        <div class="option" id="gpa_calc"><input type="radio" id="on" name="gpa_calc"><input type="radio" id="off" name="gpa_calc"><div class="slider"></div><div class="sliderbg"></div><span>GPA calculator</span></div>
+        <div class="option" id="link_preview"><input type="radio" id="on" name="link_preview"><input type="radio" id="off" name="link_preview"><div class="slider"></div><div class="sliderbg"></div><span>Link previews</span></div>
+        <div class="option" id="gradient_cards"><input type="radio" id="on" name="gradient_cards"><input type="radio" id="off" name="gradient_cards"><div class="slider"></div><div class="sliderbg"></div><span>Gradient cards</span></div>
+    </div>
+    <h2>Refresh for options to take effect</h2>
+    <button id="explanationsbtn">options explanations \/</button>
+    <div class="explanations" style="display: none">
+        <p><span>Dark mode</span> gives canvas a dark color scheme</p>
+        <p><span>Dashboard assignments</span> shows all class assignments in a list under that specific class, click on the due date to mark it done</p>
+        <p><span>GPA calculator</span> calculates weighted and unweighted GPA (regular = 4, honors = 4.5, AP/IB = 5)</p>
+        <p><span>Link preview</span> display embeded previews of links on the current page using the 'show link' button - doesn't work with all links</p>
+        <p><span>Gradient cards</span> turns dashboard cards into gradient colors</p>
+    </div>
+</div>
+
+<script src="../js/popup.js"></script>
+
+</body>
+</html>

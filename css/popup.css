@@ -1,0 +1,16 @@
+body{width:400px}
+h1, p, body{margin:0;padding:0}
+.slider{position:absolute;transition:all .1s linear;height:30px;width:30px;border-radius:50%;margin-left:4px;z-index:1;}
+.options input{display:none;}
+.options input:nth-of-type(1).checked ~ .slider{background-color:#8dd28d;}
+.options input:nth-of-type(2).checked ~ .slider{transform:translate(30px);background-color:#afafaf;}
+.option{height:38px;display:flex;align-items:center;margin:15px 0;}
+.option span{margin-left:76px;font-size:18px;}
+.explanations span{font-weight:700;}
+.explanations p {margin-top: 10px;}
+.main{position: relative;padding:15px;}
+.sliderbg{background-color:#e2e2e2;width:68px;height:38px;border-radius:40px;position:absolute;}
+.sliderbg:hover, .slider:hover {cursor: pointer;}
+#explanationsbtn {box-shadow: rgba(157, 165, 171, 0.5) 0px 2px 5px;border: none;padding: 14px 20px;border-radius: 40px;margin: auto;font-size: 16px;}
+#explanationsbtn:focus {outline: none}
+#explanationsbtn:hover {cursor: pointer;}
