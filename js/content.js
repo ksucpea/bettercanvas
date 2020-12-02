@@ -270,7 +270,7 @@ function calculateGPA() {
     for (let i = 0; i < class_weights.length; i++) {
         let weight = class_weights[i].weight === 'ap' ? 1 : (class_weights[i].weight === 'honors' ? .5 : 0);
         let score = class_weights[i].score;
-        unweighted += score >= 89.5 ? 4 : (score < 89.5 && score >= 79.5  ? 3 : (score < 79.5 && score >= 69.5 ? 2 : (score < 69.5 && score >= 59.5 ? 1 : null)));
+        unweighted += score >= 89.5 ? 4 : (score < 89.5 && score >= 79.5  ? 3 : (score < 79.5 && score >= 69.5 ? 2 : (score < 69.5 && score >= 59.5 ? 1 : 0)));
         weights += weight;
     }
     let gpaDiv = document.querySelector('.extension-calcgpa');
