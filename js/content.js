@@ -16,12 +16,8 @@ if (current_page === '/' || current_page === '') {
                     let cardheads = document.querySelectorAll('.ic-DashboardCard__header_hero');
                     for (let i = 0; i < cardheads.length; i++) {
                         let colorone = cardheads[i].style.backgroundColor.split(',');
-                        let r = parseInt(colorone[0].split('(')[1]);
-                        let g = parseInt(colorone[1]);
-                        let b = parseInt(colorone[2]);
-                        let h = rgbToHsl(r, g, b)[0];
-                        let s = rgbToHsl(r, g, b)[1];
-                        let l = rgbToHsl(r, g, b)[2];
+                        let [r, g, b] = [parseInt(colorone[0].split('(')[1]), parseInt(colorone[1]), parseInt(colorone[2])];
+                        let [h, s, l] = [rgbToHsl(r, g, b)[0], rgbToHsl(r, g, b)[1], rgbToHsl(r, g, b)[2]];
                         let newh = h > 180 ? h - ((h / 180) * 40) : ((1 + (180 / (h + 180))) * 28) + h;
                         cardheads[i].style.background = "linear-gradient(120deg, hsl(" + h + "deg," + s + "%," + l + "%) 5%, hsl(" + newh + "deg," + s + "%," + l + "%) 100%)";
                     }
@@ -215,13 +211,15 @@ function insertAssignments(id, card) {
                 duedateselector.textContent = month + '/' + day;
                 if (class_done.length !== 0) {
                     for (let num = 0; num < class_done.length; num++) {
-                        if (class_done[num] == data[i].id) duedateselector.classList.add("extension-completed");
+                        if (class_done[num] == data[i].id) {
+                            bigAssignmentDiv.classList.add("extension-completed");
+                        }
                     }
                 }
                 card.appendChild(bigAssignmentDiv);
                 duedateselector.addEventListener('mouseup', function() {
-                    this.classList.toggle('extension-completed');
-                    let completestatus = this.classList.contains('extension-completed');
+                    bigAssignmentDiv.classList.toggle('extension-completed');
+                    let completestatus = bigAssignmentDiv.classList.contains("extension-completed");
                     setAssignmentStatus(this.dataset.aid, completestatus);
                 });
             }
@@ -270,7 +268,7 @@ function calculateGPA() {
     for (let i = 0; i < class_weights.length; i++) {
         let weight = class_weights[i].weight === 'ap' ? 1 : (class_weights[i].weight === 'honors' ? .5 : 0);
         let score = class_weights[i].score;
-        unweighted += score >= 89.5 ? 4 : (score < 89.5 && score >= 79.5  ? 3 : (score < 79.5 && score >= 69.5 ? 2 : (score < 69.5 && score >= 59.5 ? 1 : 0)));
+        unweighted += score >= 89.5 ? 4 : (score < 89.5 && score >= 79.5  ? 3 : (score < 79.5 && score >= 69.5 ? 2 : (score < 69.5 && score >= 59.5 ? 1 : null)));
         weights += weight;
     }
     let gpaDiv = document.querySelector('.extension-calcgpa');
