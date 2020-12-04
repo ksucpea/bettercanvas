@@ -20,3 +20,4 @@
 .extension-linkpreview:focus {outline: none}
 .hypocalcform-collector {display: flex;flex-wrap:wrap;}
 .weightform {min-width: 71px;padding:4px 14px;margin:0;}
+.extension-aldue ~ .extension-al{font-size: 40px;background-color: red;}
