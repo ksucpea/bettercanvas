@@ -1,114 +1,38 @@
-'use strict';
 var class_weights = [];
 var class_done;
-const domain = 'https://' + window.location.hostname;
+const domain = window.location.origin;
 const current_page = window.location.pathname;
 
-
-
-if(domain.match(/canvas|instructure/g)) {
+if(domain.match(/canvas|instructure|learn/g)) {
+//update/new install message
+chrome.storage.local.get(['new_install'], function(result) {
+    if(result.new_install === true) {
+        let updatePopup = makeElement("div", "extension-update", document.body);
+        let updateText = makeElement("p", "extension-updatetext", updatePopup);
+        updateText.innerHTML = 'Welcome to Better Canvas!<br><br>To access the options click on the puzzle piece in the top right corner and click on Better Canvas<br><br>If you have any issues be sure to contact me here <b>ksucpea@gmail.com</b>';
+        let updateClose = makeElement("button", "extension-updateclose", updatePopup);
+        updateClose.textContent = "x";
+        updateClose.addEventListener("click", function() {
+            updatePopup.style.display = "none";
+        });
+        chrome.storage.local.set({new_install: false});
+    }
+});
 if (current_page === '/' || current_page === '') {
-    let stop = 0;
     let dashboardready = setInterval(function() {
         if (document.querySelectorAll('.ic-DashboardCard__header')[0]) {
-            chrome.storage.local.get(['gradient_cards'], function(result) {
-                if (result.gradient_cards === true) {
-                    let cardheads = document.querySelectorAll('.ic-DashboardCard__header_hero');
-                    for (let i = 0; i < cardheads.length; i++) {
-                        let colorone = cardheads[i].style.backgroundColor.split(',');
-                        let [r, g, b] = [parseInt(colorone[0].split('(')[1]), parseInt(colorone[1]), parseInt(colorone[2])];
-                        let [h, s, l] = [rgbToHsl(r, g, b)[0], rgbToHsl(r, g, b)[1], rgbToHsl(r, g, b)[2]];
-                        let newh = h > 180 ? h - ((h / 180) * 40) : ((1 + (180 / (h + 180))) * 28) + h;
-                        cardheads[i].style.background = "linear-gradient(120deg, hsl(" + h + "deg," + s + "%," + l + "%) 5%, hsl(" + newh + "deg," + s + "%," + l + "%) 100%)";
-                    }
-                }
-            });
-            chrome.storage.local.get(['assignments_due'], function(result) {
-                if (result.assignments_due !== false) {
-                    getData(domain + '/api/v1/dashboard/dashboard_cards').then(function(data) {
-                        for (let i = 0; i < data.length; i++) {
-                            let assignmentsContainer = makeElement("div", "extension-ac", [["h3", "extension-at"]]);
-                            assignmentsContainer.firstChild.textContent = 'Assignments Due';
-                            document.querySelectorAll('.ic-DashboardCard')[i].appendChild(assignmentsContainer);
-                            insertAssignments(data[i].id, assignmentsContainer);
-                        }
-                    });
-                }
-            });
-            chrome.storage.local.get(["assignments_done"], function(result) {
-                class_done = Object.keys(result).length !== 0 ? result.assignments_done : [];
-            });
+            chrome.storage.local.get(['assignments_due'], function(result) { if (result.assignments_due !== false) setupAssigments(); });
+            chrome.storage.local.get(['gradient_cards'], function(result) { if (result.gradient_cards === true) changeGradientCards() });
             clearInterval(dashboardready);
         }
-        stop > 200 ? clearInterval(dashboardready) : stop++;
-    }, 100);
+    }, 50);
 }
-
-
 
 if (current_page === '/grades') {
-    chrome.storage.local.get(['gpa_calc'], function(result) {
-        if (result.gpa_calc !== false) {
-            let gpaDiv = makeElement("tr", "extension-calcgpa", [["td", "extension-gpa"]]);
-            document.querySelector('.student_grades > tbody').appendChild(gpaDiv);
-            let courseplace = document.querySelectorAll('td.course > a');
-            getData(domain + '/api/v1/users/self/enrollments').then(function(data) {
-                gpaCalcSetup(data);
-                for (let i = 0; i < class_weights.length; i++) {
-                    let location;
-                    for (let e = 0; e < courseplace.length; e++) {
-                        if (courseplace[e].getAttribute("href").split('/')[2] == class_weights[i].id) {
-                            location = document.querySelectorAll('.grading_period_dropdown')[e];
-                        }
-                    }
-                    insertWeightSelection(class_weights[i].id, location);
-                }
-                calculateGPA();
-            });
-        }
-    });
+    chrome.storage.local.get(['gpa_calc'], function(result) { if (result.gpa_calc !== false) setupGPACalc(); }); 
 }
 
-
-
-if (current_page.match(/courses/g) && current_page.match(/grades/g)) {
-    chrome.storage.local.get(['gpa_calc'], function(result) {
-        if (result.gpa_calc != false) {
-            let hypogpacalcDiv = makeElement("div", "hypogpacalc");
-            let gpaDiv = makeElement("tr", "extension-calcgpa", [["td", "extension-gpa"]]);
-            insertAfter(document.querySelector("#grade-summary-content"), hypogpacalcDiv);
-            hypogpacalcDiv.appendChild(gpaDiv);
-            let hypocalcformCollector = makeElement("div", "hypocalcform-collector");
-            hypogpacalcDiv.appendChild(hypocalcformCollector);
-            getData(domain + '/api/v1/users/self/enrollments').then(function(data) {
-                gpaCalcSetup(data);
-                for (let i = 0; i < class_weights.length; i++) {
-                    getData(domain + '/api/v1/courses/' + class_weights[i].id).then(function(data) {
-                        let hypodiv = makeElement("div", "hypodivcalc", [["span"]]);
-                        hypodiv.firstChild.textContent = data.name;
-                        document.querySelector('.hypocalcform-collector').appendChild(hypodiv);
-                        let location = hypodiv.lastChild;
-                        insertWeightSelection(class_weights[i].id, location);
-                    });
-                }
-                calculateGPA();
-            });
-            document.querySelector('#grade_entry').addEventListener('change', function() {
-                setTimeout(function() {
-                    let newgrade = document.querySelector('.student_assignment.final_grade .grade').innerHTML.split('%')[0];
-                    let thiscourseid = current_page.split('/')[2];
-                    for (let i = 0; i < class_weights.length; i++) {
-                        if(class_weights[i].id == thiscourseid) class_weights[i].score = parseFloat(newgrade);
-                    }
-                    calculateGPA();
-                }, 50);
-            });
-        }
-    });
-}
-
-
-
+// work in progress
 if ((current_page.split('/')[1]) === 'courses' && (current_page.split('/')[3]) === 'assignments' || current_page.split('/')[1] === 'courses' && (current_page.split('/')[3]) === 'pages') {
     chrome.storage.local.get(['link_preview'], function(result) {
         if (result.link_preview != false) {
@@ -117,22 +41,20 @@ if ((current_page.split('/')[1]) === 'courses' && (current_page.split('/')[3]) =
                     let links = document.querySelector("#assignment_show") ? document.querySelectorAll("#assignment_show a") : document.querySelectorAll("#wiki_page_show a");
                     for (let i = 0; i < links.length; i++) {
                         let link = links[i].href;
-                        let source = link.match(/youtube|instructure/g);
+                        let matches = link.match(/youtube|instructure/g);
                         let embedlink;
-                        if (source) {
-                            switch (source[0]) {
+                        if (matches) {
+                            switch (matches[0]) {
                                 case "youtube":
-                                    let embed = "https://youtube.com/embed/";
-                                    let afterembed = link.split('.com/')[1].split('&')[0].replace("watch?v=", "");
-                                    embedlink = embed + afterembed;
+                                    let cleaned = link.split('v=')[1];
+                                    embedlink = "https://youtube.com/embed/" + cleaned;
                                     break;
                             }
                         } else {
                             embedlink = link;
                         }
-                        if (!source || source[0] != 'instructure') {
-                            let showembed = makeElement("button", "extension-linkpreview");
-                            showembed.textContent = "show link";
+                        if (!matches || matches[0] != 'instructure') {
+                            let showembed = makeElement("button", "extension-linkpreview", links[i].parentElement, "show link preview");
                             showembed.addEventListener('click', function() {
                                 if (!document.querySelector("#extension-embed-" + [i])) {
                                     var frame = document.createElement("iframe");
@@ -145,7 +67,6 @@ if ((current_page.split('/')[1]) === 'courses' && (current_page.split('/')[3]) =
                                     document.querySelector("#extension-embed-" + [i]).classList.toggle("extension-embed-hidden");
                                 }
                             });
-                            insertAfter(links[i], showembed);
                         }
                     }
                     clearInterval(assignmentready);
@@ -156,22 +77,40 @@ if ((current_page.split('/')[1]) === 'courses' && (current_page.split('/')[3]) =
 }
 }
 
-
-
-function makeElement(element, elclass, children = []) {
-    let creation = document.createElement(element);
-    creation.classList.add(elclass);
-    if(children) {
-        for(let i = 0; i < children.length; i++) {
-            let child = document.createElement(children[i][0]);
-            if(children[i][1]) child.classList.add(children[i][1]);
-            creation.appendChild(child);
+function setupAssigments() {
+    getData(domain + '/api/v1/dashboard/dashboard_cards').then(function (data) {
+        for (let i = 0; i < data.length; i++) {
+            let assignmentsContainer = makeElement("div", "extension-ac", document.querySelectorAll('.ic-DashboardCard')[i]);
+            makeElement("h3", "extension-at", assignmentsContainer, 'Assignments Due');
+            insertAssignments(data[i].id, assignmentsContainer);
         }
-    }
-    return creation
+    });
+    chrome.storage.local.get(["assignments_done"], function (result) {
+        class_done = Object.keys(result).length !== 0 ? result.assignments_done : [];
+    });
 }
 
+function changeGradientCards() {
+    let cardheads = document.querySelectorAll('.ic-DashboardCard__header_hero');
+    let cardcss = document.createElement('style');
+    document.documentElement.appendChild(cardcss);
+    for (let i = 0; i < cardheads.length; i++) {
+        let colorone = cardheads[i].style.backgroundColor.split(',');
+        let [r, g, b] = [parseInt(colorone[0].split('(')[1]), parseInt(colorone[1]), parseInt(colorone[2])];
+        let [h, s, l] = [rgbToHsl(r, g, b)[0], rgbToHsl(r, g, b)[1], rgbToHsl(r, g, b)[2]];
+        let degree = ((h % 60) / 60) >= .66 ? 30 : ((h % 60) / 60) <= .33 ? -30 : 15;
+        let newh = h > 300 ? (360 - (h + 65)) + (65 + degree) : h + 65 + degree;
+        cardcss.textContent += ".ic-DashboardCard:nth-of-type("+(i+1)+") .ic-DashboardCard__header_hero{background: linear-gradient(115deg, hsl(" + h + "deg," + s + "%," + l + "%) 5%, hsl(" + newh + "deg," + s + "%," + l + "%) 100%)!important}";
+    }
+}
 
+function makeElement(element, elclass, location, text) {
+    let creation = document.createElement(element);
+    creation.classList.add(elclass);
+    creation.textContent = text;
+    location.appendChild(creation);
+    return creation
+}
 
 async function getData(url) {
     let response = await fetch(url, {
@@ -185,99 +124,53 @@ async function getData(url) {
     return data
 }
 
-
-
 function insertAssignments(id, card) {
     getData(domain + '/api/v1/courses/' + id + '/assignments?order_by=due_at&bucket=future').then(function(data) {
         if (data.length === 0) {
-            let assignmentEmptyDiv = makeElement("div", "extension-al", [["span"]]);
-            assignmentEmptyDiv.firstChild.textContent = 'None';
-            card.appendChild(assignmentEmptyDiv);
+            let assignmentEmptyDiv = makeElement("div", "extension-al", card);
+            let assignmentEmptyDue = makeElement("span", "extension-ed", assignmentEmptyDiv, "None");
         } else {
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].due_at === null) {
+            data.forEach(function(assignment) {
+                if(assignment["due_at"] === null) {
                     var month = 'n';
                     var day = 'a';
                 } else {
-                    let datadate = new Date(data[i].due_at);
+                    let datadate = new Date(assignment["due_at"]);
                     var month = datadate.getMonth() + 1;
                     var day = datadate.getDate();
                 }
-                let bigAssignmentDiv = makeElement("div", "extension-assignment", [["a", "extension-al"], ["span", "extension-aldue"]]);
-                let duedateselector = bigAssignmentDiv.children[1];
-                bigAssignmentDiv.firstChild.setAttribute("href", domain + '/courses/' + id + '/assignments/' + data[i].id);
-                bigAssignmentDiv.firstChild.textContent = data[i].name;
-                duedateselector.setAttribute("data-aid", data[i].id);
-                duedateselector.textContent = month + '/' + day;
-                if (class_done.length !== 0) {
-                    for (let num = 0; num < class_done.length; num++) {
-                        if (class_done[num] == data[i].id) {
-                            bigAssignmentDiv.classList.add("extension-completed");
-                        }
-                    }
-                }
-                card.appendChild(bigAssignmentDiv);
+                let bigAssignmentDiv = makeElement("div", "extension-assignment", card);
+                let bigAssignmentDivLink = makeElement("a", "extension-al", bigAssignmentDiv, assignment["name"]);
+                let duedateselector = makeElement("span", "extension-aldue", bigAssignmentDiv, month + '/' + day);
+                bigAssignmentDivLink.setAttribute("href", domain + '/courses/' + id + '/assignments/' + assignment["id"]);
+                duedateselector.setAttribute("data-aid", assignment["id"]);
+                class_done.forEach(function(done) {
+                    if(done == assignment["id"]) bigAssignmentDiv.classList.add("extension-completed");
+                });
                 duedateselector.addEventListener('mouseup', function() {
                     bigAssignmentDiv.classList.toggle('extension-completed');
                     let completestatus = bigAssignmentDiv.classList.contains("extension-completed");
                     setAssignmentStatus(this.dataset.aid, completestatus);
                 });
-            }
+            });
         }
     });
 }
-
-
-
-function insertWeightSelection(id, location) {
-    let weightRadio = makeElement("div", "weightradio", [["form", "weightform"]]);
-    weightRadio.firstChild.setAttribute("data-id", id);
-    weightRadio.firstChild.innerHTML = '<input type="radio" name="weight" value="regular" checked> Regular<br><input type="radio" name="weight" value="honors"> Honors<br><input type="radio" name="weight" value="ap"> AP/IB';
-    insertAfter(location, weightRadio);
-    weightRadio.addEventListener('change', function(e) {
-        for (let i = 0; i < class_weights.length; i++) {
-            if (class_weights[i].id === parseInt(this.firstChild.getAttribute("data-id"))) {
-                class_weights[i].weight = e.target.value;
-                calculateGPA();
-            }
-        }
-    });
-}
-
-
-
-function gpaCalcSetup(data) {
-    for (let i = 0; i < data.length; i++) {
-        let score = data[i].grades.current_score;
-        if(score != null) {
-            let weighted = {
-                "score": score,
-                "weight": 'regular',
-                "id" : data[i].course_id
-            }
-            class_weights.push(weighted);
-        }
-    }
-}
-
-
 
 function calculateGPA() {
     let weights = 0;
     let unweighted = 0;
-    for (let i = 0; i < class_weights.length; i++) {
-        let weight = class_weights[i].weight === 'ap' ? 1 : (class_weights[i].weight === 'honors' ? .5 : 0);
-        let score = class_weights[i].score;
+    class_weights.forEach(function(course) {
+        let weight = course["weight"] === 'ap' ? 1 : (course["weight"] === 'honors' ? .5 : 0);
+        let score = course["score"];
         unweighted += score >= 89.5 ? 4 : (score < 89.5 && score >= 79.5  ? 3 : (score < 79.5 && score >= 69.5 ? 2 : (score < 69.5 && score >= 59.5 ? 1 : null)));
         weights += weight;
-    }
+    }); 
     let gpaDiv = document.querySelector('.extension-calcgpa');
     let finalgpaweighted = ((unweighted + weights) / class_weights.length).toFixed(2);
     let finalgpaunweighted = (unweighted / class_weights.length).toFixed(2);
     gpaDiv.firstChild.textContent = 'Unweighted GPA: ' + finalgpaunweighted + ' | Weighted GPA: ' + finalgpaweighted;
 }
-
-
 
 function setAssignmentStatus(id, status) {
     if(class_done.length > 50) class_done = [];
@@ -287,18 +180,12 @@ function setAssignmentStatus(id, status) {
         let pos = class_done.indexOf(id);
         class_done.splice(pos, 1);
     }
-    chrome.storage.local.set({
-        assignments_done: class_done
-    });
+    chrome.storage.local.set({ assignments_done: class_done });
 }
-
-
 
 function insertAfter(referenceNode, newNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
-
-
 
 function rgbToHsl(r, g, b) {
     r /= 255, g /= 255, b /= 255;
@@ -324,4 +211,51 @@ function rgbToHsl(r, g, b) {
         h /= 6;
     }
     return [h * 360, s * 100, l * 100];
+}
+
+function setupGPACalc() {
+    let gpaDiv = makeElement("tr", "extension-calcgpa", document.querySelector('.student_grades > tbody'));
+            let gpa = makeElement("tr", "extension-gpa", gpaDiv);
+            let percents = document.querySelectorAll('.percent');
+            for(let i = 0; i < percents.length; i++) {
+                let percent = percents[i].textContent.replace(/\s+/g, "");
+                if(percent.includes('%')) {
+                    makeChangeable(percents[i], percent, i);
+                    createGPASelector(i);
+                    let score = percent.replace('%', "");
+                    let weighted = {
+                        "score": score,
+                        "weight": 'regular',
+                        "class": i
+                    }
+                    class_weights.push(weighted);
+                    calculateGPA();
+                }
+            }
+}
+function makeChangeable(element, percent, number) {
+    element.textContent = "";
+    let changer = makeElement('input', 'percent', element);
+    makeElement('span', 'gpachanger-percentage', element, '%');
+    changer.value =  percent.replace('%', '');
+    element.classList.remove('percent');
+    changer.addEventListener('change', function() {
+        class_weights.forEach(function(course) {
+            if(course["class"] === number) course["score"] = changer.value;
+            calculateGPA();
+        });
+    });
+}
+
+function createGPASelector(number) {
+    let weightRadio = makeElement("div", "weightradio", document.querySelectorAll('.course_details tr')[number]);
+    let weightSelections = makeElement("form", "weightform", weightRadio);
+    weightSelections.setAttribute("data-class", number);
+    weightSelections.innerHTML = '<input type="radio" name="weight" value="regular" checked> Regular<br><input type="radio" name="weight" value="honors"> Honors<br><input type="radio" name="weight" value="ap"> AP/IB';
+    weightRadio.addEventListener('change', function(e) {
+        class_weights.forEach(function(course) {
+            if(course["class"] === parseInt(weightSelections.getAttribute("data-class"))) course["weight"] = e.target.value;
+            calculateGPA();
+        });
+    });
 }
