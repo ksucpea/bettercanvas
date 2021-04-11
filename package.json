@@ -1,7 +1,7 @@
 {
   "name": "better-canvas",
-  "version": "2.4.0",
-  "description": "Adds dark mode and other features to the Canvas Instructure website.",
+  "version": "2.6.0",
+  "description": "Best dark mode for Canvas, plus other features",
   "private": true,
   "homepage": "",
   "devDependencies": {

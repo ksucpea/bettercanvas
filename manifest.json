@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "Better Canvas",
-  "description": "Adds dark mode and other features to the Canvas Instructure website.",
-  "version": "2.4.0",
+  "description": "Best dark mode for Canvas, plus other features",
+  "version": "3.0.0",
   "icons": {
     "16": "icon/icon-16.png",
     "32": "icon/icon-32.png",
@@ -16,6 +16,10 @@
     },
     "default_popup": "html/popup.html",
     "default_title": "Better Canvas"
+  },
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
   },
   "content_scripts": [
     {
@@ -33,7 +37,6 @@
       "run_at": "document_end"
     }, 
     {
-    "all_frames": false,
      "js": ["js/start.js"],
      "matches": [
        "https://*.instructure.com/*",
@@ -45,8 +48,5 @@
   ],
   "permissions": [
     "storage"
-  ],
-  "web_accessible_resources": [
-    "css/dark.css"
   ]
 }
