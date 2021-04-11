@@ -21,3 +21,7 @@
 .hypocalcform-collector {display: flex;flex-wrap:wrap;}
 .weightform {min-width: 71px;padding:4px 14px;margin:0;}
 .extension-aldue ~ .extension-al{font-size: 40px;background-color: red;}
+input.percent {background: #fff;border: 1px solid #ccc; width: 73px;text-align: center;border-radius: 3px;padding: 8px 0;color: var(--ic-brand-font-color-dark)}
+.gpachanger-percentage {margin: 0 8px 0 4px;font-size:1.2em;font-weight: bold}
+.extension-update {box-shadow: 0 2px 5px rgb(0 0 0 / 30%);opacity: .9;border-radius: 3px;color: #000;padding: 20px;z-index:100;position: absolute;width: 360px; height: 192px; background-color: #fff;top: 0; bottom: 0; left: 0; right: 0; margin: auto;}
+.extension-updateclose {position:absolute;top:5px;right:5px;border:none;background:none;color: #000!important;font-size: 32px;padding: 5px;}
