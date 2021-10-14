@@ -1,4 +1,4 @@
-let switches = ['assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'link_preview'];
+let switches = ['assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'link_preview', 'assignment_potentials'];
 
 chrome.storage.local.get(['auto_dark', 'auto_dark_start', 'auto_dark_end'], function(result) {
     document.querySelector('#autodark').checked = result.auto_dark;
@@ -15,13 +15,9 @@ document.querySelector('#autodark').addEventListener('change', function() {
 
 switches.forEach(function(option){
     chrome.storage.local.get(option, function(result) {
-        if (result[option] === true) {
-            document.querySelector('#' + option + ' > #on').setAttribute('checked', true);
-            document.querySelector('#' + option + ' > #on').classList.add('checked');
-        } else {
-            document.querySelector('#' + option + ' > #off').setAttribute('checked', true);
-            document.querySelector('#' + option + ' > #off').classList.add('checked');
-        }
+        let status = result[option] === true ? "#on" : "#off";
+        document.querySelector('#' + option + ' > '+status).setAttribute('checked', true);
+        document.querySelector('#' + option + ' > '+status).classList.add('checked');
     });
     document.querySelector('#'+option+' > .slider').addEventListener('mouseup', function() {
         document.querySelectorAll('#'+option+' > input').forEach(function(box) { 
@@ -34,6 +30,7 @@ switches.forEach(function(option){
             case 'assignments_due': chrome.storage.local.set({assignments_due: status}); break;
             case 'gradient_cards': chrome.storage.local.set({gradient_cards: status}); break;
             case 'link_preview': chrome.storage.local.set({link_preview: status}); break;
+            case 'assignment_potentials': chrome.storage.local.set({assignment_potentials: status}); break;
             case 'dark_mode': chrome.storage.local.set({dark_mode: status}); sendFromPopup("darkmode"); break;
         }
     });

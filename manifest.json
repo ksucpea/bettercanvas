@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Better Canvas",
   "description": "Best dark mode for Canvas, plus other features",
-  "version": "3.0.0",
+  "version": "3.2.2",
   "icons": {
     "16": "icon/icon-16.png",
     "32": "icon/icon-32.png",
@@ -21,12 +21,14 @@
     "scripts": ["js/background.js"],
     "persistent": false
   },
+  "options_page": "html/options.html",
   "content_scripts": [
     {
       "matches": [
         "https://*.instructure.com/*",
         "https://*.edu/*",
-        "https://*.ca/*"
+        "https://*.ca/*",
+        "https://*.canvaslms.com/*"
       ],
       "js": [
         "js/content.js"
@@ -41,7 +43,8 @@
      "matches": [
        "https://*.instructure.com/*",
        "https://*.edu/*",
-       "https://*.ca/*"
+       "https://*.ca/*",
+       "https://*.canvaslms.com/*"
       ],
      "run_at": "document_start"
    }

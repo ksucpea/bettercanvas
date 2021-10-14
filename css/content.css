@@ -25,3 +25,14 @@ input.percent {background: #fff;border: 1px solid #ccc; width: 73px;text-align: 
 .gpachanger-percentage {margin: 0 8px 0 4px;font-size:1.2em;font-weight: bold}
 .extension-update {box-shadow: 0 2px 5px rgb(0 0 0 / 30%);opacity: .9;border-radius: 3px;color: #000;padding: 20px;z-index:100;position: absolute;width: 360px; height: 192px; background-color: #fff;top: 0; bottom: 0; left: 0; right: 0; margin: auto;}
 .extension-updateclose {position:absolute;top:5px;right:5px;border:none;background:none;color: #000!important;font-size: 32px;padding: 5px;}
+.extension-grade-hit {color: #ff5050;}
+.extension-grade-full {color: #74c69d}
+.extension-grade-potentials {margin-right: 4px;text-align: right;font-size: 13px;}
+.extension-grade-potentials p {margin: 0;}
+.extension-skeleton {height:36px;display:flex;align-items:center;margin-bottom:5px;}
+.extension-skeleton-text {margin-left: 18px;background: #ededed;width: 160px;height: 16px;animation: blink .5s infinite;}
+@keyframes blink {
+    50% {
+        opacity: .5;
+    }
+}

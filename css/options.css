@@ -1,0 +1,27 @@
+body, html {font-family: 'Lato', sans-serif;}
+h1, p {margin:0;padding:0;}
+p {font-size: 13px}
+.main {margin:auto;width: 800px;margin-top:60px}
+.content {display:flex;margin-top:10px;}
+.main-right {width: 60%;}
+.option {margin:0;}
+.option-background {color: #fff}
+.option-input {font-family: 'Lato', sans-serif;font-size: 20px;background: none;border: none;color: #000;height: 30px;width:100%;padding:10px 0px 10px 10px;}
+.option-input:focus-visible {outline: none;}
+.option-input:hover {background:#ffffff85;}
+.option-color, .option-background {width: 100%}
+.options {display: flex;}
+.option-header {color: #000;font-weight: normal;margin:10px 0}
+button {background:none;margin-top: 20px;margin-right: 10px;border: 1px solid #adbcc7;padding: 8px 20px;font-family: 'Lato', sans-serif;border-radius:3px;transition:.1s background}
+button:hover {cursor: pointer;background:#adbcc724}
+button:active {filter:brightness(85%)}
+#updateCSS {border:1px solid #8dd28d;background: #8dd28d24}
+#updateCSS:hover {background: #8dd28d24}
+.option-background .option-input {color:#fff;}
+.option-color .option-input {color:#000;}
+.message {width:40%}
+.icons img {display: block;margin:auto;height:16px;width:auto;margin-bottom:10px;}
+.access {display: flex;}
+.message p {margin: 10px 40px 10px 0px}
+.text p {margin: 0;margin-bottom: 10px;height:16px;}
+.text {margin-left: 6px;}

@@ -1,4 +1,4 @@
-body{width:350px;font-family: 'Roboto', sans-serif;}
+body{width:350px;font-family: 'Lato', sans-serif;}
 h1, p, body{margin:0;padding:0}
 .sliderknob{position:absolute;transition:all .1s linear;top:4px;height:30px;width:30px;border-radius:50%;margin-left:4px;z-index:1;}
 .option input{display:none;}
