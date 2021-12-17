@@ -2,8 +2,8 @@
 
 Contact ksucpea@gmail.com for suggestions or reporting issues
 
-<h3>User counts (12/17):</h3>
+<h3>Links</h3>
 
-Chrome: 3052
+[Chrome version](https://chrome.google.com/webstore/detail/better-canvas/cndibmoanboadcifjkjbdpjgfedanolh)
 
-Firefox: 189
+[Firefox version](https://addons.mozilla.org/firefox/addon/better-canvas/)
