@@ -13,7 +13,7 @@ chrome.webNavigation.onCommitted.addListener(function(e) {
 }); */
 
 chrome.runtime.onInstalled.addListener(function(){
-    let optionslist = ['new_install','assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'link_preview', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'assignment_potentials'];
+    let optionslist = ['new_install','assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'link_preview', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'assignment_potentials', 'num_assignments'];
     optionslist.forEach(function(option) {
         chrome.storage.local.get([option], function(result) {
             if(Object.keys(result).length === 0) {
@@ -31,11 +31,13 @@ chrome.runtime.onInstalled.addListener(function(){
                     case 'auto_dark': chrome.storage.local.set({auto_dark: false}); break;
                     case 'auto_dark_start': chrome.storage.local.set({auto_dark_start: {"hour": "20", "minute": "00"}}); break;
                     case 'auto_dark_end': chrome.storage.local.set({auto_dark_end: {"hour": "08", "minute": "00"}}); break;
+                    case 'num_assignments': chrome.storage.local.set({num_assignments: 5});
+                    case 'custom_domain': chrome.storage.local.set({custom_domain: ""});
                 }
             }
         });
     });
-    newInstallCSS();
+    newInstallCSS(); // always update the dark mode
 });
 
 function newInstallCSS() {

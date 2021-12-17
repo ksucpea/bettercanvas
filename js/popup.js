@@ -1,9 +1,12 @@
 let switches = ['assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'link_preview', 'assignment_potentials'];
 
-chrome.storage.local.get(['auto_dark', 'auto_dark_start', 'auto_dark_end'], function(result) {
+chrome.storage.local.get(['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'custom_domain'], function(result) {
     document.querySelector('#autodark').checked = result.auto_dark;
     document.querySelector('#autodark_start').value = result.auto_dark_start["hour"] + ":" + result.auto_dark_start["minute"];
     document.querySelector('#autodark_end').value = result.auto_dark_end["hour"] + ":" + result.auto_dark_end["minute"];
+    document.querySelector('#numAssignmentsSlider').value = result.num_assignments;
+    document.querySelector("#numAssignments").textContent = result.num_assignments;
+    document.querySelector("#customDomain").value = result.custom_domain ? result.custom_domain : "";
     toggleDarkModeDisable(result.auto_dark);
 });
 
@@ -11,6 +14,15 @@ document.querySelector('#autodark').addEventListener('change', function() {
     let status = this.checked;
     toggleDarkModeDisable(status);
     chrome.storage.local.set({auto_dark: status}, sendFromPopup("autodarkmode"));
+});
+
+document.querySelector('#numAssignmentsSlider').addEventListener('input', function() {
+    document.querySelector('#numAssignments').textContent = this.value;
+    chrome.storage.local.set({num_assignments: this.value});
+});
+
+document.querySelector('#customDomain').addEventListener('change', function() {
+    chrome.storage.local.set({custom_domain: this.value});
 });
 
 switches.forEach(function(option){

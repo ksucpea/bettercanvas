@@ -1,28 +1,32 @@
-let darkcss, created = false;
+let darkcss, styleElementCreated = false;
+let startHour, startMinute, endHour, endMinute, timeCheck = null;
 const thisDomain = window.location.origin;
 
-chrome.storage.local.get(['dark_mode', 'auto_dark', 'dark_css'], function(result) {
-    darkcss = result.dark_css;
-    if(result.dark_mode === true) toggleDarkMode();
-    if(result.auto_dark === true) toggleAutoDarkMode();
-});
+domainIsCanvasPage();
+
+function startDarkMode() {
+    chrome.storage.local.get(['dark_mode', 'auto_dark', 'dark_css'], function(result) {
+        darkcss = result.dark_css;
+        if(result.dark_mode === true) toggleDarkMode();
+        if(result.auto_dark === true) toggleAutoDarkMode();
+    });
+}
 
 function toggleDarkMode() {
     chrome.storage.local.get(['dark_mode'], function(result) {
-        if (result.dark_mode === true && created === false && thisDomain.match(/canvas|instructure|learn/g)) {
+        if (result.dark_mode === true && styleElementCreated === false) {
             let style = document.createElement('style');
             style.id = 'darkcss';
             style.textContent = darkcss;
             document.documentElement.appendChild(style);
-            created = true;
-        } else if (created === true) {
+            styleElementCreated = true;
+        } else if (styleElementCreated === true) {
             let css = document.getElementById("darkcss").childNodes[0];
             css.textContent = result.dark_mode === true ? darkcss : " ";
         }
     });
 }
 
-let startHour, startMinute, endHour, endMinute, timeCheck = null;
 function autoDarkModeCheck() {
     let date = new Date();
     let currentHour = date.getHours();
@@ -57,6 +61,17 @@ function toggleAutoDarkMode() {
         }
     });
 }   
+
+function domainIsCanvasPage() {
+    if(thisDomain.includes("canvas") || thisDomain.includes("instructure") || thisDomain.includes("learn") || thisDomain.includes("canvaslms") || thisDomain.includes("schools")) {
+        startDarkMode();
+        return;
+    } else {
+        chrome.storage.local.get(['custom_domain'], function(result) {
+            if(thisDomain.includes(result.custom_domain) && result.custom_domain != "") startDarkMode();
+        });
+    }
+}
 
 chrome.runtime.onMessage.addListener(function(request) {
     if (request.message === "darkmode") toggleDarkMode();

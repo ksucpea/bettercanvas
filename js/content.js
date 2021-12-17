@@ -1,15 +1,22 @@
 let class_weights = [];
 let class_done;
+let numAssignmentsToDisplay = 5;
 const domain = window.location.origin;
 const current_page = window.location.pathname;
 
-console.log(domain);
-if(domain.match(/canvas|instructure|learn/g)) {
+isDomainCanvasPage();
+
+function startExtension() {
+console.log("*\nBetter Canvas is running on this page!\n(domain = "+domain+")");
+
 if (current_page === '/' || current_page === '') {
     let dashboardready = setInterval(function() {
         if (document.querySelectorAll('.ic-DashboardCard__header')[0]) {
-            chrome.storage.local.get(['assignments_due'], function(result) { if (result.assignments_due !== false) setupAssigments() });
-            chrome.storage.local.get(['gradient_cards'], function(result) { if (result.gradient_cards === true) changeGradientCards() });
+            chrome.storage.local.get(['num_assignments', 'assignments_due', 'gradient_cards'], function(result) {
+                numAssignmentsToDisplay = result.num_assignments;
+                if(result.assignments_due !== false) setupAssignments();
+                if(result.gradient_cards === true) changeGradientCards();
+            });
             clearInterval(dashboardready);
         }
     }, 50);
@@ -64,16 +71,27 @@ if ((current_page.split('/')[1]) === 'courses' && (current_page.split('/')[3]) =
 }
 }
 
-function setupAssigments() {
+function isDomainCanvasPage() {
+    if(domain.includes("canvas") || domain.includes("instructure") || domain.includes("learn") || domain.includes("school")) {
+        startExtension();
+        return;
+    } else {
+        chrome.storage.local.get(['custom_domain'], function(result) {
+            if(domain.includes(result.custom_domain) && result.custom_domain != "") startExtension();
+        });
+    }
+}
+
+function setupAssignments() {
     chrome.storage.local.get(["assignments_done"], function (result) {
         class_done = Object.keys(result).length !== 0 ? result.assignments_done : [];
     });
     getData(domain + '/api/v1/dashboard/dashboard_cards').then(function (data) {
         for (let i = 0; i < data.length; i++) {
             let assignmentsContainer = makeElement("div", "extension-ac", document.querySelectorAll('.ic-DashboardCard')[i]);
-            makeElement("h3", "extension-at", assignmentsContainer, 'Assignments Due');
+            let assignmentsDueHeader = makeElement("h3", "extension-at", assignmentsContainer, 'Assignments Due');
             let skeleton = makeElement("div", "extension-skeleton", assignmentsContainer);
-            makeElement("div", "extension-skeleton-text", skeleton);
+            let skeletonText = makeElement("div", "extension-skeleton-text", skeleton);
             insertAssignments(data[i].id, assignmentsContainer);
         }
     });
@@ -81,7 +99,7 @@ function setupAssigments() {
 
 function insertAssignments(courseId, card) {
     let needsPotentialsInserted = [];
-        getData(domain + '/api/v1/courses/' + courseId + '/assignments?order_by=due_at&bucket=future').then(function(data) {
+        getData(domain + '/api/v1/courses/' + courseId + '/assignments?order_by=due_at&bucket=future&per_page=' + numAssignmentsToDisplay).then(function(data) {
             if (data.length === 0) {
                 let assignmentEmptyDiv = makeElement("div", "extension-al", card);
                 let assignmentEmptyDue = makeElement("span", "extension-ed", assignmentEmptyDiv, "None");
@@ -116,9 +134,7 @@ function insertAssignments(courseId, card) {
         }).then(function() {
             card.querySelector(".extension-skeleton").remove();
             chrome.storage.local.get(['assignment_potentials'], function(result) { // assignment potential % insert
-                if (result.assignment_potentials === true) {
-                    insertAssignmentPotentials(courseId, needsPotentialsInserted);
-                }
+                if (result.assignment_potentials === true) insertAssignmentPotentials(courseId, needsPotentialsInserted);
             });
         });
 }
@@ -151,8 +167,8 @@ function insertAssignmentPotentials(courseId, needsPotentialsInserted) {
             }).then(function() {
                 needsPotentialsInserted.forEach(function(potential) {
                     let potentials = getGradeHit(potential.assignment, assignmentGroups, totalGroupsWithPoints);
-                    makeElement("p", "extension-grade-hit", potential.element, "-" + potentials[0]+"%");
-                    makeElement("p", "extension-grade-full", potential.element, "+"+potentials[1]+"%");
+                    let assignmentGain = makeElement("p", "extension-grade-hit", potential.element, "-" + potentials[0]+"%");
+                    let assignmentLoss = makeElement("p", "extension-grade-full", potential.element, "+"+potentials[1]+"%");
                 });
             });
         }
@@ -216,16 +232,27 @@ function changeGradientCards() {
 function calculateGPA() {
     let weights = 0;
     let unweighted = 0;
+    let numCredits = 0;
     class_weights.forEach(function(course) {
-        let weight = course["weight"] === 'ap' ? 1 : (course["weight"] === 'honors' ? .5 : 0);
-        let score = course["score"];
-        unweighted += score >= 89.5 ? 4 : (score < 89.5 && score >= 79.5  ? 3 : (score < 79.5 && score >= 69.5 ? 2 : (score < 69.5 && score >= 59.5 ? 1 : null)));
-        weights += weight;
+        if (course["weight"] != "dnc") {
+            let qualityPoints;
+            let score = course["score"];
+            let courseCredits = parseInt(course["credits"]);
+            numCredits += courseCredits;
+            if(course["weight"] === "college") {
+                qualityPoints = score >= 97 ? 4.3 : (score < 97 && score >= 93 ? 4 : (score < 93 && score >= 90 ? 3.7 : (score < 90 && score >= 87 ? 3.3 : (score < 87 && score >= 83 ? 3 : (score < 83 && score >= 80 ? 2.7 : (score < 80 && score >= 77 ? 2.3 : (score < 77 && score >= 73 ? 2 : (score < 73 && score >= 70 ? 1.7 : (score < 70 && score >= 67 ? 1.3 : (score < 67 && score >= 63 ? 1 : (score < 63 && score >= 60 ? .7 : 0)))))))))));
+            } else {
+                qualityPoints = score >= 89.5 ? 4 : (score < 89.5 && score >= 79.5 ? 3 : (score < 79.5 && score >= 69.5 ? 2 : (score < 69.5 && score >= 59.5 ? 1 : 0)));
+                let weight = course["weight"] === 'ap' ? 1 : (course["weight"] === 'honors' ? .5 : 0);
+                weights += weight * courseCredits; 
+            }
+            unweighted += qualityPoints * courseCredits;
+        }
     }); 
     let gpaDiv = document.querySelector('.extension-calcgpa');
-    let finalgpaweighted = ((unweighted + weights) / class_weights.length).toFixed(2);
-    let finalgpaunweighted = (unweighted / class_weights.length).toFixed(2);
-    gpaDiv.firstChild.textContent = 'Unweighted GPA: ' + finalgpaunweighted + ' | Weighted GPA: ' + finalgpaweighted;
+    let finalgpaweighted = ((unweighted + weights) / numCredits).toFixed(2);
+    let finalgpaunweighted = (unweighted / numCredits).toFixed(2);
+    gpaDiv.firstChild.textContent = 'Unweighted GPA: ' + finalgpaunweighted + ' | Weighted GPA (HS): ' + finalgpaweighted;
 }
 
 function setupGPACalc() {
@@ -238,7 +265,7 @@ function setupGPACalc() {
             makeChangeable(percents[i], percent, i);
             createGPASelector(i);
             let score = percent.replace('%', "");
-            let weighted = { "score": score, "weight": 'regular', "class": i }
+            let weighted = { "score": score, "weight": 'regular', "class": i, "credits": 1 }
             class_weights.push(weighted);
             calculateGPA();
         }
@@ -260,13 +287,25 @@ function makeChangeable(element, percent, number) {
 }
 
 function createGPASelector(number) {
-    let weightRadio = makeElement("div", "weightradio", document.querySelectorAll('.course_details tr')[number]);
+    let gpaOptions = makeElement("div", "extension-gpaOptions", document.querySelectorAll('.course_details tr')[number]);
+    let weightRadio = makeElement("div", "weightradio", gpaOptions);
+    let creditsRadio = makeElement("div", "creditsradio", gpaOptions);
     let weightSelections = makeElement("form", "weightform", weightRadio);
+    let creditInput = makeElement("span", "credits", creditsRadio);
     weightSelections.setAttribute("data-class", number);
-    weightSelections.innerHTML = '<input type="radio" name="weight" value="regular" checked> Regular<br><input type="radio" name="weight" value="honors"> Honors<br><input type="radio" name="weight" value="ap"> AP/IB';
+    weightSelections.innerHTML = '<select name="weight-selection" id="weight-selection"><option value="dnc">Do not count</option><option value="college">College</option><option value="regular" selected>Regular</option><option value="honors">Honors</option><option value="ap">AP/IB</option></select>'
+    creditInput.innerHTML = 'Credits: <input id="credit-selection" value="1"></input>';
+    creditInput.querySelector("#credit-selection").setAttribute("data-class", number);
     weightRadio.addEventListener('change', function(e) {
         class_weights.forEach(function(course) {
             if(course["class"] === parseInt(weightSelections.getAttribute("data-class"))) course["weight"] = e.target.value;
+            calculateGPA();
+        });
+    });
+    creditInput.querySelector("#credit-selection").addEventListener('change', function(e) {
+        let courseNum = parseInt(this.getAttribute("data-class"));
+        class_weights.forEach(function(course) {
+            if(course["class"] === courseNum) course["credits"] = e.target.value;
             calculateGPA();
         });
     });
