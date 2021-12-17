@@ -3,11 +3,11 @@
 <head>
     <title>Better Canvas</title>
     <link href="../css/options.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <div class="main" >
         <h1>Welcome to Better Canvas!</h1>
         <div class="content">
@@ -18,21 +18,23 @@
                     <img src="../images/puzzle.png">
                     <img src="../images/bettercanvas.png">
                     <img src="../images/pin.png">
+                    <img src="../images/lock.png"> 
                 </div>
                 <div class="text">
                     <p>1. Click on this puzzle icon at the top right</p>
                     <p>2. Click on Better Canvas</p>
                     <p>You can also pin it for easier access</p>
+                    <p>You can add a custom URL there if you see no changes to your Canvas</p>
                 </div>
             </div>
-            <p>You can change dark mode colors here if you'd like (make sure it's a hex code like these) ---></p>
-            <p>Press update and refresh Canvas to see changes, reset to default colors if needed using the button</p>
-            <p style="font-weight:bold">New stuff:</p>
-            <p>- Dark mode changes</p>
-            <p>- Customizable dark mode colors</p>
-            <p>- Assignment potentials (percent change in your grade if you got 0 points vs. full points)</p>
-            <p>- New welcome message</p>
-            <p style="font-size: 16px;">Contact: <span style="font-weight:bold;font-size:18px;padding:4px">ksucpea@gmail.com</span> if you have any issues or suggestions</p>
+            <p style="font-size: 16px;margin-top: 30px;">Contact: <span style="font-weight:bold;font-size:18px;padding:4px">ksucpea@gmail.com</span> if you have any issues or suggestions</p>
+            <div class="update-log" style="margin-top: 30px">
+                <p style="font-weight:bold">New stuff in this update:</p>
+                <p>-All urls now have access</p>
+                <p>-Custom url can be added</p>
+                <p>-New popup design</p>
+                <p>-Dark mode improvements</p>
+            </div>
         </div>
         <div class="main-right">
         <div class="options">
@@ -42,6 +44,8 @@
         <div class="options-buttons">
             <button id="updateCSS">Update</button>
             <button id="setToDefaults">Set to defaults</button>
+            <p style="margin-top: 10px;">You can change dark mode colors here if you'd like (make sure it's a hex code)</p>
+            <p>*Press update and refresh Canvas to see changes</p>
         </div>
     </div>
     </div>

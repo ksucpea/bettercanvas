@@ -3,24 +3,39 @@
 <head>
     <title>Better Canvas</title>
     <link href="../css/popup.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="main">
     <div class="header"><h1>Better Canvas</h1><img id="bclogo" src="../icon/icon-128.png"></div>
     <div class="options">
-        <div class="option" id="dark_mode"><input type="radio" id="on" name="dark_mode"><input type="radio" id="off" name="dark_mode"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>Dark mode</span></div>
-        <div class="automatic"><input type="checkbox" id="autodark"><span style="font-size: 18px"> Automatic dark mode</span></input><div class="timesets"><div class="timeset"><input type="time" id="autodark_start" step="60"><span>Start time</span></input></div><div class="timeset"><input type="time" id="autodark_end" step="60"><span>End time</span></input></div></div></div>
-        <div style="margin-bottom: 10px;"><a target="_blank" href="/html/options.html">Click here to change dark mode colors</a></div>
-        <div class="option" id="assignments_due"><input type="radio" id="on" name="assignments_due"><input type="radio" id="off" name="assignments_due"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>*Dashboard assignments</span></div>
-        <div class="option" id="gpa_calc"><input type="radio" id="on" name="gpa_calc"><input type="radio" id="off" name="gpa_calc"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>*GPA calculator</span></div>
-        <div class="option" id="link_preview"><input type="radio" id="on" name="link_preview"><input type="radio" id="off" name="link_preview"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>*Link previews</span></div>
-        <div class="option" id="gradient_cards"><input type="radio" id="on" name="gradient_cards"><input type="radio" id="off" name="gradient_cards"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>*Gradient cards</span></div>
-        <div class="option" id="assignment_potentials"><input type="radio" id="on" name="assignment_potentials"><input type="radio" id="off" name="assignment_potentials"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>*Assignment potentials</span></div>
+        <div class="options-left">
+            <div class="option-container"><div class="option" id="dark_mode"><input type="radio" id="on" name="dark_mode"><input type="radio" id="off" name="dark_mode"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>Dark mode</span></div></div>
+            <div class="option-container"><div class="option" id="assignments_due"><input type="radio" id="on" name="assignments_due"><input type="radio" id="off" name="assignments_due"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>Dashboard assignments</span></div></div>
+            <div class="option-container"><div class="option" id="gradient_cards"><input type="radio" id="on" name="gradient_cards"><input type="radio" id="off" name="gradient_cards"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>Gradient cards</span></div></div>
+            <div class="option-container"><div class="option" id="gpa_calc"><input type="radio" id="on" name="gpa_calc"><input type="radio" id="off" name="gpa_calc"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>GPA calculator</span></div></div>
+            <div class="option-container"><div class="option" id="link_preview"><input type="radio" id="on" name="link_preview"><input type="radio" id="off" name="link_preview"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>Link previews</span></div></div>
+            <div class="option-container"><div class="option" id="assignment_potentials"><input type="radio" id="on" name="assignment_potentials"><input type="radio" id="off" name="assignment_potentials"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>Assignment potentials</span></div></div>
+        </div>
+
+        <div class="options-right">
+            <div class="option-container"><div class="customDomain">Not working? Try entering your Canvas URL here: <input type="text" id="customDomain" placeholder="https://canvas.school.edu"></input></div></div>
+            <div class="option-container"><div class="automatic"><input type="checkbox" id="autodark"><span style="font-size: 16px"> Automatic dark mode</span></input><div class="timesets"><div class="timeset"><input type="time" id="autodark_start" step="60"><span>Start time</span></input></div><div class="timeset"><input type="time" id="autodark_end" step="60"><span>End time</span></input></div></div></div></div>
+            <div class="option-container">
+                <div class="numAssignments">
+                    <div class="slidecontainer">
+                        <span>Max # of assignments shown for dashboard assignments: </span><span id="numAssignments"></span><input type="range" min="1" max="10" id="numAssignmentsSlider">
+                    </div>
+                </div>
+            </div>
+            <a href="/html/options.html" target="_blank" class="option-container">Customize dark mode colors</a>
+        </div>
+
+        
     </div>
-    <h2>*Refresh canvas to apply change</h2>
 </div>
 
 <script type="text/javascript" src="../js/popup.js"></script>
