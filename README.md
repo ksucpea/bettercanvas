@@ -1,9 +1,9 @@
-<b>Better Canvas</b>
+<h1>Better Canvas</h1>
 
 Contact ksucpea@gmail.com for suggestions or reporting issues
 
-User counts (12/17):
+<h3>User counts (12/17):</h3>
 
-Chrome user count: 3052
+Chrome: 3052
 
-Firefox user count: 189
+Firefox: 189
