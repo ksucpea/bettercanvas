@@ -2,7 +2,7 @@
 .extension-ac a:hover{color:var(--ic-brand-font-color-dark-lightened-30);text-decoration:none;}
 .extension-due,.extension-overdue{padding-left:6px;}
 .extension-at{color:var(--ic-brand-font-color-dark-lightened-30);font-size:16px;font-weight:700;padding:0 18px;}
-.extension-gpa{font-size:1.2em;font-weight:700;padding-top:8px;border-style:none!important;}
+.extension-gpa{font-size:1.8em;font-weight:700;padding-top:8px;border-style:none!important;}
 .extension-weight_select{display:inline-block;margin:0;}
 .hypodivcalc span {font-weight: bold}
 .hypodivcalc{display: flex;min-width:calc(33.33% - 50px);box-shadow: #9da5ab80 0px 2px 5px;align-items:center;background-color:#eee;border-radius:7px;margin:10px 5px 0;padding:20px;width:calc(33.33% - 50px);}
@@ -19,7 +19,10 @@
 .extension-linkpreview:hover {background-color:#e6e6e6;}
 .extension-linkpreview:focus {outline: none}
 .hypocalcform-collector {display: flex;flex-wrap:wrap;}
-.weightform {min-width: 71px;padding:4px 14px;margin:0;}
+.weightform {margin: 0 10px}
+#weight-selection {width: 120px;margin: 0;}
+.credits {display: block;}
+#credit-selection{width: 30px;padding: 5px 10px;}
 .extension-aldue ~ .extension-al{font-size: 40px;background-color: red;}
 input.percent {background: #fff;border: 1px solid #ccc; width: 73px;text-align: center;border-radius: 3px;padding: 8px 0;color: var(--ic-brand-font-color-dark)}
 .gpachanger-percentage {margin: 0 8px 0 4px;font-size:1.2em;font-weight: bold}
@@ -27,10 +30,11 @@ input.percent {background: #fff;border: 1px solid #ccc; width: 73px;text-align: 
 .extension-updateclose {position:absolute;top:5px;right:5px;border:none;background:none;color: #000!important;font-size: 32px;padding: 5px;}
 .extension-grade-hit {color: #ff5050;}
 .extension-grade-full {color: #74c69d}
-.extension-grade-potentials {margin-right: 4px;text-align: right;font-size: 13px;}
+.extension-grade-potentials {text-align: right;font-size: 13px;}
 .extension-grade-potentials p {margin: 0;}
 .extension-skeleton {height:36px;display:flex;align-items:center;margin-bottom:5px;}
 .extension-skeleton-text {margin-left: 18px;background: #ededed;width: 160px;height: 16px;animation: blink .5s infinite;}
+.extension-gpaOptions {display:flex;align-items:center;margin:21px 0;}
 @keyframes blink {
     50% {
         opacity: .5;
