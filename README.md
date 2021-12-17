@@ -2,8 +2,18 @@
 
 Contact ksucpea@gmail.com for suggestions or reporting issues
 
-<h3>Links</h3>
+<h2>Update 4.0</h3>
+
+-All urls now have access
+
+-Custom url can be added
+
+-New popup design
+
+-Dark mode improvements
+
+<h2>Links</h2>
 
 [Chrome version](https://chrome.google.com/webstore/detail/better-canvas/cndibmoanboadcifjkjbdpjgfedanolh)
 
-[Firefox version](https://addons.mozilla.org/firefox/addon/better-canvas/)
+[Firefox version](https://addons.mozilla.org/addon/better-canvas/)
