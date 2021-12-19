@@ -1,4 +1,4 @@
-body{width:600px;height: 100%;font-family: 'Rubik', sans-serif;color: #e2e2e2;background: #131313}
+body{width:600px;height: 100%;font-family: 'Rubik', sans-serif;color: #e2e2e2;background: #161616}
 h1, p, body{margin:0;padding:0}
 .sliderknob{position:absolute;transition:all .1s linear;top:4px;height:26px;width:26px;border-radius:50%;margin-left:4px;z-index:1;}
 .options {display: flex;padding: 0 14px;margin: 5px 0 14px}
@@ -7,7 +7,7 @@ h1, p, body{margin:0;padding:0}
 .options input:nth-of-type(2).checked ~ .slider .sliderknob{transform:translate(30px);background-color:#727272;}
 .option{height:38px;display:flex;align-items:center;}
 .option span{margin-left:8px;font-size:16px;}
-.main{position: relative;}
+.main{position: relative;border:1px solid #3c3c3c;}
 .main h2 {margin-left: 15px;}
 .sliderbg{background-color:#444;width:100%;height:100%;border-radius:40px;}
 .slider:hover {cursor:pointer}
@@ -21,7 +21,7 @@ h1, p, body{margin:0;padding:0}
 #numAssignmentsSlider {display: block;margin-top: 14px;width: 100%;-webkit-appearance: none; appearance: none;background:#444;outline: none;height:6px;}
 #numAssignmentsSlider::-webkit-slider-thumb {-webkit-appearance: none; appearance: none;height: 20px; width: 20px;background: #727272;cursor: pointer;border-radius:30px;}
 .slidecontainer {font-size: 15px;}
-.option-container {margin-top: 12px;background: #212121;padding: 14px;border-radius: 14px;}
+.option-container {margin-top: 12px;background: #1e1e1e;padding: 14px;border-radius: 14px;}
 a.option-container {display: block;color:#5ca5f6;font-size: 14px;}
 a.option-container:hover {background: #333}
 #customDomain {background: #444; border: none;padding:8px;color: #e2e2e2;margin-top: 6px;border-radius: 8px;font-family: 'Rubik', sans-serif;width: calc(100% - 14px)}

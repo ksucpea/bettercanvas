@@ -4,7 +4,7 @@
   "manifest_version": 2,
   "name": "Better Canvas",
   "description": "Best dark mode for Canvas, plus other features",
-  "version": "4.0",
+  "version": "4.0.1",
   "icons": {
     "16": "icon/icon-16.png",
     "32": "icon/icon-32.png",
