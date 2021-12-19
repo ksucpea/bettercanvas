@@ -1,10 +1,8 @@
 {
-"update_url": "https://clients2.google.com/service/update2/crx",
-
   "manifest_version": 2,
   "name": "Better Canvas",
   "description": "Best dark mode for Canvas, plus other features",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "icons": {
     "16": "icon/icon-16.png",
     "32": "icon/icon-32.png",
@@ -26,26 +24,16 @@
   "options_page": "html/options.html",
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "js/content.js"
-      ],
-      "css": [
-        "css/content.css"
-      ],
+      "matches": ["https://*/*"],
+      "js": ["js/content.js"],
+      "css": ["css/content.css"],
       "run_at": "document_end"
     }, 
     {
-     "js": ["js/start.js"],
-     "matches": [
-       "<all_urls>"
-      ],
-     "run_at": "document_start"
+      "matches": ["https://*/*"],
+      "js": ["js/start.js"],
+      "run_at": "document_start"
    }
   ],
-  "permissions": [
-    "storage"
-  ]
+  "permissions": ["storage"]
 }
