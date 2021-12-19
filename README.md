@@ -2,13 +2,15 @@
 
 Contact ksucpea@gmail.com for suggestions or reporting issues
 
-<h2>Update 4.0</h3>
+<h2>Update 4.0.1</h3>
 
 -All urls now have access
 
 -Custom url can be added
 
 -New popup design
+
+-New welcome message design
 
 -Dark mode improvements
 
