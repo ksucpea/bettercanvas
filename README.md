@@ -2,17 +2,19 @@
 
 Contact ksucpea@gmail.com for suggestions or reporting issues
 
-<h2>Update 4.0.2</h3>
+<h2>Update 4.1.0</h3>
 
--All urls now have access
+- Faster and more efficient assignments list
 
--Custom url can be added
+- Dashboard grades feature
 
--New popup design
+- Much better dark mode customization
 
--New welcome message design
+- Preview for dark mode
 
--Dark mode improvements
+- Dark mode presets
+
+- Removed assignment potentials and link preview features
 
 <h2>Links</h2>
 
