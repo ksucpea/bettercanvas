@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <title>Better Canvas</title>
     <link href="../css/options.css" rel="stylesheet">
@@ -7,47 +8,115 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="main">
         <div class="main-left">
             <div class="container">
-                <div class="welcome"><h1>Welcome to Better Canvas!</h1><img src="../icon/icon-128.png"></div>
+                <div class="welcome">
+                    <h1>Welcome to Better Canvas!</h1><img src="../icon/icon-128.png">
+                </div>
                 <div class="steps">
                     <p>To turn on/off features:</p>
-                    <li class="steps-item"><img src="../images/puzzle.png">1. Click on this puzzle icon at the top right</li>
+                    <li class="steps-item"><img src="../images/puzzle.png">1. Click on this puzzle icon at the top right
+                    </li>
                     <li class="steps-item"><img src="../icon/icon-16.png">2. Click on Better Canvas</li>
                     <li class="steps-item"><img src="../images/pin.png">You can also pin it for easier access</li>
                     <li class="steps-item"><img src="../images/lock.png">You can add a custom URL there if you see no changes to your Canvas</li>
                 </div>
             </div>
             <div class="container">
-                <p>Contact: <span style="font-weight:bold;">ksucpea@gmail.com</span> if you have any issues or suggestions</p>
+                <p>Contact: <span style="color:#ef233c">ksucpea@gmail.com</span> if you have any issues or suggestions</p>
             </div>
             <div class="container">
                 <p style="font-weight:bold">New stuff in this update:</p>
-                <p>- All urls now have access</p>
-                <p>- Custom url can be added</p>
-                <p>- New popup design</p>
-                <p>- Dark mode improvements</p>
+                <p>- Faster and more efficient assignments list</p>
+                <p>- Dashboard grades feature</p>
+                <p>- Much better dark mode customization</p>
+                <p>- Preview for dark mode</p>
+                <p>- Dark mode presets</p>
+                <p>- Removed assignment potentials and link preview features <span style="font-size: 12px;color:#ababab">(please contact me if you want these back -- I removed them based on the assumption that most people do not use this)</span></p>
             </div>
         </div>
         <div class="main-right">
             <div class="container">
-            <div class="options">
-                <div style="width:50%"><p class="option-header">Background Colors</h1><div class="option-background"></div></div>
-                <div style="width:50%"><p class="option-header">Text Colors</h1><div class="option-color"></div></div>
-            </div>
-            <div class="options-buttons">
-                <button id="updateCSS">Update</button>
-                <button id="setToDefaults">Set to defaults</button>
-                <p style="margin-top: 20px">You can change dark mode colors here if you'd like (make sure it's a hex code)</p>
-                <p>*Press update and refresh Canvas to see changes</p>
+                <div class="options">
+                    <div style="width:49%">
+                        <p class="option-header">Background Colors</h1>
+                        <div class="option-background" id="option-background"></div>
+                    </div>
+                    <div style="width:49%">
+                        <p class="option-header">Text Colors</h1>
+                        <div class="option-color" id="option-text"></div>
+                    </div>
+                </div>
+                <div class="options-buttons">
+                    <p style="margin-top: 20px">You can change dark mode colors here by clicking on the color and changing the value, or you can choose from presets.</p>
+                    <p style="margin-top: 20px">Refresh Canvas to see changes</p>
+                </div>
             </div>
         </div>
+        <div class="preview">
+            <div class="container">
+                <p class="option-header">Dashboard preview</p>
+                <div id="preview-body" class="--bcbackgrounddark0" style="border: 1px solid #3c3c3c;width:100%;height:200px;position:relative">
+                    <div class="--bcbackgrounddark1" style="position:absolute;top:0;left:0;width:18px;height:100%"></div>
+                    <div style="position:absolute;top:5px;left:25px;font-size:8px">Dashboard</div>
+                    <div style="position:absolute;top:16px;left:25px;width:75%;height:1px;" class="--bcbackgrounddark3"></div>
+                    <div class="--bcbackgrounddark0" style="box-shadow:0 1px 2px #000;width:50px;height:70px;position:absolute;top:25px;left:25px;border-radius:3px;font-size:6px">
+                        <div style="width:100%;background:#06a3b7;height:24px;border-top-left-radius: 3px;border-top-right-radius: 3px;"></div>
+                        <div style="padding:4px" class="--bctextlight0">class name</div>
+                    </div>
+                    <div class="--bcbackgrounddark0" style="box-shadow:0 1px 2px #000;width:50px;height:70px;position:absolute;top:25px;left:85px;border-radius:3px;font-size:6px">
+                        <div style="width:100%;background:#ff2717;height:24px;border-top-left-radius: 3px;border-top-right-radius: 3px;"></div>
+                        <div style="padding:4px" class="--bctextlight0">class name</div>
+                    </div>
+                    <div class="--bcbackgrounddark0" style="box-shadow:0 1px 2px #000;width:50px;height:70px;position:absolute;top:25px;left:145px;border-radius:3px;font-size:6px">
+                        <div style="width:100%;background:#65499d;height:24px;border-top-left-radius: 3px;border-top-right-radius: 3px;"></div>
+                        <div style="padding:4px" class="--bctextlight0">class name</div>
+                    </div>
+                    <div style="position:absolute;top:10px;right:0;font-size:6px;width:40px">
+                        <div>To Do</div>
+                        <div style="height:1px;width:35px;" class="--bcbackgrounddark3"></div>
+                        <div style="padding:2px 4px;font-size:6px">
+                            <div class="--bctextlink">link</div>
+                            <div class="--bctextlight0">event</div>
+                        </div>
+                        <div style="padding:2px 4px;font-size:6px">
+                            <div class="--bctextlink">link</div>
+                            <div class="--bctextlight0">event</div>
+                        </div>
+                        <div style="padding:2px 4px;font-size:6px">
+                            <div class="--bctextlink">link</div>
+                            <div class="--bctextlight0">event</div>
+                        </div>
+                        <div style="padding:2px 4px;font-size:6px">
+                            <div class="--bctextlink">link</div>
+                            <div class="--bctextlight0">event</div>
+                        </div>
+                        <div style="padding:2px 4px;font-size:6px">
+                            <div class="--bctextlink">link</div>
+                            <div class="--bctextlight0">event</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="options-presets">
+                    <p>Presets</p>
+                    <button id="setToDefaults" style="border:2px solid #ef233c">Reset to default</button>
+                    <button id="lighter">Lighter</button>
+                    <button id="darker">Darker</button>
+                    <button id="extreme">Extreme dark</button>
+                    <button id="blue">Dark/blue tint</button>
+                    <button id="burn">Eyeball burn</button>
+                </div>
+            </div>
         </div>
     </div>
 
-<script type="text/javascript" src="../js/options.js"></script>
+    <script type="text/javascript" src="../js/options.js"></script>
 
 </body>
+
 </html>

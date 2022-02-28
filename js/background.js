@@ -1,22 +1,8 @@
-/*chrome.storage.local.get(["reduction"], function(result) {
-    if(result.reduction === true) {
-chrome.webNavigation.onCommitted.addListener(function(e) {
-    if(e.url.match(/canvas|instructure|learn/g)) {
-        chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
-            let activeTab = tabs[0];
-            chrome.tabs.sendMessage(activeTab.id, {"message": "darkmode"});
-            chrome.tabs.sendMessage(activeTab.id, {"message": "autodarkmode"});
-        });
-    } 
-});
-    }
-}); */
-
 chrome.runtime.onInstalled.addListener(function(){
     let optionslist = ['new_install','assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'link_preview', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'assignment_potentials', 'num_assignments'];
     optionslist.forEach(function(option) {
         chrome.storage.local.get([option], function(result) {
-            if(Object.keys(result).length === 0) {
+            if(Object.keys(result).length === 0) { // checking for empty keys
                 switch(option) {
                     case 'new_install': 
                         chrome.runtime.openOptionsPage();
@@ -33,6 +19,7 @@ chrome.runtime.onInstalled.addListener(function(){
                     case 'auto_dark_end': chrome.storage.local.set({auto_dark_end: {"hour": "08", "minute": "00"}}); break;
                     case 'num_assignments': chrome.storage.local.set({num_assignments: 5});
                     case 'custom_domain': chrome.storage.local.set({custom_domain: ""});
+                    case 'dashboard_grades': chrome.storage.local.set({dashboard_grades: false}); break;
                 }
             }
         });

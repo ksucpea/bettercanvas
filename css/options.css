@@ -1,13 +1,14 @@
 body, html {font-family: 'Rubik', sans-serif;background:#161616;color:#e2e2e2}
 h1, p {margin:0;padding:0;}
-.main {display:flex;margin:auto;width: 800px;margin-top:60px;justify-content: space-between;font-size: 15px;}
-.option {margin:0;}
+.main {display:flex;margin:auto;width:1200px;margin-top:60px;justify-content: space-between;font-size: 15px;}
+.option {margin:0;height:50px;width:100%}
 .option-background {color: #fff}
 .option-input {font-family: 'Rubik', sans-serif;font-size: 20px;background: none;border: none;color: #000;height: 30px;width:100%;padding:10px 0px 10px 10px;}
 .option-input:focus-visible {outline: none;}
-.option-input:hover {background:#ffffff85;}
 .option-color, .option-background {width: 100%;border: 1px solid #3c3c3c}
-.options {display: flex;}
+.options {display: flex;justify-content: space-between}
+.option{border:1px solid transparent}
+.option:hover {border: 1px solid red;}
 .option-header {color: #e2e2e2;font-weight: normal;margin-bottom:10px}
 button {color:#e2e2e2;background:none;margin-top: 20px;margin-right: 10px;border: 1px solid #adbcc7;padding: 8px 20px;font-family: 'Rubik', sans-serif;border-radius:3px;transition:.1s background}
 button:hover {cursor: pointer;background:#adbcc724}
@@ -21,7 +22,7 @@ button:active {filter:brightness(85%)}
 .container {background: #1e1e1e;padding: 20px; border-radius: 14px;margin-bottom: 14px;}
 .steps-item {display:flex;align-items:center;margin-top: 4px}
 .steps-item img {margin-right: 6px;height:16px;}
-.main-left, .main-right {width: 393px;}
+.main-left, .main-right, .preview {width: 393px;}
 .steps {margin-top: 14px;}
 .welcome {display: flex;justify-content:space-between;}
 .welcome img {height: 66px;width:66px;}
