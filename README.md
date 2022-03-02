@@ -2,7 +2,7 @@
 
 Contact ksucpea@gmail.com for suggestions or reporting issues
 
-<h2>Update 4.1.0</h3>
+<h2>Update 4.2.0</h3>
 
 - Faster and more efficient assignments list
 
@@ -15,6 +15,10 @@ Contact ksucpea@gmail.com for suggestions or reporting issues
 - Dark mode presets
 
 - Removed assignment potentials and link preview features
+
+- Dark mode improvements
+
+- Dark mode can now target iframes
 
 <h2>Links</h2>
 
