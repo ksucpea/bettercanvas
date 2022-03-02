@@ -12,6 +12,9 @@ function startExtension() {
     console.log("*\nBetter Canvas is running on this page!\n(domain = " + domain + ")");
 
     if (current_page === '/' || current_page === '') {
+
+        markAllAsRead();
+
         chrome.storage.local.get(['assignments_due', 'dashboard_grades', 'gradient_cards'], function (result) {
             getNecessaryItemsFromAPI(result);
             if (result.assignments_due === true || result.gradient_cards === true) window.onload = forceIntoCard(result);
@@ -21,6 +24,34 @@ function startExtension() {
     if (current_page === '/grades') {
         chrome.storage.local.get(['gpa_calc'], function (result) { if (result.gpa_calc !== false) setupGPACalc() });
     }
+}
+
+function markAllAsRead() {
+    getData(`${domain}/api/v1/planner/items`).then((resp) => {
+        console.log(resp);
+        resp.forEach((item) => {
+            console.log(item.planner_override === null);
+            if(item.planner_override === null) markAsRead(item);
+        });
+    });
+}
+
+async function markAsRead(item) {
+
+    const response = await fetch(`${domain}/api/v1/planner/overrides`, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        credentials: 'same-origin', // include, *same-origin, omit
+        body: JSON.stringify({
+            marked_complete: true,
+            plannable_type: "announcement",
+            plannable_id: item.plannable_id,
+            user_id: 1008347
+        }), // body data type must match "Content-Type" header
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          }
+    });
 }
 
 function forceIntoCard() {

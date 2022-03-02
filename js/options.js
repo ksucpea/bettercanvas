@@ -39,7 +39,6 @@ function getColors(data) {
 }
 
 function changePreview(type, color) {
-    console.log(document.querySelector("." + type));
     if (type.includes('background')) {
         document.querySelectorAll("." + type).forEach((el) => {
             el.style.background = color;
