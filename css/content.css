@@ -5,7 +5,7 @@
 #grade-summary-content ~ .extension-calcgpa{font-size:1.2em;font-weight:700;}
 .hypocalcform span{font-weight:700;min-width:50%;}
 .ic-DashboardCard__header_hero {border:0!important}
-.extension-completed{text-decoration:line-through;}
+.bettercanvas-completed{text-decoration:line-through;}
 .extension-embed-hidden {display: none!important}
 .extension-linkpreview {background-color:#eee;border:none;border-radius:7px;padding:5px 15px;color:#6C757C;font-weight:bold;box-shadow: #9da5ab80 0px 2px 5px;margin: 5px 2px}
 .extension-linkpreview:hover {background-color:#e6e6e6;}
@@ -28,14 +28,15 @@ input.percent {background: #fff;border: 1px solid #ccc; width: 73px;text-align: 
 .extension-skeleton-text {margin-left: 18px;background: #ededed;width: 160px;height: 16px;animation: blink .5s infinite;}
 .extension-gpaOptions {display:flex;align-items:center;margin:21px 0;}
 .bettercanvas-card-container {padding-bottom: 4px;}
-.bettercanvas-assignment-container {color: var(--ic-brand-font-color-dark-lightened-30);display: flex;justify-content:space-between;font-size:14px;align-items: center;padding: 8px 18px;transition:.2s all;}
+.bettercanvas-assignment-container {margin: 0;padding:0;color: var(--ic-brand-font-color-dark-lightened-30);display: flex;justify-content:space-between;font-size:14px;align-items: center;transition:.2s all;}
 .bettercanvas-card-header-container {align-items: center;display: flex;justify-content: space-between;padding: 0 18px;color:var(--ic-brand-font-color-dark-lightened-30);font-size:16px;font-weight:700;margin: 0;}
 .bettercanvas-card-header-container h3, .bettercanvas-card-header-container a{font-size: 16px;font-weight: bold;}
 .bettercanvas-card-header {color: var(--ic-brand-font-color-dark-lightened-30);}
 .bettercanvas-card-grade {color: var(--ic-brand-font-color-dark-lightened-30);}
 .bettercanvas-assignment-container:hover {background: #eee;cursor: pointer;color: var(--ic-brand-font-color-dark-lightened-30);}
-.bettercanvas-assignment-link {margin: 0;padding: 0;}
-.bettercanvas-assignment-dueat {padding-left: 18px;}
+.bettercanvas-assignment-link {margin: 0;padding:8px 18px;color:var(--ic-brand-font-color-dark-lightened-30)}
+.bettercanvas-assignment-dueat {padding: 4px 8px;margin-right: 10px;border-radius: 4px;}
+.bettercanvas-assignment-dueat:hover {box-shadow: 0 1px 4px #000!important}
 .bettercanvas-skeleton-text {background: #ededed;width: 160px;height: 16px;animation: blink .5s infinite;margin-left: 18px;margin-bottom: 12px;margin-top: 8px;}
 @keyframes blink {
     50% {

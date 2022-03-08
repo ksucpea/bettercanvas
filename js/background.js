@@ -1,12 +1,13 @@
 chrome.runtime.onInstalled.addListener(function(){
-    let optionslist = ['new_install','assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'link_preview', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'assignment_potentials', 'num_assignments'];
+    let optionslist = ['new_install','assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'link_preview', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'assignment_potentials', 'num_assignments', 'assignments_done'];
     optionslist.forEach(function(option) {
         chrome.storage.local.get([option], function(result) {
             if(Object.keys(result).length === 0) { // checking for empty keys
                 switch(option) {
                     case 'new_install': 
                         chrome.runtime.openOptionsPage();
-                        chrome.storage.local.set({new_install: true}); 
+                        chrome.storage.local.set({new_install: true});
+                        newInstallCSS(); 
                         break;
                     case 'assignments_due': chrome.storage.local.set({assignments_due: true}); break;
                     case 'gpa_calc': chrome.storage.local.set({gpa_calc: false}); break;
@@ -20,11 +21,12 @@ chrome.runtime.onInstalled.addListener(function(){
                     case 'num_assignments': chrome.storage.local.set({num_assignments: 5});
                     case 'custom_domain': chrome.storage.local.set({custom_domain: ""});
                     case 'dashboard_grades': chrome.storage.local.set({dashboard_grades: false}); break;
+                    case 'assignments_done': chrome.storage.local.set({assignments_done: []}); break;
                 }
             }
         });
     });
-    newInstallCSS(); // always update the dark mode
+    updateNewCSS();
 });
 
 function newInstallCSS() {
@@ -34,4 +36,19 @@ function newInstallCSS() {
         chrome.storage.local.set({dark_css: result.dark_css});
     });
     chrome.storage.local.set({new_install: false});
+}
+
+
+function updateNewCSS() {
+    fetch(chrome.extension.getURL('js/darkcss.json'))
+        .then((resp) => resp.json())
+        .then(function (updated) {
+            chrome.storage.local.get(['dark_css'], function(current) {
+                if(!current.dark_css) return;
+                const old = current.dark_css.split('--bcstop:#000}')[0];
+                const cur = updated.dark_css.split('--bcstop:#000}')[1];
+                const new_dark_css = old + "--bcstop:#000}" + cur;
+                chrome.storage.local.set({dark_css: new_dark_css});
+            });
+        });
 }

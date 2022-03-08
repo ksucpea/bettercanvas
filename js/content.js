@@ -12,9 +12,6 @@ function startExtension() {
     console.log("*\nBetter Canvas is running on this page!\n(domain = " + domain + ")");
 
     if (current_page === '/' || current_page === '') {
-
-        markAllAsRead();
-
         chrome.storage.local.get(['assignments_due', 'dashboard_grades', 'gradient_cards'], function (result) {
             getNecessaryItemsFromAPI(result);
             if (result.assignments_due === true || result.gradient_cards === true) window.onload = forceIntoCard(result);
@@ -24,34 +21,6 @@ function startExtension() {
     if (current_page === '/grades') {
         chrome.storage.local.get(['gpa_calc'], function (result) { if (result.gpa_calc !== false) setupGPACalc() });
     }
-}
-
-function markAllAsRead() {
-    getData(`${domain}/api/v1/planner/items`).then((resp) => {
-        console.log(resp);
-        resp.forEach((item) => {
-            console.log(item.planner_override === null);
-            if(item.planner_override === null) markAsRead(item);
-        });
-    });
-}
-
-async function markAsRead(item) {
-
-    const response = await fetch(`${domain}/api/v1/planner/overrides`, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        credentials: 'same-origin', // include, *same-origin, omit
-        body: JSON.stringify({
-            marked_complete: true,
-            plannable_type: "announcement",
-            plannable_id: item.plannable_id,
-            user_id: 1008347
-        }), // body data type must match "Content-Type" header
-        headers: {
-            'Content-Type': 'application/json;charset=UTF-8'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-          }
-    });
 }
 
 function forceIntoCard() {
@@ -87,7 +56,7 @@ function beginInsertion(cardContainers, options) {
         let checkReady = setInterval(() => {
             if (card_order !== null && assignments !== null) {
                 clearInterval(checkReady);
-                insertAssignmentsIntoCards(assignments, card_order, parseInt(options.num_assignments));
+                insertAssignmentsIntoCards(assignments, card_order, parseInt(options.num_assignments), options.assignments_done);
             }
         }, 100);
     }
@@ -108,7 +77,12 @@ function insertGradesIntoCards(grades, card_order) {
         let cardContainer = cards[i].querySelector('.bettercanvas-card-container');
         grades.forEach(function (grade) {
             if (card_order[i].id === grade.id) {
-                let gradePercent = grade.enrollments[0].current_period_computed_current_score ? grade.enrollments[0].current_period_computed_current_score + "%" : "";
+                let gradePercent = "";
+                if (grade.enrollments[0].has_grading_periods === true) {
+                    gradePercent = grade.enrollments[0].current_period_computed_current_score + "%";
+                } else if (grade.enrollments[0].has_grading_periods === false) {
+                    gradePercent = grade.enrollments[0].computed_current_score + "%";
+                }
                 let assignmentsDueHeader = makeElement("a", "bettercanvas-card-grade", cardContainer.querySelector('.bettercanvas-card-header-container'), gradePercent);
                 assignmentsDueHeader.setAttribute("href", `${domain}/courses/${card_order[i].id}/grades`);
             }
@@ -116,9 +90,10 @@ function insertGradesIntoCards(grades, card_order) {
     }
 }
 
-function insertAssignmentsIntoCards(assignments, card_order, maxAssignments) {
+function insertAssignmentsIntoCards(assignments, card_order, maxAssignments, assignments_done) {
     if (!document.querySelectorAll('.bettercanvas-card-container')[0].querySelector('.bettercanvas-skeleton-text')) return;
     let cards = document.querySelectorAll('.ic-DashboardCard');
+    console.log(assignments_done);
     for (let i = 0; i < cards.length; i++) {
         let cardContainer = cards[i].querySelector('.bettercanvas-card-container');
         cardContainer.querySelector(".bettercanvas-skeleton-text").remove(); //remove loader
@@ -126,21 +101,48 @@ function insertAssignmentsIntoCards(assignments, card_order, maxAssignments) {
         assignments.forEach(function (assignment) {
             if (count < maxAssignments && card_order[i].id === assignment.course_id && assignment.plannable_type === "assignment") {
                 count++;
-                let assignmentContainer = makeElement("a", "bettercanvas-assignment-container", cardContainer);
-                let assignmentName = makeElement("p", "bettercanvas-assignment-link", assignmentContainer, assignment.plannable.title)
-                let assignmentDueAt = makeElement("div", "bettercanvas-assignment-dueat", assignmentContainer, cleanDue(assignment.plannable_date));
-                assignmentContainer.setAttribute("href", `${domain}/courses/${card_order[i].id}/assignments/${assignment.plannable_id}`);
+                let assignmentContainer = makeElement("div", "bettercanvas-assignment-container", cardContainer);
+                let assignmentName = makeElement("a", "bettercanvas-assignment-link", assignmentContainer, assignment.plannable.title)
+                let assignmentDueAt = makeElement("span", "bettercanvas-assignment-dueat", assignmentContainer, cleanDue(assignment.plannable_date));
+                assignmentDueAt.setAttribute("data-asgmtid", assignment.plannable_id);
+                if (assignment.submissions.submitted === true) {
+                    assignmentContainer.classList.toggle("bettercanvas-completed");
+                } else {
+                    assignments_done.forEach(function (done) {
+                        console.log(parseInt(done) === assignment.plannable_id);
+                        if (parseInt(done) === assignment.plannable_id) assignmentContainer.classList.add("bettercanvas-completed");
+                    });
+                }
+                assignmentDueAt.addEventListener('mouseup', function () {
+                    assignmentContainer.classList.toggle("bettercanvas-completed");
+                    const status = assignmentContainer.classList.contains("bettercanvas-completed");
+                    setAssignmentStatus(this.dataset.asgmtid, status, assignments_done);
+                });
+                assignmentName.setAttribute("href", `${domain}/courses/${card_order[i].id}/assignments/${assignment.plannable_id}`);
             };
         });
         if (count === 0) {
-            let assignmentDivLink = makeElement("a", "bettercanvas-assignment-container", cardContainer, "None");
+            let assignmentContainer = makeElement("div", "bettercanvas-assignment-container", cardContainer);
+            let assignmentDivLink = makeElement("a", "bettercanvas-assignment-link", assignmentContainer, "None");
         }
     }
 }
 
+function setAssignmentStatus(id, status, assignments_done = []) {
+    console.log(id, status, assignments_done);
+    if(assignments_done.length > 50) assignments_done = [];
+    if (status === true) {
+        assignments_done.push(id);
+    } else {
+        const pos = assignments_done.indexOf(id);
+        if(pos > -1) assignments_done.splice(pos, 1);
+    }
+    chrome.storage.local.set({ assignments_done: assignments_done });
+}
+
 function setupAssignmentSkeleton() {
     if (document.querySelectorAll('.ic-DashboardCard')[0].querySelector('.bettercanvas-card-container')) return;
-    chrome.storage.local.get(['assignments_due', 'dashboard_grades', 'gradient_cards', 'num_assignments'], function (result) {
+    chrome.storage.local.get(['assignments_due', 'dashboard_grades', 'gradient_cards', 'num_assignments', 'assignments_done'], function (result) {
         if (result.gradient_cards === true) changeGradientCards();
         if (result.assignments_due === true) {
             let cards = document.querySelectorAll('.ic-DashboardCard');
