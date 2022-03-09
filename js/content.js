@@ -43,7 +43,7 @@ function getNecessaryItemsFromAPI(options) {
             assignments = response;
         });
         if (options.dashboard_grades === true) {
-            getData(`${domain}/api/v1/courses?enrollment_state=active&include[]=total_scores&include[]=current_grading_period_scores`).then((response) => {
+            getData(`${domain}/api/v1/courses?enrollment_state=active&include[]=total_scores&include[]=current_grading_period_scores&state[]=available`).then((response) => {
                 grades = response;
             });
         }
@@ -80,7 +80,8 @@ function insertGradesIntoCards(grades, card_order) {
                 let gradePercent = "";
                 if (grade.enrollments[0].has_grading_periods === true) {
                     gradePercent = grade.enrollments[0].current_period_computed_current_score + "%";
-                } else if (grade.enrollments[0].has_grading_periods === false) {
+                    //} else if (grade.enrollments[0].has_grading_periods === false) {
+                } else {
                     gradePercent = grade.enrollments[0].computed_current_score + "%";
                 }
                 let assignmentsDueHeader = makeElement("a", "bettercanvas-card-grade", cardContainer.querySelector('.bettercanvas-card-header-container'), gradePercent);
@@ -130,12 +131,12 @@ function insertAssignmentsIntoCards(assignments, card_order, maxAssignments, ass
 
 function setAssignmentStatus(id, status, assignments_done = []) {
     console.log(id, status, assignments_done);
-    if(assignments_done.length > 50) assignments_done = [];
+    if (assignments_done.length > 50) assignments_done = [];
     if (status === true) {
         assignments_done.push(id);
     } else {
         const pos = assignments_done.indexOf(id);
-        if(pos > -1) assignments_done.splice(pos, 1);
+        if (pos > -1) assignments_done.splice(pos, 1);
     }
     chrome.storage.local.set({ assignments_done: assignments_done });
 }
