@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <title>Better Canvas</title>
     <link href="../css/popup.css" rel="stylesheet">
@@ -7,37 +8,121 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="main">
-    <div class="header"><h1>Better Canvas</h1><img id="bclogo" src="../icon/icon-128.png"></div>
-    <div class="options">
-        <div class="options-left">
-            <div class="option-container"><div class="option" id="dark_mode"><input type="radio" id="on" name="dark_mode"><input type="radio" id="off" name="dark_mode"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>Dark mode</span></div></div>
-            <div class="option-container"><div class="option" id="assignments_due"><input type="radio" id="on" name="assignments_due"><input type="radio" id="off" name="assignments_due"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>Dashboard assignments</span></div></div>
-            <div class="option-container"><div class="option" id="gradient_cards"><input type="radio" id="on" name="gradient_cards"><input type="radio" id="off" name="gradient_cards"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>Gradient cards</span></div></div>
-            <div class="option-container"><div class="option" id="gpa_calc"><input type="radio" id="on" name="gpa_calc"><input type="radio" id="off" name="gpa_calc"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>GPA calculator</span></div></div>
-            <div class="option-container"><div class="option" id="dashboard_grades"><input type="radio" id="on" name="dashboard_grades"><input type="radio" id="off" name="dashboard_grades"><div class="slider"><div class="sliderknob"></div><div class="sliderbg"></div></div><span>Dashboard Grades</span></div></div>
+    <div class="main">
+        <div class="header">
+            <h1>Better Canvas</h1><img id="bclogo" src="../icon/icon-128.png">
         </div>
-
-        <div class="options-right">
-            <div class="option-container"><div class="customDomain">Not working? Try entering your Canvas URL here: <input type="text" id="customDomain" placeholder="https://canvas.school.edu"></input></div></div>
-            <div class="option-container"><div class="automatic"><input type="checkbox" id="autodark"><span style="font-size: 16px"> Automatic dark mode</span></input><div class="timesets"><div class="timeset"><input type="time" id="autodark_start" step="60"><span>Start time</span></input></div><div class="timeset"><input type="time" id="autodark_end" step="60"><span>End time</span></input></div></div></div></div>
-            <div class="option-container">
-                <div class="numAssignments">
-                    <div class="slidecontainer">
-                        <span>Max # of assignments shown for dashboard assignments: </span><span id="numAssignments"></span><input type="range" min="1" max="10" id="numAssignmentsSlider">
+        <div class="options">
+            <div class="options-left">
+                <div class="option-container">
+                    <div class="option" id="dark_mode"><input type="radio" id="on" name="dark_mode"><input type="radio"
+                            id="off" name="dark_mode">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span>Dark mode</span>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="option" id="assignments_due"><input type="radio" id="on" name="assignments_due"><input
+                            type="radio" id="off" name="assignments_due">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span>Dashboard assignments</span>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="option" id="gradient_cards"><input type="radio" id="on" name="gradient_cards"><input
+                            type="radio" id="off" name="gradient_cards">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span>Gradient cards</span>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="option" id="gpa_calc"><input type="radio" id="on" name="gpa_calc"><input type="radio"
+                            id="off" name="gpa_calc">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span>GPA calculator</span>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="option" id="dashboard_grades"><input type="radio" id="on" name="dashboard_grades"><input
+                            type="radio" id="off" name="dashboard_grades">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span>Dashboard Grades</span>
                     </div>
                 </div>
             </div>
-            <a href="/html/options.html" target="_blank" class="option-container">Click me to customize dark mode!</a>
+
+            <div class="options-right">
+                <div class="option-container">
+                    <div class="customDomain">Not working? Try entering your Canvas URL here: <input type="text"
+                            id="customDomain" placeholder="https://canvas.school.edu"></input></div>
+                </div>
+                <div class="option-container">
+                    <div class="automatic"><input type="checkbox" id="autodark"><span style="font-size: 16px"> Automatic
+                            dark mode</span></input>
+                        <div class="timesets">
+                            <div class="timeset"><input type="time" id="autodark_start" step="60"><span>Start
+                                    time</span></input></div>
+                            <div class="timeset"><input type="time" id="autodark_end" step="60"><span>End
+                                    time</span></input></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="numAssignments">
+                        <div class="slidecontainer">
+                            <span>Max # of assignments shown for dashboard assignments: </span><span
+                                id="numAssignments"></span><input type="range" min="1" max="10"
+                                id="numAssignmentsSlider">
+                        </div>
+                    </div>
+                </div>
+                <button id="customize-button" class="customization-button">Click me to customize dark mode!</button>
+            </div>
         </div>
-
-        
+        <div class="customization" style="display: none">
+            <div class="container">
+                <div class="options-presets">
+                    <h2 class="customization-header">Presets</h2>
+                    <button id="setToDefaults" class="customization-button" style="border:2px solid #ef233c">Default</button>
+                    <button id="lighter" class="preset-button customization-button">Lighter</button>
+                    <button id="darker" class="preset-button customization-button">Darker</button>
+                    <button id="extreme" class="preset-button customization-button">Extreme dark</button>
+                    <button id="blue" class="preset-button customization-button">Blue tint</button>
+                    <button id="burn" class="preset-button customization-button">Eyeball burn</button>
+                </div>
+            </div>
+            <div class="container">
+                <h2 class="customization-header">Manual customization</h2>
+                <div class="options">
+                    <div style="width:49%">
+                        <p class="color-type-header">Background Colors</h1>
+                        <div class="option-background" id="option-background"></div>
+                    </div>
+                    <div style="width:49%">
+                        <p class="color-type-header">Text Colors</h1>
+                        <div class="option-color" id="option-text"></div>
+                    </div>
+                </div>
+            </div>
+            <button id="customize-button-back" class="customization-button">< Back</button>
+        </div>
     </div>
-</div>
 
-<script type="text/javascript" src="../js/popup.js"></script>
+    <script type="text/javascript" src="../js/popup.js"></script>
 
 </body>
+
 </html>

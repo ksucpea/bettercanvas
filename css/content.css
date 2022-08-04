@@ -6,17 +6,16 @@
 .hypocalcform span{font-weight:700;min-width:50%;}
 .ic-DashboardCard__header_hero {border:0!important}
 .bettercanvas-completed{text-decoration:line-through;}
+.bettercanvas-completed a{text-decoration:line-through;}
 .extension-embed-hidden {display: none!important}
 .extension-linkpreview {background-color:#eee;border:none;border-radius:7px;padding:5px 15px;color:#6C757C;font-weight:bold;box-shadow: #9da5ab80 0px 2px 5px;margin: 5px 2px}
 .extension-linkpreview:hover {background-color:#e6e6e6;}
 .extension-linkpreview:focus {outline: none}
 .hypocalcform-collector {display: flex;flex-wrap:wrap;}
-.weightform {margin: 0 10px}
-#weight-selection {width: 120px;margin: 0;}
-.credits {display: block;}
-#credit-selection{width: 30px;padding: 5px 10px;}
 .extension-aldue ~ .extension-al{font-size: 40px;background-color: red;}
-input.percent {background: #fff;border: 1px solid #ccc; width: 73px;text-align: center;border-radius: 3px;padding: 8px 0;color: var(--ic-brand-font-color-dark)}
+.bettercanvas-course-percent, .bettercanvas-course-credit {margin: 0 10px; background: #fff;border: 1px solid #ccc; width: 73px;text-align: center;border-radius: 3px;padding: 8px 0;color: var(--ic-brand-font-color-dark)}
+.bettercanvas-course-weights {margin: 0 20px}
+.bettercanvas-course-weight {margin: 0; width: min-content}
 .gpachanger-percentage {margin: 0 8px 0 4px;font-size:1.2em;font-weight: bold}
 .extension-update {box-shadow: 0 2px 5px rgb(0 0 0 / 30%);opacity: .9;border-radius: 3px;color: #000;padding: 20px;z-index:100;position: absolute;width: 360px; height: 192px; background-color: #fff;top: 0; bottom: 0; left: 0; right: 0; margin: auto;}
 .extension-updateclose {position:absolute;top:5px;right:5px;border:none;background:none;color: #000!important;font-size: 32px;padding: 5px;}
@@ -34,10 +33,11 @@ input.percent {background: #fff;border: 1px solid #ccc; width: 73px;text-align: 
 .bettercanvas-card-header {color: var(--ic-brand-font-color-dark-lightened-30);}
 .bettercanvas-card-grade {color: var(--ic-brand-font-color-dark-lightened-30);}
 .bettercanvas-assignment-container:hover {background: #eee;cursor: pointer;color: var(--ic-brand-font-color-dark-lightened-30);}
-.bettercanvas-assignment-link {margin: 0;padding:8px 18px;color:var(--ic-brand-font-color-dark-lightened-30)}
+.bettercanvas-assignment-link {text-decoration:none;margin: 0;padding:8px 18px;color:var(--ic-brand-font-color-dark-lightened-30)}
 .bettercanvas-assignment-dueat {padding: 4px 8px;margin-right: 10px;border-radius: 4px;}
 .bettercanvas-assignment-dueat:hover {box-shadow: 0 1px 4px #000!important}
 .bettercanvas-skeleton-text {background: #ededed;width: 160px;height: 16px;animation: blink .5s infinite;margin-left: 18px;margin-bottom: 12px;margin-top: 8px;}
+.bettercanvas-gpa-course {margin: 20px 0; display: flex; align-items: center}
 @keyframes blink {
     50% {
         opacity: .5;

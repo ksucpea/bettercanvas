@@ -1,15 +1,15 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Better Canvas",
   "description": "Best dark mode for Canvas, plus other features",
-  "version": "4.2.3",
+  "version": "5.0",
   "icons": {
     "16": "icon/icon-16.png",
     "32": "icon/icon-32.png",
     "48": "icon/icon-48.png",
     "128": "icon/icon-128.png"
   },
-  "browser_action": {
+  "action": {
     "default_icon": {
       "19": "icon/icon-19.png",
       "38": "icon/icon-38.png"
@@ -18,8 +18,7 @@
     "default_title": "Better Canvas"
   },
   "background": {
-    "scripts": ["js/background.js"],
-    "persistent": false
+    "service_worker": "js/background.js"
   },
   "options_page": "html/options.html",
   "content_scripts": [
@@ -27,13 +26,8 @@
       "matches": ["https://*/*"],
       "js": ["js/content.js"],
       "css": ["css/content.css"],
-      "run_at": "document_end"
-    }, 
-    {
-      "matches": ["https://*/*"],
-      "js": ["js/start.js"],
       "run_at": "document_start"
-   }
+    }
   ],
   "permissions": ["storage"]
 }
