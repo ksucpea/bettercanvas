@@ -66,11 +66,11 @@ function checkDashboardReady() {
 }
 
 function getAssignmentData() {
-    if (current_page === "/" || current_page !== "" && options.assignments_due === true) {
+    if(current_page === "/" && options.assignments_due === true || current_page === "" && options.assignments_due === true) {
         card_order = getData(`${domain}/api/v1/dashboard/dashboard_cards`);
         assignments = getData(`${domain}/api/v1/planner/items?start_date=${new Date().toISOString()}&per_page=50`);
     }
-    if (current_page === "/grades" && options.gpa_calc === true || current_page === "/" || current_page !== "" && options.assignments_due === true && options.dashboard_grades === true) {
+    if (current_page === "/grades" && options.gpa_calc === true || current_page === "/" && options.dashboard_grades === true || current_page === "" && options.dashboard_grades === true) {
         grades = getData(`${domain}/api/v1/courses?enrollment_state=active&include[]=total_scores&include[]=current_grading_period_scores`);
     }
 }
