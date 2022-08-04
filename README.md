@@ -2,23 +2,17 @@
 
 Contact ksucpea@gmail.com for suggestions or reporting issues
 
-<h2>Update 4.2.0</h3>
+<h2>Update 5.0.1</h3>
 
-- Faster and more efficient assignments list
+- Improved assignments list (uses mutation observer now)
 
-- Dashboard grades feature
+- Better custom url check
 
-- Much better dark mode customization
+- GPA Calculator overhaul
 
-- Preview for dark mode
-
-- Dark mode presets
-
-- Removed assignment potentials and link preview features
+- See dark mode customizations in real time
 
 - Dark mode improvements
-
-- Dark mode can now target iframes
 
 <h2>Links</h2>
 
