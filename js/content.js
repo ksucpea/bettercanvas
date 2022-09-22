@@ -181,7 +181,7 @@ function insertAssignments(assignments, card_order) {
                         const status = assignmentContainer.classList.contains("bettercanvas-completed");
                         setAssignmentStatus(this.dataset.asgmtid, status, assignments_done);
                     });
-                    assignmentName.setAttribute("href", `${domain}/courses/${card_order[i].id}/assignments/${assignment.plannable_id}`);
+                    assignmentName.setAttribute("href", `${domain}/courses/${card_order[i].id}/${assignment.plannable_type === "quiz" ? "quizzes" : "assignments"}/${assignment.plannable_id}`);
                 }
             };
         });
