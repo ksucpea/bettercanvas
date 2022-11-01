@@ -4,7 +4,7 @@ Contact ksucpea@gmail.com for suggestions or reporting issues
 
 <h2>Update 5.0.6</h3>
 
-- Multiple custom urls
+- Can now use multiple custom urls
 - Dark mode improvements
 
 <h2>Links</h2>
