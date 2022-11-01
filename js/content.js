@@ -66,7 +66,7 @@ function checkDashboardReady() {
 }
 
 function getAssignmentData() {
-    if(current_page === "/" && options.assignments_due === true || current_page === "" && options.assignments_due === true) {
+    if (current_page === "/" && options.assignments_due === true || current_page === "" && options.assignments_due === true) {
         card_order = getData(`${domain}/api/v1/dashboard/dashboard_cards`);
         assignments = getData(`${domain}/api/v1/planner/items?start_date=${new Date().toISOString()}&per_page=50`);
     }
@@ -233,11 +233,26 @@ function cleanDue(date) {
 }
 
 function isDomainCanvasPage() {
-    // reducing time it takes to start the dark mode
     chrome.storage.local.get(['custom_domain', 'dark_css', 'dark_mode'], result => {
         options = result;
-        if (result.custom_domain && result.custom_domain !== "") {
-            if (domain.includes(result.custom_domain)) startExtension();
+        if (result.custom_domain && result.custom_domain !== [''] && result.custom_domain != '') {
+            try {
+                result.custom_domain.forEach(e => {
+                    if (domain.includes(e)) {
+                        startExtension();
+                        return;
+                    }
+                })
+            } catch (e) {
+                try {
+                    if(domain.includes(result.custom_domain)) {
+                        startExtension();
+                        return;
+                    }
+                } catch (e) {
+                    console.log("custom url is having issues - contact ksucpea@gmail.com");
+                }
+            }
         } else {
             if (domain.includes("canvas") || domain.includes("instructure") || domain.includes("learn") || domain.includes("school")) {
                 startExtension();
