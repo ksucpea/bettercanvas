@@ -2,16 +2,9 @@
 
 Contact ksucpea@gmail.com for suggestions or reporting issues
 
-<h2>Update 5.0.1</h3>
+<h2>Update 5.0.6</h3>
 
-- Improved assignments list (uses mutation observer now)
-
-- Better custom url check
-
-- GPA Calculator overhaul
-
-- See dark mode customizations in real time
-
+- Multiple custom urls
 - Dark mode improvements
 
 <h2>Links</h2>
