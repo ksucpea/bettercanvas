@@ -38,6 +38,27 @@
 .bettercanvas-assignment-dueat:hover {box-shadow: 0 1px 4px #000!important}
 .bettercanvas-skeleton-text {background: #ededed;width: 160px;height: 16px;animation: blink .5s infinite;margin-left: 18px;margin-bottom: 12px;margin-top: 8px;}
 .bettercanvas-gpa-course {margin: 20px 0; display: flex; align-items: center}
+.bettercanvas-dashboard-notes {width: 100%; box-sizing: border-box; margin-top: 18px;border: 1px solid #c7cdd1;border-radius:3px;padding:8px 14px}
+.bettercanvas-todosidebar, #bettercanvas-todo-list, #bettercanvas-announcement-list {margin: 0}
+.bettercanvas-todo-container {display: flex; margin-top: 14px;position: relative;}
+#bettercanvas-todo-list, #bettercanvas-announcement-list {font-size: 12px}
+.bettercanvas-todo-container, .bettercanvas-todo-container:hover {color:#777}
+.bettercanvas-todo-container p {margin: 0!important;}
+.bettercanvas-todo-container svg {height: 28px; width: 28px;margin:0}
+.bettercanvas-todoitem-course {overflow: hidden; text-overflow: ellipsis;white-space: nowrap;}
+.bettercanvas-todoitem-title {font-size: 14px;}
+.bettercanvas-todoitem-date {font-weight: bold}
+.bettercanvas-todo-item-completed {text-decoration: line-through;}
+.bettercanvas-todo-item {overflow: hidden;margin-left: 12px;}
+.bettercanvas-todo-item {margin-left: 12px;color: #777}
+.bettercanvas-todo-item:hover {text-decoration: underline;cursor: pointer;color: #777;}
+.bettercanvas-customurl-setup {font-size: 18px;max-width: 400px;position: fixed; top: 40px; left: 40px; z-index: 10000; padding: 24px; background: #fff; border-radius: 6px; border: 1px solid #c7cdd1;box-shadow: 0 2px 5px rgb(0 0 0 / 30%)}
+.bettercanvas-customurl-setup p {margin: 0;}
+.bettercanvas-customurl-confirm {width: 100%; box-sizing: border-box;margin-top:20px;padding: 12px;border:none;background: #161616;border-radius:6px;color: #f5f5f5;font-size: 16px;}
+.bettercanvas-todo-complete-btn {padding: 0;height: 28px; width: 28px; border-radius: 3px; display: none; right: 0; top: 0; position:absolute;z-index: 100;background: #fff; border: none;}
+.bettercanvas-todo-complete-btn:hover {background:#eaebec}
+.bettercanvas-todo-container .bettercanvas-todo-complete-btn {display: none}
+.bettercanvas-todo-container:hover .bettercanvas-todo-complete-btn {display: block}
 @keyframes blink {
     50% {
         opacity: .5;
