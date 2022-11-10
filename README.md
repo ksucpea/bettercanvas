@@ -4,8 +4,13 @@ Contact ksucpea@gmail.com for suggestions or reporting issues
 
 <h2>Update 5.0.6</h3>
 
-- Can now use multiple custom urls
+- Added "improved todo list" feature
+- Added "dashboard notes" feature
 - Dark mode improvements
+- Optional dd/mm format for dashboard assignments
+- Optional set multiple custom urls
+- Improved dark mode customization
+- Improved custom url setup
 
 <h2>Links</h2>
 
