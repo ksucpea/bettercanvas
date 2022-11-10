@@ -1,12 +1,17 @@
-let switches = ['assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'dashboard_grades'];
+let switches = ['assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'dashboard_grades', 'dashboard_notes', 'improved_todo'];
 
-chrome.storage.local.get(['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'custom_domain'], function (result) {
+chrome.storage.local.get(['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'custom_domain', 'assignment_date_format', /*'assignments_quizzes', 'assignments_discussions'*/], function (result) {
     document.querySelector('#autodark').checked = result.auto_dark;
     document.querySelector('#autodark_start').value = result.auto_dark_start["hour"] + ":" + result.auto_dark_start["minute"];
     document.querySelector('#autodark_end').value = result.auto_dark_end["hour"] + ":" + result.auto_dark_end["minute"];
     document.querySelector('#numAssignmentsSlider').value = result.num_assignments;
     document.querySelector("#numAssignments").textContent = result.num_assignments;
     document.querySelector("#customDomain").value = result.custom_domain ? result.custom_domain : "";
+    document.querySelector("#assignment_date_format").checked = result.assignment_date_format == true;
+    /*
+    document.querySelector("#assignments_quizzes").checked = result.assignments_quizzes != false;
+    document.querySelector("#assignments_discussions").checked = result.assignments_discussions != false;
+    */
     toggleDarkModeDisable(result.auto_dark);
 });
 
@@ -21,8 +26,24 @@ document.querySelector('#numAssignmentsSlider').addEventListener('input', functi
     chrome.storage.local.set({ num_assignments: this.value });
 });
 
-document.querySelector('#customDomain').addEventListener('change', function () {
-    chrome.storage.local.set({ custom_domain: this.value });
+['assignment_date_format', /*'assignments_quizzes', 'assignments_discussions'*/].forEach( checkbox => {
+    document.querySelector("#"+checkbox).addEventListener('change', function() {
+        let status = this.checked;
+        chrome.storage.local.set(JSON.parse(`{"${checkbox}": ${status}}`));
+
+    });
+});
+
+document.querySelector('#customDomain').addEventListener('input', function () {
+    let domains = this.value.split(",");
+    domains.forEach((domain, index) => {
+        let val = domain.replace(" ", "");
+        if (val.charAt(val.length - 1) === "/") {
+            val = val.slice(0, -1);
+        }
+        domains[index] = val;
+    });
+    chrome.storage.local.set({ custom_domain: domains });
 });
 
 switches.forEach(function (option) {
@@ -43,6 +64,8 @@ switches.forEach(function (option) {
             case 'gradient_cards': chrome.storage.local.set({ gradient_cards: status }); break;
             case 'dark_mode': chrome.storage.local.set({ dark_mode: status }); sendFromPopup("darkmode"); break;
             case 'dashboard_grades': chrome.storage.local.set({ dashboard_grades: status }); break;
+            case 'dashboard_notes': chrome.storage.local.set({ dashboard_notes: status }); break;
+            case 'improved_todo': chrome.storage.local.set({ improved_todo: status }); break;
         }
     });
 });
@@ -67,16 +90,6 @@ function toggleDarkModeDisable(disabled) {
 }
 
 // customization tab
-
-document.querySelector("#customize-button").addEventListener("click", () => {
-    document.querySelector(".customization").style.display = "block";
-    document.querySelector(".options").style.display = "none";
-});
-
-document.querySelector("#customize-button-back").addEventListener("click", () => {
-    document.querySelector(".customization").style.display = "none";
-    document.querySelector(".options").style.display = "flex";
-});
 
 document.querySelector("#setToDefaults").addEventListener("click", setToDefaults);
 
@@ -128,19 +141,19 @@ function changeToPresetCSS(e) {
         let css;
         switch (e.target.id) {
             case ('lighter'):
-                css = ":root{--bcbackgrounddark0:#272727;--bcbackgrounddark1:#353535;--bcbackgrounddark2:#404040;--bcbackgrounddark3:#454545;--bcbackgrounddark4:#4b4b4b;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bctextgreen:#74c69d;--bcstop:#000}";
+                css = ":root{--bcbackgrounddark0:#272727;--bcbackgrounddark1:#353535;--bcbackgrounddark2:#404040;--bcbackgrounddark3:#454545;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bcstop:#000}";
                 break;
             case ('darker'):
-                css = ":root{--bcbackgrounddark0:#040404;--bcbackgrounddark1:#121212;--bcbackgrounddark2:#1a1a1a;--bcbackgrounddark3:#272727;--bcbackgrounddark4:#353535;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bctextgreen:#74c69d;--bcstop:#000}";
+                css = ":root{--bcbackgrounddark0:#040404;--bcbackgrounddark1:#121212;--bcbackgrounddark2:#1a1a1a;--bcbackgrounddark3:#272727;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bcstop:#000}";
                 break;
             case ('burn'):
-                css = ":root{--bcbackgrounddark0:#fff;--bcbackgrounddark1:#fff;--bcbackgrounddark2:#fff;--bcbackgrounddark3:#000;--bcbackgrounddark4:#000;--bctextlight0:#000;--bctextlight1:#000;--bctextlight2:#000;--bctextlink:#000;--bctextgreen:#74c69d;--bcstop:#000}";
+                css = ":root{--bcbackgrounddark0:#fff;--bcbackgrounddark1:#fff;--bcbackgrounddark2:#fff;--bcbackgrounddark3:#000;--bctextlight0:#000;--bctextlight1:#000;--bctextlight2:#000;--bctextlink:#000;--bcstop:#000}";
                 break;
             case ('blue'):
-                css = ":root{--bcbackgrounddark0:#14181d;--bcbackgrounddark1:#1a2026;--bcbackgrounddark2:#212930;--bcbackgrounddark3:#2e3943;--bcbackgrounddark4:#34414c;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bctextgreen:#74c69d;--bcstop:#000}";
+                css = ":root{--bcbackgrounddark0:#14181d;--bcbackgrounddark1:#1a2026;--bcbackgrounddark2:#212930;--bcbackgrounddark3:#2e3943;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bcstop:#000}";
                 break;
             case ('extreme'):
-                css = ":root{--bcbackgrounddark0:#000;--bcbackgrounddark1:#000;--bcbackgrounddark2:#000;--bcbackgrounddark3:#000;--bcbackgrounddark4:#000;--bctextlight0:#c5c5c5;--bctextlight1:#c5c5c5;--bctextlight2:#c5c5c5;--bctextlink:#c5c5c5;--bctextgreen:#74c69d;--bcstop:#000}";
+                css = ":root{--bcbackgrounddark0:#000;--bcbackgrounddark1:#000;--bcbackgrounddark2:#000;--bcbackgrounddark3:#000;--bctextlight0:#c5c5c5;--bctextlight1:#c5c5c5;--bctextlight2:#c5c5c5;--bctextlink:#c5c5c5;--bcstop:#000}";
                 break;
         }
         let new_css = css + right;
