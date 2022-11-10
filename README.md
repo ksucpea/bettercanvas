@@ -2,7 +2,7 @@
 
 Contact ksucpea@gmail.com for suggestions or reporting issues
 
-<h2>Update 5.0.6</h3>
+<h2>Update 5.1.0</h3>
 
 - Added "improved todo list" feature
 - Added "dashboard notes" feature
