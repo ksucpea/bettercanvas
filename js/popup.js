@@ -1,6 +1,6 @@
 let switches = ['assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'dashboard_grades', 'dashboard_notes', 'improved_todo'];
 
-chrome.storage.local.get(['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'custom_domain', 'assignment_date_format', /*'assignments_quizzes', 'assignments_discussions'*/], function (result) {
+chrome.storage.local.get(['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'custom_domain', 'assignment_date_format', 'todo_hr24'], function (result) {
     document.querySelector('#autodark').checked = result.auto_dark;
     document.querySelector('#autodark_start').value = result.auto_dark_start["hour"] + ":" + result.auto_dark_start["minute"];
     document.querySelector('#autodark_end').value = result.auto_dark_end["hour"] + ":" + result.auto_dark_end["minute"];
@@ -8,10 +8,7 @@ chrome.storage.local.get(['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_
     document.querySelector("#numAssignments").textContent = result.num_assignments;
     document.querySelector("#customDomain").value = result.custom_domain ? result.custom_domain : "";
     document.querySelector("#assignment_date_format").checked = result.assignment_date_format == true;
-    /*
-    document.querySelector("#assignments_quizzes").checked = result.assignments_quizzes != false;
-    document.querySelector("#assignments_discussions").checked = result.assignments_discussions != false;
-    */
+    document.querySelector("#todo_hr24").checked = result.todo_hr24 == true;
     toggleDarkModeDisable(result.auto_dark);
 });
 
@@ -26,11 +23,10 @@ document.querySelector('#numAssignmentsSlider').addEventListener('input', functi
     chrome.storage.local.set({ num_assignments: this.value });
 });
 
-['assignment_date_format', /*'assignments_quizzes', 'assignments_discussions'*/].forEach( checkbox => {
+['assignment_date_format', 'todo_hr24'].forEach( checkbox => {
     document.querySelector("#"+checkbox).addEventListener('change', function() {
         let status = this.checked;
         chrome.storage.local.set(JSON.parse(`{"${checkbox}": ${status}}`));
-
     });
 });
 
