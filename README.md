@@ -2,15 +2,21 @@
 
 Contact ksucpea@gmail.com for suggestions or reporting issues
 
-<h2>Update 5.1.0</h3>
+<h2>Update 5.2.0</h3>
 
-- Added "improved todo list" feature
-- Added "dashboard notes" feature
 - Dark mode improvements
-- Optional dd/mm format for dashboard assignments
-- Optional set multiple custom urls
-- Improved dark mode customization
-- Improved custom url setup
+
+- Url setup shouldn't default to login pages anymore
+
+- Added 24hr format option
+
+- GPA calculator moved to dashboard page
+
+- Dashboard grades moved to the card header
+
+- Dashboard grades no longer needs dashboard assignments on to work
+
+- Fixed assignments not loading when pressing back button (I think?)
 
 <h2>Links</h2>
 
