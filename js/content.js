@@ -184,7 +184,6 @@ function setupBetterTodo() {
 }
 
 function getAssignmentData() {
-    console.log("getting assignment data");
     if (current_page === "/" || current_page === "") {
         if (options.assignments_due === true || options.improved_todo === true) {
             let weekAgo = new Date(new Date() - (604800000));
@@ -441,33 +440,49 @@ function calculateGPA2() {
     let qualityPoints = 0, numCredits = 0, weightedQualityPoints = 0;
     document.querySelectorAll('.bettercanvas-gpa-course').forEach(course => {
         const weight = course.querySelector('.bettercanvas-course-weight').value;
-        if (weight != "dnc") {
+        let letter = "--";
+        if (weight !== "dnc") {
             const grade = parseFloat(course.querySelector('.bettercanvas-course-percent').value);
             const credits = parseFloat(course.querySelector('.bettercanvas-course-credit').value);
             let gpa;
-            if (grade >= 93) {
+            if (grade >= 97) {
+                gpa = 4.3;
+                letter = "A+";
+            } else if (grade >= 93) {
                 gpa = 4.0;
+                letter = "A";
             } else if (grade >= 90) {
                 gpa = 3.7;
+                letter = "A-";
             } else if (grade >= 87) {
                 gpa = 3.4;
+                letter = "B+";
             } else if (grade >= 83) {
                 gpa = 3.0;
+                letter = "B";
             } else if (grade >= 80) {
                 gpa = 2.7;
+                letter = "B-"
             } else if (grade >= 77) {
                 gpa = 2.3;
+                letter = "C+";
             } else if (grade >= 73) {
                 gpa = 2;
+                letter = "C";
             } else if (grade >= 70) {
                 gpa = 1.7;
+                letter = "C-";
             } else if (grade >= 68) {
                 gpa = 1.3;
+                letter = "D+";
             } else if (grade >= 63) {
                 gpa = 1;
+                letter = "D";
             } else if (grade >= 60) {
                 gpa = .7;
+                letter = "D-";
             } else {
+                letter = "F";
                 gpa = 0;
             }
             let weightMultiplier;
@@ -482,6 +497,7 @@ function calculateGPA2() {
             weightedQualityPoints += (gpa + weightMultiplier) * credits;
             numCredits += credits;
         }
+        course.querySelector(".bettercanvas-gpa-letter-grade").textContent = letter;
     });
     document.querySelector("#bettercanvas-gpa-unweighted").textContent = (qualityPoints / numCredits).toFixed(2);
     document.querySelector("#bettercanvas-gpa-weighted").textContent = (weightedQualityPoints / numCredits).toFixed(2);
@@ -489,11 +505,8 @@ function calculateGPA2() {
 
 function setupGPACalc() {
     if (options.gpa_calc !== true && (current_page !== "/" || current_page !== "")) return;
-    console.log("dsetting up");
-    //document.addEventListener("DOMContentLoaded", () => {
     let container = makeElement("div", "bettercanvas-gpa", document.querySelector(".ic-DashboardCard__box__container"));
-    console.log(container);
-    container.innerHTML = '<div class="bettercanvas-gpa-courses"><h3 style="font-weight:700;margin-left:18px;margin-top:0;">GPA Calculator</h3></div><div class="bettercanvas-gpa-output"><h3>Unweighted: <span id="bettercanvas-gpa-unweighted"></span></h3><h3>Weighted: <span id="bettercanvas-gpa-weighted"></span></h3></div>';
+    container.innerHTML = '<div class="bettercanvas-gpa-courses"><h3 class="bettercanvas-gpa-header">GPA Calculator</h3></div><div class="bettercanvas-gpa-output"><p>Unweighted: <span id="bettercanvas-gpa-unweighted"></span></p><p>Weighted: <span id="bettercanvas-gpa-weighted"></span></p></div>';
     grades.then(result => {
         for (const course of result) {
             let courseContainer = makeElement("div", "bettercanvas-gpa-course", document.querySelector(".bettercanvas-gpa-courses"));
@@ -501,6 +514,7 @@ function setupGPACalc() {
             courseName.textContent = course.course_code;
             let changerContainer = makeElement("div", "bettercanvas-gpa-percent-container", courseContainer);
             let changer = makeElement("input", "bettercanvas-course-percent", changerContainer);
+            let letterGrade = makeElement("div", "bettercanvas-gpa-letter-grade", courseContainer);
             let courseGrade = course.enrollments[0].has_grading_periods === true ? course.enrollments[0].current_period_computed_current_score : course.enrollments[0].computed_current_score;
             changer.value = courseGrade ? courseGrade : "";
             let percent = makeElement("span", "bettercanvas-course-percent-sign", changerContainer, "%");
@@ -516,7 +530,6 @@ function setupGPACalc() {
         }
         calculateGPA2();
     });
-    //});
 }
 
 function makeElement(element, elclass, location, text) {

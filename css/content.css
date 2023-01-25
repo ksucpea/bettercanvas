@@ -28,7 +28,7 @@
     top: 15px;
     left: 15px;
     background: #161616;
-    padding: 2px 10px;
+    padding: 2px 9px;
     border-radius: 200px;
     color: var(--ic-brand-font-color-dark-lightened-30);
     background: #fff;
@@ -42,14 +42,14 @@
     overflow: hidden;
     display: inline-block;
     margin: 36px;
-    box-shadow: 0 1px 5px #000!important;
-    padding: 18px 0;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
+    padding: 18px;
     box-sizing: border-box;
     border-radius: 4px;
     font-size: 13px;
 }
 
-.bettercanvas-course-percent, .bettercanvas-course-credit {background: #fff;border: 1px solid #ccc; color: var(--ic-brand-font-color-dark)}
+.bettercanvas-course-percent, .bettercanvas-course-credit {border: 1px solid #ccc; color: var(--ic-brand-font-color-dark)}
 
 .bettercanvas-course-percent, .bettercanvas-course-weight, .bettercanvas-course-credit {
     height: 22px; text-align: center;border-radius: 3px;width: 50px; font-size: 13px; padding: 0;
@@ -58,12 +58,23 @@
 .bettercanvas-course-weight {
     width: 120px;
 }
+.bettercanvas-gpa-letter-grade {
+    width: 24px;
+}
+.bettercanvas-gpa-output {
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+}
 .bettercanvas-course-weight {margin: 0; width: min-content}
 .bettercanvas-course-weights, .bettercanvas-gpa-percent-container {margin: 0; margin-right: 10px}
-.bettercanvas-gpa-output {margin-left: 18px}
-.bettercanvas-course-percent-sign {margin-left: 6px;}
-.bettercanvas-gpa-name {margin: 0;width: 100px;}
-.bettercanvas-gpa-course {display: flex;align-items: center;padding:0 18px;margin-bottom: 6px;}
+.bettercanvas-course-percent-sign {margin-left: 4px;}
+.bettercanvas-gpa-name {margin: 0;width: 120px;}
+.bettercanvas-gpa-course {display: flex;align-items: center;padding:6px}
+.bettercanvas-gpa-course:nth-of-type(2n) {
+    background: #f5f5f5;
+}
+.bettercanvas-gpa-header {font-weight:700;font-size:16px;margin-top:0;margin-bottom:6px;border-bottom:1px solid #c7cdd1;padding-bottom:6px;}
 .bettercanvas-dashboard-notes {width: 100%; box-sizing: border-box; margin-top: 18px;border: 1px solid #c7cdd1;border-radius:3px;padding:8px 14px}
 .bettercanvas-todosidebar, #bettercanvas-todo-list, #bettercanvas-announcement-list {margin: 0}
 .bettercanvas-todo-container {display: flex; margin-top: 14px;position: relative;}

@@ -143,7 +143,7 @@ function changeToPresetCSS(e) {
                 css = ":root{--bcbackgrounddark0:#040404;--bcbackgrounddark1:#121212;--bcbackgrounddark2:#1a1a1a;--bcbackgrounddark3:#272727;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bcstop:#000}";
                 break;
             case ('burn'):
-                css = ":root{--bcbackgrounddark0:#fff;--bcbackgrounddark1:#fff;--bcbackgrounddark2:#fff;--bcbackgrounddark3:#000;--bctextlight0:#000;--bctextlight1:#000;--bctextlight2:#000;--bctextlink:#000;--bcstop:#000}";
+                css = ":root{--bcbackgrounddark0:#fff;--bcbackgrounddark1:#fff;--bcbackgrounddark2:#fff;--bcbackgrounddark3:#ccc;--bctextlight0:#ccc;--bctextlight1:#ccc;--bctextlight2:#ccc;--bctextlink:#ccc;--bcstop:#000}";
                 break;
             case ('blue'):
                 css = ":root{--bcbackgrounddark0:#14181d;--bcbackgrounddark1:#1a2026;--bcbackgrounddark2:#212930;--bcbackgrounddark3:#2e3943;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bcstop:#000}";
