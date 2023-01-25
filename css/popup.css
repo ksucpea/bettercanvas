@@ -1,4 +1,4 @@
-body{width:640px;height: 100%;font-family: 'Rubik', sans-serif;color: #e2e2e2;background: #161616}
+body{width:550px;height: 100%;font-family: 'Rubik', sans-serif;color: #e2e2e2;background: #161616}
 h1, h2, p, body{margin:0;padding:0}
 .sliderknob{position:absolute;transition:all .1s linear;top:4px;height:26px;width:26px;border-radius:50%;margin-left:4px;z-index:1;}
 .options {display: flex}
