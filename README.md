@@ -1,6 +1,6 @@
 <h1>Better Canvas</h1>
 
-Contact ksucpea@gmail.com for suggestions or reporting issues
+Contact me at ksucpea@gmail.com or you can open an issue here
 
 <h2>Manual Installation</h2>
 
