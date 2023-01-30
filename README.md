@@ -4,7 +4,6 @@ Contact ksucpea@gmail.com for suggestions or reporting issues
 
 <h2>Manual Installation</h2>
 - Download this repo
-
 - Type chrome://extensions and enable developer mode on this page
 
 - Press load unpacked and select the extension folder
