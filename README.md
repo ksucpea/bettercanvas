@@ -10,7 +10,7 @@ Contact me at ksucpea@gmail.com or you can open an issue here
 
 - Press load unpacked and select the extension folder
 
-<h2>Update 5.2.0</h3>
+<h2>Update 5.2.1</h3>
 
 - Dark mode improvements
 
@@ -25,6 +25,8 @@ Contact me at ksucpea@gmail.com or you can open an issue here
 - Dashboard grades no longer needs dashboard assignments on to work
 
 - Fixed assignments not loading when pressing back button (I think?)
+
+- Added condensed cards feature
 
 <h2>Links</h2>
 
