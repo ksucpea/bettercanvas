@@ -1,4 +1,4 @@
-let switches = ['assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'dashboard_grades', 'dashboard_notes', 'improved_todo'];
+let switches = ['assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'dashboard_grades', 'dashboard_notes', 'improved_todo', 'condensed_cards'];
 
 chrome.storage.local.get(['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'custom_domain', 'assignment_date_format', 'todo_hr24'], function (result) {
     document.querySelector('#autodark').checked = result.auto_dark;
@@ -62,6 +62,7 @@ switches.forEach(function (option) {
             case 'dashboard_grades': chrome.storage.local.set({ dashboard_grades: status }); break;
             case 'dashboard_notes': chrome.storage.local.set({ dashboard_notes: status }); break;
             case 'improved_todo': chrome.storage.local.set({ improved_todo: status }); break;
+            case 'condensed_cards': chrome.storage.local.set({ condensed_cards: status }); break;
         }
     });
 });

@@ -9,12 +9,15 @@ isDomainCanvasPage();
 
 function startExtension() {
     toggleDarkMode();
-    const optionsList = ["assignments_due", "dashboard_grades", "gradient_cards", "auto_dark", "auto_dark_start", "auto_dark_end", 'num_assignments', 'assignments_done', "gpa_calc", "assignment_date_format", "assignments_quizzes", "assignments_discussions", "dashboard_notes", "dashboard_notes_text", "improved_todo", "todo_hr24", "new_install"];
+    const optionsList = ["assignments_due", "dashboard_grades", "gradient_cards", "auto_dark", "auto_dark_start", "auto_dark_end", 'num_assignments', 'assignments_done', "gpa_calc", "assignment_date_format", "assignments_quizzes", "assignments_discussions", "dashboard_notes", "dashboard_notes_text", "improved_todo", "todo_hr24", "new_install", "condensed_cards"];
     chrome.storage.local.get(optionsList, result => {
         options = { ...options, ...result };
         toggleAutoDarkMode();
         getAssignmentData();
         checkDashboardReady();
+        if (options.condensed_cards === true) {
+            condenseCards();
+        }
     });
 
     chrome.runtime.onMessage.addListener(function (request) {
@@ -47,6 +50,12 @@ function toggleDarkMode() {
     iframeChecker(options.dark_mode);
 }
 
+function condenseCards() {
+    let style = document.createElement('style');
+    style.textContent = ".ic-DashboardCard__header_hero {height:60px!important}.ic-DashboardCard__header-subtitle, .ic-DashboardCard__header-term{display:none}";
+    document.documentElement.prepend(style);
+}
+
 function checkDashboardReady() {
     if (current_page !== "/" && current_page !== "") return;
 
@@ -56,6 +65,7 @@ function checkDashboardReady() {
                 setupCards();
             } else if (mutation.type === 'childList' && mutation.target == document.querySelector('div[data-testid="ToDoSidebar"]')) {
                 setupBetterTodo();
+                //setupExport();
             }
         }
     };
@@ -96,6 +106,41 @@ function formatDate(date, submissions, hr24) {
 const CSRFtoken = function () {
     return decodeURIComponent((document.cookie.match('(^|;) *_csrf_token=([^;]*)') || '')[2])
 }
+
+/*
+async function setupExport() {
+    let btn = document.querySelector(".bettercanvas-export") || makeElement("a", "bettercanvas-export", document.querySelector(".Sidebar__TodoListContainer"), "Export Assignments to Google Calendar");
+    btn.classList.add("btn");
+    btn.addEventListener("click", () => {
+        let upcoming = getData(`${domain}/api/v1/planner/items?start_date=${new Date().toISOString()}&per_page=75`);
+        upcoming.then(data => {
+            let ical = "BEGIN:VCALENDAR\nVERSION:2.0\nCALSCALE:GREGORIAN\n";
+            data.forEach(asgnmt => {
+                let due = new Date(asgnmt.plannable_date);
+                let year = due.getFullYear();
+                let month = due.getMonth() + 1;
+                month = (month < 10 ? "0" : "") + month;
+                let day = due.getDate();
+                day = (day < 10 ? "0" : "") + day;
+                let end = new Date(due.getTime() + 86400000);
+                let dayEnd = end.getDate();
+                dayEnd = (dayEnd < 10 ? "0" : "") + dayEnd;
+                let monthEnd = end.getMonth() + 1;
+                monthEnd = (monthEnd < 10 ? "0" : "") + monthEnd;
+                ical += `BEGIN:VEVENT\nDTSTART;VALUE=DATE:${year}${month}${day}\nDTEND;VALUE=DATE:${year}${monthEnd}${dayEnd}\nSTATUS:CONFIRMED\nSUMMARY:${asgnmt.plannable.title} for ${asgnmt.context_name}\nTRANSP:TRANSPARENT\nEND:VEVENT\n`;
+            });
+            ical += "END:VCALENDAR";
+            let output = document.querySelector(".bettercanvas-export-output") || makeElement("div", "bettercanvas-export-output", document.body);
+            output.style.display = "fixed";
+            output.innerHTML = '<div class="bettercanvas-export-output-inner"><div style="display: flex;justify-content:space-between;align-items:center;margin:0 8px;"><p>Copy and paste this output into an .ical file to import into Google Calendar</p><button class="btn" id="bettercanvas-exit">Close</button></div><p class="bettercanvas-export-copy"></p></div>';
+            output.querySelector(".bettercanvas-export-copy").textContent = ical;
+            document.querySelector("#bettercanvas-exit").addEventListener("click", () => {
+                output.style.display = "none";
+            });
+        });
+    });
+}
+*/
 
 function setupBetterTodo() {
     if (options.improved_todo !== true) return;
@@ -397,6 +442,7 @@ function isDomainCanvasPage() {
                         return;
                     }
                 } catch (e) {
+                    console.log(e);
                     console.log("custom url is having issues - contact ksucpea@gmail.com");
                 }
             }
@@ -424,8 +470,11 @@ function setupCustomURL() {
 function changeGradientCards() {
     if (options.gradient_cards === false) return;
     let cardheads = document.querySelectorAll('.ic-DashboardCard__header_hero');
-    let cardcss = document.createElement('style');
+    let cardcss = document.querySelector("#gradientcss") || document.createElement('style');
+    cardcss.id = "gradientcss";
+    cardcss.textContent = "";
     document.documentElement.appendChild(cardcss);
+
     for (let i = 0; i < cardheads.length; i++) {
         let colorone = cardheads[i].style.backgroundColor.split(',');
         let [r, g, b] = [parseInt(colorone[0].split('(')[1]), parseInt(colorone[1]), parseInt(colorone[2])];
@@ -440,10 +489,10 @@ function calculateGPA2() {
     let qualityPoints = 0, numCredits = 0, weightedQualityPoints = 0;
     document.querySelectorAll('.bettercanvas-gpa-course').forEach(course => {
         const weight = course.querySelector('.bettercanvas-course-weight').value;
+        const credits = parseFloat(course.querySelector('.bettercanvas-course-credit').value);
         let letter = "--";
-        if (weight !== "dnc") {
+        if (weight !== "dnc" && credits) {
             const grade = parseFloat(course.querySelector('.bettercanvas-course-percent').value);
-            const credits = parseFloat(course.querySelector('.bettercanvas-course-credit').value);
             let gpa;
             if (grade >= 97) {
                 gpa = 4.3;
@@ -504,30 +553,29 @@ function calculateGPA2() {
 }
 
 function setupGPACalc() {
-    if (options.gpa_calc !== true && (current_page !== "/" || current_page !== "")) return;
+    if (options.gpa_calc !== true && (current_page !== "/" || current_page !== "") || document.querySelector(".bettercanvas-gpa")) return;
     let container = makeElement("div", "bettercanvas-gpa", document.querySelector(".ic-DashboardCard__box__container"));
-    container.innerHTML = '<div class="bettercanvas-gpa-courses"><h3 class="bettercanvas-gpa-header">GPA Calculator</h3></div><div class="bettercanvas-gpa-output"><p>Unweighted: <span id="bettercanvas-gpa-unweighted"></span></p><p>Weighted: <span id="bettercanvas-gpa-weighted"></span></p></div>';
+    container.innerHTML = '<h3 class="bettercanvas-gpa-header">GPA Calculator</h3><div class="bettercanvas-gpa-courses-container"><div class="bettercanvas-gpa-courses"></div><div class="bettercanvas-gpa-output"><p>Unweighted: <span id="bettercanvas-gpa-unweighted"></span></p><p>Weighted: <span id="bettercanvas-gpa-weighted"></span></p></div></div>';
     grades.then(result => {
-        for (const course of result) {
+        result.forEach(course => {
             let courseContainer = makeElement("div", "bettercanvas-gpa-course", document.querySelector(".bettercanvas-gpa-courses"));
+            courseContainer.innerHTML = '<div class="bettercanvas-gpa-course-left"></div><div class="bettercanvas-gpa-course-right"></div><div class="bettercanvas-gpa-letter-grade"></div>';
             let courseName = makeElement("p", "bettercanvas-gpa-name", courseContainer);
             courseName.textContent = course.course_code;
             let changerContainer = makeElement("div", "bettercanvas-gpa-percent-container", courseContainer);
             let changer = makeElement("input", "bettercanvas-course-percent", changerContainer);
-            let letterGrade = makeElement("div", "bettercanvas-gpa-letter-grade", courseContainer);
             let courseGrade = course.enrollments[0].has_grading_periods === true ? course.enrollments[0].current_period_computed_current_score : course.enrollments[0].computed_current_score;
             changer.value = courseGrade ? courseGrade : "";
             let percent = makeElement("span", "bettercanvas-course-percent-sign", changerContainer, "%");
             let weightSelections = makeElement("form", "bettercanvas-course-weights", courseContainer);
             weightSelections.innerHTML = '<select name="weight-selection" class="bettercanvas-course-weight"><option value="dnc">Do not count</option><option value="regular">Regular/College</option><option value="honors">Honors</option><option value="ap">AP/IB</option></select>';
             weightSelections.querySelectorAll("option")[changer.value === "" ? 0 : 1].selected = true;
-            let creditsRadio = makeElement("div", "bettercanvas-course-credits", courseContainer);
-            let creditInput = makeElement("span", "credits", creditsRadio);
-            creditInput.innerHTML = 'Credits: <input class="bettercanvas-course-credit" value="1"></input>';
+            let credits = makeElement("div", "bettercanvas-course-credits", courseContainer);
+            credits.innerHTML = '<input class="bettercanvas-course-credit" value="1"></input><span class="bettercanvas-course-percent-sign">cr</span>';
             changer.addEventListener('input', calculateGPA2);
             weightSelections.addEventListener('change', calculateGPA2);
-            creditInput.addEventListener('input', calculateGPA2);
-        }
+            credits.querySelector(".bettercanvas-course-credit").addEventListener('input', calculateGPA2);
+        });
         calculateGPA2();
     });
 }
