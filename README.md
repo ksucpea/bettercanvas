@@ -10,23 +10,25 @@ Contact me at ksucpea@gmail.com or you can open an issue here
 
 - Press load unpacked and select the extension folder
 
-<h2>Update 5.2.1</h3>
+<h2>Update 5.5</h3>
+
+- Corrected order of todo list announcements
+
+- GPA calculator now saves credits/weight
+
+- Hide completed assignments option
+
+- Added card customization feature
+
+- Card grade hover only option
 
 - Dark mode improvements
 
-- Url setup shouldn't default to login pages anymore
+- More dark mode presets
 
-- Added 24hr format option
+- Custom assignments
 
-- GPA calculator moved to dashboard page
-
-- Dashboard grades moved to the card header
-
-- Dashboard grades no longer needs dashboard assignments on to work
-
-- Fixed assignments not loading when pressing back button (I think?)
-
-- Added condensed cards feature
+- Menu redesign
 
 <h2>Links</h2>
 
