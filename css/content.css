@@ -19,36 +19,35 @@
 .extension-skeleton {height:36px;display:flex;align-items:center;margin-bottom:5px;}
 .extension-skeleton-text {margin-left: 18px;background: #ededed;width: 160px;height: 16px;animation: blink .5s infinite;}
 .extension-gpaOptions {display:flex;align-items:center;margin:21px 0;}
+.bettercanvas-export-output {position: fixed;height:100vh;width:100vw;top:0;left:0;z-index:10000;background:#000000c7;display:flex;align-items:center;justify-content:center}
+.bettercanvas-export-copy { font-size:12px;white-space: pre-wrap;max-height:80vh;overflow:auto;padding:8px}
+.bettercanvas-export-output-inner {width: 50%;background:#000;color:#fff;}
 .bettercanvas-card-container {padding-bottom: 4px;}
 .bettercanvas-assignment-container {margin: 0;padding:0;color: var(--ic-brand-font-color-dark-lightened-30);display: flex;justify-content:space-between;font-size:14px;align-items: center;transition:.2s all;}
 .bettercanvas-card-header-container {align-items: center;display: flex;justify-content: space-between;padding: 0 18px;color:var(--ic-brand-font-color-dark-lightened-30);font-size:16px;font-weight:700;margin: 0;}
 .bettercanvas-card-header-container h3, .bettercanvas-card-header-container a{font-size: 16px;font-weight: bold;}
-.bettercanvas-card-header {color: var(--ic-brand-font-color-dark-lightened-30);}
-.bettercanvas-card-grade {    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: #161616;
-    padding: 2px 9px;
-    border-radius: 200px;
-    color: var(--ic-brand-font-color-dark-lightened-30);
-    background: #fff;
-}
+.bettercanvas-card-header {color: var(--ic-brand-font-color-dark-lightened-30);margin-block:0;}
+.bettercanvas-card-grade {position: absolute;top: 15px;left: 15px;background: #161616;padding: 2px 9px;border-radius: 200px;color: var(--ic-brand-font-color-dark-lightened-30);background: #fff;transition:.2s opacity;}
+.bettercanvas-card-grade.bettercanvas-hover-only {opacity: 0%;}
+.ic-DashboardCard:hover .bettercanvas-card-grade.bettercanvas-hover-only {opacity: 100%}
 .bettercanvas-assignment-container:hover {background: #eee;cursor: pointer;color: var(--ic-brand-font-color-dark-lightened-30);}
 .bettercanvas-assignment-link {text-decoration:none;margin: 0;padding:8px 18px;word-break: break-word;color:var(--ic-brand-font-color-dark-lightened-30)}
 .bettercanvas-assignment-dueat {padding: 4px 8px;margin-right: 10px;border-radius: 4px;}
 .bettercanvas-assignment-dueat:hover {box-shadow: 0 1px 4px #000!important}
 .bettercanvas-skeleton-text {background: #ededed;width: 160px;height: 16px;animation: blink .5s infinite;margin-left: 18px;margin-bottom: 12px;margin-top: 8px;}
 .bettercanvas-gpa {
+    width: 100%;
     overflow: hidden;
     display: inline-block;
     margin: 36px;
-    box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
-    padding: 18px;
     box-sizing: border-box;
     border-radius: 4px;
     font-size: 13px;
 }
-
+.bettercanvas-add-assignment {max-height: 0; overflow:hidden;transition: .3s max-height;}
+.bettercanvas-custom-open {max-height: 250px}
+.bettercanvas-custom-input {box-sizing: border-box!important; width: 100%!important; height: 32px!important}
+.bettercanvas-custom-btn {background: #f5f5f5; border: 1px solid #c7cdd1; border-radius:6px; padding: 2px 8px;}
 .bettercanvas-course-percent, .bettercanvas-course-credit {border: 1px solid #ccc; color: var(--ic-brand-font-color-dark)}
 
 .bettercanvas-course-percent, .bettercanvas-course-weight, .bettercanvas-course-credit {
@@ -60,24 +59,29 @@
 }
 .bettercanvas-gpa-letter-grade {
     width: 24px;
+    margin-left: 6px;
+    font-weight: bold;
+    font-size: 16px;
 }
 .bettercanvas-gpa-output {
-    font-size: 16px;
     display: flex;
-    justify-content: space-between;
+    gap: 12px;
+    font-size: 16px;
 }
 .bettercanvas-course-weight {margin: 0; width: min-content}
 .bettercanvas-course-weights, .bettercanvas-gpa-percent-container {margin: 0; margin-right: 10px}
-.bettercanvas-course-percent-sign {margin-left: 4px;}
+.bettercanvas-course-percent-sign{margin-left: 4px;}
 .bettercanvas-gpa-name {margin: 0;width: 120px;}
-.bettercanvas-gpa-course {display: flex;align-items: center;padding:6px}
-.bettercanvas-gpa-course:nth-of-type(2n) {
-    background: #f5f5f5;
-}
-.bettercanvas-gpa-header {font-weight:700;font-size:16px;margin-top:0;margin-bottom:6px;border-bottom:1px solid #c7cdd1;padding-bottom:6px;}
+.bettercanvas-gpa-course {padding:6px;display:flex; align-items: center;border-bottom:1px solid #c7cdd1}
+.bettercanvas-gpa-open {text-align:center}
+.bettercanvas-gpa-open:hover {cursor: pointer}
+.bettercanvas-gpa-courses {width:440px;}
+.bettercanvas-gpa-course-top, .bettercanvas-gpa-course-bottom {display: flex;}
+.bettercanvas-gpa-header {font-weight:700;font-size:16px;margin-top:0;margin-bottom:6px;padding-bottom:6px;}
 .bettercanvas-dashboard-notes {width: 100%; box-sizing: border-box; margin-top: 18px;border: 1px solid #c7cdd1;border-radius:3px;padding:8px 14px}
 .bettercanvas-todosidebar, #bettercanvas-todo-list, #bettercanvas-announcement-list {margin: 0}
-.bettercanvas-todo-container {display: flex; margin-top: 14px;position: relative;}
+.bettercanvas-todo-container {display: flex; margin-top: 14px;position: relative;transition: .2s all; max-height:100px; overflow:hidden}
+.bettercanvas-removing {max-height: 0;margin-top: 0}
 #bettercanvas-todo-list, #bettercanvas-announcement-list {font-size: 12px}
 .bettercanvas-todo-container, .bettercanvas-todo-container:hover {color:#777}
 .bettercanvas-todo-container p {margin: 0!important;}
@@ -96,6 +100,7 @@
 .bettercanvas-todo-complete-btn:hover {background:#eaebec}
 .bettercanvas-todo-container .bettercanvas-todo-complete-btn {display: none}
 .bettercanvas-todo-container:hover .bettercanvas-todo-complete-btn {display: block}
+#bettercanvas-announcement-list {margin-bottom:1.0625rem;}
 @keyframes blink {
     50% {
         opacity: .5;

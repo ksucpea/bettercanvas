@@ -7,6 +7,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;700&display=swap" rel="stylesheet">
+
+
+
 </head>
 
 <body>
@@ -18,20 +25,34 @@
         <div class="options">
             <div class="options-left">
                 <div class="option-container">
-                    <div class="option" id="dark_mode"><input type="radio" id="on" name="dark_mode"><input type="radio"
-                            id="off" name="dark_mode">
+                    <div class="option" id="dark_mode">
+                        <input type="radio" id="on" name="dark_mode">
+                        <input type="radio" id="off" name="dark_mode">
                         <div class="slider">
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
-                        </div><span>Dark mode</span>
+                        </div>
+                        <span class="option-name">Dark mode</span>
+                    </div>
+                    <div class="option" id="auto_dark" style="margin-top:10px">
+                        <input type="radio" id="on" name="auto_dark">
+                        <input type="radio" id="off" name="auto_dark">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div>
+                        <span class="option-name">Automatic dark mode</span>
                     </div>
                     <div class="sub-options">
-                        <input type="checkbox" id="autodark"> <span style="font-size: 16px"> Automatic dark mode</span>
                         <div class="timesets">
-                            <div class="timeset"><input type="time" id="autodark_start" step="60"><span>Start
-                                    time</span></input></div>
-                            <div class="timeset"><input type="time" id="autodark_end" step="60"><span>End
-                                    time</span></input></div>
+                            <div class="timeset">
+                                <input type="time" id="autodark_start" step="60"></input>
+                                <span class="sub-text">Start time</span>
+                            </div>
+                            <div class="timeset">
+                                <input type="time" id="autodark_end" step="60"></input>
+                                <span class="sub-text">End time</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -42,21 +63,11 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div>
-                        <span>Dashboard Grades</span>
+                        <span class="option-name">Card Grades</span>
                     </div>
-                </div>
-                <div class="option-container">
-                    <div class="option" id="improved_todo"><input type="radio" id="on" name="improved_todo"><input
-                            type="radio" id="off" name="improved_todo">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div>
-                        <span>Improved Todo List</span>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="todo_hr24" name="todo_hr24">
-                        <label for="todo_hr24">Use 24hr format</label>
+                    <div style="margin-top:5px">
+                        <input type="checkbox" id="grade_hover" name="grade_hover">
+                        <label for="grade_hover" class="sub-text">Show only when hovering</label>
                     </div>
                 </div>
                 <div class="option-container">
@@ -66,7 +77,25 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div>
-                        <span>Gradient cards</span>
+                        <span class="option-name">Gradient cards</span>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="option" id="condensed_cards"><input type="radio" id="on" name="condensed_cards"><input
+                            type="radio" id="off" name="condensed_cards">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span class="option-name">Condensed Cards</span>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="option" id="dashboard_notes"><input type="radio" id="on" name="dashboard_notes"><input
+                            type="radio" id="off" name="dashboard_notes">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span class="option-name">Dashboard Notes</span>
                     </div>
                 </div>
             </div>
@@ -75,7 +104,7 @@
                 <div class="option-container">
                     <div class="customDomain">Enter your Canvas URL here:
                         <input type="text" id="customDomain" placeholder="https://canvas.school.edu"></input>
-                        <p style="font-size: 11px;margin-top:4px">(Enter multiple URLs by using a comma)</p>
+                        <p style="margin-top:4px" class="sub-text">(Enter multiple URLs by using a comma)</p>
                     </div>
                 </div>
                 <div class="option-container">
@@ -85,26 +114,35 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div>
-                        <span>Dashboard assignments</span>
+                        <span class="option-name">Card assignments</span>
                     </div>
                     <div class="sub-options">
                         <div>
                             <input type="checkbox" id="assignment_date_format" name="assignment_date_format">
-                            <label for="assignment_date_format">Use dd/mm</label>
+                            <label for="assignment_date_format" class="sub-text">Use dd/mm</label>
                         </div>
                         <div style="margin-top: 5px">
-                            <span>Max items to show: </span><span id="numAssignments"></span>
+                            <span class="sub-text">Max items to show: </span><span id="numAssignments"></span>
                             <input type="range" min="1" max="10" id="numAssignmentsSlider">
                         </div>
                     </div>
                 </div>
                 <div class="option-container">
-                    <div class="option" id="dashboard_notes"><input type="radio" id="on" name="dashboard_notes"><input
-                            type="radio" id="off" name="dashboard_notes">
+                    <div class="option" id="improved_todo"><input type="radio" id="on" name="improved_todo"><input
+                            type="radio" id="off" name="improved_todo">
                         <div class="slider">
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
-                        </div><span>Dashboard Notes</span>
+                        </div>
+                        <span class="option-name">Improved Todo List</span>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="hide_completed" name="hide_completed">
+                        <label for="hide_completed" class="sub-text">Hide completed</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="todo_hr24" name="todo_hr24">
+                        <label for="todo_hr24" class="sub-text">Use 24hr format</label>
                     </div>
                 </div>
                 <div class="option-container">
@@ -113,21 +151,26 @@
                         <div class="slider">
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
-                        </div><span>GPA calculator</span>
+                        </div>
+                        <span class="option-name">GPA calculator</span>
                     </div>
                 </div>
+                <button id="advanced-settings" class="big-button">Card Customization</button>
             </div>
         </div>
+
         <div class="customization">
             <h1>Dark mode customization</h1>
             <div class="container">
                 <div class="options-presets option-container">
-                    <button id="setToDefaults" class="customization-button">Default</button>
                     <button id="lighter" class="preset-button customization-button">Lighter</button>
+                    <button id="light" class="preset-button customization-button">Light</button>
+                    <button id="setToDefaults" class="customization-button">Default</button>
+                    <button id="dark" class="preset-button customization-button">Dark</button>
                     <button id="darker" class="preset-button customization-button">Darker</button>
-                    <button id="extreme" class="preset-button customization-button">Extreme dark</button>
                     <button id="blue" class="preset-button customization-button">Blue tint</button>
                     <button id="burn" class="preset-button customization-button">Eyeball burn</button>
+                    <button id="unicorn" class="preset-button customization-button">Unicorn</button>
                 </div>
             </div>
             <div class="container">
@@ -144,7 +187,16 @@
             </div>
         </div>
     </div>
-
+    <div class="advanced" style="display:hidden">
+        <div style="display: flex;justify-content: space-between;gap:20px">
+            <div>
+                <h1 style="margin-top: 0" ;>Card Customization</h1>
+                <p style="margin-top: 5px">Enter a link to an image or enter "none" to hide the default image for the card<br>Leave the input blank to use the default name/image for the card</p>
+            </div>
+            <button class="big-button" id="advanced-back">Back</button>
+        </div>
+        <div class="advanced-cards"></div>
+    </div>
     <script type="text/javascript" src="../js/popup.js"></script>
 
 </body>

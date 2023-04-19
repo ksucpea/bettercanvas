@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener(function () {
-    let optionslist = ['new_install', 'assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'link_preview', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'assignment_potentials', 'num_assignments', 'assignments_done', 'assignment_date_format', 'assignments_quizzes', 'assignments_discussions', 'dashboard_notes', 'dashboard_notes_text', 'improved_todo', 'todo_hr24', 'condensed_cards'];
+    let optionslist = ['new_install', 'assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'link_preview', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'assignment_potentials', 'num_assignments', 'assignments_done', 'assignment_date_format', 'assignments_quizzes', 'assignments_discussions', 'dashboard_notes', 'dashboard_notes_text', 'improved_todo', 'todo_hr24', 'condensed_cards', 'custom_cards', 'custom_assignments', 'grade_hover', 'hide_completed'];
     chrome.storage.local.get(optionslist, function (result) {
         let newOptions = {};
         optionslist.forEach(function (option) {
@@ -32,6 +32,10 @@ chrome.runtime.onInstalled.addListener(function () {
                     case 'improved_todo': newOptions.improved_todo = true; break;
                     case 'todo_hr24': newOptions.todo_hr24 = false; break;
                     case 'condensed_cards': newOptions.condensed_cards = false; break;
+                    case 'custom_cards': newOptions.custom_cards = {}; newOptions.custom_domain = ""; break;
+                    case 'custom_assignments': newOptions.custom_assignments = []; break;
+                    case 'grade_hover': newOptions.grade_hover = false; break;
+                    case 'hide_completed': newOptions.hide_completed = false; break;
                 }
             }
         });

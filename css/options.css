@@ -1,4 +1,4 @@
-body, html {font-family: 'Rubik', sans-serif;background:#161616;color:#e2e2e2}
+body, html {font-family: 'Inconsolata', monospace;background:#161616;color:#e2e2e2}
 h1, h2, p {margin:0;padding:0;}
 .main {display:flex;margin:auto;width:1200px;margin-top:60px;justify-content: space-between;font-size: 15px;}
 #updateCSS {border:1px solid #8dd28d;background: #8dd28d24}

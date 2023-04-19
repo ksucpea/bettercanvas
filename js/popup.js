@@ -1,7 +1,10 @@
-let switches = ['assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'dashboard_grades', 'dashboard_notes', 'improved_todo', 'condensed_cards'];
+let switches = ['assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'dashboard_grades', 'dashboard_notes', 'improved_todo', 'condensed_cards', 'auto_dark'];
 
-chrome.storage.local.get(['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'custom_domain', 'assignment_date_format', 'todo_hr24'], function (result) {
-    document.querySelector('#autodark').checked = result.auto_dark;
+sendFromPopup("getCards");
+
+chrome.storage.local.get(['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'custom_domain', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed'], function (result) {
+    document.querySelector('#grade_hover').checked = result.grade_hover;
+    document.querySelector('#hide_completed').checked = result.hide_completed;
     document.querySelector('#autodark_start').value = result.auto_dark_start["hour"] + ":" + result.auto_dark_start["minute"];
     document.querySelector('#autodark_end').value = result.auto_dark_end["hour"] + ":" + result.auto_dark_end["minute"];
     document.querySelector('#numAssignmentsSlider').value = result.num_assignments;
@@ -12,10 +15,14 @@ chrome.storage.local.get(['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_
     toggleDarkModeDisable(result.auto_dark);
 });
 
-document.querySelector('#autodark').addEventListener('change', function () {
+document.querySelector('#grade_hover').addEventListener('change', function () {
     let status = this.checked;
-    toggleDarkModeDisable(status);
-    chrome.storage.local.set({ auto_dark: status }, sendFromPopup("autodarkmode"));
+    chrome.storage.local.set({ grade_hover: status });
+});
+
+document.querySelector('#hide_completed').addEventListener('change', function () {
+    let status = this.checked;
+    chrome.storage.local.set({ hide_completed: status });
 });
 
 document.querySelector('#numAssignmentsSlider').addEventListener('input', function () {
@@ -23,8 +30,8 @@ document.querySelector('#numAssignmentsSlider').addEventListener('input', functi
     chrome.storage.local.set({ num_assignments: this.value });
 });
 
-['assignment_date_format', 'todo_hr24'].forEach( checkbox => {
-    document.querySelector("#"+checkbox).addEventListener('change', function() {
+['assignment_date_format', 'todo_hr24'].forEach(checkbox => {
+    document.querySelector("#" + checkbox).addEventListener('change', function () {
         let status = this.checked;
         chrome.storage.local.set(JSON.parse(`{"${checkbox}": ${status}}`));
     });
@@ -40,6 +47,59 @@ document.querySelector('#customDomain').addEventListener('input', function () {
         domains[index] = val;
     });
     chrome.storage.local.set({ custom_domain: domains });
+});
+
+document.querySelector("#advanced-settings").addEventListener("click", function () {
+    displayAdvancedCards();
+    document.querySelector(".main").style.display = "none";
+    document.querySelector(".advanced").style.display = "block";
+});
+
+document.querySelector("#advanced-back").addEventListener("click", function () {
+    document.querySelector(".main").style.display = "block";
+    document.querySelector(".advanced").style.display = "none";
+});
+
+function updateCards(key, value) {
+    chrome.storage.local.get(["custom_cards"], result => {
+        console.log({ [key]: { ...result["custom_cards"][key], ...value } });
+        chrome.storage.local.set({ "custom_cards": { ...result["custom_cards"], [key]: { ...result["custom_cards"][key], ...value } } });
+    });
+}
+
+function displayAdvancedCards() {
+    chrome.storage.local.get(["custom_cards"], storage => {
+        document.querySelector(".advanced-cards").textContent = "";
+        if (storage["custom_cards"] && Object.keys(storage["custom_cards"]).length > 0) {
+            Object.keys(storage["custom_cards"]).forEach(key => {
+                let card = storage["custom_cards"][key];
+                let container = makeElement("div", "custom-card", document.querySelector(".advanced-cards"));
+                container.classList.add("option-container");
+                container.innerHTML = '<p class="custom-card-title"></p><div class="custom-card-image"><span class="custom-key">Image</span></div><div class="custom-card-name"><span class="custom-key">Name</span></div><div class="custom-card-hide"><p class="custom-key">Hide</p></div>';
+                let imgInput = makeElement("input", "card-input", container.querySelector(".custom-card-image"));
+                imgInput.placeholder = "Image url";
+                let nameInput = makeElement("input", "card-input", container.querySelector(".custom-card-name"));
+                nameInput.placeholder = "Custom name";
+                let hideInput = makeElement("input", "card-input-checkbox", container.querySelector(".custom-card-hide"));
+                hideInput.type = "checkbox";
+                imgInput.value = card.img;
+                nameInput.value = card.name;
+                hideInput.checked = card.hidden;
+                imgInput.addEventListener("change", function (e) { updateCards(key, { "img": e.target.value }) });
+                nameInput.addEventListener("change", function (e) { updateCards(key, { "name": e.target.value }) });
+                hideInput.addEventListener("change", function (e) { updateCards(key, { "hidden": e.target.checked }) });
+                container.querySelector(".custom-card-title").textContent = card.default;
+            });
+        } else {
+            document.querySelector(".advanced-cards").innerHTML = "<h3>No cards found... make sure to open this menu on your Canvas page first. Please ontact me if this issue persists! (ksucpea@gmail.com)</h3>";
+        }
+    });
+}
+
+chrome.runtime.onMessage.addListener(message => {
+    if (message === "getCardsComplete") {
+        displayAdvancedCards();
+    }
 });
 
 switches.forEach(function (option) {
@@ -59,6 +119,7 @@ switches.forEach(function (option) {
             case 'assignments_due': chrome.storage.local.set({ assignments_due: status }); break;
             case 'gradient_cards': chrome.storage.local.set({ gradient_cards: status }); break;
             case 'dark_mode': chrome.storage.local.set({ dark_mode: status }); sendFromPopup("darkmode"); break;
+            case 'auto_dark': chrome.storage.local.set({ auto_dark: status }); toggleDarkModeDisable(status); sendFromPopup("autodarkmode"); break;
             case 'dashboard_grades': chrome.storage.local.set({ dashboard_grades: status }); break;
             case 'dashboard_notes': chrome.storage.local.set({ dashboard_notes: status }); break;
             case 'improved_todo': chrome.storage.local.set({ improved_todo: status }); break;
@@ -93,6 +154,8 @@ document.querySelector("#setToDefaults").addEventListener("click", setToDefaults
 document.querySelectorAll(".preset-button.customization-button").forEach(btn => btn.addEventListener("click", changeToPresetCSS));
 
 chrome.storage.local.get(['dark_css'], result => getColors(result.dark_css));
+
+
 
 
 function getColors(data) {
@@ -140,17 +203,23 @@ function changeToPresetCSS(e) {
             case ('lighter'):
                 css = ":root{--bcbackgrounddark0:#272727;--bcbackgrounddark1:#353535;--bcbackgrounddark2:#404040;--bcbackgrounddark3:#454545;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bcstop:#000}";
                 break;
-            case ('darker'):
-                css = ":root{--bcbackgrounddark0:#040404;--bcbackgrounddark1:#121212;--bcbackgrounddark2:#1a1a1a;--bcbackgrounddark3:#272727;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bcstop:#000}";
+            case ('light'):
+                css = ":root{--bcbackgrounddark0:#202020;--bcbackgrounddark1:#2e2e2e;--bcbackgrounddark2:#4e4e4e;--bcbackgrounddark3:#404040;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bcstop:#000}";
                 break;
-            case ('burn'):
-                css = ":root{--bcbackgrounddark0:#fff;--bcbackgrounddark1:#fff;--bcbackgrounddark2:#fff;--bcbackgrounddark3:#ccc;--bctextlight0:#ccc;--bctextlight1:#ccc;--bctextlight2:#ccc;--bctextlink:#ccc;--bcstop:#000}";
+            case ('dark'):
+                css = ":root{--bcbackgrounddark0:#101010;--bcbackgrounddark1:#121212;--bcbackgrounddark2:#1a1a1a;--bcbackgrounddark3:#272727;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bcstop:#000}";
+                break;
+            case ('darker'):
+                css = ":root{--bcbackgrounddark0:#000;--bcbackgrounddark1:#000;--bcbackgrounddark2:#000;--bcbackgrounddark3:#000;--bctextlight0:#c5c5c5;--bctextlight1:#c5c5c5;--bctextlight2:#c5c5c5;--bctextlink:#c5c5c5;--bcstop:#000}";
                 break;
             case ('blue'):
                 css = ":root{--bcbackgrounddark0:#14181d;--bcbackgrounddark1:#1a2026;--bcbackgrounddark2:#212930;--bcbackgrounddark3:#2e3943;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bcstop:#000}";
                 break;
-            case ('extreme'):
-                css = ":root{--bcbackgrounddark0:#000;--bcbackgrounddark1:#000;--bcbackgrounddark2:#000;--bcbackgrounddark3:#000;--bctextlight0:#c5c5c5;--bctextlight1:#c5c5c5;--bctextlight2:#c5c5c5;--bctextlink:#c5c5c5;--bcstop:#000}";
+            case ('burn'):
+                css = ":root{--bcbackgrounddark0:#fff;--bcbackgrounddark1:#fff;--bcbackgrounddark2:#fff;--bcbackgrounddark3:#ccc;--bctextlight0:#ccc;--bctextlight1:#ccc;--bctextlight2:#ccc;--bctextlink:#ccc;--bcstop:#000}";
+                break;
+            case ('unicorn'):
+                css = ":root{--bcbackgrounddark0:#ff6090;--bcbackgrounddark1:#00C1FF;--bcbackgrounddark2:#FFFF00;--bcbackgrounddark3:#FFFF00;--bctextlight0:#fff;--bctextlight1:#fff;--bctextlight2:#fff;--bctextlink:#000;--bcstop:#000}";
                 break;
         }
         let new_css = css + right;
