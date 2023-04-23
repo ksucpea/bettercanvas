@@ -10,14 +10,18 @@ isDomainCanvasPage();
 
 function startExtension() {
     toggleDarkMode();
-    const optionsList = ["assignments_due", "dashboard_grades", "gradient_cards", "auto_dark", "auto_dark_start", "auto_dark_end", 'num_assignments', 'assignments_done', "gpa_calc", "assignment_date_format", "assignments_quizzes", "assignments_discussions", "dashboard_notes", "dashboard_notes_text", "improved_todo", "todo_hr24", "new_install", "condensed_cards", "custom_cards", "custom_assignments", "grade_hover", "hide_completed"];
-    chrome.storage.local.get(optionsList, result => {
-        options = { ...options, ...result };
-        toggleAutoDarkMode();
-        getAssignmentData();
-        checkDashboardReady();
-        condenseCards();
-    });
+    try {
+        const optionsList = ["assignments_due", "dashboard_grades", "gradient_cards", "auto_dark", "auto_dark_start", "auto_dark_end", 'num_assignments', 'assignments_done', "gpa_calc", "assignment_date_format", "assignments_quizzes", "assignments_discussions", "dashboard_notes", "dashboard_notes_text", "improved_todo", "todo_hr24", "new_install", "condensed_cards", "custom_cards", "custom_assignments", "grade_hover", "hide_completed"];
+        chrome.storage.local.get(optionsList, result => {
+            options = { ...options, ...result };
+            toggleAutoDarkMode();
+            getAssignmentData();
+            checkDashboardReady();
+            condenseCards();
+        });
+    } catch (e) {
+        logError(e);
+    }
 
     chrome.runtime.onMessage.addListener(function (request) {
         if (request.message === "getCards") {
@@ -203,7 +207,7 @@ function setupBetterTodo() {
         }
 
     } catch (e) {
-        //console.log(e);
+        logError(e);
     }
 }
 
@@ -222,7 +226,7 @@ function loadBetterTodo() {
 
 
         chrome.storage.local.get("custom_assignments", storage => {
-            let items = storage.custom_assignments.concat(assignmentData).sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime());
+            let items = storage.custom_assignments ? storage.custom_assignments.concat(assignmentData).sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime()) : assignmentData;
             items.forEach(item => {
                 let date = new Date(item.plannable_date);
                 if ((item.plannable_type === "announcement") || ((item.plannable_type === "assignment" || item.plannable_type === "quiz" || item.plannable_type === "discussion_topic") && todoCount < itemCount && date >= now)) {
@@ -320,7 +324,7 @@ function loadBetterTodo() {
         });
 
     } catch (e) {
-        //console.log(e);
+        logError(e);
     }
 }
 
@@ -401,10 +405,10 @@ function iframeChecker(enabled) {
 
 function insertGrades() {
     if (options.dashboard_grades !== true) return;
-    if (document.querySelectorAll('.bettercanvas-card-grade').length > 0) return;
     grades.then(data => {
         try {
             let cards = document.querySelectorAll('.ic-DashboardCard');
+            if (cards.length === 0 || cards[0].querySelectorAll(".ic-DashboardCard__link").length === 0 || document.querySelectorAll('.bettercanvas-card-grade').length > 0) return;
             for (let i = 0; i < cards.length; i++) {
                 let course_id = parseInt(cards[i].querySelector(".ic-DashboardCard__link").href.split("courses/")[1]);
                 data.forEach(grade => {
@@ -419,7 +423,7 @@ function insertGrades() {
 
             }
         } catch (e) {
-            //console.log(e);
+            logError(e);
         }
     });
 }
@@ -440,7 +444,8 @@ function insertCardAssignments(c = null) {
         assignments.then(data => {
             assignmentData = assignmentData === null ? data : assignmentData;
             chrome.storage.local.get("custom_assignments", storage => {
-                let items = storage.custom_assignments.concat(assignmentData).sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime());
+                //let items = storage.custom_assignments.concat(assignmentData).sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime());
+                let items = storage.custom_assignments ? storage.custom_assignments.concat(assignmentData).sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime()) : assignmentData;
                 let cards = c ? c : document.querySelectorAll('.ic-DashboardCard');
                 const now = new Date();
                 cards.forEach(card => {
@@ -479,7 +484,7 @@ function insertCardAssignments(c = null) {
             });
         });
     } catch (e) {
-        //console.log(e);
+        logError(e);
     }
 }
 
@@ -501,7 +506,7 @@ function setupCardAssignments(c = null) {
         });
         */
     } catch (e) {
-        //console.log(e);
+        logError(e);
     }
 }
 
@@ -509,6 +514,7 @@ function customizeCards(c = null) {
     if (!options.custom_cards) return;
     try {
         let cards = c ? c : document.querySelectorAll('.ic-DashboardCard');
+        if(cards[0].querySelectorAll(".ic-DashboardCard__link").length === 0) return;
         cards.forEach(card => {
             let cardOptions = options["custom_cards"][card.querySelector(".ic-DashboardCard__link").href.split("courses/")[1]];
             if (cardOptions) {
@@ -535,7 +541,7 @@ function customizeCards(c = null) {
             }
         });
     } catch (e) {
-        //console.log(e);
+        logError(e);
     }
 }
 
@@ -772,7 +778,7 @@ function setupGPACalc() {
             calculateGPA2();
         });
     } catch (e) {
-        //console.log(e);
+        logError(e);
     }
 }
 
@@ -826,19 +832,6 @@ function rgbToHsl(r, g, b) {
     return [h * 360, s * 100, l * 100];
 }
 
-function getItemIcon(type) {
-    switch (type) {
-        case 'discussion_topic':
-            return '<svg name="IconDiscussion" viewBox="0 0 1920 1920" rotate="0" width="1em" height="1em" aria-hidden="true" role="presentation" focusable="false" class="dUOHu_bGBk dUOHu_drOs dUOHu_eXrk cGqzL_bGBk cGqzL_dIzR cGqzL_owrh" style="width: 1em; height: 1em;"><g role="presentation"><path d="M677.647059,16 L677.647059,354.936471 L790.588235,354.936471 L790.588235,129.054118 L1807.05882,129.054118 L1807.05882,919.529412 L1581.06353,919.529412 L1581.06353,1179.29412 L1321.41176,919.529412 L1242.24,919.529412 L1242.24,467.877647 L677.647059,467.877647 L0,467.877647 L0,1484.34824 L338.710588,1484.34824 L338.710588,1903.24706 L756.705882,1484.34824 L1242.24,1484.34824 L1242.24,1032.47059 L1274.99294,1032.47059 L1694.11765,1451.59529 L1694.11765,1032.47059 L1920,1032.47059 L1920,16 L677.647059,16 Z M338.789647,919.563294 L903.495529,919.563294 L903.495529,806.622118 L338.789647,806.622118 L338.789647,919.563294 Z M338.789647,1145.44565 L677.726118,1145.44565 L677.726118,1032.39153 L338.789647,1032.39153 L338.789647,1145.44565 Z M112.941176,580.705882 L1129.41176,580.705882 L1129.41176,1371.40706 L710.4,1371.40706 L451.651765,1631.05882 L451.651765,1371.40706 L112.941176,1371.40706 L112.941176,580.705882 Z" fill-rule="evenodd" stroke="none" stroke-width="1"></path></g></svg>';
-        case 'quiz':
-            return '<svg label="Quiz" name="IconQuiz" viewBox="0 0 1920 1920" rotate="0" width="1em" height="1em" aria-hidden="true" role="presentation" focusable="false" class="dUOHu_bGBk dUOHu_drOs dUOHu_eXrk cGqzL_bGBk cGqzL_owrh ToDoSidebarItem__Icon" style="width: 1em; height: 1em;"><g role="presentation"><g fill-rule="evenodd" stroke="none" stroke-width="1"><path d="M746.255375,1466.76417 L826.739372,1547.47616 L577.99138,1796.11015 L497.507383,1715.51216 L746.255375,1466.76417 Z M580.35118,1300.92837 L660.949178,1381.52637 L329.323189,1713.15236 L248.725192,1632.55436 L580.35118,1300.92837 Z M414.503986,1135.20658 L495.101983,1215.80457 L80.5979973,1630.30856 L0,1549.71056 L414.503986,1135.20658 Z M1119.32036,264.600006 C1475.79835,-91.8779816 1844.58834,86.3040124 1848.35034,88.1280123 L1848.35034,88.1280123 L1865.45034,96.564012 L1873.88634,113.664011 C1875.71034,117.312011 2053.89233,486.101999 1697.30034,842.693987 L1697.30034,842.693987 L1550.69635,989.297982 L1548.07435,1655.17196 L1325.43235,1877.81395 L993.806366,1546.30196 L415.712386,968.207982 L84.0863971,636.467994 L306.72839,413.826001 L972.602367,411.318001 Z M1436.24035,1103.75398 L1074.40436,1465.70397 L1325.43235,1716.61796 L1434.30235,1607.74796 L1436.24035,1103.75398 Z M1779.26634,182.406009 C1710.18234,156.41401 1457.90035,87.1020124 1199.91836,345.198004 L1199.91836,345.198004 L576.90838,968.207982 L993.806366,1385.10597 L1616.70235,762.095989 C1873.65834,505.139998 1804.68834,250.920007 1779.26634,182.406009 Z M858.146371,525.773997 L354.152388,527.597997 L245.282392,636.467994 L496.310383,887.609985 L858.146371,525.773997 Z"></path><path d="M1534.98715,372.558003 C1483.91515,371.190003 1403.31715,385.326002 1321.69316,466.949999 L1281.22316,507.305998 L1454.61715,680.585992 L1494.97315,640.343994 C1577.16715,558.035996 1591.87315,479.033999 1589.82115,427.164001 L1587.65515,374.610003 L1534.98715,372.558003 Z"></path></g></g></svg>';
-        case 'announcement':
-            return '<svg label="Announcement" name="IconAnnouncement" viewBox="0 0 1920 1920" rotate="0" width="1em" height="1em" aria-hidden="true" role="presentation" focusable="false" class="dUOHu_bGBk dUOHu_drOs dUOHu_eXrk cGqzL_bGBk cGqzL_owrh ToDoSidebarItem__Icon" style="width: 1em; height: 1em;"><g role="presentation"><path d="M1587.16235,31.2784941 C1598.68235,7.78672942 1624.43294,-4.41091764 1650.63529,1.46202354 C1676.16,7.56084707 1694.11765,30.2620235 1694.11765,56.4643765 L1694.11765,56.4643765 L1694.11765,570.459671 C1822.87059,596.662024 1920,710.732612 1920,847.052612 C1920,983.372612 1822.87059,1097.55614 1694.11765,1123.75849 L1694.11765,1123.75849 L1694.11765,1637.64085 C1694.11765,1663.8432 1676.16,1686.65732 1650.63529,1692.6432 C1646.23059,1693.65967 1641.93882,1694.11144 1637.64706,1694.11144 C1616.52706,1694.11144 1596.87529,1682.36555 1587.16235,1662.93967 C1379.23765,1247.2032 964.178824,1242.34673 960,1242.34673 L960,1242.34673 L564.705882,1242.34673 L564.705882,1807.05261 L652.461176,1807.05261 C640.602353,1716.92555 634.955294,1560.05026 715.934118,1456.37026 C768.338824,1389.2832 845.590588,1355.28791 945.882353,1355.28791 L945.882353,1355.28791 L945.882353,1468.22908 C881.392941,1468.22908 835.312941,1487.09026 805.044706,1525.71614 C736.263529,1613.58438 759.981176,1789.54673 774.776471,1849.97026 C778.955294,1866.79849 775.115294,1884.6432 764.498824,1898.30908 C753.769412,1911.97496 737.28,1919.99379 720,1919.99379 L720,1919.99379 L508.235294,1919.99379 C477.063529,1919.99379 451.764706,1894.80791 451.764706,1863.5232 L451.764706,1863.5232 L451.764706,1242.34673 L395.294118,1242.34673 C239.548235,1242.34673 112.941176,1115.73967 112.941176,959.993788 L112.941176,959.993788 L112.941176,903.5232 L56.4705882,903.5232 C25.2988235,903.5232 0,878.337318 0,847.052612 C0,815.880847 25.2988235,790.582024 56.4705882,790.582024 L56.4705882,790.582024 L112.941176,790.582024 L112.941176,734.111435 C112.941176,578.478494 239.548235,451.758494 395.294118,451.758494 L395.294118,451.758494 L959.887059,451.758494 C976.828235,451.645553 1380.36706,444.756141 1587.16235,31.2784941 Z M1581.17647,249.706729 C1386.46588,492.078494 1128.96,547.871435 1016.47059,560.746729 L1016.47059,560.746729 L1016.47059,1133.47144 C1128.96,1146.34673 1386.46588,1202.02673 1581.17647,1444.51144 L1581.17647,1444.51144 Z M903.529412,564.699671 L395.294118,564.699671 C301.891765,564.699671 225.882353,640.709082 225.882353,734.111435 L225.882353,734.111435 L225.882353,959.993788 C225.882353,1053.39614 301.891765,1129.40555 395.294118,1129.40555 L395.294118,1129.40555 L903.529412,1129.40555 L903.529412,564.699671 Z M1694.11765,688.144376 L1694.11765,1006.07379 C1759.73647,982.694965 1807.05882,920.577318 1807.05882,847.052612 C1807.05882,773.527906 1759.73647,711.5232 1694.11765,688.144376 L1694.11765,688.144376 Z" fill-rule="evenodd" stroke="none" stroke-width="1"></path></g></svg>';
-        default:
-            return '<svg label="Assignment" name="IconAssignment" viewBox="0 0 1920 1920" rotate="0" width="1em" height="1em" aria-hidden="true" role="presentation" focusable="false" class="dUOHu_bGBk dUOHu_drOs dUOHu_eXrk cGqzL_bGBk cGqzL_owrh ToDoSidebarItem__Icon" style="width: 1em; height: 1em;"><g role="presentation"><path d="M1468.2137,0 L1468.2137,564.697578 L1355.27419,564.697578 L1355.27419,112.939516 L112.939516,112.939516 L112.939516,1807.03225 L1355.27419,1807.03225 L1355.27419,1581.15322 L1468.2137,1581.15322 L1468.2137,1919.97177 L2.5243549e-29,1919.97177 L2.5243549e-29,0 L1468.2137,0 Z M1597.64239,581.310981 C1619.77853,559.174836 1655.46742,559.174836 1677.60356,581.310981 L1677.60356,581.310981 L1903.4826,807.190012 C1925.5058,829.213217 1925.5058,864.902104 1903.4826,887.038249 L1903.4826,887.038249 L1225.8455,1564.67534 C1215.22919,1575.17872 1200.88587,1581.16451 1185.86491,1581.16451 L1185.86491,1581.16451 L959.985883,1581.16451 C928.814576,1581.16451 903.516125,1555.86606 903.516125,1524.69475 L903.516125,1524.69475 L903.516125,1298.81572 C903.516125,1283.79477 909.501919,1269.45145 920.005294,1258.94807 L920.005294,1258.94807 Z M1442.35055,896.29929 L1016.45564,1322.1942 L1016.45564,1468.225 L1162.48643,1468.225 L1588.38135,1042.33008 L1442.35055,896.29929 Z M677.637094,1242.34597 L677.637094,1355.28548 L338.818547,1355.28548 L338.818547,1242.34597 L677.637094,1242.34597 Z M903.516125,1016.46693 L903.516125,1129.40645 L338.818547,1129.40645 L338.818547,1016.46693 L903.516125,1016.46693 Z M1637.62298,701.026867 L1522.19879,816.451052 L1668.22958,962.481846 L1783.65377,847.057661 L1637.62298,701.026867 Z M1129.39516,338.829841 L1129.39516,790.587903 L338.818547,790.587903 L338.818547,338.829841 L1129.39516,338.829841 Z M1016.45564,451.769356 L451.758062,451.769356 L451.758062,677.648388 L1016.45564,677.648388 L1016.45564,451.769356 Z" fill-rule="evenodd" stroke="none" stroke-width="1"></path></g></svg>';
-    }
-}
-
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 function formatDate(date, submissions, hr24) {
     let timeSince = (new Date().getTime() - date.getTime()) / 60000;
@@ -874,4 +867,12 @@ const CSRFtoken = function () {
 function cleanDue(date) {
     let newdate = new Date(date);
     return options.assignment_date_format ? (newdate.getDate()) + "/" + (newdate.getMonth() + 1) : (newdate.getMonth() + 1) + "/" + (newdate.getDate());
+}
+
+function logError(e) {
+    chrome.storage.local.get(null, storage => {
+        if (!storage.custom_domain || storage.custom_domain.includes("logerrors")) {
+            console.error("Better Canvas - Error \n", e, storage);
+        }
+    });
 }
