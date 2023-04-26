@@ -85,7 +85,7 @@
 #bettercanvas-todo-list, #bettercanvas-announcement-list {font-size: 12px}
 .bettercanvas-todo-container, .bettercanvas-todo-container:hover {color:#777}
 .bettercanvas-todo-container p {margin: 0!important;}
-.bettercanvas-todo-container svg {height: 28px; width: 28px;margin:0}
+.bettercanvas-todo-container svg {height: 18px; width: 18px;margin:0}
 .bettercanvas-todoitem-course {overflow: hidden; text-overflow: ellipsis;white-space: nowrap;}
 .bettercanvas-todoitem-title {font-size: 14px;}
 .bettercanvas-todoitem-date {font-weight: bold}
@@ -101,6 +101,8 @@
 .bettercanvas-todo-container .bettercanvas-todo-complete-btn {display: none}
 .bettercanvas-todo-container:hover .bettercanvas-todo-complete-btn {display: block}
 #bettercanvas-announcement-list {margin-bottom:1.0625rem;}
+.bettercanvas-todo-item-loader {margin-top: 18px;}
+.bettercanvas-todo-item-loader .bettercanvas-skeleton-text {height:12px;margin-top: 8px;margin-bottom:0;margin-left:25px}
 @keyframes blink {
     50% {
         opacity: .5;
