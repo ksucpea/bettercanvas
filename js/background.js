@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener(function () {
-    let optionslist = ['new_install', 'assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'link_preview', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'assignment_potentials', 'num_assignments', 'assignments_done', 'assignment_date_format', 'assignments_quizzes', 'assignments_discussions', 'dashboard_notes', 'dashboard_notes_text', 'improved_todo', 'todo_hr24', 'condensed_cards', 'custom_cards', 'custom_assignments', 'grade_hover', 'hide_completed'];
+    let optionslist = ['new_install', 'assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'coloroverlay_cards', 'link_preview', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'assignment_potentials', 'num_assignments', 'assignments_done', 'assignment_date_format', 'assignments_quizzes', 'assignments_discussions', 'dashboard_notes', 'dashboard_notes_text', 'improved_todo', 'todo_hr24', 'condensed_cards', 'custom_cards', 'custom_assignments', 'grade_hover', 'hide_completed'];
     chrome.storage.local.get(optionslist, function (result) {
         let newOptions = {};
         optionslist.forEach(function (option) {
@@ -16,6 +16,7 @@ chrome.runtime.onInstalled.addListener(function () {
                     case 'link_preview': newOptions.link_preview =false; break;
                     case 'dark_mode': newOptions.dark_mode = true; break;
                     case 'gradient_cards': newOptions.gradient_cards = false; break;
+                    case 'coloroverlay_cards': newOptions.coloroverlay_cards = false; break;
                     case 'assignment_potentials': newOptions.assignment_potentials = false; break;
                     case 'auto_dark': newOptions.auto_dark =false; break;
                     case 'auto_dark_start': newOptions.auto_dark_start = { "hour": "20", "minute": "00" }; break;

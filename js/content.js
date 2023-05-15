@@ -14,6 +14,7 @@ function startExtension() {
         "assignments_due",
         "dashboard_grades",
         "gradient_cards",
+        "coloroverlay_cards",
         "auto_dark",
         "auto_dark_start",
         "auto_dark_end",
@@ -120,6 +121,7 @@ function checkDashboardReady() {
                 if (mutation.target == document.querySelector("#DashboardCard_Container")) {
                     let cards = document.querySelectorAll('.ic-DashboardCard');
                     changeGradientCards(cards);
+                    toggleColorOverlayOnCards(cards);
                     setupCardAssignments(cards);
                     setupBetterTodo();
                     customizeCards(cards);
@@ -679,6 +681,20 @@ function changeGradientCards() {
         let degree = ((h % 60) / 60) >= .66 ? 30 : ((h % 60) / 60) <= .33 ? -30 : 15;
         let newh = h > 300 ? (360 - (h + 65)) + (65 + degree) : h + 65 + degree;
         cardcss.textContent += ".ic-DashboardCard:nth-of-type(" + (i + 1) + ") .ic-DashboardCard__header_hero{background: linear-gradient(115deg, hsl(" + h + "deg," + s + "%," + l + "%) 5%, hsl(" + newh + "deg," + s + "%," + l + "%) 100%)!important}";
+    }
+}
+
+function toggleColorOverlayOnCards() {
+    if (options.coloroverlay_cards === false) return;
+    let cardimg = document.querySelectorAll('.ic-DashboardCard__header_hero');
+    let cardcss = document.querySelector("#opacitycss") || document.createElement('style');
+    cardcss.id = "opacitycss";
+    cardcss.textContent = "";
+    document.documentElement.appendChild(cardcss);
+
+    for (let i = 0; i < cardimg.length; i++) {
+        cardcss.textContent += ".ic-DashboardCard:nth-of-type(" + (i + 1) + ") .ic-DashboardCard__header_hero{opacity: 0 !important}";
+        cardcss.textContent += ".ic-DashboardCard:nth-of-type(" + (i + 1) + ") .ic-DashboardCard__header-button-bg{opacity: 1 !important}";
     }
 }
 
