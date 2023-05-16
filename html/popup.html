@@ -10,7 +10,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Text:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
 
 
@@ -98,6 +99,8 @@
                         </div><span class="option-name">Dashboard Notes</span>
                     </div>
                 </div>
+                <button id="advanced-settings" class="big-button">Card Customization</button>
+                <button id="custom-font-btn" class="big-button">Custom Font</button>
             </div>
 
             <div class="options-right">
@@ -128,21 +131,25 @@
                     </div>
                 </div>
                 <div class="option-container">
-                    <div class="option" id="improved_todo"><input type="radio" id="on" name="improved_todo"><input
-                            type="radio" id="off" name="improved_todo">
+                    <div class="option" id="better_todo"><input type="radio" id="on" name="better_todo"><input
+                            type="radio" id="off" name="better_todo">
                         <div class="slider">
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div>
-                        <span class="option-name">Improved Todo List</span>
+                        <span class="option-name">Better Todo List</span>
                     </div>
-                    <div>
+                    <div class="sub-options">
                         <input type="checkbox" id="hide_completed" name="hide_completed">
                         <label for="hide_completed" class="sub-text">Hide completed</label>
                     </div>
                     <div>
                         <input type="checkbox" id="todo_hr24" name="todo_hr24">
                         <label for="todo_hr24" class="sub-text">Use 24hr format</label>
+                    </div>
+                    <div style="margin-top: 5px">
+                        <span class="sub-text">Max items to show: </span><span id="numTodoItems"></span>
+                        <input type="range" min="1" max="7" id="numTodoItemsSlider">
                     </div>
                 </div>
                 <div class="option-container">
@@ -155,7 +162,7 @@
                         <span class="option-name">GPA calculator</span>
                     </div>
                 </div>
-                <button id="advanced-settings" class="big-button">Card Customization</button>
+                <button id="gpa-bounds-btn" class="big-button">GPA settings</button>
             </div>
         </div>
 
@@ -187,16 +194,52 @@
             </div>
         </div>
     </div>
-    <div class="advanced" style="display:hidden">
-        <div style="display: flex;justify-content: space-between;gap:20px">
+    <div class="advanced tab" style="display:none">
+        <div class="tab-header">
             <div>
-                <h1 style="margin-top: 0" ;>Card Customization</h1>
-                <p style="margin-top: 5px">Enter a link to an image or enter "none" to hide the default image for the card<br>Leave the input blank to use the default name/image for the card</p>
+                <h1 style="margin-top: 0">Card Customization</h1>
+                <p style="margin-top: 5px">Enter "none" to hide or leave blank to use the default.</p>
+                <p style="margin-top: 5px">Make sure external links start with https://</p>
             </div>
-            <button class="big-button" id="advanced-back">Back</button>
+            <button class="big-button back-btn">Back</button>
         </div>
         <div class="advanced-cards"></div>
     </div>
+
+    <div class="gpa-bounds-container tab" style="display:none">
+        <div class="tab-header">
+            <h1 style="margin-top: 0">GPA Calculator Bounds</h1>
+            <button class="big-button back-btn">Back</button>
+        </div>
+        <div style="display: flex;justify-content: space-between;">
+            <div class="gpa-bounds"></div>
+            <div class="gpa-bounds-explanation">
+                The letter grade will be calculated as greater than or equal to the percentage given. <br><br>
+                If your school doesn't use the +/- system, you can enter 101 for those grades to remove them from the
+                calculation. (for example A+ = 101, A = 90, A- = 101)
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-font-container tab" style="display:none">
+        <div class="tab-header">
+            <div>
+                <h1 style="margin-top: 0">Custom Font</h1>
+                <p>You can use a custom font from Google fonts here</p>
+                <p>Enter only the bold part after "?family="</p>
+                <p>Leave it blank to use no custom font</p>
+            </div>
+            <button class="big-button back-btn">Back</button>
+        </div>
+        <div class="custom-font option-container"></div>
+        <div style="display: flex; align-items: center">
+            <div class="quick-fonts-container">
+                <h2>Popular fonts</h2>
+                <div class="quick-fonts"></div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript" src="../js/popup.js"></script>
 
 </body>

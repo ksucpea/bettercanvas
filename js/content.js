@@ -2,6 +2,7 @@ const domain = window.location.origin;
 const current_page = window.location.pathname;
 let assignments = null;
 let grades = null;
+let announcements = [];
 let options = {};
 let timeCheck = null;
 let assignmentData = null;
@@ -10,6 +11,8 @@ isDomainCanvasPage();
 
 function startExtension() {
     toggleDarkMode();
+
+    /*
     const optionsList = [
         "assignments_due",
         "dashboard_grades",
@@ -20,26 +23,35 @@ function startExtension() {
         'num_assignments',
         'assignments_done',
         "gpa_calc",
+        "gpa_calc_bounds",
         "assignment_date_format",
         "assignments_quizzes",
         "assignments_discussions",
         "dashboard_notes",
         "dashboard_notes_text",
-        "improved_todo",
+        "better_todo",
         "todo_hr24",
         "new_install",
         "condensed_cards",
         "custom_cards",
+        "custom_cards_2",
         "custom_assignments",
+        "custom_assignments_overflow",
         "grade_hover",
-        "hide_completed"
+        "hide_completed",
+        "num_todo_items",
     ];
+    */
+
+
     try {
-        chrome.storage.local.get(optionsList, result => {
+        chrome.storage.sync.get(null, result => {
+            console.log(result);
             options = { ...options, ...result };
             toggleAutoDarkMode();
-            getAssignmentData();
+            getApiData();
             checkDashboardReady();
+            loadCustomFont();
         });
     } catch (e) {
         logError(e);
@@ -48,8 +60,8 @@ function startExtension() {
     chrome.runtime.onMessage.addListener(function (request) {
         if (request.message === "getCards") {
             getCards();
-        } else {
-            chrome.storage.local.get(["dark_mode", "auto_dark", "dark_css", "auto_dark_start", "auto_dark_end", "custom_cards"], result => {
+        } else if (request.message === "darkmode" || request.message === "autodarkmode") {
+            chrome.storage.local.get(["dark_mode", "auto_dark", "dark_css", "auto_dark_start", "auto_dark_end"], result => {
                 options = { ...options, ...result };
                 if (request.message === "darkmode") {
                     toggleDarkMode();
@@ -61,13 +73,67 @@ function startExtension() {
         }
     });
 
+    chrome.storage.onChanged.addListener(changes => {
+        let rewrite = {};
+        Object.keys(changes).forEach(key => {
+            console.log(changes, key);
+            rewrite[key] = changes[key].newValue;
+        });
+        options = { ...options, ...rewrite };
+
+        // when an option is updated it will call the necessary functions again
+        // so any changes made in the menu no longer require a refresh to apply
+
+        Object.keys(changes).forEach(key => {
+            switch (key) {
+                case ("gradient_cards"):
+                    changeGradientCards();
+                    break;
+                case ("condensed_cards"):
+                    condenseCards();
+                    break;
+                case ("dashboard_notes"):
+                    loadDashboardNotes();
+                    break;
+                case ("dashboard_grades"):
+                case ("grade_hover"):
+                    if (!grades) getGrades();
+                    insertGrades();
+                    break;
+                case ("assignments_due"):
+                case ("num_assignments"):
+                case ("assignment_date_format"):
+                    if (!assignments) getAssignments();
+                    if (document.querySelectorAll(".bettercanvas-card-assignment").length === 0) setupCardAssignments();
+                    loadCardAssignments();
+                    break;
+                case ("custom_cards"):
+                case ("custom_cards_2"):
+                    customizeCards();
+                    break;
+                case ("todo_hr24"):
+                case ("num_todo_items"):
+                    loadBetterTodo();
+                    break;
+                case ("gpa_calc_bounds"):
+                    calculateGPA2();
+                    break;
+                case ("custom_font"):
+                    loadCustomFont();
+                    break;
+            }
+        });
+    });
+
     console.log("Better Canvas - running");
 }
 
+
 async function getCards(api = null) {
     let dashboard_cards = api ? api : await getData(`${domain}/api/v1/dashboard/dashboard_cards`);
-    chrome.storage.local.get(["custom_cards"], storage => {
+    chrome.storage.sync.get(["custom_cards", "custom_cards_2"], storage => {
         let cards = storage["custom_cards"] || {};
+        let cards_2 = storage["custom_cards_2"] || {};
         let newCards = false;
         try {
             dashboard_cards.forEach(card => {
@@ -75,10 +141,36 @@ async function getCards(api = null) {
                 if (!storage["custom_cards"] || !storage["custom_cards"][id]) {
                     newCards = true;
                     cards[id] = { "default": card.longName, "name": "", "img": "", "hidden": false, "weight": "regular", "credits": 1 };
+                    console.log("NEW CARDS FOUND!!!!!");
+                }
+                if (!storage["custom_cards_2"] || !storage["custom_cards_2"][id]) {
+                    newCards = true;
+                    let links = [];
+                    card.links.forEach(link => {
+                        links.push({ "type": link.label, "default": true });
+                    });
+                    for (let i = links.length; i < 4; i++) {
+                        links.push({ "type": "none", "path": "none", "default": false });
+                    }
+                    console.log("after", links);
+                    cards_2[id] = { "links": { "default": links, "custom": links } };
+                }
+            });
+
+            Object.keys(cards).forEach(key => {
+                found = false;
+                dashboard_cards.forEach(card => {
+                    if (parseInt(key) === card.id) found = true;
+                });
+                if (found === false) {
+                    delete cards[key];
+                    delete cards_2[key];
+                    delete cards["jackass"];
+                    newCards = true;
                 }
             });
         } finally {
-            chrome.storage.local.set(newCards ? { "custom_cards": cards } : {}).then(chrome.runtime.sendMessage("getCardsComplete"));
+            chrome.storage.sync.set(newCards ? { "custom_cards": cards, "custom_cards_2": cards_2 } : {}).then(chrome.runtime.sendMessage("getCardsComplete"));
         }
     });
 }
@@ -112,6 +204,51 @@ function resetTimer() {
     }, 600);
 }
 
+function toggleColorOverlayOnCards() {
+    if (options.coloroverlay_cards === false) return;
+    let cardimg = document.querySelectorAll('.ic-DashboardCard__header_hero');
+    let cardcss = document.querySelector("#opacitycss") || document.createElement('style');
+    cardcss.id = "opacitycss";
+    cardcss.textContent = ".ic-DashboardCard__header_hero { background: none!important}";
+    document.documentElement.appendChild(cardcss);
+
+    /*
+    for (let i = 0; i < cardimg.length; i++) {
+        cardcss.textContent += ".ic-DashboardCard:nth-of-type(" + (i + 1) + ") .ic-DashboardCard__header_hero{opacity: 0 !important}";
+        cardcss.textContent += ".ic-DashboardCard:nth-of-type(" + (i + 1) + ") .ic-DashboardCard__header-button-bg{opacity: 1 !important}";
+    }
+    */
+
+}
+
+function loadCustomFont() {
+    let link = document.querySelector("#custom_font_link");
+    let style = document.querySelector("#custom_font");
+
+    let load = () => {
+        if (options.custom_font.link !== "") {
+            document.head.appendChild(style);
+            link.href = `https://fonts.googleapis.com/css2?family=${options.custom_font.link}&display=swap`;
+            link.rel = "stylesheet";
+            document.head.appendChild(link);
+        }
+
+        style.textContent = options.custom_font.link === "" ? "" : `*, input, a, button, h1, h2, h3, h4, h5, h6, p, span {font-family: ${options.custom_font.family}!important}`;
+    }
+
+    if (link && style) {
+        load();
+    } else if (options.custom_font.link !== "") {
+        document.addEventListener("DOMContentLoaded", () => {
+            link = document.createElement("link");
+            link.id = "custom_font_link";
+            style = document.createElement("style");
+            style.id = "custom_font";
+            load();
+        });
+    }
+}
+
 function checkDashboardReady() {
     if (current_page !== "/" && current_page !== "") return;
     const callback = (mutationList) => {
@@ -119,14 +256,17 @@ function checkDashboardReady() {
             if (mutation.type === "childList") {
                 if (mutation.target == document.querySelector("#DashboardCard_Container")) {
                     let cards = document.querySelectorAll('.ic-DashboardCard');
-                    changeGradientCards(cards);
+                    changeGradientCards();
                     setupCardAssignments(cards);
                     setupBetterTodo();
                     customizeCards(cards);
                     insertGrades();
                     setupGPACalc();
-                    insertNotes();
+                    loadDashboardNotes();
                     condenseCards();
+
+                    //toggleColorOverlayOnCards();
+
                 } else if (mutation.target == document.querySelector('#right-side')) {
                     resetTimer();
                     if (!mutation.target.querySelector(".bettercanvas-todosidebar")) {
@@ -178,7 +318,7 @@ async function setupExport() {
 */
 
 function setupBetterTodo() {
-    if (options.improved_todo !== true) return;
+    if (options.better_todo !== true) return;
     if (document.querySelector('#bettercanvas-todo-list')) return;
     try {
         let list = document.querySelector("#right-side");
@@ -208,7 +348,7 @@ function setupBetterTodo() {
                 });
                 let confirmButton = makeElement("button", "bettercanvas-custom-btn", addFillout, "Create");
                 confirmButton.addEventListener("click", () => {
-                    chrome.storage.local.get("custom_assignments", storage => {
+                    chrome.storage.sync.get(options.custom_assignments_overflow, storage => {
                         let course_id = parseInt(addFillout.querySelector("#bettercanvas-custom-course").value);
                         let assignment = {
                             "plannable_id": storage.custom_assignments.length > 0 ? storage.custom_assignments[storage.custom_assignments.length - 1].plannable_id + 1 : 1,
@@ -221,10 +361,27 @@ function setupBetterTodo() {
                             "course_id": course_id,
                             "html_url": `/courses/${course_id}/assignments`
                         };
-                        chrome.storage.local.set({ "custom_assignments": storage.custom_assignments.concat([assignment]) }).then(() => {
+                        /*
+                        chrome.storage.sync.set({ "custom_assignments": storage.custom_assignments.concat([assignment]) }).then(() => {
+                            console.log(chrome.runtime.lastError);
                             addFillout.classList.toggle("bettercanvas-custom-open");
                             loadBetterTodo();
                             loadCardAssignments();
+                        });
+                        */
+                        let overflow = options.custom_assignments_overflow[options.custom_assignments_overflow.length - 1];
+                        chrome.storage.sync.set({ [overflow]: storage[overflow].concat([assignment]) }, () => {
+                            let reload = () => {
+                                addFillout.classList.toggle("bettercanvas-custom-open");
+                                loadBetterTodo();
+                                loadCardAssignments();
+                            }
+                            if (chrome.runtime.lastError) {
+                                let new_overflow = "custom_assignments_" + (options.custom_assignments_overflow.length + 1);
+                                chrome.storage.sync.set({ [new_overflow]: [assignment], "custom_assignments_overflow": options.custom_assignments_overflow.concat([new_overflow]) }).then(reload);
+                            } else {
+                                reload();
+                            }
                         });
                     });
                 });
@@ -241,7 +398,7 @@ function setupBetterTodo() {
             let todoAnnouncements = document.createElement("ul");
             todoAnnouncements.id = "bettercanvas-announcement-list";
             list.appendChild(todoAnnouncements);
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < options.num_todo_items; i++) {
                 let loader = '<div class="bettercanvas-todo-item-loader"><div style="width: 100px" class="bettercanvas-skeleton-text"></div><div style="width: 200px" class="bettercanvas-skeleton-text"></div><div class="bettercanvas-skeleton-text"></div></div>';
                 todoAssignments.innerHTML += loader;
                 todoAnnouncements.innerHTML += loader;
@@ -254,10 +411,25 @@ function setupBetterTodo() {
     }
 }
 
-function loadBetterTodo() {
-    if (options.improved_todo !== true) return;
+function combineAssignments(data) {
+    let combined = data;
     try {
-        const itemCount = 5;
+        options.custom_assignments_overflow.forEach(overflow => {
+            console.log(overflow, options[overflow]);
+            combined = combined.concat(options[overflow]);
+        });
+    } catch (e) {
+        console.log(e);
+    }
+    console.log(combined);
+    return combined.sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime());
+}
+
+let delay;
+function loadBetterTodo() {
+    if (options.better_todo !== true) return;
+    try {
+        const itemCount = options.num_todo_items;
         let todoAnnouncements = document.querySelector("#bettercanvas-announcement-list");
         let todoAssignments = document.querySelector("#bettercanvas-todo-list");
         const hr24 = options.todo_hr24;
@@ -267,9 +439,10 @@ function loadBetterTodo() {
         let announcementsToInsert = [];
 
         assignments.then(data => {
-            chrome.storage.local.get("custom_assignments", storage => {
+            chrome.storage.sync.get(options.custom_assignments_overflow, storage => {
                 assignmentData = assignmentData === null ? data : assignmentData;
-                let items = storage.custom_assignments ? storage.custom_assignments.concat(assignmentData).sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime()) : assignmentData;
+                let items = combineAssignments(assignmentData);
+                //let items = storage.custom_assignments ? storage.custom_assignments.concat(assignmentData).sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime()) : assignmentData;
                 items.forEach(item => {
                     let date = new Date(item.plannable_date);
                     if ((item.plannable_type === "announcement") || ((item.plannable_type === "assignment" || item.plannable_type === "quiz" || item.plannable_type === "discussion_topic") && assignmentsToInsert.length < itemCount && date >= now)) {
@@ -277,7 +450,7 @@ function loadBetterTodo() {
                             if (options.hide_completed === false || item.plannable_type === "announcement" || (options.hide_completed === true && item.submissions.submitted === false)) {
                                 let listItemContainer = document.createElement("div");
                                 listItemContainer.classList.add("bettercanvas-todo-container");
-                                listItemContainer.innerHTML = '<div class="bettercanvas-todo-icon"></div><a class="bettercanvas-todo-item"></a><button class="bettercanvas-todo-complete-btn"><svg name="IconX" viewBox="0 0 1920 1920" rotate="0" aria-hidden="true" role="presentation" focusable="false" class="dUOHu_bGBk dUOHu_drOs dUOHu_eXrk cGqzL_bGBk" style="width: 1em; height: 1em;"><g role="presentation"><path d="M797.319865 985.881673L344.771525 1438.43001 533.333333 1626.99182 985.881673 1174.44348 1438.43001 1626.99182 1626.99182 1438.43001 1174.44348 985.881673 1626.99182 533.333333 1438.43001 344.771525 985.881673 797.319865 533.333333 344.771525 344.771525 533.333333z" fill-rule="nonzero" stroke="none" stroke-width="1"></path></g></svg></button>';
+                                listItemContainer.innerHTML = '<div class="bettercanvas-hover-preview"><p class="bettercanvas-preview-text"></p></div><div class="bettercanvas-todo-icon"></div><a class="bettercanvas-todo-item"></a><button class="bettercanvas-todo-complete-btn"><svg name="IconX" viewBox="0 0 1920 1920" rotate="0" aria-hidden="true" role="presentation" focusable="false" class="dUOHu_bGBk dUOHu_drOs dUOHu_eXrk cGqzL_bGBk" style="width: 1em; height: 1em;"><g role="presentation"><path d="M797.319865 985.881673L344.771525 1438.43001 533.333333 1626.99182 985.881673 1174.44348 1438.43001 1626.99182 1626.99182 1438.43001 1174.44348 985.881673 1626.99182 533.333333 1438.43001 344.771525 985.881673 797.319865 533.333333 344.771525 344.771525 533.333333z" fill-rule="nonzero" stroke="none" stroke-width="1"></path></g></svg></button>';
                                 listItemContainer.querySelector(".bettercanvas-todo-item").href = item.html_url;
                                 listItemContainer.dataset.id = item.plannable_id;
                                 switch (item.plannable_type) {
@@ -300,13 +473,57 @@ function loadBetterTodo() {
                                 let todoDate = makeElement("p", "bettercanvas-todoitem-date", listItem, format.date);
                                 if (format.dueSoon) todoDate.style.color = "#ff224b";
 
+                                if (item.plannable_type === "announcement") {
+                                    listItem.addEventListener("mouseover", () => {
+                                        listItem.classList.add("bettercanvas-todo-hover");
+                                        let preview = listItemContainer.querySelector(".bettercanvas-hover-preview");
+                                        let previewText = preview.querySelector(".bettercanvas-preview-text");
+                                        clearTimeout(delay);
+                                        delay = setTimeout(async () => {
+                                            if (listItem.classList.contains("bettercanvas-todo-hover")) {
+                                                let found = false;
+                                                let searchCount = 1;
+                                                while (searchCount < 5 && found === false) {
+                                                    for (let i = 0; i < announcements.length; i++) {
+                                                        if (announcements[i].id === item.plannable_id) {
+                                                            found = true;
+                                                            if (previewText.textContent === "") {
+                                                                previewText.textContent = announcements[i].message.replace(/<\/?[^>]+(>|$)/g, " ");;
+                                                            }
+                                                            break;
+                                                        }
+                                                    }
+                                                    if (found === false) {
+                                                        let data = await getData(`${domain}/api/v1/announcements?context_codes[]=course_${item.course_id}&per_page=3&page=${searchCount}`);
+                                                        console.log("got new data");
+                                                        announcements.push(...data);
+                                                        console.log(announcements);
+                                                        searchCount++;
+                                                    }
+                                                }
+                                                if (found === false) {
+                                                    previewText.textContent = "Couldn't load preview";
+                                                }
+                                                preview.style.display = "block";
+                                            } else {
+                                                //clearTimeout(delay);
+                                            }
+                                        }, 400);
+                                    });
+
+                                    listItem.addEventListener("mouseleave", () => {
+                                        listItem.classList.remove("bettercanvas-todo-hover");
+                                        listItemContainer.querySelector(".bettercanvas-hover-preview").style.display = "none";
+                                    });
+                                }
+
                                 listItemContainer.querySelector(".bettercanvas-todo-complete-btn").addEventListener('click', function () {
                                     if (item.planner_override && item.planner_override.custom && item.planner_override.custom === true) {
-                                        chrome.storage.local.get("custom_assignments", storage => {
+                                        chrome.storage.sync.get("custom_assignments", storage => {
                                             for (let i = 0; i < storage.custom_assignments.length; i++) {
                                                 if (storage.custom_assignments[i].plannable_id === item.plannable_id) {
                                                     storage.custom_assignments.splice(i, 1);
-                                                    chrome.storage.local.set({ "custom_assignments": storage.custom_assignments }).then(() => {
+                                                    chrome.storage.sync.set({ "custom_assignments": storage.custom_assignments }).then(() => {
                                                         let container = listItemContainer.parentElement;
                                                         container.removeChild(listItemContainer);
                                                         loadBetterTodo();
@@ -382,15 +599,23 @@ function loadBetterTodo() {
     }
 }
 
-function getAssignmentData() {
+function getGrades() {
+    if (options.gpa_calc === true || options.dashboard_grades === true) {
+        grades = getData(`${domain}/api/v1/courses?enrollment_state=active&include[]=total_scores&include[]=current_grading_period_scores&per_page=30`);
+    }
+}
+
+function getAssignments() {
+    if (options.assignments_due === true || options.better_todo === true) {
+        let weekAgo = new Date(new Date() - (604800000));
+        assignments = getData(`${domain}/api/v1/planner/items?start_date=${weekAgo.toISOString()}&per_page=75`);
+    }
+}
+
+function getApiData() {
     if (current_page === "/" || current_page === "") {
-        if (options.assignments_due === true || options.improved_todo === true) {
-            let weekAgo = new Date(new Date() - (604800000));
-            assignments = getData(`${domain}/api/v1/planner/items?start_date=${weekAgo.toISOString()}&per_page=75`);
-        }
-        if (options.gpa_calc === true || options.dashboard_grades === true) {
-            grades = getData(`${domain}/api/v1/courses?enrollment_state=active&include[]=total_scores&include[]=current_grading_period_scores&per_page=30`);
-        }
+        getAssignments();
+        getGrades();
     }
 }
 
@@ -458,28 +683,38 @@ function iframeChecker(enabled) {
 }
 
 function insertGrades() {
-    if (options.dashboard_grades !== true) return;
-    grades.then(data => {
-        try {
-            let cards = document.querySelectorAll('.ic-DashboardCard');
-            if (cards.length === 0 || cards[0].querySelectorAll(".ic-DashboardCard__link").length === 0 || document.querySelectorAll('.bettercanvas-card-grade').length > 0) return;
-            for (let i = 0; i < cards.length; i++) {
-                let course_id = parseInt(cards[i].querySelector(".ic-DashboardCard__link").href.split("courses/")[1]);
-                data.forEach(grade => {
-                    if (course_id === grade.id) {
-                        let gradepercent = grade.enrollments[0].has_grading_periods === true ? grade.enrollments[0].current_period_computed_current_score : grade.enrollments[0].computed_current_score;
-                        let percent = (gradepercent || "--") + "%";
-                        let gradeContainer = makeElement("a", "bettercanvas-card-grade", cards[i].querySelector(".ic-DashboardCard__header"), percent);
-                        if (options.grade_hover === true) gradeContainer.classList.add("bettercanvas-hover-only");
-                        gradeContainer.setAttribute("href", `${domain}/courses/${course_id}/grades`);
-                    }
-                });
+    if (options.dashboard_grades === true) {
+        grades.then(data => {
+            try {
+                let cards = document.querySelectorAll('.ic-DashboardCard');
+                if (cards.length === 0 || cards[0].querySelectorAll(".ic-DashboardCard__link").length === 0) return;
+                for (let i = 0; i < cards.length; i++) {
+                    let course_id = parseInt(cards[i].querySelector(".ic-DashboardCard__link").href.split("courses/")[1]);
+                    data.forEach(grade => {
+                        if (course_id === grade.id) {
+                            let gradepercent = grade.enrollments[0].has_grading_periods === true ? grade.enrollments[0].current_period_computed_current_score : grade.enrollments[0].computed_current_score;
+                            let percent = (gradepercent || "--") + "%";
+                            let gradeContainer = cards[i].querySelector(".bettercanvas-card-grade") || makeElement("a", "bettercanvas-card-grade", cards[i].querySelector(".ic-DashboardCard__header"), percent);
+                            if (options.grade_hover === true) {
+                                gradeContainer.classList.add("bettercanvas-hover-only");
+                            } else {
+                                gradeContainer.classList.remove("bettercanvas-hover-only");
+                            }
+                            gradeContainer.setAttribute("href", `${domain}/courses/${course_id}/grades`);
+                            gradeContainer.style.display = "block";
+                        }
+                    });
 
+                }
+            } catch (e) {
+                logError(e);
             }
-        } catch (e) {
-            logError(e);
-        }
-    });
+        });
+    } else {
+        document.querySelectorAll('.bettercanvas-card-grade').forEach(grade => {
+            grade.style.display = "none";
+        });
+    }
 }
 
 function setAssignmentStatus(id, status, assignments_done = []) {
@@ -494,66 +729,75 @@ function setAssignmentStatus(id, status, assignments_done = []) {
 }
 
 function loadCardAssignments(c = null) {
-    try {
-        assignments.then(data => {
-            chrome.storage.local.get("custom_assignments", storage => {
-                assignmentData = assignmentData === null ? data : assignmentData;
-                let items = storage.custom_assignments ? storage.custom_assignments.concat(assignmentData).sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime()) : assignmentData;
-                let cards = c ? c : document.querySelectorAll('.ic-DashboardCard');
-                const now = new Date();
-                cards.forEach(card => {
-                    let count = 0;
-                    let course_id = parseInt(card.querySelector(".ic-DashboardCard__link").href.split("courses/")[1]);
-                    let cardContainer = card.querySelector('.bettercanvas-card-container');
-                    cardContainer.textContent = "";
-                    items.forEach(assignment => {
-                        if (course_id !== assignment.course_id || count >= options.num_assignments || now > new Date(assignment.plannable_date) || (assignment.submissions.submitted === true && options.hide_completed === true)) return;
-                        if (assignment.plannable_type === "assignment" || assignment.plannable_type === "quiz" || assignment.plannable_type === "discussion_topic") {
-                            let assignmentContainer = makeElement("div", "bettercanvas-assignment-container", cardContainer);
-                            let assignmentName = makeElement("a", "bettercanvas-assignment-link", assignmentContainer, assignment.plannable.title)
-                            let assignmentDueAt = makeElement("span", "bettercanvas-assignment-dueat", assignmentContainer, cleanDue(assignment.plannable_date));
-                            assignmentDueAt.setAttribute("data-asgmtid", assignment.plannable_id);
-                            if (assignment.submissions.submitted === true) {
-                                assignmentContainer.classList.add("bettercanvas-completed");
-                            } else {
-                                options.assignments_done.forEach(function (done) {
-                                    if (parseInt(done) === assignment.plannable_id) assignmentContainer.classList.add("bettercanvas-completed");
+    if (options.assignments_due === true) {
+        try {
+            assignments.then(data => {
+                chrome.storage.sync.get("custom_assignments", storage => {
+                    assignmentData = assignmentData === null ? data : assignmentData;
+                    let items = storage.custom_assignments ? storage.custom_assignments.concat(assignmentData).sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime()) : assignmentData;
+                    let cards = c ? c : document.querySelectorAll('.ic-DashboardCard');
+                    const now = new Date();
+                    cards.forEach(card => {
+                        let count = 0;
+                        let course_id = parseInt(card.querySelector(".ic-DashboardCard__link").href.split("courses/")[1]);
+                        let cardContainer = card.querySelector('.bettercanvas-card-container');
+                        cardContainer.textContent = "";
+                        cardContainer.parentElement.style.display = "block";
+                        items.forEach(assignment => {
+                            if (course_id !== assignment.course_id || count >= options.num_assignments || now > new Date(assignment.plannable_date) || (assignment.submissions.submitted === true && options.hide_completed === true)) return;
+                            if (assignment.plannable_type === "assignment" || assignment.plannable_type === "quiz" || assignment.plannable_type === "discussion_topic") {
+                                let assignmentContainer = makeElement("div", "bettercanvas-assignment-container", cardContainer);
+                                let assignmentName = makeElement("a", "bettercanvas-assignment-link", assignmentContainer, assignment.plannable.title)
+                                let assignmentDueAt = makeElement("span", "bettercanvas-assignment-dueat", assignmentContainer, cleanDue(assignment.plannable_date));
+                                assignmentDueAt.setAttribute("data-asgmtid", assignment.plannable_id);
+                                if (assignment.submissions.submitted === true) {
+                                    assignmentContainer.classList.add("bettercanvas-completed");
+                                } else {
+                                    options.assignments_done.forEach(function (done) {
+                                        if (parseInt(done) === assignment.plannable_id) assignmentContainer.classList.add("bettercanvas-completed");
+                                    });
+                                }
+                                assignmentDueAt.addEventListener('mouseup', function () {
+                                    assignmentContainer.classList.toggle("bettercanvas-completed");
+                                    const status = assignmentContainer.classList.contains("bettercanvas-completed");
+                                    setAssignmentStatus(this.dataset.asgmtid, status, options.assignments_done);
                                 });
+                                assignmentName.setAttribute("href", assignment.html_url);
+                                count++;
                             }
-                            assignmentDueAt.addEventListener('mouseup', function () {
-                                assignmentContainer.classList.toggle("bettercanvas-completed");
-                                const status = assignmentContainer.classList.contains("bettercanvas-completed");
-                                setAssignmentStatus(this.dataset.asgmtid, status, options.assignments_done);
-                            });
-                            assignmentName.setAttribute("href", assignment.html_url);
-                            count++;
+                        });
+                        if (count === 0) {
+                            let assignmentContainer = makeElement("div", "bettercanvas-assignment-container", cardContainer);
+                            let assignmentDivLink = makeElement("a", "bettercanvas-assignment-link", assignmentContainer, "None");
                         }
                     });
-                    if (count === 0) {
-                        let assignmentContainer = makeElement("div", "bettercanvas-assignment-container", cardContainer);
-                        let assignmentDivLink = makeElement("a", "bettercanvas-assignment-link", assignmentContainer, "None");
-                    }
                 });
             });
+        } catch (e) {
+            logError(e);
+        }
+    } else {
+        document.querySelectorAll(".bettercanvas-card-assignment").forEach(card => {
+            card.style.display = "none";
         });
-    } catch (e) {
-        logError(e);
     }
 }
 
 function setupCardAssignments(c = null) {
-    if (options.assignments_due !== true) return;
-    try {
-        if (document.querySelectorAll('.ic-DashboardCard').length > 0 && document.querySelectorAll('.bettercanvas-card-container').length > 0) return;
-        let cards = c ? c : document.querySelectorAll('.ic-DashboardCard');
-        cards.forEach(card => {
-            let assignmentsDueHeader = makeElement("div", "bettercanvas-card-header-container", card);
-            let assignmentsDueLabel = makeElement("h3", "bettercanvas-card-header", assignmentsDueHeader, 'Due')
-            let cardContainer = makeElement("div", "bettercanvas-card-container", card);
-            let skeletonText = makeElement("div", "bettercanvas-skeleton-text", cardContainer);
-        });
-    } catch (e) {
-        logError(e);
+    if (options.assignments_due === true) {
+        try {
+            if (document.querySelectorAll('.ic-DashboardCard').length > 0 && document.querySelectorAll('.bettercanvas-card-container').length > 0) return;
+            let cards = c ? c : document.querySelectorAll('.ic-DashboardCard');
+            cards.forEach(card => {
+                let assignmentContainer = makeElement("div", "bettercanvas-card-assignment", card);
+                let assignmentsDueHeader = makeElement("div", "bettercanvas-card-header-container", assignmentContainer);
+                let assignmentsDueLabel = makeElement("h3", "bettercanvas-card-header", assignmentsDueHeader, 'Due')
+                let cardContainer = makeElement("div", "bettercanvas-card-container", assignmentContainer);
+                let skeletonText = makeElement("div", "bettercanvas-skeleton-text", cardContainer);
+            });
+        } catch (e) {
+            logError(e);
+        }
     }
 }
 
@@ -564,9 +808,12 @@ function customizeCards(c = null) {
         if (cards[0].querySelectorAll(".ic-DashboardCard__link").length === 0) return;
         cards.forEach(card => {
             let cardOptions = options["custom_cards"][card.querySelector(".ic-DashboardCard__link").href.split("courses/")[1]];
+            let cardOptions_2 = options["custom_cards_2"][card.querySelector(".ic-DashboardCard__link").href.split("courses/")[1]];
             if (cardOptions) {
                 if (cardOptions.hidden === true) {
                     card.style.display = "none";
+                } else {
+                    card.style.display = "inline-block";
                 }
                 if (cardOptions.img === "none") {
                     let currentImg = card.querySelector(".ic-DashboardCard__header_image");
@@ -585,6 +832,25 @@ function customizeCards(c = null) {
                 if (cardOptions.name !== "") {
                     card.querySelector(".ic-DashboardCard__header-title > span").textContent = cardOptions.name;
                 }
+
+                let links = card.querySelectorAll(".ic-DashboardCard__action");
+                for (let i = links.length; i < 4; i++) {
+                    makeElement("a", "ic-DashboardCard__action", card.querySelector(".ic-DashboardCard__action-container"));
+                }
+                links = card.querySelectorAll(".ic-DashboardCard__action");
+
+                for (let i = 0; i < 4; i++) {
+                    links[i].style.display = "inherit";
+                    if (cardOptions_2.links.custom[i].type === "none") {
+                        links[i].style.display = "none";
+                    } else if (cardOptions_2.links.custom[i].default === false) {
+                        links[i].href = cardOptions_2.links.custom[i].path;
+                        let img = links[i].querySelector(".bettercanvas-link-image") || makeElement("img", "bettercanvas-link-image", links[i]);
+                        img.src = getCustomLinkImage(cardOptions_2.links.custom[i].type);
+                        if (links[i].querySelector(".ic-DashboardCard__action-layout")) links[i].querySelector(".ic-DashboardCard__action-layout").style.display = "none";
+                    }
+                    //links[i].style.display = "none";
+                }
             }
         });
     } catch (e) {
@@ -592,31 +858,233 @@ function customizeCards(c = null) {
     }
 }
 
-function insertNotes() {
-    if (options.dashboard_notes !== true || document.querySelectorAll('.bettercanvas-dashboard-notes').length > 0) return;
-    let notes = document.createElement("textarea");
-    notes.classList.add("bettercanvas-dashboard-notes");
-    notes.value = options.dashboard_notes_text;
-    notes.placeholder = "Enter notes here";
-    document.querySelector("#DashboardCard_Container").prepend(notes);
-    notes.style.height = notes.scrollHeight + 5 + "px";
-    notes.addEventListener('input', function () {
-        chrome.storage.local.set({ dashboard_notes_text: this.value });
-        this.style.height = "1px";
-        this.style.height = this.scrollHeight + 5 + "px";
+function getCustomLinkImage(path) {
+    switch (path) {
+        case ("piazza"):
+            return "https://piazza.com/favicon.ico";
+        case ("gradescope"):
+            return "https://www.gradescope.com/favicon.ico";
+        case ("google_drive"):
+            return "https://drive.google.com/favicon.ico";
+        case ("youtube"):
+            return "https://www.youtube.com/favicon.ico";
+        case ("google_docs"):
+            return "https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico";
+        case ("webassign"):
+            return "https://www.cengage.com/favicon.ico";
+        /*
+    case ("custom"):
+        console.log(path);
+        let host = new URL(path);
+        return "https://" + host + "/favicon.ico";
+        */
+        default:
+            return "";
+    }
+}
+
+let dashboardNotesTimer;
+function delayDashboardNotesStorage(text) {
+    clearTimeout(dashboardNotesTimer);
+    dashboardNotesTimer = setTimeout(() => {
+        chrome.storage.sync.set({ dashboard_notes_text: text });
+    }, 2000);
+}
+
+function loadDashboardNotes() {
+    if (options.dashboard_notes === true) {
+        let notes = document.querySelector('.bettercanvas-dashboard-notes') || document.createElement("textarea");
+        notes.classList.add("bettercanvas-dashboard-notes");
+        notes.value = options.dashboard_notes_text;
+        notes.placeholder = "Enter notes here";
+        notes.style.display = "block";
+        if (notes.parentElement === null) document.querySelector("#DashboardCard_Container").prepend(notes);
+        notes.style.height = notes.scrollHeight + 5 + "px";
+        notes.addEventListener('input', function () {
+            delayDashboardNotesStorage(this.value);
+            this.style.height = "1px";
+            this.style.height = this.scrollHeight + 5 + "px";
+        });
+
+    } else {
+        let notes = document.querySelector('.bettercanvas-dashboard-notes');
+        if (notes) {
+            notes.style.display = "none";
+        }
+    }
+}
+
+function changeGradientCards() {
+    if (options.gradient_cards === true) {
+        let cardheads = document.querySelectorAll('.ic-DashboardCard__header_hero');
+        let cardcss = document.querySelector("#gradientcss") || document.createElement('style');
+        cardcss.id = "gradientcss";
+        cardcss.textContent = "";
+        document.documentElement.appendChild(cardcss);
+
+        for (let i = 0; i < cardheads.length; i++) {
+            let colorone = cardheads[i].style.backgroundColor.split(',');
+            let [r, g, b] = [parseInt(colorone[0].split('(')[1]), parseInt(colorone[1]), parseInt(colorone[2])];
+            let [h, s, l] = [rgbToHsl(r, g, b)[0], rgbToHsl(r, g, b)[1], rgbToHsl(r, g, b)[2]];
+            let degree = ((h % 60) / 60) >= .66 ? 30 : ((h % 60) / 60) <= .33 ? -30 : 15;
+            let newh = h > 300 ? (360 - (h + 65)) + (65 + degree) : h + 65 + degree;
+            cardcss.textContent += ".ic-DashboardCard:nth-of-type(" + (i + 1) + ") .ic-DashboardCard__header_hero{background: linear-gradient(115deg, hsl(" + h + "deg," + s + "%," + l + "%) 5%, hsl(" + newh + "deg," + s + "%," + l + "%) 100%)!important}";
+        }
+    } else {
+        let cardcss = document.querySelector("#gradientcss");
+        if (cardcss) {
+            cardcss.textContent = "";
+        }
+    }
+}
+
+function calculateGPA2() {
+    let qualityPoints = 0, numCredits = 0, weightedQualityPoints = 0;
+    document.querySelectorAll('.bettercanvas-gpa-course').forEach(course => {
+        const weight = course.querySelector('.bettercanvas-course-weight').value;
+        const credits = parseFloat(course.querySelector('.bettercanvas-course-credit').value);
+        let letter = "--";
+        if (weight !== "dnc" && credits) {
+            const grade = parseFloat(course.querySelector('.bettercanvas-course-percent').value);
+            let gpa;
+            if (grade >= options.gpa_calc_bounds["A+"].cutoff) {
+                gpa = options.gpa_calc_bounds["A+"].gpa;
+                letter = "A+";
+            } else if (grade >= options.gpa_calc_bounds["A"].cutoff) {
+                gpa = options.gpa_calc_bounds["A"].gpa;
+                letter = "A";
+            } else if (grade >= options.gpa_calc_bounds["A-"].cutoff) {
+                gpa = options.gpa_calc_bounds["A-"].gpa;
+                letter = "A-";
+            } else if (grade >= options.gpa_calc_bounds["B+"].cutoff) {
+                gpa = options.gpa_calc_bounds["B+"].gpa;
+                letter = "B+";
+            } else if (grade >= options.gpa_calc_bounds["B"].cutoff) {
+                gpa = options.gpa_calc_bounds["B"].gpa;
+                letter = "B";
+            } else if (grade >= options.gpa_calc_bounds["B-"].cutoff) {
+                gpa = options.gpa_calc_bounds["B-"].gpa;
+                letter = "B-"
+            } else if (grade >= options.gpa_calc_bounds["C+"].cutoff) {
+                gpa = options.gpa_calc_bounds["C+"].gpa;
+                letter = "C+";
+            } else if (grade >= options.gpa_calc_bounds["C"].cutoff) {
+                gpa = options.gpa_calc_bounds["C"].gpa;
+                letter = "C";
+            } else if (grade >= options.gpa_calc_bounds["C-"].cutoff) {
+                gpa = options.gpa_calc_bounds["C-"].gpa;
+                letter = "C-";
+            } else if (grade >= options.gpa_calc_bounds["D+"].cutoff) {
+                gpa = options.gpa_calc_bounds["D+"].gpa;
+                letter = "D+";
+            } else if (grade >= options.gpa_calc_bounds["D"].cutoff) {
+                gpa = options.gpa_calc_bounds["D"].gpa;
+                letter = "D";
+            } else if (grade >= options.gpa_calc_bounds["D-"].cutoff) {
+                gpa = options.gpa_calc_bounds["D-"].gpa;
+                letter = "D-";
+            } else {
+                letter = "F";
+                gpa = options.gpa_calc_bounds["F"].gpa;
+            }
+
+            let weightMultiplier;
+            if (weight === "ap") {
+                weightMultiplier = 1;
+            } else if (weight === "honors") {
+                weightMultiplier = .5;
+            } else {
+                weightMultiplier = 0;
+            }
+            qualityPoints += gpa * credits;
+            weightedQualityPoints += (gpa + weightMultiplier) * credits;
+            numCredits += credits;
+        }
+        course.querySelector(".bettercanvas-gpa-letter-grade").textContent = letter;
     });
+    document.querySelector("#bettercanvas-gpa-unweighted").textContent = (qualityPoints / numCredits).toFixed(2);
+    document.querySelector("#bettercanvas-gpa-weighted").textContent = (weightedQualityPoints / numCredits).toFixed(2);
+}
+
+function setupGPACalc() {
+    if (options.gpa_calc !== true && (current_page !== "/" || current_page !== "") || document.querySelector(".bettercanvas-gpa")) return;
+    try {
+        let container = makeElement("div", "bettercanvas-gpa", document.querySelector(".ic-DashboardCard__box__container"));
+        container.innerHTML = '<h3 class="bettercanvas-gpa-header">GPA Calculator</h3><div class="bettercanvas-gpa-courses-container"><div class="bettercanvas-gpa-courses"></div><div class="bettercanvas-gpa-output"><p>Unweighted: <span id="bettercanvas-gpa-unweighted"></span></p><p>Weighted: <span id="bettercanvas-gpa-weighted"></span></p></div></div>';
+        grades.then(result => {
+            result.forEach(course => {
+                let customs = options.custom_cards ? options.custom_cards[course.id] : null;
+                if (customs) {
+                    if (customs.hidden != true) {
+                        let courseContainer = makeElement("div", "bettercanvas-gpa-course", document.querySelector(".bettercanvas-gpa-courses"));
+                        courseContainer.innerHTML = '<div class="bettercanvas-gpa-course-left"></div><div class="bettercanvas-gpa-course-right"></div><div class="bettercanvas-gpa-letter-grade"></div>';
+                        let courseName = makeElement("p", "bettercanvas-gpa-name", courseContainer);
+                        courseName.textContent = customs.name === "" ? course.course_code : customs.name;
+                        let changerContainer = makeElement("div", "bettercanvas-gpa-percent-container", courseContainer);
+                        let changer = makeElement("input", "bettercanvas-course-percent", changerContainer);
+                        let courseGrade = course.enrollments[0].has_grading_periods === true ? course.enrollments[0].current_period_computed_current_score : course.enrollments[0].computed_current_score;
+                        changer.value = courseGrade ? courseGrade : "";
+                        let percent = makeElement("span", "bettercanvas-course-percent-sign", changerContainer, "%");
+
+                        let weightSelections = makeElement("form", "bettercanvas-course-weights", courseContainer);
+                        weightSelections.innerHTML = '<select name="weight-selection" class="bettercanvas-course-weight"><option value="dnc">Do not count</option><option value="regular">Regular/College</option><option value="honors">Honors</option><option value="ap">AP/IB</option></select>';
+                        weightChanger = weightSelections.querySelector(".bettercanvas-course-weight");
+                        weightChanger.value = customs.weight;
+
+                        let credits = makeElement("div", "bettercanvas-course-credits", courseContainer);
+                        credits.innerHTML = '<input class="bettercanvas-course-credit" value="1"></input><span class="bettercanvas-course-percent-sign">cr</span>';
+                        let creditsChanger = credits.querySelector(".bettercanvas-course-credit");
+                        creditsChanger.value = customs.credits;
+
+                        changer.addEventListener('input', calculateGPA2);
+                        weightChanger.addEventListener('change', () => {
+                            calculateGPA2();
+                            chrome.storage.sync.get(["custom_cards"], storage => {
+                                chrome.storage.sync.set({ "custom_cards": { ...storage["custom_cards"], [course.id]: { ...storage["custom_cards"][course.id], "weight": weightSelections.querySelector(".bettercanvas-course-weight").value } } });
+                            });
+                        });
+                        credits.querySelector(".bettercanvas-course-credit").addEventListener('input', () => {
+                            calculateGPA2();
+                            chrome.storage.sync.get(["custom_cards"], storage => {
+                                chrome.storage.sync.set({ "custom_cards": { ...storage["custom_cards"], [course.id]: { ...storage["custom_cards"][course.id], "credits": credits.querySelector(".bettercanvas-course-credit").value } } });
+                            });
+                        });
+                    }
+                }
+            });
+            calculateGPA2();
+        });
+    } catch (e) {
+        logError(e);
+    }
+}
+
+function condenseCards() {
+    if (options.condensed_cards === true) {
+        let style = document.querySelector("#bettercanvas-condense-cards") || document.createElement('style');
+        style.id = "bettercanvas-condense-cards";
+        style.textContent = ".ic-DashboardCard__header_hero {height:60px!important}.ic-DashboardCard__header-subtitle, .ic-DashboardCard__header-term{display:none}";
+        document.documentElement.prepend(style);
+    } else {
+        let style = document.querySelector("#bettercanvas-condense-cards");
+        if (style) {
+            style.textContent = "";
+        }
+    }
 }
 
 function cleanCustomAssignments() {
-    chrome.storage.local.get("custom_assignments", storage => {
+    let changed = false;
+    chrome.storage.sync.get("custom_assignments", storage => {
         const now = new Date();
         for (let i = 0; i < storage.custom_assignments.length; i++) {
             let assignmentDate = new Date(storage.custom_assignments[i].plannable_date);
             if (!assignmentDate.getTime() || assignmentDate < now) {
                 storage.custom_assignments.splice(i, 1);
+                changed = true;
             }
         }
-        chrome.storage.local.set({ "custom_assignments": storage.custom_assignments });
+        if (changed) chrome.storage.sync.set({ "custom_assignments": storage.custom_assignments });
     });
 }
 
@@ -625,12 +1093,12 @@ function isDomainCanvasPage() {
         options = result;
         if (result.custom_domain && result.custom_domain != [""] && result.custom_domain != '') {
             try {
-                result.custom_domain.forEach(e => {
-                    if (domain.includes(e)) {
+                for (let i = 0; i < result.custom_domain.length; i++) {
+                    if (domain.includes(result.custom_domain[i])) {
                         startExtension();
                         return;
                     }
-                })
+                }
             } catch (e) {
                 try { // for users who set a url using an older version
                     if (domain.includes(result.custom_domain)) {
@@ -662,180 +1130,6 @@ function setupCustomURL() {
     }).catch(err => {
         console.log("Better Canvas - this url doesn't seem to be a canvas url (2)");
     });
-}
-
-function changeGradientCards() {
-    if (options.gradient_cards === false) return;
-    let cardheads = document.querySelectorAll('.ic-DashboardCard__header_hero');
-    let cardcss = document.querySelector("#gradientcss") || document.createElement('style');
-    cardcss.id = "gradientcss";
-    cardcss.textContent = "";
-    document.documentElement.appendChild(cardcss);
-
-    for (let i = 0; i < cardheads.length; i++) {
-        let colorone = cardheads[i].style.backgroundColor.split(',');
-        let [r, g, b] = [parseInt(colorone[0].split('(')[1]), parseInt(colorone[1]), parseInt(colorone[2])];
-        let [h, s, l] = [rgbToHsl(r, g, b)[0], rgbToHsl(r, g, b)[1], rgbToHsl(r, g, b)[2]];
-        let degree = ((h % 60) / 60) >= .66 ? 30 : ((h % 60) / 60) <= .33 ? -30 : 15;
-        let newh = h > 300 ? (360 - (h + 65)) + (65 + degree) : h + 65 + degree;
-        cardcss.textContent += ".ic-DashboardCard:nth-of-type(" + (i + 1) + ") .ic-DashboardCard__header_hero{background: linear-gradient(115deg, hsl(" + h + "deg," + s + "%," + l + "%) 5%, hsl(" + newh + "deg," + s + "%," + l + "%) 100%)!important}";
-    }
-}
-
-function calculateGPA2() {
-    let qualityPoints = 0, numCredits = 0, weightedQualityPoints = 0;
-    document.querySelectorAll('.bettercanvas-gpa-course').forEach(course => {
-        const weight = course.querySelector('.bettercanvas-course-weight').value;
-        const credits = parseFloat(course.querySelector('.bettercanvas-course-credit').value);
-        let letter = "--";
-        if (weight !== "dnc" && credits) {
-            const grade = parseFloat(course.querySelector('.bettercanvas-course-percent').value);
-            let gpa;
-            if (grade >= 97) {
-                gpa = 4.3;
-                letter = "A+";
-            } else if (grade >= 93) {
-                gpa = 4.0;
-                letter = "A";
-            } else if (grade >= 90) {
-                gpa = 3.7;
-                letter = "A-";
-            } else if (grade >= 87) {
-                gpa = 3.4;
-                letter = "B+";
-            } else if (grade >= 83) {
-                gpa = 3.0;
-                letter = "B";
-            } else if (grade >= 80) {
-                gpa = 2.7;
-                letter = "B-"
-            } else if (grade >= 77) {
-                gpa = 2.3;
-                letter = "C+";
-            } else if (grade >= 73) {
-                gpa = 2;
-                letter = "C";
-            } else if (grade >= 70) {
-                gpa = 1.7;
-                letter = "C-";
-            } else if (grade >= 68) {
-                gpa = 1.3;
-                letter = "D+";
-            } else if (grade >= 63) {
-                gpa = 1;
-                letter = "D";
-            } else if (grade >= 60) {
-                gpa = .7;
-                letter = "D-";
-            } else {
-                letter = "F";
-                gpa = 0;
-            }
-            let weightMultiplier;
-            if (weight === "ap") {
-                weightMultiplier = 1;
-            } else if (weight === "honors") {
-                weightMultiplier = .5;
-            } else {
-                weightMultiplier = 0;
-            }
-            qualityPoints += gpa * credits;
-            weightedQualityPoints += (gpa + weightMultiplier) * credits;
-            numCredits += credits;
-        }
-        course.querySelector(".bettercanvas-gpa-letter-grade").textContent = letter;
-    });
-    document.querySelector("#bettercanvas-gpa-unweighted").textContent = (qualityPoints / numCredits).toFixed(2);
-    document.querySelector("#bettercanvas-gpa-weighted").textContent = (weightedQualityPoints / numCredits).toFixed(2);
-}
-
-function setupGPACalc() {
-    if (options.gpa_calc !== true && (current_page !== "/" || current_page !== "") || document.querySelector(".bettercanvas-gpa")) return;
-    try {
-        let container = makeElement("div", "bettercanvas-gpa", document.querySelector(".ic-DashboardCard__box__container"));
-        container.innerHTML = '<h3 class="bettercanvas-gpa-header">GPA Calculator</h3><div class="bettercanvas-gpa-courses-container"><div class="bettercanvas-gpa-courses"></div><div class="bettercanvas-gpa-output"><p>Unweighted: <span id="bettercanvas-gpa-unweighted"></span></p><p>Weighted: <span id="bettercanvas-gpa-weighted"></span></p></div></div>';
-        grades.then(result => {
-            result.forEach(course => {
-                let customs = options.custom_cards[course.id];
-                if (customs) {
-                    if (customs.hidden != true) {
-                        let courseContainer = makeElement("div", "bettercanvas-gpa-course", document.querySelector(".bettercanvas-gpa-courses"));
-                        courseContainer.innerHTML = '<div class="bettercanvas-gpa-course-left"></div><div class="bettercanvas-gpa-course-right"></div><div class="bettercanvas-gpa-letter-grade"></div>';
-                        let courseName = makeElement("p", "bettercanvas-gpa-name", courseContainer);
-                        courseName.textContent = customs.name === "" ? course.course_code : customs.name;
-                        let changerContainer = makeElement("div", "bettercanvas-gpa-percent-container", courseContainer);
-                        let changer = makeElement("input", "bettercanvas-course-percent", changerContainer);
-                        let courseGrade = course.enrollments[0].has_grading_periods === true ? course.enrollments[0].current_period_computed_current_score : course.enrollments[0].computed_current_score;
-                        changer.value = courseGrade ? courseGrade : "";
-                        let percent = makeElement("span", "bettercanvas-course-percent-sign", changerContainer, "%");
-
-                        let weightSelections = makeElement("form", "bettercanvas-course-weights", courseContainer);
-                        weightSelections.innerHTML = '<select name="weight-selection" class="bettercanvas-course-weight"><option value="dnc">Do not count</option><option value="regular">Regular/College</option><option value="honors">Honors</option><option value="ap">AP/IB</option></select>';
-                        weightChanger = weightSelections.querySelector(".bettercanvas-course-weight");
-                        weightChanger.value = customs.weight;
-
-                        let credits = makeElement("div", "bettercanvas-course-credits", courseContainer);
-                        credits.innerHTML = '<input class="bettercanvas-course-credit" value="1"></input><span class="bettercanvas-course-percent-sign">cr</span>';
-                        let creditsChanger = credits.querySelector(".bettercanvas-course-credit");
-                        creditsChanger.value = customs.credits;
-
-                        changer.addEventListener('input', calculateGPA2);
-                        weightChanger.addEventListener('change', () => {
-                            calculateGPA2();
-                            chrome.storage.local.get(["custom_cards"], storage => {
-                                chrome.storage.local.set({ "custom_cards": { ...storage["custom_cards"], [course.id]: { ...storage["custom_cards"][course.id], "weight": weightSelections.querySelector(".bettercanvas-course-weight").value } } });
-                            });
-                        });
-                        credits.querySelector(".bettercanvas-course-credit").addEventListener('input', () => {
-                            calculateGPA2();
-                            chrome.storage.local.get(["custom_cards"], storage => {
-                                chrome.storage.local.set({ "custom_cards": { ...storage["custom_cards"], [course.id]: { ...storage["custom_cards"][course.id], "credits": credits.querySelector(".bettercanvas-course-credit").value } } });
-                            });
-                        });
-                    }
-                } else { // for users who don't have custom_cards yet 
-                    let courseContainer = makeElement("div", "bettercanvas-gpa-course", document.querySelector(".bettercanvas-gpa-courses"));
-                    courseContainer.innerHTML = '<div class="bettercanvas-gpa-course-left"></div><div class="bettercanvas-gpa-course-right"></div><div class="bettercanvas-gpa-letter-grade"></div>';
-                    let courseName = makeElement("p", "bettercanvas-gpa-name", courseContainer);
-                    courseName.textContent = course.course_code;
-                    let changerContainer = makeElement("div", "bettercanvas-gpa-percent-container", courseContainer);
-                    let changer = makeElement("input", "bettercanvas-course-percent", changerContainer);
-                    let courseGrade = course.enrollments[0].has_grading_periods === true ? course.enrollments[0].current_period_computed_current_score : course.enrollments[0].computed_current_score;
-                    changer.value = courseGrade ? courseGrade : "";
-                    let percent = makeElement("span", "bettercanvas-course-percent-sign", changerContainer, "%");
-
-                    let weightSelections = makeElement("form", "bettercanvas-course-weights", courseContainer);
-                    weightSelections.innerHTML = '<select name="weight-selection" class="bettercanvas-course-weight"><option value="dnc">Do not count</option><option value="regular">Regular/College</option><option value="honors">Honors</option><option value="ap">AP/IB</option></select>';
-                    weightChanger = weightSelections.querySelector(".bettercanvas-course-weight");
-                    weightChanger.value = courseGrade ? "regular" : "dnc";
-
-                    let credits = makeElement("div", "bettercanvas-course-credits", courseContainer);
-                    credits.innerHTML = '<input class="bettercanvas-course-credit" value="1"></input><span class="bettercanvas-course-percent-sign">cr</span>';
-                    let creditsChanger = credits.querySelector(".bettercanvas-course-credit");
-                    creditsChanger.value = 1;
-
-                    changer.addEventListener('input', calculateGPA2);
-                    weightChanger.addEventListener('change', () => {
-                        calculateGPA2();
-                    });
-                    credits.querySelector(".bettercanvas-course-credit").addEventListener('input', () => {
-                        calculateGPA2();
-                    });
-                }
-            });
-            calculateGPA2();
-        });
-    } catch (e) {
-        logError(e);
-    }
-}
-
-function condenseCards() {
-    if (options.condensed_cards !== true || document.querySelector("#bettercanvas-condense-cards")) return;
-    let style = document.createElement('style');
-    style.id = "bettercanvas-condense-cards";
-    style.textContent = ".ic-DashboardCard__header_hero {height:60px!important}.ic-DashboardCard__header-subtitle, .ic-DashboardCard__header-term{display:none}";
-    document.documentElement.prepend(style);
 }
 
 function makeElement(element, elclass, location, text) {
@@ -919,7 +1213,7 @@ function cleanDue(date) {
 }
 
 function logError(e) {
-    chrome.storage.local.get(null, storage => {
+    chrome.storage.sync.get(null, storage => {
         if (!storage.custom_domain || storage.custom_domain.includes("logerrors")) {
             console.error("Better Canvas - Error \n", e, storage);
         }
