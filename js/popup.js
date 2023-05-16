@@ -1,39 +1,49 @@
-let switches = ['assignments_due', 'gpa_calc', 'dark_mode', 'gradient_cards', 'coloroverlay_cards', 'dashboard_grades', 'dashboard_notes', 'improved_todo', 'condensed_cards', 'auto_dark'];
-
+let syncedSwitches = ['auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'coloroverlay_cards', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
+let localSwitches = ['dark_mode'];
 sendFromPopup("getCards");
 
-chrome.storage.local.get(['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'custom_domain', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed'], function (result) {
+chrome.storage.sync.get(['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'num_todo_items'], function (result) {
     document.querySelector('#grade_hover').checked = result.grade_hover;
     document.querySelector('#hide_completed').checked = result.hide_completed;
     document.querySelector('#autodark_start').value = result.auto_dark_start["hour"] + ":" + result.auto_dark_start["minute"];
     document.querySelector('#autodark_end').value = result.auto_dark_end["hour"] + ":" + result.auto_dark_end["minute"];
     document.querySelector('#numAssignmentsSlider').value = result.num_assignments;
     document.querySelector("#numAssignments").textContent = result.num_assignments;
-    document.querySelector("#customDomain").value = result.custom_domain ? result.custom_domain : "";
+    document.querySelector("#numTodoItems").textContent = result.num_todo_items;
+    document.querySelector("#numTodoItemsSlider").value = result.num_todo_items;
     document.querySelector("#assignment_date_format").checked = result.assignment_date_format == true;
     document.querySelector("#todo_hr24").checked = result.todo_hr24 == true;
     toggleDarkModeDisable(result.auto_dark);
 });
 
+chrome.storage.local.get(["custom_domain"], storage => {
+    document.querySelector("#customDomain").value = storage.custom_domain ? storage.custom_domain : "";
+});
+
 document.querySelector('#grade_hover').addEventListener('change', function () {
     let status = this.checked;
-    chrome.storage.local.set({ grade_hover: status });
+    chrome.storage.sync.set({ grade_hover: status });
 });
 
 document.querySelector('#hide_completed').addEventListener('change', function () {
     let status = this.checked;
-    chrome.storage.local.set({ hide_completed: status });
+    chrome.storage.sync.set({ hide_completed: status });
 });
 
 document.querySelector('#numAssignmentsSlider').addEventListener('input', function () {
     document.querySelector('#numAssignments').textContent = this.value;
-    chrome.storage.local.set({ num_assignments: this.value });
+    chrome.storage.sync.set({ num_assignments: this.value });
+});
+
+document.querySelector('#numTodoItemsSlider').addEventListener('input', function () {
+    document.querySelector('#numTodoItems').textContent = this.value;
+    chrome.storage.sync.set({ num_todo_items: this.value });
 });
 
 ['assignment_date_format', 'todo_hr24'].forEach(checkbox => {
     document.querySelector("#" + checkbox).addEventListener('change', function () {
         let status = this.checked;
-        chrome.storage.local.set(JSON.parse(`{"${checkbox}": ${status}}`));
+        chrome.storage.sync.set(JSON.parse(`{"${checkbox}": ${status}}`));
     });
 });
 
@@ -55,27 +65,110 @@ document.querySelector("#advanced-settings").addEventListener("click", function 
     document.querySelector(".advanced").style.display = "block";
 });
 
-document.querySelector("#advanced-back").addEventListener("click", function () {
-    document.querySelector(".main").style.display = "block";
-    document.querySelector(".advanced").style.display = "none";
+document.querySelector("#gpa-bounds-btn").addEventListener("click", function () {
+    displayGPABounds();
+    document.querySelector(".main").style.display = "none";
+    document.querySelector(".gpa-bounds-container").style.display = "block";
+});
+
+document.querySelector("#custom-font-btn").addEventListener("click", function () {
+    displayCustomFont();
+    document.querySelector(".main").style.display = "none";
+    document.querySelector(".custom-font-container").style.display = "block";
+});
+
+document.querySelectorAll(".back-btn").forEach(btn => {
+    btn.addEventListener("click", function () {
+        document.querySelector(".main").style.display = "block";
+        document.querySelector(".gpa-bounds-container").style.display = "none";
+        document.querySelector(".advanced").style.display = "none";
+        document.querySelector(".custom-font-container").style.display = "none";
+    });
 });
 
 function updateCards(key, value) {
-    chrome.storage.local.get(["custom_cards"], result => {
+    chrome.storage.sync.get(["custom_cards"], result => {
         console.log({ [key]: { ...result["custom_cards"][key], ...value } });
-        chrome.storage.local.set({ "custom_cards": { ...result["custom_cards"], [key]: { ...result["custom_cards"][key], ...value } } });
+        chrome.storage.sync.set({ "custom_cards": { ...result["custom_cards"], [key]: { ...result["custom_cards"][key], ...value } } }, () => {
+            console.log(chrome.runtime.lastError);
+            if (chrome.runtime.lastError) {
+                let err = document.createElement("p");
+                err.textContent = "Error: " + chrome.runtime.lastError.message + " - contact ksucpea@gmail.com if this error persists";
+                err.style.color = "red";
+                err.style.fontSize = "20px";
+                document.body.prepend(err);
+                console.log(err);
+            }
+        })
+    });
+}
+
+function displayCustomFont() {
+    chrome.storage.sync.get(["custom_font"], storage => {
+        let el = document.querySelector(".custom-font");
+        el.textContent = "";
+        let linkContainer = makeElement("div", "custom-font-flex", el);
+        linkContainer.innerHTML = '<span>https://fonts.googleapis.com/css2?family=</span><input class="card-input" id="custom-font-link"></input><span>&display=swap</span>';
+        let link = linkContainer.querySelector("#custom-font-link");
+        link.value = storage.custom_font.link;
+
+        link.addEventListener("change", function (e) {
+            let linkVal = e.target.value.split(":")[0];
+            let familyVal = linkVal.replace("+", " ");
+            linkVal += linkVal === "" ? "" : ":wght@400;700";
+            chrome.storage.sync.set({ "custom_font": { "link": linkVal, "family": "'" + familyVal + "'" } });
+            link.value = linkVal;
+        });
+
+        const popularFonts = ["Caveat", "Comfortaa", "Happy Monkey", "Inconsolata", "Jost", "Lobster", "Montserrat", "Open Sans", "Oswald", "Poppins", "Redacted Script", "Rubik", "Silkscreen"];
+        let quickFonts = document.querySelector(".quick-fonts");
+        quickFonts.textContent = "";
+        popularFonts.forEach(font => {
+            let btn = makeElement("button", "customization-button", quickFonts, font);
+            btn.addEventListener("click", () => {
+                let linkVal = font.replace(" ", "+") + ":wght@400;700";
+                chrome.storage.sync.set({ "custom_font": { "link": linkVal, "family": "'" + font + "'" } });
+                link.value = linkVal;
+            });
+        });
+    });
+}
+
+function displayGPABounds() {
+    chrome.storage.sync.get(["gpa_calc_bounds"], storage => {
+        const order = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"];
+        const el = document.querySelector(".gpa-bounds");
+        el.textContent = "";
+        order.forEach(key => {
+            let inputs = makeElement("div", "gpa-bounds-item", el);
+            inputs.innerHTML += '<div><span class="gpa-bounds-grade">' + key + '</span><input class="gpa-bounds-input gpa-bounds-cutoff" type="text" value=' + storage["gpa_calc_bounds"][key].cutoff + '></input><span style="margin-left:6px;margin-right:6px;">%</span><input class="gpa-bounds-input gpa-bounds-gpa" type="text" value=' + storage["gpa_calc_bounds"][key].gpa + '></input><span style="margin-left:6px">GPA</span></div>';
+
+
+            inputs.querySelector(".gpa-bounds-cutoff").addEventListener("change", function (e) {
+                chrome.storage.sync.get(["gpa_calc_bounds"], existing => {
+                    chrome.storage.sync.set({ "gpa_calc_bounds": { ...existing["gpa_calc_bounds"], [key]: { ...existing["gpa_calc_bounds"][key], "cutoff": parseFloat(e.target.value) } } });
+                });
+            });
+
+            inputs.querySelector(".gpa-bounds-gpa").addEventListener("change", function (e) {
+                chrome.storage.sync.get(["gpa_calc_bounds"], existing => {
+                    chrome.storage.sync.set({ "gpa_calc_bounds": { ...existing["gpa_calc_bounds"], [key]: { ...existing["gpa_calc_bounds"][key], "gpa": parseFloat(e.target.value) } } });
+                });
+            });
+        });
     });
 }
 
 function displayAdvancedCards() {
-    chrome.storage.local.get(["custom_cards"], storage => {
+    chrome.storage.sync.get(["custom_cards", "custom_cards_2"], storage => {
         document.querySelector(".advanced-cards").textContent = "";
         if (storage["custom_cards"] && Object.keys(storage["custom_cards"]).length > 0) {
             Object.keys(storage["custom_cards"]).forEach(key => {
                 let card = storage["custom_cards"][key];
+                let card_2 = storage["custom_cards_2"][key];
                 let container = makeElement("div", "custom-card", document.querySelector(".advanced-cards"));
                 container.classList.add("option-container");
-                container.innerHTML = '<p class="custom-card-title"></p><div class="custom-card-image"><span class="custom-key">Image</span></div><div class="custom-card-name"><span class="custom-key">Name</span></div><div class="custom-card-hide"><p class="custom-key">Hide</p></div>';
+                container.innerHTML = '<p class="custom-card-title"></p><div class="custom-card-image"><span class="custom-key">Image</span></div><div class="custom-card-name"><span class="custom-key">Name</span></div><div class="custom-links-container"><p class="custom-key">Links</p><div class="custom-links"></div></div><div class="custom-card-hide"><p class="custom-key">Hide</p></div>';
                 let imgInput = makeElement("input", "card-input", container.querySelector(".custom-card-image"));
                 imgInput.placeholder = "Image url";
                 let nameInput = makeElement("input", "card-input", container.querySelector(".custom-card-name"));
@@ -89,11 +182,47 @@ function displayAdvancedCards() {
                 nameInput.addEventListener("change", function (e) { updateCards(key, { "name": e.target.value }) });
                 hideInput.addEventListener("change", function (e) { updateCards(key, { "hidden": e.target.checked }) });
                 container.querySelector(".custom-card-title").textContent = card.default;
+
+                for (let i = 0; i < 4; i++) {
+                    let customLink = makeElement("input", "card-input", container.querySelector(".custom-links"));
+                    customLink.value = card_2.links.custom[i].default ? card_2.links.custom[i].type : card_2.links.custom[i].path;
+                    customLink.addEventListener("change", function (e) {
+                        chrome.storage.sync.get("custom_cards_2", storage => {
+                            let newLinks = storage.custom_cards_2[key].links.custom;
+                            if (e.target.value === "") {
+                                newLinks[i] = { "type": storage.custom_cards_2[key].links.default[i].type, "default": true };
+                            } else {
+                                newLinks[i] = { "type": getLinkType(e.target.value), "path": e.target.value, "default": false };
+                            }
+                            console.log(newLinks);
+                            chrome.storage.sync.set({ "custom_cards_2": { ...storage.custom_cards_2, [key]: { ...storage.custom_cards_2[key], "links": { ...storage.custom_cards_2[key].links, "custom": newLinks } } } })
+                        });
+                    });
+                }
             });
         } else {
             document.querySelector(".advanced-cards").innerHTML = "<h3>No cards found... make sure to open this menu on your Canvas page first. Please ontact me if this issue persists! (ksucpea@gmail.com)</h3>";
         }
     });
+}
+
+function getLinkType(path) {
+    if (path === "none") {
+        return "none";
+    } else if (path.includes("piazza")) {
+        return "piazza";
+    } else if (path.includes("gradescope")) {
+        return "gradescope";
+    } else if (path.includes("drive.google")) {
+        return "google_drive";
+    } else if (path.includes("youtube")) {
+        return "youtube";
+    } else if (path.includes("docs.google")) {
+        return "google_docs";
+    } else if (path.includes("webassign")) {
+        return "webassign";
+    }
+    return "custom";
 }
 
 chrome.runtime.onMessage.addListener(message => {
@@ -102,7 +231,32 @@ chrome.runtime.onMessage.addListener(message => {
     }
 });
 
-switches.forEach(function (option) {
+syncedSwitches.forEach(function (option) {
+    chrome.storage.sync.get(option, function (result) {
+        let status = result[option] === true ? "#on" : "#off";
+        document.querySelector('#' + option + ' > ' + status).setAttribute('checked', true);
+        document.querySelector('#' + option + ' > ' + status).classList.add('checked');
+    });
+    document.querySelector('#' + option + ' > .slider').addEventListener('mouseup', function () {
+        document.querySelectorAll('#' + option + ' > input').forEach(function (box) {
+            box.toggleAttribute('checked');
+            box.classList.toggle('checked');
+        });
+        let status = document.querySelector('#' + option + ' > #on').checked;
+        switch (option) {
+            case 'gpa_calc': chrome.storage.sync.set({ gpa_calc: status }); break;
+            case 'assignments_due': chrome.storage.sync.set({ assignments_due: status }); break;
+            case 'gradient_cards': chrome.storage.sync.set({ gradient_cards: status }); break;
+            case 'auto_dark': chrome.storage.sync.set({ auto_dark: status }); toggleDarkModeDisable(status); sendFromPopup("autodarkmode"); break;
+            case 'dashboard_grades': chrome.storage.sync.set({ dashboard_grades: status }); break;
+            case 'dashboard_notes': chrome.storage.sync.set({ dashboard_notes: status }); break;
+            case 'better_todo': chrome.storage.sync.set({ better_todo: status }); break;
+            case 'condensed_cards': chrome.storage.sync.set({ condensed_cards: status }); break;
+        }
+    });
+});
+
+localSwitches.forEach(option => {
     chrome.storage.local.get(option, function (result) {
         let status = result[option] === true ? "#on" : "#off";
         document.querySelector('#' + option + ' > ' + status).setAttribute('checked', true);
@@ -120,11 +274,6 @@ switches.forEach(function (option) {
             case 'gradient_cards': chrome.storage.local.set({ gradient_cards: status }); break;
             case 'coloroverlay_cards': chrome.storage.local.set({ coloroverlay_cards: status }); break;
             case 'dark_mode': chrome.storage.local.set({ dark_mode: status }); sendFromPopup("darkmode"); break;
-            case 'auto_dark': chrome.storage.local.set({ auto_dark: status }); toggleDarkModeDisable(status); sendFromPopup("autodarkmode"); break;
-            case 'dashboard_grades': chrome.storage.local.set({ dashboard_grades: status }); break;
-            case 'dashboard_notes': chrome.storage.local.set({ dashboard_notes: status }); break;
-            case 'improved_todo': chrome.storage.local.set({ improved_todo: status }); break;
-            case 'condensed_cards': chrome.storage.local.set({ condensed_cards: status }); break;
         }
     });
 });
@@ -132,7 +281,7 @@ switches.forEach(function (option) {
 ['autodark_start', 'autodark_end'].forEach(function (timeset) {
     document.querySelector('#' + timeset).addEventListener('change', function () {
         let timeinput = { "hour": this.value.split(':')[0], "minute": this.value.split(':')[1] };
-        timeset === "autodark_start" ? chrome.storage.local.set({ auto_dark_start: timeinput }) : chrome.storage.local.set({ auto_dark_end: timeinput });
+        timeset === "autodark_start" ? chrome.storage.sync.set({ auto_dark_start: timeinput }) : chrome.storage.sync.set({ auto_dark_end: timeinput });
         sendFromPopup("autodarkmode");
     });
 });
