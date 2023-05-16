@@ -80,7 +80,7 @@
 .bettercanvas-gpa-header {font-weight:700;font-size:16px;margin-top:0;margin-bottom:6px;padding-bottom:6px;}
 .bettercanvas-dashboard-notes {width: 100%; box-sizing: border-box; margin-top: 18px;border: 1px solid #c7cdd1;border-radius:3px;padding:8px 14px}
 .bettercanvas-todosidebar, #bettercanvas-todo-list, #bettercanvas-announcement-list {margin: 0}
-.bettercanvas-todo-container {display: flex; margin-top: 14px;position: relative;transition: .2s all; max-height:100px; overflow:hidden}
+.bettercanvas-todo-container {display: flex; margin-top: 14px;position: relative;transition: .2s all; max-height:100px;}
 .bettercanvas-removing {max-height: 0;margin-top: 0}
 #bettercanvas-todo-list, #bettercanvas-announcement-list {font-size: 12px}
 .bettercanvas-todo-container, .bettercanvas-todo-container:hover {color:#777}
@@ -103,6 +103,11 @@
 #bettercanvas-announcement-list {margin-bottom:1.0625rem;}
 .bettercanvas-todo-item-loader {margin-top: 18px;}
 .bettercanvas-todo-item-loader .bettercanvas-skeleton-text {height:12px;margin-top: 8px;margin-bottom:0;margin-left:25px}
+.bettercanvas-hover-preview {position: absolute;top: -6px;left: -400px;display: none; background: #fff; color: #000; max-height: 300%; width: 350px; padding:12px;border-radius:5px; overflow: hidden;box-shadow: 0 2px 5px rgba(0,0,0,.3)}
+.bettercanvas-preview-text {text-overflow: ellipsis;}
+.bettercanvas-hover-preview::after {content:'';position:absolute;width:100%;height: 18px;bottom:0;left:0;background:linear-gradient(0deg, #fff 50%, transparent)}
+.bettercanvas-link-image {height: 21px; width: 21px;padding: 6px}
+.bettercanvas-link-image:hover {filter: brightness(66%)}
 @keyframes blink {
     50% {
         opacity: .5;
