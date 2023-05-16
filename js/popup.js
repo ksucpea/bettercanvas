@@ -1,4 +1,4 @@
-let syncedSwitches = ['auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
+let syncedSwitches = ['auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'coloroverlay_cards', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
 let localSwitches = ['dark_mode'];
 sendFromPopup("getCards");
 
@@ -269,6 +269,10 @@ localSwitches.forEach(option => {
         });
         let status = document.querySelector('#' + option + ' > #on').checked;
         switch (option) {
+            case 'gpa_calc': chrome.storage.local.set({ gpa_calc: status }); break;
+            case 'assignments_due': chrome.storage.local.set({ assignments_due: status }); break;
+            case 'gradient_cards': chrome.storage.local.set({ gradient_cards: status }); break;
+            case 'coloroverlay_cards': chrome.storage.local.set({ coloroverlay_cards: status }); break;
             case 'dark_mode': chrome.storage.local.set({ dark_mode: status }); sendFromPopup("darkmode"); break;
         }
     });
