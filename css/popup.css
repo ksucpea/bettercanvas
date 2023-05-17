@@ -3,8 +3,8 @@ body{width:550px;height: 100%; font-family: 'Wix Madefor Text', sans-serif;color
 h1, h2, p, body{margin:0;padding:0}
 .options {display: flex}
 .option input{display:none;}
-.options input:nth-of-type(1).checked ~ .slider .sliderknob{background-color:#8dd28d;}
-.options input:nth-of-type(2).checked ~ .slider .sliderknob{transform:translate(25px);background-color:#727272;}
+.options input:nth-of-type(1).checked ~ .slider .sliderknob{background-color:#727272;}
+.options input:nth-of-type(2).checked ~ .slider .sliderknob{transform:translate(25px);background-color:#8dd28d;}
 .option{display:flex;align-items:center;}
 .option span{margin-left:10px;}
 .main{position: relative;padding: 20px}
