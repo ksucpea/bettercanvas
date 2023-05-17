@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener(function () {
-    let syncedOptions = ['new_install', 'num_todo_items', 'assignments_due', 'gpa_calc', 'gpa_calc_bounds', 'gradient_cards', 'coloroverlay_cards', 'link_preview', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignments_done', 'assignment_date_format', 'assignments_quizzes', 'assignments_discussions', 'dashboard_notes', 'dashboard_notes_text', 'better_todo', 'todo_hr24', 'condensed_cards', 'custom_cards', 'custom_cards_2', 'custom_assignments', 'custom_assignments_overflow', 'grade_hover', 'hide_completed', 'custom_font'];
+    let syncedOptions = ['new_install', 'num_todo_items', 'assignments_due', 'gpa_calc', 'gpa_calc_bounds', 'gradient_cards', 'disable_color_overlay', 'link_preview', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignments_done', 'assignment_date_format', 'assignments_quizzes', 'assignments_discussions', 'dashboard_notes', 'dashboard_notes_text', 'better_todo', 'todo_hr24', 'condensed_cards', 'custom_cards', 'custom_cards_2', 'custom_assignments', 'custom_assignments_overflow', 'grade_hover', 'hide_completed', 'custom_font'];
     let localOptions = ['dark_mode', 'dark_css'];
 
     chrome.storage.sync.get(syncedOptions, function (result) {
@@ -15,7 +15,7 @@ chrome.runtime.onInstalled.addListener(function () {
                     case 'link_preview': newOptions.link_preview = false; break;
                     case 'dark_mode': newOptions.dark_mode = true; break;
                     case 'gradient_cards': newOptions.gradient_cards = false; break;
-                    case 'coloroverlay_cards': newOptions.coloroverlay_cards = false; break;
+                    case 'disable_color_overlay': newOptions.disable_color_overlay = false; break;
                     case 'assignment_potentials': newOptions.assignment_potentials = false; break;
                     case 'auto_dark': newOptions.auto_dark = false; break;
                     case 'auto_dark_start': newOptions.auto_dark_start = { "hour": "20", "minute": "00" }; break;
