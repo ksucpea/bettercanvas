@@ -93,7 +93,7 @@ function startExtension() {
                 case ("condensed_cards"):
                     condenseCards();
                     break;
-                case ("coloroverlay_cards"):
+                case ("disable_color_overlay"):
                     changeOpacityCards();
                     break;
                 case ("dashboard_notes"):
@@ -944,26 +944,16 @@ function changeGradientCards() {
 }
 
 function changeOpacityCards() {
-    if (options.opacity_cards === true) {
-        let cardheads = document.querySelectorAll('.ic-DashboardCard__header_hero');
+    if (options.disable_color_overlay === true) {
         let cardcss = document.querySelector("#bettercanvas-opacity") || document.createElement('style');
         cardcss.id = "bettercanvas-opacity";
-        cardcss.textContent = "";
-        for (let i = 0; i < cardheads.length; i++) {
-            cardcss.textContent += ".ic-DashboardCard__header_hero{opacity: 0.6!important}";
-            cardcss.textContent += ".ic-DashboardCard__header-button-bg{opacity: 0!important;}";
-        }
+        cardcss.textContent = ".ic-DashboardCard__header_hero{opacity: 0!important} .ic-DashboardCard__header-button-bg{opacity: 1!important;}";
         document.documentElement.appendChild(cardcss);
     } else {
-        let cardheads = document.querySelectorAll('.ic-DashboardCard__header_hero');
-        let cardcss = document.querySelector("#bettercanvas-opacity") || document.createElement('style');
-        cardcss.id = "bettercanvas-opacity";
-        cardcss.textContent = "";
-        for (let i = 0; i < cardheads.length; i++) {
-            cardcss.textContent += ".ic-DashboardCard__header_hero{opacity: 0!important;}";
-            cardcss.textContent += ".ic-DashboardCard__header-button-bg{opacity: 1!important;}";
+        let cardcss = document.querySelector("#bettercanvas-opacity");
+        if (cardcss) {
+            cardcss.textContent = "";
         }
-        document.documentElement.appendChild(cardcss);
     }
 }
 
