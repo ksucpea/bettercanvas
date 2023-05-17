@@ -17,6 +17,7 @@ function startExtension() {
         "assignments_due",
         "dashboard_grades",
         "gradient_cards",
+        "coloroverlay_cards",
         "auto_dark",
         "auto_dark_start",
         "auto_dark_end",
@@ -91,6 +92,9 @@ function startExtension() {
                     break;
                 case ("condensed_cards"):
                     condenseCards();
+                    break;
+                case ("coloroverlay_cards"):
+                    changeOpacityCards();
                     break;
                 case ("dashboard_notes"):
                     loadDashboardNotes();
@@ -257,6 +261,7 @@ function checkDashboardReady() {
                 if (mutation.target == document.querySelector("#DashboardCard_Container")) {
                     let cards = document.querySelectorAll('.ic-DashboardCard');
                     changeGradientCards();
+                    changeOpacityCards();
                     setupCardAssignments(cards);
                     setupBetterTodo();
                     customizeCards(cards);
@@ -935,6 +940,30 @@ function changeGradientCards() {
         if (cardcss) {
             cardcss.textContent = "";
         }
+    }
+}
+
+function changeOpacityCards() {
+    if (options.opacity_cards === true) {
+        let cardheads = document.querySelectorAll('.ic-DashboardCard__header_hero');
+        let cardcss = document.querySelector("#bettercanvas-opacity") || document.createElement('style');
+        cardcss.id = "bettercanvas-opacity";
+        cardcss.textContent = "";
+        for (let i = 0; i < cardheads.length; i++) {
+            cardcss.textContent += ".ic-DashboardCard__header_hero{opacity: 0.6!important}";
+            cardcss.textContent += ".ic-DashboardCard__header-button-bg{opacity: 0!important;}";
+        }
+        document.documentElement.appendChild(cardcss);
+    } else {
+        let cardheads = document.querySelectorAll('.ic-DashboardCard__header_hero');
+        let cardcss = document.querySelector("#bettercanvas-opacity") || document.createElement('style');
+        cardcss.id = "bettercanvas-opacity";
+        cardcss.textContent = "";
+        for (let i = 0; i < cardheads.length; i++) {
+            cardcss.textContent += ".ic-DashboardCard__header_hero{opacity: 0!important;}";
+            cardcss.textContent += ".ic-DashboardCard__header-button-bg{opacity: 1!important;}";
+        }
+        document.documentElement.appendChild(cardcss);
     }
 }
 
