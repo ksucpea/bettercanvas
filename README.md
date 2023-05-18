@@ -10,6 +10,28 @@ Contact me at ksucpea@gmail.com or you can open an issue here
 
 - Press load unpacked and select the extension folder
 
+<h2>Update 5.6</h3>
+
+- Changes made in the menu no longer require refresh
+
+- Can now change items shown in better todo list
+
+- Added customizable GPA boundaries
+
+- Added custom card links feature
+
+- Hover to preview details option
+
+- Disable color overlay option
+
+- Added custom fonts feature
+
+- Welcome screen redesign
+
+- Menu redesign
+
+- New logo
+
 <h2>Update 5.5</h3>
 
 - Corrected order of todo list announcements
