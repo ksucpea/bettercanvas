@@ -16,6 +16,8 @@ Contact me at ksucpea@gmail.com or you can open an issue here
 
 - GPA calculator now saves credits/weight
 
+- Hover preview for todo list option
+
 - Hide completed assignments option
 
 - Added card customization feature
