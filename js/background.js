@@ -1,6 +1,6 @@
 chrome.runtime.onInstalled.addListener(function () {
-    let syncedOptions = ['new_install', 'num_todo_items', 'assignments_due', 'gpa_calc', 'gpa_calc_bounds', 'gradient_cards', 'disable_color_overlay', 'link_preview', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignments_done', 'assignment_date_format', 'assignments_quizzes', 'assignments_discussions', 'dashboard_notes', 'dashboard_notes_text', 'better_todo', 'todo_hr24', 'condensed_cards', 'custom_cards', 'custom_cards_2', 'custom_assignments', 'custom_assignments_overflow', 'grade_hover', 'hide_completed', 'custom_font'];
-    let localOptions = ['dark_mode', 'dark_css'];
+    const syncedOptions = ['new_install', 'hover_preview', 'num_todo_items', 'assignments_due', 'gpa_calc', 'gpa_calc_bounds', 'gradient_cards', 'disable_color_overlay', 'link_preview', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignments_done', 'assignment_date_format', 'assignments_quizzes', 'assignments_discussions', 'dashboard_notes', 'dashboard_notes_text', 'better_todo', 'todo_hr24', 'condensed_cards', 'custom_cards', 'custom_cards_2', 'custom_assignments', 'custom_assignments_overflow', 'grade_hover', 'hide_completed', 'custom_font'];
+    const localOptions = ['dark_mode', 'dark_css'];
 
     chrome.storage.sync.get(syncedOptions, function (result) {
         let newOptions = {};
@@ -40,6 +40,7 @@ chrome.runtime.onInstalled.addListener(function () {
                     case 'hide_completed': newOptions.hide_completed = false; break;
                     case 'num_todo_items': newOptions.num_todo_items = 5; break;
                     case 'custom_font': newOptions.custom_font = {"link": "", "family": ""};
+                    case 'hover_preview': newOptions.hover_preview = true; break;
                     case 'gpa_calc_bounds': newOptions.gpa_calc_bounds = {
                         "A+": { "cutoff": 97, "gpa": 4.3 },
                         "A": { "cutoff": 93, "gpa": 4 },
@@ -54,7 +55,8 @@ chrome.runtime.onInstalled.addListener(function () {
                         "D": { "cutoff": 63, "gpa": 1 },
                         "D-": { "cutoff": 60, "gpa": .7 },
                         "F": { "cutoff": 0, "gpa": 0 }
-                    }
+                    };
+                    break;
                 }
             }
         });

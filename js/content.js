@@ -77,7 +77,6 @@ function startExtension() {
     chrome.storage.onChanged.addListener(changes => {
         let rewrite = {};
         Object.keys(changes).forEach(key => {
-            console.log(changes, key);
             rewrite[key] = changes[key].newValue;
         });
         options = { ...options, ...rewrite };
@@ -117,6 +116,7 @@ function startExtension() {
                     break;
                 case ("todo_hr24"):
                 case ("num_todo_items"):
+                case ("hover_preview"):
                     loadBetterTodo();
                     break;
                 case ("gpa_calc_bounds"):
@@ -208,23 +208,6 @@ function resetTimer() {
     }, 600);
 }
 
-function toggleColorOverlayOnCards() {
-    if (options.coloroverlay_cards === false) return;
-    let cardimg = document.querySelectorAll('.ic-DashboardCard__header_hero');
-    let cardcss = document.querySelector("#opacitycss") || document.createElement('style');
-    cardcss.id = "opacitycss";
-    cardcss.textContent = ".ic-DashboardCard__header_hero { background: none!important}";
-    document.documentElement.appendChild(cardcss);
-
-    /*
-    for (let i = 0; i < cardimg.length; i++) {
-        cardcss.textContent += ".ic-DashboardCard:nth-of-type(" + (i + 1) + ") .ic-DashboardCard__header_hero{opacity: 0 !important}";
-        cardcss.textContent += ".ic-DashboardCard:nth-of-type(" + (i + 1) + ") .ic-DashboardCard__header-button-bg{opacity: 1 !important}";
-    }
-    */
-
-}
-
 function loadCustomFont() {
     let link = document.querySelector("#custom_font_link");
     let style = document.querySelector("#custom_font");
@@ -240,16 +223,24 @@ function loadCustomFont() {
         style.textContent = options.custom_font.link === "" ? "" : `*, input, a, button, h1, h2, h3, h4, h5, h6, p, span {font-family: ${options.custom_font.family}!important}`;
     }
 
+    let createEls = () => {
+        link = document.createElement("link");
+        link.id = "custom_font_link";
+        style = document.createElement("style");
+        style.id = "custom_font";
+        load();
+    }
+
     if (link && style) {
         load();
     } else if (options.custom_font.link !== "") {
-        document.addEventListener("DOMContentLoaded", () => {
-            link = document.createElement("link");
-            link.id = "custom_font_link";
-            style = document.createElement("style");
-            style.id = "custom_font";
-            load();
-        });
+        if (document.readyState !== 'loading') {
+            createEls();
+        } else {
+            document.addEventListener("DOMContentLoaded", () => {
+                createEls();
+            });
+        }
     }
 }
 
@@ -478,7 +469,7 @@ function loadBetterTodo() {
                                 let todoDate = makeElement("p", "bettercanvas-todoitem-date", listItem, format.date);
                                 if (format.dueSoon) todoDate.style.color = "#ff224b";
 
-                                if (item.plannable_type === "announcement") {
+                                if (options.hover_preview === true) {
                                     listItem.addEventListener("mouseover", () => {
                                         listItem.classList.add("bettercanvas-todo-hover");
                                         let preview = listItemContainer.querySelector(".bettercanvas-hover-preview");
@@ -493,15 +484,22 @@ function loadBetterTodo() {
                                                         if (announcements[i].id === item.plannable_id) {
                                                             found = true;
                                                             if (previewText.textContent === "") {
-                                                                previewText.textContent = announcements[i].message.replace(/<\/?[^>]+(>|$)/g, " ");;
+                                                                let description = item.plannable_type === "announcement" ? announcements[i].message : announcements[i].description;
+                                                                previewText.textContent = description === "" ? "No details given" : description.replace(/<\/?[^>]+(>|$)/g, " ");
                                                             }
                                                             break;
                                                         }
                                                     }
                                                     if (found === false) {
-                                                        let data = await getData(`${domain}/api/v1/announcements?context_codes[]=course_${item.course_id}&per_page=3&page=${searchCount}`);
+                                                        let apiLink = domain + "/api/v1/";
+                                                        if(item.plannable_type === "assignment") {
+                                                            apiLink += `courses/${item.course_id}/assignments/${item.plannable_id}`;
+                                                        } else if (item.plannable_type === "announcement") {
+                                                            apiLink += `announcements?context_codes[]=course_${item.course_id}&per_page=3&page=${searchCount}`;
+                                                        }
+                                                        let data = await getData(apiLink);
                                                         console.log("got new data");
-                                                        announcements.push(...data);
+                                                        item.plannable_type === "announcement" ? announcements.push(...data) : announcements.push(data);
                                                         console.log(announcements);
                                                         searchCount++;
                                                     }
@@ -580,7 +578,7 @@ function loadBetterTodo() {
 
                 todoAssignments.textContent = "";
                 if (assignmentsToInsert.length > 0) {
-                    for (let i = 0; i < itemCount; i++) {
+                    for (let i = 0; i < (assignmentsToInsert.length > 5 ? itemCount : assignmentsToInsert.length); i++) {
                         todoAssignments.append(assignmentsToInsert[i]);
                     }
                 } else {

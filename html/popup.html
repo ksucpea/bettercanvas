@@ -57,6 +57,7 @@
                         </div>
                     </div>
                 </div>
+                <button id="customize-dark-btn" class="big-button">Edit Dark Mode</button>
                 <div class="option-container">
                     <div class="option" id="dashboard_grades">
                         <input type="radio" id="off" name="dashboard_grades">
@@ -110,7 +111,7 @@
             <div class="options-right">
                 <div class="option-container">
                     <div class="customDomain">Enter your Canvas URL here:
-                        <input type="text" id="customDomain" placeholder="https://canvas.school.edu"></input>
+                        <input type="text" id="customDomain" placeholder="Or just go to your Canvas page!"></input>
                         <p style="margin-top:4px" class="sub-text">(Enter multiple URLs by using a comma)</p>
                     </div>
                 </div>
@@ -146,16 +147,22 @@
                         <span class="option-name">Better Todo List</span>
                     </div>
                     <div class="sub-options">
-                        <input type="checkbox" id="hide_completed" name="hide_completed">
-                        <label for="hide_completed" class="sub-text">Hide completed</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="todo_hr24" name="todo_hr24">
-                        <label for="todo_hr24" class="sub-text">Use 24hr format</label>
-                    </div>
-                    <div style="margin-top: 5px">
-                        <span class="sub-text">Max items to show: </span><span id="numTodoItems"></span>
-                        <input type="range" min="1" max="7" id="numTodoItemsSlider">
+                        <div>
+                            <input type="checkbox" id="hover_preview" name="hover_preview">
+                            <label for="hover_preview" class="sub-text">Hover to preview details</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="hide_completed" name="hide_completed">
+                            <label for="hide_completed" class="sub-text">Hide completed</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="todo_hr24" name="todo_hr24">
+                            <label for="todo_hr24" class="sub-text">Use 24hr format</label>
+                        </div>
+                        <div style="margin-top: 5px">
+                            <span class="sub-text">Max items to show: </span><span id="numTodoItems"></span>
+                            <input type="range" min="1" max="7" id="numTodoItemsSlider">
+                        </div>
                     </div>
                 </div>
                 <div class="option-container">
@@ -182,9 +189,14 @@
                 <button id="gpa-bounds-btn" class="big-button">GPA settings</button>
             </div>
         </div>
+    </div>
 
+    <div class="customize-dark tab" style="display: none">
+        <div class="tab-header">
+            <h2>Dark Mode Customization</h2>
+            <button class="big-button back-btn">Back</button>
+        </div>
         <div class="customization">
-            <h1>Dark mode customization</h1>
             <div class="container">
                 <div class="options-presets option-container">
                     <button id="lighter" class="preset-button customization-button">Lighter</button>
@@ -198,23 +210,25 @@
                 </div>
             </div>
             <div class="container">
-                <div class="options">
+                <div class="color-options">
                     <div style="width:49%">
-                        <p class="color-type-header">Background Colors</h1>
+                        <p class="color-type-header">Background Colors</p>
                         <div class="option-background" id="option-background"></div>
                     </div>
                     <div style="width:49%">
-                        <p class="color-type-header">Text Colors</h1>
+                        <p class="color-type-header">Text Colors</p>
                         <div class="option-color" id="option-text"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
     <div class="advanced tab" style="display:none">
         <div class="tab-header">
             <div>
-                <h1 style="margin-top: 0">Card Customization</h1>
+                <h2 style="margin-top: 0">Card Customization</h2>
                 <p style="margin-top: 5px">Enter "none" to hide or leave blank to use the default.</p>
                 <p style="margin-top: 5px">Make sure external links start with https://</p>
             </div>
@@ -225,7 +239,7 @@
 
     <div class="gpa-bounds-container tab" style="display:none">
         <div class="tab-header">
-            <h1 style="margin-top: 0">GPA Calculator Bounds</h1>
+            <h2 style="margin-top: 0">GPA Calculator Bounds</h2>
             <button class="big-button back-btn">Back</button>
         </div>
         <div style="display: flex;justify-content: space-between;">
@@ -241,7 +255,7 @@
     <div class="custom-font-container tab" style="display:none">
         <div class="tab-header">
             <div>
-                <h1 style="margin-top: 0">Custom Font</h1>
+                <h2 style="margin-top: 0">Custom Font</h2>
                 <p>You can use a custom font from Google fonts here</p>
                 <p>Enter only the bold part after "?family="</p>
                 <p>Leave it blank to use no custom font</p>

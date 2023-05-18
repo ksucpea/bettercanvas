@@ -1,8 +1,10 @@
-let syncedSwitches = ['auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'disable_color_overlay', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
-let localSwitches = ['dark_mode'];
+const syncedSwitches = ['auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'disable_color_overlay', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
+const syncedSubOptions = ['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'num_todo_items', 'hover_preview'];
+const localSwitches = ['dark_mode'];
+
 sendFromPopup("getCards");
 
-chrome.storage.sync.get(['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'num_todo_items'], function (result) {
+chrome.storage.sync.get(syncedSubOptions, function (result) {
     document.querySelector('#grade_hover').checked = result.grade_hover;
     document.querySelector('#hide_completed').checked = result.hide_completed;
     document.querySelector('#autodark_start').value = result.auto_dark_start["hour"] + ":" + result.auto_dark_start["minute"];
@@ -13,6 +15,7 @@ chrome.storage.sync.get(['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_a
     document.querySelector("#numTodoItemsSlider").value = result.num_todo_items;
     document.querySelector("#assignment_date_format").checked = result.assignment_date_format == true;
     document.querySelector("#todo_hr24").checked = result.todo_hr24 == true;
+    document.querySelector('#hover_preview').checked = result.hover_preview;
     toggleDarkModeDisable(result.auto_dark);
 });
 
@@ -20,27 +23,17 @@ chrome.storage.local.get(["custom_domain"], storage => {
     document.querySelector("#customDomain").value = storage.custom_domain ? storage.custom_domain : "";
 });
 
-document.querySelector('#grade_hover').addEventListener('change', function () {
-    let status = this.checked;
-    chrome.storage.sync.set({ grade_hover: status });
-});
-
-document.querySelector('#hide_completed').addEventListener('change', function () {
-    let status = this.checked;
-    chrome.storage.sync.set({ hide_completed: status });
-});
-
 document.querySelector('#numAssignmentsSlider').addEventListener('input', function () {
     document.querySelector('#numAssignments').textContent = this.value;
-    chrome.storage.sync.set({ num_assignments: this.value });
+    chrome.storage.sync.set({ "num_assignments": this.value });
 });
 
 document.querySelector('#numTodoItemsSlider').addEventListener('input', function () {
     document.querySelector('#numTodoItems').textContent = this.value;
-    chrome.storage.sync.set({ num_todo_items: this.value });
+    chrome.storage.sync.set({ "num_todo_items": this.value });
 });
 
-['assignment_date_format', 'todo_hr24'].forEach(checkbox => {
+['assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'hover_preview'].forEach(checkbox => {
     document.querySelector("#" + checkbox).addEventListener('change', function () {
         let status = this.checked;
         chrome.storage.sync.set(JSON.parse(`{"${checkbox}": ${status}}`));
@@ -77,12 +70,18 @@ document.querySelector("#custom-font-btn").addEventListener("click", function ()
     document.querySelector(".custom-font-container").style.display = "block";
 });
 
+document.querySelector("#customize-dark-btn").addEventListener("click", function () {
+    document.querySelector(".main").style.display = "none";
+    document.querySelector(".customize-dark").style.display = "block";
+});
+
 document.querySelectorAll(".back-btn").forEach(btn => {
     btn.addEventListener("click", function () {
         document.querySelector(".main").style.display = "block";
         document.querySelector(".gpa-bounds-container").style.display = "none";
         document.querySelector(".advanced").style.display = "none";
         document.querySelector(".custom-font-container").style.display = "none";
+        document.querySelector(".customize-dark").style.display = "none";
     });
 });
 
@@ -116,7 +115,8 @@ function displayCustomFont() {
             let linkVal = e.target.value.split(":")[0];
             let familyVal = linkVal.replace("+", " ");
             linkVal += linkVal === "" ? "" : ":wght@400;700";
-            chrome.storage.sync.set({ "custom_font": { "link": linkVal, "family": "'" + familyVal + "'" } });
+            familyVal = linkVal === "" ? "" : "'" + familyVal + "'";
+            chrome.storage.sync.set({ "custom_font": { "link": linkVal, "family": familyVal } });
             link.value = linkVal;
         });
 
@@ -168,7 +168,7 @@ function displayAdvancedCards() {
                 let card_2 = storage["custom_cards_2"][key];
                 let container = makeElement("div", "custom-card", document.querySelector(".advanced-cards"));
                 container.classList.add("option-container");
-                container.innerHTML = '<p class="custom-card-title"></p><div class="custom-card-image"><span class="custom-key">Image</span></div><div class="custom-card-name"><span class="custom-key">Name</span></div><div class="custom-links-container"><p class="custom-key">Links</p><div class="custom-links"></div></div><div class="custom-card-hide"><p class="custom-key">Hide</p></div>';
+                container.innerHTML = '<p class="custom-card-title"></p><div class="custom-card-inputs"><div class="custom-card-left"><div class="custom-card-image"><span class="custom-key">Image</span></div><div class="custom-card-name"><span class="custom-key">Name</span></div><div class="custom-card-hide"><p class="custom-key">Hide</p></div></div><div class="custom-links-container"><p class="custom-key">Links</p><div class="custom-links"></div></div></div>';
                 let imgInput = makeElement("input", "card-input", container.querySelector(".custom-card-image"));
                 imgInput.placeholder = "Image url";
                 let nameInput = makeElement("input", "card-input", container.querySelector(".custom-card-name"));
@@ -232,43 +232,40 @@ chrome.runtime.onMessage.addListener(message => {
 });
 
 syncedSwitches.forEach(function (option) {
+    let optionSwitch = document.querySelector('#' + option);
     chrome.storage.sync.get(option, function (result) {
         let status = result[option] === true ? "#on" : "#off";
-        document.querySelector('#' + option + ' > ' + status).setAttribute('checked', true);
-        document.querySelector('#' + option + ' > ' + status).classList.add('checked');
+        optionSwitch.querySelector(status).checked = true;
+        optionSwitch.querySelector(status).classList.add('checked');
     });
-    document.querySelector('#' + option + ' > .slider').addEventListener('mouseup', function () {
-        document.querySelectorAll('#' + option + ' > input').forEach(function (box) {
-            box.toggleAttribute('checked');
-            box.classList.toggle('checked');
-        });
-        let status = document.querySelector('#' + option + ' > #on').checked;
-        switch (option) {
-            case 'gpa_calc': chrome.storage.sync.set({ gpa_calc: status }); break;
-            case 'assignments_due': chrome.storage.sync.set({ assignments_due: status }); break;
-            case 'gradient_cards': chrome.storage.sync.set({ gradient_cards: status }); break;
-            case 'disable_color_overlay': chrome.storage.sync.set({ disable_color_overlay: status }); break;
-            case 'auto_dark': chrome.storage.sync.set({ auto_dark: status }); toggleDarkModeDisable(status); sendFromPopup("autodarkmode"); break;
-            case 'dashboard_grades': chrome.storage.sync.set({ dashboard_grades: status }); break;
-            case 'dashboard_notes': chrome.storage.sync.set({ dashboard_notes: status }); break;
-            case 'better_todo': chrome.storage.sync.set({ better_todo: status }); break;
-            case 'condensed_cards': chrome.storage.sync.set({ condensed_cards: status }); break;
+
+    optionSwitch.querySelector(".slider").addEventListener('mouseup', function () {
+        optionSwitch.querySelector("#on").checked = !optionSwitch.querySelector("#on").checked;
+        optionSwitch.querySelector("#on").classList.toggle('checked');
+        optionSwitch.querySelector("#off").classList.toggle('checked');
+        let status = optionSwitch.querySelector("#on").checked;
+        console.log({ [option]: status});
+        chrome.storage.sync.set({ [option]: status });
+        if (option === "auto_dark") {
+            toggleDarkModeDisable(status);
+            sendFromPopup("autodarkmode");
         }
     });
 });
 
 localSwitches.forEach(option => {
+    let optionSwitch = document.querySelector('#' + option);
     chrome.storage.local.get(option, function (result) {
         let status = result[option] === true ? "#on" : "#off";
-        document.querySelector('#' + option + ' > ' + status).setAttribute('checked', true);
-        document.querySelector('#' + option + ' > ' + status).classList.add('checked');
+        optionSwitch.querySelector(status).checked = true;
+        optionSwitch.querySelector(status).classList.add('checked');
     });
-    document.querySelector('#' + option + ' > .slider').addEventListener('mouseup', function () {
-        document.querySelectorAll('#' + option + ' > input').forEach(function (box) {
-            box.toggleAttribute('checked');
-            box.classList.toggle('checked');
-        });
-        let status = document.querySelector('#' + option + ' > #on').checked;
+    optionSwitch.querySelector(".slider").addEventListener('mouseup', function () {
+        optionSwitch.querySelector("#on").checked = !optionSwitch.querySelector("#on").checked;
+        optionSwitch.querySelector("#on").classList.toggle('checked');
+        optionSwitch.querySelector("#off").classList.toggle('checked');
+        let status = optionSwitch.querySelector("#on").checked;
+
         switch (option) {
             case 'dark_mode': chrome.storage.local.set({ dark_mode: status }); sendFromPopup("darkmode"); break;
         }
@@ -314,15 +311,16 @@ function getColors(data) {
         const currentColor = color.split(":")[1];
         let option;
         if (type) {
+            let container = makeElement("div", "changer-container", type.includes("background") ? backgroundcolors : textcolors);
             if (document.querySelector("." + type)) changePreview(type, currentColor);
             if (type.includes("background")) {
-                option = makeElement("div", "changer", backgroundcolors);
+                option = makeElement("div", "changer", container);
             } else if (type.includes("text")) {
-                option = makeElement("div", "changer", textcolors);
+                option = makeElement("div", "changer", container);
             }
             option.style.background = currentColor;
             option.dataset.name = type;
-            let colorChange = makeElement("input", "color-changer", option);
+            let colorChange = makeElement("input", "card-input", container);
             colorChange.value = currentColor.replace("#", "");
             colorChange.addEventListener("change", function (e) {
                 changeAdjacentCSSColor(option.dataset.name, e.target.value);
