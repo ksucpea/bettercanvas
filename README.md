@@ -18,6 +18,8 @@ Contact me at ksucpea@gmail.com or you can open an issue here
 
 - Added customizable GPA boundaries
 
+- Options now sync between devices
+
 - Added custom card links feature
 
 - Hover to preview details option
