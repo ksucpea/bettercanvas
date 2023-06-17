@@ -26,6 +26,8 @@ Contact me at ksucpea@gmail.com or you can open an issue here
 
 - Disable color overlay option
 
+- Uninstall goodbye message
+
 - Added custom fonts feature
 
 - Welcome screen redesign
