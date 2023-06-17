@@ -12,39 +12,6 @@ isDomainCanvasPage();
 function startExtension() {
     toggleDarkMode();
 
-    /*
-    const optionsList = [
-        "assignments_due",
-        "dashboard_grades",
-        "gradient_cards",
-        "coloroverlay_cards",
-        "auto_dark",
-        "auto_dark_start",
-        "auto_dark_end",
-        'num_assignments',
-        'assignments_done',
-        "gpa_calc",
-        "gpa_calc_bounds",
-        "assignment_date_format",
-        "assignments_quizzes",
-        "assignments_discussions",
-        "dashboard_notes",
-        "dashboard_notes_text",
-        "better_todo",
-        "todo_hr24",
-        "new_install",
-        "condensed_cards",
-        "custom_cards",
-        "custom_cards_2",
-        "custom_assignments",
-        "custom_assignments_overflow",
-        "grade_hover",
-        "hide_completed",
-        "num_todo_items",
-    ];
-    */
-
-
     try {
         chrome.storage.sync.get(null, result => {
             console.log(result);
@@ -313,6 +280,18 @@ async function setupExport() {
 }
 */
 
+function combineAssignments(data) {
+    let combined = data;
+    try {
+        options.custom_assignments_overflow.forEach(overflow => {
+            combined = combined.concat(options[overflow]);
+        });
+    } catch (e) {
+        console.log(e);
+    }
+    return combined.sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime());
+}
+
 function setupBetterTodo() {
     if (options.better_todo !== true) return;
     if (document.querySelector('#bettercanvas-todo-list')) return;
@@ -320,7 +299,7 @@ function setupBetterTodo() {
         let list = document.querySelector("#right-side");
         if (list && list.childElementCount > 0 && list.children[0].id != "bettercanvas-todo-list") {
             let feedback = list.querySelector(".events_list.recent_feedback");
-            if (feedback) list.before(feedback);
+            //if (feedback) list.before(feedback);
             list.textContent = "";
             list = makeElement("div", "bettercanvas-todosidebar", list);
             let todoHeader = makeElement("h2", "todo-list-header", list, "To Do");
@@ -342,45 +321,65 @@ function setupBetterTodo() {
                     let courseName = makeElement("option", "bettercanvas-select-course-option", selectCourse, card.default);
                     courseName.value = id;
                 });
+
+                /* custom assignment creation */
                 let confirmButton = makeElement("button", "bettercanvas-custom-btn", addFillout, "Create");
                 confirmButton.addEventListener("click", () => {
-                    chrome.storage.sync.get(options.custom_assignments_overflow, storage => {
-                        let course_id = parseInt(addFillout.querySelector("#bettercanvas-custom-course").value);
-                        let assignment = {
-                            "plannable_id": storage.custom_assignments.length > 0 ? storage.custom_assignments[storage.custom_assignments.length - 1].plannable_id + 1 : 1,
-                            "context_name": options.custom_cards[addFillout.querySelector("#bettercanvas-custom-course").value].default,
-                            "plannable": { "title": addFillout.querySelector("#bettercanvas-custom-name").value },
-                            "plannable_date": addFillout.querySelector("#bettercanvas-custom-date").value + "T" + addFillout.querySelector("#bettercanvas-custom-time").value + ":00",
-                            "planner_override": { "marked_complete": false, "custom": true },
-                            "plannable_type": "assignment",
-                            "submissions": { "submitted": false },
-                            "course_id": course_id,
-                            "html_url": `/courses/${course_id}/assignments`
-                        };
-                        /*
-                        chrome.storage.sync.set({ "custom_assignments": storage.custom_assignments.concat([assignment]) }).then(() => {
-                            console.log(chrome.runtime.lastError);
-                            addFillout.classList.toggle("bettercanvas-custom-open");
-                            loadBetterTodo();
-                            loadCardAssignments();
-                        });
-                        */
-                        let overflow = options.custom_assignments_overflow[options.custom_assignments_overflow.length - 1];
-                        chrome.storage.sync.set({ [overflow]: storage[overflow].concat([assignment]) }, () => {
+                    chrome.storage.sync.get("custom_assignments_overflow", overflow => {
+                        chrome.storage.sync.get(overflow["custom_assignments_overflow"], storage => {
+                            let course_id = parseInt(addFillout.querySelector("#bettercanvas-custom-course").value);
+
+                            const assignment = {
+                                "plannable_id": new Date().getTime(),
+                                "context_name": options.custom_cards[addFillout.querySelector("#bettercanvas-custom-course").value].default,
+                                "plannable": { "title": addFillout.querySelector("#bettercanvas-custom-name").value },
+                                "plannable_date": addFillout.querySelector("#bettercanvas-custom-date").value + "T" + addFillout.querySelector("#bettercanvas-custom-time").value + ":00",
+                                "planner_override": { "marked_complete": false, "custom": true },
+                                "plannable_type": "assignment",
+                                "submissions": { "submitted": false },
+                                "course_id": course_id,
+                                "html_url": `/courses/${course_id}/assignments`
+                            };
+
+                            /* handling overflow since the limit is 8kb per key */
+
+                            let found = false;
                             let reload = () => {
                                 addFillout.classList.toggle("bettercanvas-custom-open");
                                 loadBetterTodo();
                                 loadCardAssignments();
                             }
-                            if (chrome.runtime.lastError) {
-                                let new_overflow = "custom_assignments_" + (options.custom_assignments_overflow.length + 1);
-                                chrome.storage.sync.set({ [new_overflow]: [assignment], "custom_assignments_overflow": options.custom_assignments_overflow.concat([new_overflow]) }).then(reload);
-                            } else {
-                                reload();
+
+                            /* find the first available overflow with space */
+                            /* or create a new one if all are full */
+                            let findOpenOverflow = (num) => {
+                                let current_overflow = overflow["custom_assignments_overflow"][num];
+                                storage[current_overflow].push(assignment);
+                                chrome.storage.sync.set({ [current_overflow]: storage[current_overflow] }, () => {
+                                    /* assuming any error is because the limit is exceeded */
+                                    if (chrome.runtime.lastError) {
+                                        if (num === overflow["custom_assignments_overflow"].length - 1) {
+                                            console.log("all overflows are full! creating new overflow " + (overflow["custom_assignments_overflow"].length + 1));
+                                            let new_overflow = "custom_assignments_" + (overflow["custom_assignments_overflow"].length + 1);
+                                            overflow["custom_assignments_overflow"].push(new_overflow);
+                                            chrome.storage.sync.set({ [new_overflow]: [assignment], "custom_assignments_overflow": overflow["custom_assignments_overflow"] }).then(reload);
+                                        } else {
+                                            console.log("overflow " + (num + 1) + " full...");
+                                            findOpenOverflow(num + 1);
+                                        }
+                                    } else {
+                                        console.log("overflow " + (num + 1) + " has space!");
+                                        reload();
+                                    }
+                                });
                             }
+
+                            findOpenOverflow(0);
+
                         });
-                    });
+                    })
                 });
+
                 let addButton = makeElement("button", "bettercanvas-custom-btn", todoHeader, "+ Add");
                 addButton.addEventListener("click", () => {
                     addFillout.classList.toggle("bettercanvas-custom-open");
@@ -407,30 +406,16 @@ function setupBetterTodo() {
     }
 }
 
-function combineAssignments(data) {
-    let combined = data;
-    try {
-        options.custom_assignments_overflow.forEach(overflow => {
-            console.log(overflow, options[overflow]);
-            combined = combined.concat(options[overflow]);
-        });
-    } catch (e) {
-        console.log(e);
-    }
-    console.log(combined);
-    return combined.sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime());
-}
-
 let delay;
 function loadBetterTodo() {
     if (options.better_todo !== true) return;
     try {
         const itemCount = options.num_todo_items;
-        let todoAnnouncements = document.querySelector("#bettercanvas-announcement-list");
-        let todoAssignments = document.querySelector("#bettercanvas-todo-list");
         const hr24 = options.todo_hr24;
         const now = new Date();
         const csrfToken = CSRFtoken();
+        let todoAnnouncements = document.querySelector("#bettercanvas-announcement-list");
+        let todoAssignments = document.querySelector("#bettercanvas-todo-list");
         let assignmentsToInsert = [];
         let announcementsToInsert = [];
 
@@ -438,7 +423,6 @@ function loadBetterTodo() {
             chrome.storage.sync.get(options.custom_assignments_overflow, storage => {
                 assignmentData = assignmentData === null ? data : assignmentData;
                 let items = combineAssignments(assignmentData);
-                //let items = storage.custom_assignments ? storage.custom_assignments.concat(assignmentData).sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime()) : assignmentData;
                 items.forEach(item => {
                     let date = new Date(item.plannable_date);
                     if ((item.plannable_type === "announcement") || ((item.plannable_type === "assignment" || item.plannable_type === "quiz" || item.plannable_type === "discussion_topic") && assignmentsToInsert.length < itemCount && date >= now)) {
@@ -470,6 +454,7 @@ function loadBetterTodo() {
                                 if (format.dueSoon) todoDate.style.color = "#ff224b";
 
                                 if (options.hover_preview === true) {
+                                    const customItem = item.planner_override && item.planner_override.custom && item.planner_override.custom === true;
                                     listItem.addEventListener("mouseover", () => {
                                         listItem.classList.add("bettercanvas-todo-hover");
                                         let preview = listItemContainer.querySelector(".bettercanvas-hover-preview");
@@ -477,41 +462,45 @@ function loadBetterTodo() {
                                         clearTimeout(delay);
                                         delay = setTimeout(async () => {
                                             if (listItem.classList.contains("bettercanvas-todo-hover")) {
-                                                let found = false;
-                                                let searchCount = 1;
-                                                while (searchCount < 5 && found === false) {
-                                                    for (let i = 0; i < announcements.length; i++) {
-                                                        if (announcements[i].id === item.plannable_id) {
-                                                            found = true;
-                                                            if (previewText.textContent === "") {
-                                                                let description = item.plannable_type === "announcement" ? announcements[i].message : announcements[i].description;
-                                                                previewText.textContent = description === "" ? "No details given" : description.replace(/<\/?[^>]+(>|$)/g, " ");
+                                                // custom assignment
+                                                if (customItem) {
+                                                    previewText.textContent = "Custom assignment";
+
+                                                } else {
+                                                    let found = false;
+                                                    let searchCount = 1;
+                                                    while (searchCount < 5 && found === false) {
+                                                        for (let i = 0; i < announcements.length; i++) {
+                                                            if (announcements[i].id === item.plannable_id) {
+                                                                found = true;
+                                                                if (previewText.textContent === "") {
+                                                                    let description = item.plannable_type === "announcement" ? announcements[i].message : announcements[i].description;
+                                                                    previewText.textContent = description === "" ? "No details given" : description.replace(/<\/?[^>]+(>|$)/g, " ");
+                                                                }
+                                                                break;
                                                             }
-                                                            break;
+                                                        }
+                                                        if (found === false) {
+                                                            let apiLink = domain + "/api/v1/";
+                                                            if (item.plannable_type === "assignment") {
+                                                                apiLink += `courses/${item.course_id}/assignments/${item.plannable_id}`;
+                                                            } else if (item.plannable_type === "announcement") {
+                                                                apiLink += `announcements?context_codes[]=course_${item.course_id}&per_page=3&page=${searchCount}`;
+                                                            }
+                                                            let data = await getData(apiLink);
+                                                            console.log("got new data");
+                                                            item.plannable_type === "announcement" ? announcements.push(...data) : announcements.push(data);
+                                                            console.log(announcements);
+                                                            searchCount++;
                                                         }
                                                     }
                                                     if (found === false) {
-                                                        let apiLink = domain + "/api/v1/";
-                                                        if(item.plannable_type === "assignment") {
-                                                            apiLink += `courses/${item.course_id}/assignments/${item.plannable_id}`;
-                                                        } else if (item.plannable_type === "announcement") {
-                                                            apiLink += `announcements?context_codes[]=course_${item.course_id}&per_page=3&page=${searchCount}`;
-                                                        }
-                                                        let data = await getData(apiLink);
-                                                        console.log("got new data");
-                                                        item.plannable_type === "announcement" ? announcements.push(...data) : announcements.push(data);
-                                                        console.log(announcements);
-                                                        searchCount++;
+                                                        previewText.textContent = "Couldn't load preview";
                                                     }
                                                 }
-                                                if (found === false) {
-                                                    previewText.textContent = "Couldn't load preview";
-                                                }
                                                 preview.style.display = "block";
-                                            } else {
-                                                //clearTimeout(delay);
                                             }
-                                        }, 400);
+                                        }, 250);
                                     });
 
                                     listItem.addEventListener("mouseleave", () => {
@@ -520,23 +509,30 @@ function loadBetterTodo() {
                                     });
                                 }
 
+                                // remove item button
                                 listItemContainer.querySelector(".bettercanvas-todo-complete-btn").addEventListener('click', function () {
                                     if (item.planner_override && item.planner_override.custom && item.planner_override.custom === true) {
-                                        chrome.storage.sync.get("custom_assignments", storage => {
-                                            for (let i = 0; i < storage.custom_assignments.length; i++) {
-                                                if (storage.custom_assignments[i].plannable_id === item.plannable_id) {
-                                                    storage.custom_assignments.splice(i, 1);
-                                                    chrome.storage.sync.set({ "custom_assignments": storage.custom_assignments }).then(() => {
-                                                        let container = listItemContainer.parentElement;
-                                                        container.removeChild(listItemContainer);
-                                                        loadBetterTodo();
-                                                        loadCardAssignments();
-                                                    });
-                                                    break;
-                                                }
-                                            }
+                                        /* set item as complete locally (aka destroy it) */
+                                        chrome.storage.sync.get("custom_assignments_overflow", overflow => {
+                                            chrome.storage.sync.get(overflow["custom_assignments_overflow"], storage => {
+                                                overflow["custom_assignments_overflow"].forEach(overflow => {
+                                                    for (let i = 0; i < storage[overflow].length; i++) {
+                                                        if (storage[overflow][i].plannable_id === item.plannable_id) {
+                                                            storage[overflow].splice(i, 1);
+                                                            chrome.storage.sync.set({ [overflow]: storage[overflow] }).then(() => {
+                                                                let container = listItemContainer.parentElement;
+                                                                container.removeChild(listItemContainer);
+                                                                loadBetterTodo();
+                                                                loadCardAssignments();
+                                                            });
+                                                            break;
+                                                        }
+                                                    }
+                                                });
+                                            });
                                         });
                                     } else {
+                                        /* set the item as complete through api */
                                         fetch(domain + '/api/v1/planner/overrides' + (item.planner_override ? "/" + item.planner_override.id : ""),
                                             {
                                                 method: item.planner_override ? "PUT" : "POST",
@@ -576,6 +572,7 @@ function loadBetterTodo() {
 
                 });
 
+                // appending assignments all at once
                 todoAssignments.textContent = "";
                 if (assignmentsToInsert.length > 0) {
                     for (let i = 0; i < (assignmentsToInsert.length > 5 ? itemCount : assignmentsToInsert.length); i++) {
@@ -585,6 +582,7 @@ function loadBetterTodo() {
                     makeElement("p", "bettercanvas-none-due", todoAssignments, "None");
                 }
 
+                // appending announcements all at once
                 todoAnnouncements.textContent = "";
                 if (announcementsToInsert.length > 0) {
                     for (let i = announcementsToInsert.length - 1; i >= (announcementsToInsert.length - itemCount < 0 ? 0 : announcementsToInsert.length - itemCount); i--) {
@@ -737,7 +735,8 @@ function loadCardAssignments(c = null) {
             assignments.then(data => {
                 chrome.storage.sync.get("custom_assignments", storage => {
                     assignmentData = assignmentData === null ? data : assignmentData;
-                    let items = storage.custom_assignments ? storage.custom_assignments.concat(assignmentData).sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime()) : assignmentData;
+                    //let items = storage.custom_assignments ? storage.custom_assignments.concat(assignmentData).sort((a, b) => new Date(a.plannable_date).getTime() - new Date(b.plannable_date).getTime()) : assignmentData;
+                    let items = combineAssignments(assignmentData);
                     let cards = c ? c : document.querySelectorAll('.ic-DashboardCard');
                     const now = new Date();
                     cards.forEach(card => {
@@ -1091,17 +1090,23 @@ function condenseCards() {
 }
 
 function cleanCustomAssignments() {
-    let changed = false;
-    chrome.storage.sync.get("custom_assignments", storage => {
-        const now = new Date();
-        for (let i = 0; i < storage.custom_assignments.length; i++) {
-            let assignmentDate = new Date(storage.custom_assignments[i].plannable_date);
-            if (!assignmentDate.getTime() || assignmentDate < now) {
-                storage.custom_assignments.splice(i, 1);
-                changed = true;
-            }
-        }
-        if (changed) chrome.storage.sync.set({ "custom_assignments": storage.custom_assignments });
+    chrome.storage.sync.get("custom_assignments_overflow", overflows => {
+        chrome.storage.sync.get(overflows["custom_assignments_overflow"], storage => {
+            const now = new Date();
+
+            overflows["custom_assignments_overflow"].forEach(overflow => {
+                let changed = false;
+                for (let i = 0; i < storage[overflow].length; i++) {
+                    let assignmentDate = new Date(storage[overflow][i].plannable_date);
+                    if (!assignmentDate.getTime() || assignmentDate < now) {
+                        storage[overflow].splice(i, 1);
+                        changed = true;
+                    }
+                }
+                if (changed) chrome.storage.sync.set({ [overflow]: storage[overflow] });
+            });
+
+        });
     });
 }
 

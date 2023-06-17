@@ -141,8 +141,10 @@ function displayGPABounds() {
         el.textContent = "";
         order.forEach(key => {
             let inputs = makeElement("div", "gpa-bounds-item", el);
-            inputs.innerHTML += '<div><span class="gpa-bounds-grade">' + key + '</span><input class="gpa-bounds-input gpa-bounds-cutoff" type="text" value=' + storage["gpa_calc_bounds"][key].cutoff + '></input><span style="margin-left:6px;margin-right:6px;">%</span><input class="gpa-bounds-input gpa-bounds-gpa" type="text" value=' + storage["gpa_calc_bounds"][key].gpa + '></input><span style="margin-left:6px">GPA</span></div>';
-
+            inputs.innerHTML += '<div><span class="gpa-bounds-grade"></span><input class="gpa-bounds-input gpa-bounds-cutoff" type="text"></input><span style="margin-left:6px;margin-right:6px;">%</span><input class="gpa-bounds-input gpa-bounds-gpa" type="text" value=></input><span style="margin-left:6px">GPA</span></div>';
+            el.querySelector(".gpa-bounds-grade").textContent = key;
+            el.querySelector(".gpa-bounds-cuttoff").value = storage["gpa_calc_bounds"][key].cutoff;
+            el.querySelector(".gpa-bounds-gpa").value = storage["gpa_calc_bounds"][key].gpa;
 
             inputs.querySelector(".gpa-bounds-cutoff").addEventListener("change", function (e) {
                 chrome.storage.sync.get(["gpa_calc_bounds"], existing => {
