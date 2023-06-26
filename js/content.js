@@ -59,6 +59,9 @@ function startExtension() {
                 case ("condensed_cards"):
                     condenseCards();
                     break;
+                case ("disable_page_width_limit"):
+                    toggleFullWidth();
+                    break;
                 case ("disable_color_overlay"):
                     changeOpacityCards();
                     break;
@@ -227,6 +230,7 @@ function checkDashboardReady() {
                     setupGPACalc();
                     loadDashboardNotes();
                     condenseCards();
+                    toggleFullWidth();
 
                     //toggleColorOverlayOnCards();
 
@@ -1086,6 +1090,14 @@ function condenseCards() {
         if (style) {
             style.textContent = "";
         }
+    }
+}
+
+function toggleFullWidth() {
+    if (options.disable_page_width_limit === true) {
+        document.body.classList.add("full-width");
+    } else {
+        document.body.classList.remove("full-width");
     }
 }
 
