@@ -1258,7 +1258,7 @@ function cleanCustomAssignments() {
 function isDomainCanvasPage() {
     chrome.storage.local.get(['custom_domain', 'dark_css', 'dark_mode'], result => {
         options = result;
-        if (result.custom_domain != [""]) {
+        if (result.custom_domain.length && result.custom_domain[0] !== "") {
             try {
                 for (let i = 0; i < result.custom_domain.length; i++) {
                     if (domain.includes(result.custom_domain[i])) {
