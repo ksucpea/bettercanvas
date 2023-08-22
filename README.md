@@ -10,53 +10,21 @@ Contact me at ksucpea@gmail.com or you can open an issue here
 
 - Press load unpacked and select the extension folder
 
-<h2>Update 5.6</h3>
-
-- Changes made in the menu no longer require refresh
-
-- Can now change items shown in better todo list
-
-- Added customizable GPA boundaries
-
-- Options now sync between devices
-
-- Added custom card links feature
-
-- Hover to preview details option
-
-- Disable color overlay option
-
-- Uninstall goodbye message
-
-- Added custom fonts feature
-
-- Welcome screen redesign
-
-- Menu redesign
-
-- New logo
-
-<h2>Update 5.5</h3>
-
-- Corrected order of todo list announcements
-
-- GPA calculator now saves credits/weight
-
-- Hover preview for todo list option
-
-- Hide completed assignments option
-
-- Added card customization feature
-
-- Card grade hover only option
+<h2>Update 5.7</h2>
 
 - Dark mode improvements
 
-- More dark mode presets
-
-- Custom assignments
-
 - Menu redesign
+
+- New card color palletes feature
+
+- Fixed custom link images
+
+- Updated gpa calculator
+
+- New locale added (es)
+
+- Changed hex text input to color picker input
 
 <h2>Links</h2>
 
