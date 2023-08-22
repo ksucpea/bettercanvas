@@ -61,7 +61,7 @@ h2 {margin-top: 20px}
 #advanced-settings, #gpa-bounds-btn, #custom-font-btn, #customize-dark-btn, #card-colors-btn {width: 100%;}
 .back-btn {width: 120px;height:100%;margin-top:0}
 .big-button {border: none;border-radius: 7px;background: var(--inputbg);color: #fff;font-family: inherit;padding: 12px 10px;font-weight:600}
-#setSingleColor, #setGradientColor {padding: 8px 20px}
+#setSingleColor, #setGradientColor {padding: 8px 20px;margin-top:5px;}
 .gpa-bounds-input {font-size: 14px;background: var(--inputbg); border: none;padding:6px;color: #e2e2e2;margin-top: 6px;border-radius: 6px; font-family: inherit; width: 55px; box-sizing: border-box;text-align: right}
 .gpa-bounds span {font-size: 16px; width: 25px;display: inline-block}
 .gpa-bounds-explanation {width:200px;margin-top:20px}
@@ -72,13 +72,16 @@ h2 {margin-top: 20px}
 .custom-card-inputs {display: flex; gap: 10px;margin-top: 10px;}
 .quick-fonts {display: flex; flex-wrap: wrap;gap: 10px;margin-top:10px;}
 .changer-container {display: flex; align-items: center;gap: 10px;}
-.changer-container .card-input {height: 40px; background: none; border: none; padding: 0; margin: 0;width:100%;cursor: pointer}
+.changer-container .card-input[type="color"] {height: 40px; background: none; border: none; padding: 0; margin: 0;width:100%;cursor: pointer}
+.changer-container .card-input[type="text"] {width: 70px}
 .color-options {gap: 10px;display: flex; justify-content: space-between;}
 #gradientColorFrom:hover, #gradientColorTo:hover {cursor: pointer}
 .color-picker-small {height: 30px; width: 30px; border: none; background:var(--inputbg); border-radius: 4px}
 .color-picker-small::-webkit-color-swatch {border-radius: 4px; border: 7px solid #000000;border: none;}
 .color-picker-small::-moz-color-swatch {border-radius: 4px; border: 7px solid #000000;border: none;}
 .more-options-container {display: grid; gap: 10px; grid-template-columns: 50% 50%; margin-top: 10px}
+.palette-selection {display: flex; gap: 5px;align-items: center;margin-top: 5px;}
+.palette-selection .card-input {width: 70px;margin: 0;}
 ::-webkit-scrollbar {width: 8px;}
 ::-webkit-scrollbar-track {background: #161616;}
 ::-webkit-scrollbar-thumb {background: #323232;border-radius:10px;}

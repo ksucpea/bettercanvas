@@ -194,8 +194,9 @@
             <h2 data-i18n="more_options">More options</h2>
             <div class="more-options-container">
                 <button id="customize-dark-btn" class="big-button" data-i18n="edit_dark_mode">Edit Dark Mode</button>
-                <button id="advanced-settings" class="big-button" data-i18n="card_customization">Card Customization</button>
-                <button id="card-colors-btn" class="big-button" data-i18n="card_colors">Card Color Palletes</button>
+                <button id="advanced-settings" class="big-button" data-i18n="card_customization">Card
+                    Customization</button>
+                <button id="card-colors-btn" class="big-button" data-i18n="card_colors">Card Color Paletes</button>
                 <button id="custom-font-btn" class="big-button" data-i18n="custom_font">Custom Font</button>
                 <button id="gpa-bounds-btn" class="big-button" data-i18n="gpa_settings">GPA Settings</button>
             </div>
@@ -287,7 +288,7 @@
     <div class="card-colors-container tab" style="display:none">
         <div class="tab-header">
             <div>
-                <h2 style="margin-top: 0" data-i18n="card_colors">Card Color Palletes</h2>
+                <h2 style="margin-top: 0" data-i18n="card_colors">Card Color Paletes</h2>
             </div>
             <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
@@ -306,7 +307,10 @@
             <h2>Single color</h2>
             <p>Choose a color to set all cards to that color:</p>
             <div>
-                <input type="color" value="#34FECB" id="singleColorInput" class="color-picker-small"></input>
+                <div class="palette-selection">
+                    <input type="color" value="#34FECB" id="singleColorInput" class="color-picker-small"></input>
+                    <input type="text" class="card-input" value="#34FECB" id="singleColorText" />
+                </div>
                 <button id="setSingleColor" class="big-button">Go</button>
             </div>
         </div>
@@ -314,8 +318,14 @@
             <h2>Gradient</h2>
             <p>Choose 2 colors to create a gradient between them:</p>
             <div>
-                <input type="color" value="#EA76DA" id="gradientColorFrom" class="color-picker-small" />
-                <input type="color" value="#7B61FF" id="gradientColorTo" class="color-picker-small" />
+                <div class="palette-selection">
+                    <input type="color" value="#EA76DA" id="gradientColorFrom" class="color-picker-small" />
+                    <input type="text" class="card-input" value="#EA76DA" id="gradientColorFromText" />
+                </div>
+                <div class="palette-selection">
+                    <input type="color" value="#7B61FF" id="gradientColorTo" class="color-picker-small" />
+                    <input type="text" class="card-input" value="#7B61FF" id="gradientColorToText" />
+                </div>
                 <button id="setGradientColor" class="big-button">Go</button>
             </div>
         </div>

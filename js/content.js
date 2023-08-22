@@ -55,7 +55,7 @@ async function changeColorPreset(preset) {
 
     if (blockColorChange === true) return;
 
-    let res = await getData("/api/v1/users/self/colors");
+    let res = await getData(`${domain}/api/v1/users/self/colors`);
     const csrfToken = CSRFtoken();
     const cards = document.querySelectorAll(".ic-DashboardCard");
     let colors = [];

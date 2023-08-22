@@ -313,7 +313,18 @@ document.querySelectorAll(".preset-button.colors-button").forEach(btn => btn.add
 
 document.querySelectorAll(".preset-button.customization-button").forEach(btn => btn.addEventListener("click", changeToPresetCSS));
 
-document.querySelector("#setSingleColor").addEventListener("click", () => sendFromPopup("colors,single " + document.querySelector("#singleColorInput").value));
+document.querySelector("#setSingleColor").addEventListener("click", () => {
+    sendFromPopup("colors,single " + document.querySelector("#singleColorInput").value);
+});
+
+document.querySelector("#singleColorInput").addEventListener("change", e => document.querySelector("#singleColorText").value = e.target.value);
+document.querySelector("#singleColorText").addEventListener("change", e => document.querySelector("#singleColorInput").value = e.target.value);
+
+document.querySelector("#gradientColorFrom").addEventListener("change", e => document.querySelector("#gradientColorFromText").value = e.target.value);
+document.querySelector("#gradientColorFromText").addEventListener("change", e => document.querySelector("#gradientColorFrom").value = e.target.value);
+
+document.querySelector("#gradientColorTo").addEventListener("change", e => document.querySelector("#gradientColorToText").value = e.target.value);
+document.querySelector("#gradientColorToText").addEventListener("change", e => document.querySelector("#gradientColorTo").value = e.target.value);
 
 document.querySelector("#setGradientColor").addEventListener("click", () => sendFromPopup("colors,gradient " + document.querySelector("#gradientColorFrom").value + " " + document.querySelector("#gradientColorTo").value));
 
@@ -333,10 +344,15 @@ function getColors(data) {
         if (type) {
             let container = makeElement("div", "changer-container", type.includes("background") ? backgroundcolors : textcolors);
             let colorChange = makeElement("input", "card-input", container);
+            let colorChangeText = makeElement("input", "card-input", container);
+            colorChangeText.type = "text";
+            colorChangeText.value = currentColor;
             colorChange.type = "color";
             colorChange.value = currentColor;
-            colorChange.addEventListener("change", function (e) {
-                changeCSS(type, e.target.value);
+            [colorChange, colorChangeText].forEach(changer => {
+                changer.addEventListener("change", function (e) {
+                    changeCSS(type, e.target.value);
+                });
             });
         }
     })
