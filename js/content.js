@@ -150,6 +150,7 @@ function startExtension() {
 
     chrome.runtime.onMessage.addListener(function (request) {
         if (request.message === "getCards") {
+            console.log("getting cards...")
             getCards();
         } else if (request.message === "darkmode" || request.message === "autodarkmode") {
             chrome.storage.local.get(["dark_mode", "auto_dark", "dark_css", "auto_dark_start", "auto_dark_end"], result => {
@@ -230,6 +231,7 @@ function startExtension() {
 
 async function getCards(api = null) {
     let dashboard_cards = api ? api : await getData(`${domain}/api/v1/dashboard/dashboard_cards`);
+    console.log("ok i have gotten cards...")
     chrome.storage.sync.get(["custom_cards", "custom_cards_2"], storage => {
         let cards = storage["custom_cards"] || {};
         let cards_2 = storage["custom_cards_2"] || {};
@@ -269,7 +271,7 @@ async function getCards(api = null) {
                 }
             });
         } finally {
-            chrome.storage.sync.set(newCards ? { "custom_cards": cards, "custom_cards_2": cards_2 } : {}).then(chrome.runtime.sendMessage("getCardsComplete"));
+            return chrome.storage.sync.set(newCards ? { "custom_cards": cards, "custom_cards_2": cards_2 } : {}).then(chrome.runtime.sendMessage("getCardsComplete"));
         }
     });
 }
@@ -1158,7 +1160,8 @@ function setupGPACalc() {
             let container = makeElement("div", "bettercanvas-gpa", document.querySelector(".ic-DashboardCard__box__container"));
             container.innerHTML = '<h3 class="bettercanvas-gpa-header">GPA Calculator</h3><div class="bettercanvas-gpa-courses-container"><div class="bettercanvas-gpa-courses"></div></div>';
             result.forEach(course => {
-                let customs = options.custom_cards ? options.custom_cards[course.id] : null;
+
+                let customs = options.custom_cards && options.custom_cards[course.id] ? options.custom_cards[course.id] : { "name": course.name, "hidden": false, "weight": "regular", "credits": 1 };
                 if (customs.hidden != true) {
                     let courseContainer = makeElement("div", "bettercanvas-gpa-course", document.querySelector(".bettercanvas-gpa-courses"));
                     courseContainer.innerHTML = '<div class="bettercanvas-gpa-course-left"></div><div class="bettercanvas-gpa-course-right"></div><div class="bettercanvas-gpa-letter-grade"></div>';
@@ -1288,9 +1291,12 @@ function setupCustomURL() {
     let test = getData(`${domain}/api/v1/dashboard/dashboard_cards`);
     test.then(res => {
         if (res.length) {
-            getCards(res);
-            console.log("Better Canvas - setting custom domain to " + domain);
-            chrome.storage.local.set({ custom_domain: [domain] }).then(location.reload());
+            getCards(res).then(() => {
+                setTimeout(() => {
+                    console.log("Better Canvas - setting custom domain to " + domain);
+                    chrome.storage.local.set({ custom_domain: [domain] }).then(location.reload());
+                }, 100);
+            });
         } else {
             console.log("Better Canvas - this url doesn't seem to be a canvas url (1)");
         }
