@@ -23,7 +23,8 @@ h2 {font-size:24px;}
 .option-container {font-size: 14px; margin-top: 10px;background: #1e1e1e;padding: 10px;border-radius: 14px;box-sizing:border-box}
 a.option-container {display: block;color:#5ca5f6;font-size: 14px;}
 a.option-container:hover {background: #333}
-#customDomain {font-size: 12px; background: var(--inputbg); border: none;padding:8px;color: #e2e2e2;margin-top: 6px;border-radius: 7px; font-family: inherit;width: calc(100% - 14px)}
+#customDomain {font-size: 12px; background: var(--inputbg); border: none;padding:8px;color: #e2e2e2;margin-top: 6px;border-radius: 7px; font-family: inherit;}
+#customDomain {width: 100%; box-sizing: border-box}
 #autodark_start, #autodark_end {padding: 3px 5px; font-size:12px;background: var(--inputbg);color:#e2e2e2;border:none;border-radius: 7px;}
 .options-left {margin-right: 10px;}
 .options-left, .options-right {width: 50%;}
@@ -45,7 +46,7 @@ button:active {filter:brightness(85%)}
 .option-color .color-changer {color:#000;}
 .customization {margin-top: 12px}
 .customization-header {font-size: 20px;margin-top: 10px}
-.customization-button{ font-size:12px;color:#e2e2e2;background:var(--inputbg);border: none;padding: 10px 20px; font-family: inherit;border-radius:7px;transition:.1s background;font-weight:500}
+.colors-button, .customization-button { font-size:12px;color:#e2e2e2;background:var(--inputbg);border: none;padding: 10px 20px; font-family: inherit;border-radius:7px;transition:.1s background;font-weight:500}
 .sub-options {margin-top: 5px;}
 h2 {margin-top: 20px}
 .tab {display: none; padding: 20px;}
@@ -57,9 +58,10 @@ h2 {margin-top: 20px}
 .custom-card-hide {display: flex; align-items: center;}
 .option-name {font-weight: 600}
 .sub-text {font-size: 12px;color: #e2e2e2}
-#advanced-settings, #gpa-bounds-btn, #custom-font-btn, #customize-dark-btn {width: 100%;}
+#advanced-settings, #gpa-bounds-btn, #custom-font-btn, #customize-dark-btn, #card-colors-btn {width: 100%;}
 .back-btn {width: 120px;height:100%;margin-top:0}
-.big-button {border: none;border-radius: 7px;background: var(--inputbg);color: #fff;font-family: inherit;margin-top: 10px;padding: 12px 10px;font-weight:600}
+.big-button {border: none;border-radius: 7px;background: var(--inputbg);color: #fff;font-family: inherit;padding: 12px 10px;font-weight:600}
+#setSingleColor, #setGradientColor {padding: 8px 20px}
 .gpa-bounds-input {font-size: 14px;background: var(--inputbg); border: none;padding:6px;color: #e2e2e2;margin-top: 6px;border-radius: 6px; font-family: inherit; width: 55px; box-sizing: border-box;text-align: right}
 .gpa-bounds span {font-size: 16px; width: 25px;display: inline-block}
 .gpa-bounds-explanation {width:200px;margin-top:20px}
@@ -68,10 +70,15 @@ h2 {margin-top: 20px}
 #custom-font-family, #custom-font-link {width:150px}
 .custom-links-container, .custom-card-left {flex: 1;}
 .custom-card-inputs {display: flex; gap: 10px;margin-top: 10px;}
-.quick-fonts {display: flex; flex-wrap: wrap;gap: 10px;}
+.quick-fonts {display: flex; flex-wrap: wrap;gap: 10px;margin-top:10px;}
 .changer-container {display: flex; align-items: center;gap: 10px;}
-.color-options .card-input {width: 70px;}
+.changer-container .card-input {height: 40px; background: none; border: none; padding: 0; margin: 0;width:100%;cursor: pointer}
 .color-options {gap: 10px;display: flex; justify-content: space-between;}
+#gradientColorFrom:hover, #gradientColorTo:hover {cursor: pointer}
+.color-picker-small {height: 30px; width: 30px; border: none; background:var(--inputbg); border-radius: 4px}
+.color-picker-small::-webkit-color-swatch {border-radius: 4px; border: 7px solid #000000;border: none;}
+.color-picker-small::-moz-color-swatch {border-radius: 4px; border: 7px solid #000000;border: none;}
+.more-options-container {display: grid; gap: 10px; grid-template-columns: 50% 50%; margin-top: 10px}
 ::-webkit-scrollbar {width: 8px;}
 ::-webkit-scrollbar-track {background: #161616;}
 ::-webkit-scrollbar-thumb {background: #323232;border-radius:10px;}

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Better Canvas",
-  "description": "Best dark mode for Canvas, plus other features",
-  "version": "5.6",
+  "description": "Description",
+  "version": "5.7",
   "icons": {
     "16": "icon/icon-16.png",
     "32": "icon/icon-32.png",
@@ -29,5 +29,6 @@
       "run_at": "document_start"
     }
   ],
-  "permissions": ["storage"]
+  "permissions": ["storage"],
+  "default_locale": "en"
 }

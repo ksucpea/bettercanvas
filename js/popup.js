@@ -70,6 +70,12 @@ document.querySelector("#custom-font-btn").addEventListener("click", function ()
     document.querySelector(".custom-font-container").style.display = "block";
 });
 
+document.querySelector("#card-colors-btn").addEventListener("click", function () {
+    displayCustomFont();
+    document.querySelector(".main").style.display = "none";
+    document.querySelector(".card-colors-container").style.display = "block";
+});
+
 document.querySelector("#customize-dark-btn").addEventListener("click", function () {
     document.querySelector(".main").style.display = "none";
     document.querySelector(".customize-dark").style.display = "block";
@@ -82,8 +88,13 @@ document.querySelectorAll(".back-btn").forEach(btn => {
         document.querySelector(".advanced").style.display = "none";
         document.querySelector(".custom-font-container").style.display = "none";
         document.querySelector(".customize-dark").style.display = "none";
+        document.querySelector(".card-colors-container").style.display = "none";
     });
 });
+
+document.querySelectorAll('[data-i18n]').forEach(text => {
+    text.innerText = chrome.i18n.getMessage(text.dataset.i18n);
+})
 
 function updateCards(key, value) {
     chrome.storage.sync.get(["custom_cards"], result => {
@@ -142,9 +153,9 @@ function displayGPABounds() {
         order.forEach(key => {
             let inputs = makeElement("div", "gpa-bounds-item", el);
             inputs.innerHTML += '<div><span class="gpa-bounds-grade"></span><input class="gpa-bounds-input gpa-bounds-cutoff" type="text"></input><span style="margin-left:6px;margin-right:6px;">%</span><input class="gpa-bounds-input gpa-bounds-gpa" type="text" value=></input><span style="margin-left:6px">GPA</span></div>';
-            el.querySelector(".gpa-bounds-grade").textContent = key;
-            el.querySelector(".gpa-bounds-cuttoff").value = storage["gpa_calc_bounds"][key].cutoff;
-            el.querySelector(".gpa-bounds-gpa").value = storage["gpa_calc_bounds"][key].gpa;
+            inputs.querySelector(".gpa-bounds-grade").textContent = key;
+            inputs.querySelector(".gpa-bounds-cutoff").value = storage["gpa_calc_bounds"][key].cutoff;
+            inputs.querySelector(".gpa-bounds-gpa").value = storage["gpa_calc_bounds"][key].gpa;
 
             inputs.querySelector(".gpa-bounds-cutoff").addEventListener("change", function (e) {
                 chrome.storage.sync.get(["gpa_calc_bounds"], existing => {
@@ -193,6 +204,7 @@ function displayAdvancedCards() {
                             let newLinks = storage.custom_cards_2[key].links.custom;
                             if (e.target.value === "") {
                                 newLinks[i] = { "type": storage.custom_cards_2[key].links.default[i].type, "default": true };
+                                customLink.value = storage.custom_cards_2[key].links.default[i].type;
                             } else {
                                 newLinks[i] = { "type": getLinkType(e.target.value), "path": e.target.value, "default": false };
                             }
@@ -246,7 +258,7 @@ syncedSwitches.forEach(function (option) {
         optionSwitch.querySelector("#on").classList.toggle('checked');
         optionSwitch.querySelector("#off").classList.toggle('checked');
         let status = optionSwitch.querySelector("#on").checked;
-        console.log({ [option]: status});
+        console.log({ [option]: status });
         chrome.storage.sync.set({ [option]: status });
         if (option === "auto_dark") {
             toggleDarkModeDisable(status);
@@ -297,7 +309,14 @@ function toggleDarkModeDisable(disabled) {
 
 document.querySelector("#setToDefaults").addEventListener("click", setToDefaults);
 
+document.querySelectorAll(".preset-button.colors-button").forEach(btn => btn.addEventListener("click", () => sendFromPopup("colors," + btn.textContent)));
+
 document.querySelectorAll(".preset-button.customization-button").forEach(btn => btn.addEventListener("click", changeToPresetCSS));
+
+document.querySelector("#setSingleColor").addEventListener("click", () => sendFromPopup("colors,single " + document.querySelector("#singleColorInput").value));
+
+document.querySelector("#setGradientColor").addEventListener("click", () => sendFromPopup("colors,gradient " + document.querySelector("#gradientColorFrom").value + " " + document.querySelector("#gradientColorTo").value));
+
 
 chrome.storage.local.get(['dark_css'], result => getColors(result.dark_css));
 
@@ -311,33 +330,23 @@ function getColors(data) {
     colors.split(";").forEach(function (color) {
         const type = color.split(":")[0].replace("{", "").replace("}", "");
         const currentColor = color.split(":")[1];
-        let option;
         if (type) {
             let container = makeElement("div", "changer-container", type.includes("background") ? backgroundcolors : textcolors);
-            if (document.querySelector("." + type)) changePreview(type, currentColor);
-            if (type.includes("background")) {
-                option = makeElement("div", "changer", container);
-            } else if (type.includes("text")) {
-                option = makeElement("div", "changer", container);
-            }
-            option.style.background = currentColor;
-            option.dataset.name = type;
             let colorChange = makeElement("input", "card-input", container);
-            colorChange.value = currentColor.replace("#", "");
+            colorChange.type = "color";
+            colorChange.value = currentColor;
             colorChange.addEventListener("change", function (e) {
-                changeAdjacentCSSColor(option.dataset.name, e.target.value);
-                option.style.background = "#" + e.target.value;
-                if (document.querySelector("." + type)) changePreview(type, "#" + e.target.value);
+                changeCSS(type, e.target.value);
             });
         }
     })
 }
 
-function changeAdjacentCSSColor(name, color) {
+function changeCSS(name, color) {
     chrome.storage.local.get(['dark_css'], function (result) {
         const leftText = result.dark_css.split(name + ":#")[0];
         const [changing, ...rest] = result.dark_css.split(name + ":#")[1].split(";");
-        const done = leftText.concat(name, ":#", color, ";", rest.join(";"));
+        const done = leftText.concat(name, ":", color, ";", rest.join(";"));
         changeColors(done);
     });
 }
@@ -348,19 +357,22 @@ function changeToPresetCSS(e) {
         let css;
         switch (e.target.id) {
             case ('lighter'):
-                css = ":root{--bcbackgrounddark0:#272727;--bcbackgrounddark1:#353535;--bcbackgrounddark2:#404040;--bcbackgrounddark3:#454545;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bcstop:#000}";
+                css = ":root{--bcbackgrounddark0:#272727;--bcbackgrounddark1:#353535;--bcbackgrounddark2:#404040;--bcbackgrounddark3:#454545;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#56Caf0;--bcstop:#000}";
                 break;
             case ('light'):
-                css = ":root{--bcbackgrounddark0:#202020;--bcbackgrounddark1:#2e2e2e;--bcbackgrounddark2:#4e4e4e;--bcbackgrounddark3:#404040;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bcstop:#000}";
+                css = ":root{--bcbackgrounddark0:#202020;--bcbackgrounddark1:#2e2e2e;--bcbackgrounddark2:#4e4e4e;--bcbackgrounddark3:#404040;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#56Caf0;--bcstop:#000}";
                 break;
             case ('dark'):
-                css = ":root{--bcbackgrounddark0:#101010;--bcbackgrounddark1:#121212;--bcbackgrounddark2:#1a1a1a;--bcbackgrounddark3:#272727;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bcstop:#000}";
+                css = ":root{--bcbackgrounddark0:#101010;--bcbackgrounddark1:#121212;--bcbackgrounddark2:#1a1a1a;--bcbackgrounddark3:#272727;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#56Caf0;--bcstop:#000}";
                 break;
             case ('darker'):
                 css = ":root{--bcbackgrounddark0:#000;--bcbackgrounddark1:#000;--bcbackgrounddark2:#000;--bcbackgrounddark3:#000;--bctextlight0:#c5c5c5;--bctextlight1:#c5c5c5;--bctextlight2:#c5c5c5;--bctextlink:#c5c5c5;--bcstop:#000}";
                 break;
             case ('blue'):
-                css = ":root{--bcbackgrounddark0:#14181d;--bcbackgrounddark1:#1a2026;--bcbackgrounddark2:#212930;--bcbackgrounddark3:#2e3943;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#5ca5f6;--bcstop:#000}";
+                css = ":root{--bcbackgrounddark0:#14181d;--bcbackgrounddark1:#1a2026;--bcbackgrounddark2:#212930;--bcbackgrounddark3:#2e3943;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#56Caf0;--bcstop:#000}";
+                break;
+            case ('mint'):
+                css = ":root{--bcbackgrounddark0:#080808;--bcbackgrounddark1:#0c0c0c;--bcbackgrounddark2:#141414;--bcbackgrounddark3:#1e1e1e;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#7CF3CB;--bcstop:#000}";
                 break;
             case ('burn'):
                 css = ":root{--bcbackgrounddark0:#fff;--bcbackgrounddark1:#fff;--bcbackgrounddark2:#fff;--bcbackgrounddark3:#ccc;--bctextlight0:#ccc;--bctextlight1:#ccc;--bctextlight2:#ccc;--bctextlink:#ccc;--bcstop:#000}";

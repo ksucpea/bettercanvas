@@ -1,0 +1,92 @@
+{
+    "dark_mode": {
+        "message": "Dark mode"
+    },
+    "automatic_dark_mode": {
+        "message": "Automatic dark mode"
+    },
+    "auto_start_time": {
+        "message": "Start time"
+    },
+    "auto_end_time": {
+        "message": "End time"
+    },
+    "edit_dark_mode": {
+        "message": "Edit dark mode"
+    },
+    "enter_url": {
+        "message": "Enter your Canvas url here:"
+    },
+    "card_grades": {
+        "message": "Card grades"
+    },
+    "gradient_cards": {
+        "message": "Gradient cards"
+    },
+    "condensed_cards": {
+        "message": "Condensed cards"
+    },
+    "disable_color": {
+        "message": "Disable color overlay"
+    },
+    "card_assignments": {
+        "message": "Card assignments"
+    },
+    "card_customization": {
+        "message": "Card customization"
+    },
+    "custom_font": {
+        "message": "Custom font"
+    },
+    "useddmm": {
+        "message": "Use dd/mm"
+    },
+    "better_todo": {
+        "message": "Better todo list"
+    },
+    "max_items": {
+        "message": "Max items: "
+    },
+    "hover_preview": {
+        "message": "Hover to preview details"
+    },
+    "hide_completed": {
+        "message": "Hide completed"
+    },
+    "24hrformat": {
+        "message": "Use 24 hr format"
+    },
+    "dashboard_notes": {
+        "message": "Dashboard notes"
+    },
+    "gpa_calculator": {
+        "message": "GPA calculator"
+    },
+    "gpa_settings": {
+        "message": "GPA settings"
+    },
+    "grade_hover": {
+        "message": "Show only on hover"
+    },
+    "due": {
+        "message": "Due"
+    },
+    "card_colors": {
+        "message": "Card Color Palletes"
+    },
+    "back": {
+        "message": "Back"
+    },
+    "more_options": {
+        "message": "More options"
+    },
+    "manual_customization": {
+        "message": "Manual customization"
+    },
+    "background_colors": {
+        "message": "Background"
+    },
+    "text_colors": {
+        "message": "Text"
+    }
+}

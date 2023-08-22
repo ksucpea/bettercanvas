@@ -1,0 +1,92 @@
+{
+    "dark_mode": {
+        "message": "Modo oscuro"
+    },
+    "automatic_dark_mode": {
+        "message": "Modo oscuro automático"
+    },
+    "auto_start_time": {
+        "message": "Hora de inicio"
+    },
+    "auto_end_time": {
+        "message": "Hora de finalización"
+    },
+    "edit_dark_mode": {
+        "message": "Editar modo oscuro"
+    },
+    "enter_url": {
+        "message": "Ingrese su url de Canvas aquí:"
+    },
+    "card_grades": {
+        "message": "Grados en tarjetas"
+    },
+    "gradient_cards": {
+        "message": "Tarjetas de degradado"
+    },
+    "condensed_cards": {
+        "message": "Tarjetas condensadas"
+    },
+    "disable_color": {
+        "message": "Deshabilitar la superposición de colores"
+    },
+    "card_assignments": {
+        "message": "Asignaciones de tarjetas"
+    },
+    "card_customization": {
+        "message": "Personalización de tarjetas"
+    },
+    "custom_font": {
+        "message": "Fuente personalizada"
+    },
+    "useddmm": {
+        "message": "Usar dd/mm"
+    },
+    "better_todo": {
+        "message": "Mejor lista de tareas pendientes"
+    },
+    "max_items": {
+        "message": "Artículos máximos: "
+    },
+    "hover_preview": {
+        "message": "Pasa el cursor para obtener una vista previa de los detalles"
+    },
+    "hide_completed": {
+        "message": "Ocultar completado"
+    },
+    "24hrformat": {
+        "message": "Usar formato de 24 horas"
+    },
+    "dashboard_notes": {
+        "message": "Notas del tablero"
+    },
+    "gpa_calculator": {
+        "message": "Calculadora GPA"
+    },
+    "gpa_settings": {
+        "message": "Configuración GPA"
+    },
+    "grade_hover": {
+        "message": "Mostrar sólo al pasar el mouse"
+    },
+    "due": {
+        "message": "Pendiente"
+    },
+    "card_colors": {
+        "message": "Paletas de colores de la tarjeta"
+    },
+    "back": {
+        "message": "Atrás"
+    },
+    "more_options": {
+        "message": "Mas opciones"
+    },
+    "manual_customization": {
+        "message": "Personalización manual"
+    },
+    "background_colors": {
+        "message": "Fondo"
+    },
+    "text_colors": {
+        "message": "Texto"
+    }
+}

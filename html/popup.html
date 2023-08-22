@@ -33,7 +33,7 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div>
-                        <span class="option-name">Dark mode</span>
+                        <span class="option-name" data-i18n="dark_mode">Dark mode</span>
                     </div>
                     <div class="option" id="auto_dark" style="margin-top:10px">
                         <input type="radio" id="off" name="auto_dark">
@@ -42,22 +42,21 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div>
-                        <span class="option-name">Automatic dark mode</span>
+                        <span class="option-name" data-i18n="automatic_dark_mode">Automatic dark mode</span>
                     </div>
                     <div class="sub-options">
                         <div class="timesets">
                             <div class="timeset">
                                 <input type="time" id="autodark_start" step="60"></input>
-                                <span class="sub-text">Start time</span>
+                                <span class="sub-text" data-i18n="auto_start_time">Start time</span>
                             </div>
                             <div class="timeset">
                                 <input type="time" id="autodark_end" step="60"></input>
-                                <span class="sub-text">End time</span>
+                                <span class="sub-text" data-i18n="auto_end_time">End time</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button id="customize-dark-btn" class="big-button">Edit Dark Mode</button>
                 <div class="option-container">
                     <div class="option" id="dashboard_grades">
                         <input type="radio" id="off" name="dashboard_grades">
@@ -66,11 +65,12 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div>
-                        <span class="option-name">Card Grades</span>
+                        <span class="option-name" data-i18n="card_grades">Card Grades</span>
                     </div>
                     <div style="margin-top:5px">
                         <input type="checkbox" id="grade_hover" name="grade_hover">
-                        <label for="grade_hover" class="sub-text">Show only when hovering</label>
+                        <label for="grade_hover" class="sub-text" data-i18n="grade_hover">Show only when
+                            hovering</label>
                     </div>
                 </div>
                 <div class="option-container">
@@ -81,7 +81,7 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div>
-                        <span class="option-name">Gradient cards</span>
+                        <span class="option-name" data-i18n="gradient_cards">Gradient cards</span>
                     </div>
                 </div>
                 <div class="option-container">
@@ -91,7 +91,17 @@
                         <div class="slider">
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
-                        </div><span class="option-name">Condensed Cards</span>
+                        </div><span class="option-name" data-i18n="condensed_cards">Condensed Cards</span>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="option" id="dashboard_notes">
+                        <input type="radio" id="off" name="dashboard_notes">
+                        <input type="radio" id="on" name="dashboard_notes">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span class="option-name" data-i18n="dashboard_notes">Dashboard Notes</span>
                     </div>
                 </div>
                 <div class="option-container">
@@ -101,18 +111,16 @@
                         <div class="slider">
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
-                        </div><span class="option-name">Disable Color Overlay</span>
+                        </div><span class="option-name" data-i18n="disable_color">Disable Color Overlay</span>
                     </div>
                 </div>
-                <button id="advanced-settings" class="big-button">Card Customization</button>
-                <button id="custom-font-btn" class="big-button">Custom Font</button>
             </div>
 
             <div class="options-right">
                 <div class="option-container">
-                    <div class="customDomain">Enter your Canvas URL here:
+                    <div class="customDomain">
+                        <span data-i18n="enter_url">Enter your Canvas URL here:</span>
                         <input type="text" id="customDomain" placeholder="Or just go to your Canvas page!"></input>
-                        <p style="margin-top:4px" class="sub-text">(Enter multiple URLs by using a comma)</p>
                     </div>
                 </div>
                 <div class="option-container">
@@ -123,15 +131,16 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div>
-                        <span class="option-name">Card assignments</span>
+                        <span class="option-name" data-i18n="card_assignments">Card assignments</span>
                     </div>
                     <div class="sub-options">
                         <div>
                             <input type="checkbox" id="assignment_date_format" name="assignment_date_format">
-                            <label for="assignment_date_format" class="sub-text">Use dd/mm</label>
+                            <label for="assignment_date_format" class="sub-text" data-i18n="useddmm">Use dd/mm</label>
                         </div>
                         <div style="margin-top: 5px">
-                            <span class="sub-text">Max items to show: </span><span id="numAssignments"></span>
+                            <span class="sub-text" data-i18n="max_items">Max items to show: </span><span
+                                id="numAssignments"></span>
                             <input type="range" min="1" max="10" id="numAssignmentsSlider">
                         </div>
                     </div>
@@ -144,35 +153,28 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div>
-                        <span class="option-name">Better Todo List</span>
+                        <span class="option-name" data-i18n="better_todo">Better Todo List</span>
                     </div>
                     <div class="sub-options">
                         <div>
                             <input type="checkbox" id="hover_preview" name="hover_preview">
-                            <label for="hover_preview" class="sub-text">Hover to preview details</label>
+                            <label for="hover_preview" class="sub-text" data-i18n="hover_preview">Hover to preview
+                                details</label>
                         </div>
                         <div>
                             <input type="checkbox" id="hide_completed" name="hide_completed">
-                            <label for="hide_completed" class="sub-text">Hide completed</label>
+                            <label for="hide_completed" class="sub-text" data-i18n="hide_completed">Hide
+                                completed</label>
                         </div>
                         <div>
                             <input type="checkbox" id="todo_hr24" name="todo_hr24">
-                            <label for="todo_hr24" class="sub-text">Use 24hr format</label>
+                            <label for="todo_hr24" class="sub-text" data-i18n="24hrformat">Use 24hr format</label>
                         </div>
                         <div style="margin-top: 5px">
-                            <span class="sub-text">Max items to show: </span><span id="numTodoItems"></span>
+                            <span class="sub-text" data-i18n="max_items">Max items to show: </span><span
+                                id="numTodoItems"></span>
                             <input type="range" min="1" max="7" id="numTodoItemsSlider">
                         </div>
-                    </div>
-                </div>
-                <div class="option-container">
-                    <div class="option" id="dashboard_notes">
-                        <input type="radio" id="off" name="dashboard_notes">
-                        <input type="radio" id="on" name="dashboard_notes">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div><span class="option-name">Dashboard Notes</span>
                     </div>
                 </div>
                 <div class="option-container">
@@ -183,18 +185,27 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div>
-                        <span class="option-name">GPA calculator</span>
+                        <span class="option-name" data-i18n="gpa_calculator">GPA calculator</span>
                     </div>
                 </div>
-                <button id="gpa-bounds-btn" class="big-button">GPA settings</button>
+            </div>
+        </div>
+        <div>
+            <h2 data-i18n="more_options">More options</h2>
+            <div class="more-options-container">
+                <button id="customize-dark-btn" class="big-button" data-i18n="edit_dark_mode">Edit Dark Mode</button>
+                <button id="advanced-settings" class="big-button" data-i18n="card_customization">Card Customization</button>
+                <button id="card-colors-btn" class="big-button" data-i18n="card_colors">Card Color Palletes</button>
+                <button id="custom-font-btn" class="big-button" data-i18n="custom_font">Custom Font</button>
+                <button id="gpa-bounds-btn" class="big-button" data-i18n="gpa_settings">GPA Settings</button>
             </div>
         </div>
     </div>
 
     <div class="customize-dark tab" style="display: none">
         <div class="tab-header">
-            <h2>Dark Mode Customization</h2>
-            <button class="big-button back-btn">Back</button>
+            <h2 style="margin-top: 0" data-i18n="edit_dark_mode">Edit dark mode</h2>
+            <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
         <div class="customization">
             <div class="container">
@@ -204,19 +215,21 @@
                     <button id="setToDefaults" class="customization-button">Default</button>
                     <button id="dark" class="preset-button customization-button">Dark</button>
                     <button id="darker" class="preset-button customization-button">Darker</button>
+                    <button id="mint" class="preset-button customization-button">Mint</button>
                     <button id="blue" class="preset-button customization-button">Blue tint</button>
                     <button id="burn" class="preset-button customization-button">Eyeball burn</button>
                     <button id="unicorn" class="preset-button customization-button">Unicorn</button>
                 </div>
             </div>
             <div class="container">
+                <h2 data-i18n="manual_customization">Manual customization</h2>
                 <div class="color-options">
                     <div style="width:49%">
-                        <p class="color-type-header">Background Colors</p>
+                        <p class="color-type-header" data-i18n="background_colors">Background</p>
                         <div class="option-background" id="option-background"></div>
                     </div>
                     <div style="width:49%">
-                        <p class="color-type-header">Text Colors</p>
+                        <p class="color-type-header" data-i18n="text_colors">Text</p>
                         <div class="option-color" id="option-text"></div>
                     </div>
                 </div>
@@ -228,19 +241,19 @@
     <div class="advanced tab" style="display:none">
         <div class="tab-header">
             <div>
-                <h2 style="margin-top: 0">Card Customization</h2>
+                <h2 style="margin-top: 0" data-i18n="card_customization">Card Customization</h2>
                 <p style="margin-top: 5px">Enter "none" to hide or leave blank to use the default.</p>
                 <p style="margin-top: 5px">Make sure external links start with https://</p>
             </div>
-            <button class="big-button back-btn">Back</button>
+            <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
         <div class="advanced-cards"></div>
     </div>
 
     <div class="gpa-bounds-container tab" style="display:none">
         <div class="tab-header">
-            <h2 style="margin-top: 0">GPA Calculator Bounds</h2>
-            <button class="big-button back-btn">Back</button>
+            <h2 style="margin-top: 0" data-i18n="gpa_settings">GPA Calculator Bounds</h2>
+            <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
         <div style="display: flex;justify-content: space-between;">
             <div class="gpa-bounds"></div>
@@ -255,18 +268,55 @@
     <div class="custom-font-container tab" style="display:none">
         <div class="tab-header">
             <div>
-                <h2 style="margin-top: 0">Custom Font</h2>
+                <h2 style="margin-top: 0" data-i18n="custom_font">Custom Font</h2>
                 <p>You can use a custom font from Google fonts here</p>
                 <p>Enter only the bold part after "?family="</p>
                 <p>Leave it blank to use no custom font</p>
             </div>
-            <button class="big-button back-btn">Back</button>
+            <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
         <div class="custom-font option-container"></div>
         <div style="display: flex; align-items: center">
             <div class="quick-fonts-container">
                 <h2>Popular fonts</h2>
                 <div class="quick-fonts"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-colors-container tab" style="display:none">
+        <div class="tab-header">
+            <div>
+                <h2 style="margin-top: 0" data-i18n="card_colors">Card Color Palletes</h2>
+            </div>
+            <button class="big-button back-btn" data-i18n="back">Back</button>
+        </div>
+        <div class="options-presets option-container">
+            <button class="preset-button colors-button">Reds</button>
+            <button class="preset-button colors-button">Pinks</button>
+            <button class="preset-button colors-button">Purples</button>
+            <button class="preset-button colors-button">Pastels</button>
+            <button class="preset-button colors-button">Ocean</button>
+            <button class="preset-button colors-button">Sunset</button>
+            <button class="preset-button colors-button">Army</button>
+            <button class="preset-button colors-button">Rainbow</button>
+            <button class="preset-button colors-button">Cotton Candy</button>
+        </div>
+        <div>
+            <h2>Single color</h2>
+            <p>Choose a color to set all cards to that color:</p>
+            <div>
+                <input type="color" value="#34FECB" id="singleColorInput" class="color-picker-small"></input>
+                <button id="setSingleColor" class="big-button">Go</button>
+            </div>
+        </div>
+        <div>
+            <h2>Gradient</h2>
+            <p>Choose 2 colors to create a gradient between them:</p>
+            <div>
+                <input type="color" value="#EA76DA" id="gradientColorFrom" class="color-picker-small" />
+                <input type="color" value="#7B61FF" id="gradientColorTo" class="color-picker-small" />
+                <button id="setGradientColor" class="big-button">Go</button>
             </div>
         </div>
     </div>

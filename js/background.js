@@ -1,6 +1,6 @@
 chrome.runtime.onInstalled.addListener(function () {
     const syncedOptions = ['new_install', 'hover_preview', 'num_todo_items', 'assignments_due', 'gpa_calc', 'gpa_calc_bounds', 'gradient_cards', 'disable_color_overlay', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignments_done', 'assignment_date_format', 'dashboard_notes', 'dashboard_notes_text', 'better_todo', 'todo_hr24', 'condensed_cards', 'custom_cards', 'custom_cards_2', 'custom_assignments', 'custom_assignments_overflow', 'grade_hover', 'hide_completed', 'custom_font'];
-    const localOptions = ['dark_mode', 'dark_css'];
+    const localOptions = ['dark_mode', 'dark_css', 'custom_domain'];
     let default_options = {
         "new_install": true,
         "assignments_due": true,
@@ -12,7 +12,7 @@ chrome.runtime.onInstalled.addListener(function () {
         "auto_dark_start": { "hour": "20", "minute": "00" },
         "auto_dark_end": { "hour": "08", "minute": "00" },
         "num_assignments": 5,
-        "custom_domain": "",
+        "custom_domain": [""],
         "assignments_done": [],
         "dashboard_grades": false,
         "assignment_date_format": false,
@@ -74,13 +74,7 @@ chrome.runtime.onInstalled.addListener(function () {
                 }
             });
 
-            console.log("local");
-            console.log(local);
-            console.log("newOptions");
-            console.log(newOptions);
-
             if (Object.keys(newOptions).length > 0) {
-                console.log(newOptions);
                 chrome.storage.sync.set(newOptions).then(() => {
                     if (newOptions.new_install === true) {
                         chrome.runtime.openOptionsPage();
@@ -96,13 +90,13 @@ chrome.runtime.onInstalled.addListener(function () {
         localOptions.forEach(option => {
             if (storage[option] === undefined) {
                 switch (option) {
-                    case ("dark_mode"): newOptions.dark_mode = true; break;
+                    case ("custom_domain"): newOptions.custom_domain = default_options["custom_domain"];
+                    case ("dark_mode"): newOptions.dark_mode = default_options["dark_mode"]; break;
                     case ("dark_css"): newInstallCSS(); break;
                 }
             }
         });
         if (Object.keys(newOptions).length > 0) {
-            console.log(newOptions);
             chrome.storage.local.set(newOptions);
         }
     });
