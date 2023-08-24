@@ -178,6 +178,7 @@ function startExtension() {
         // so any changes made in the menu no longer require a refresh to apply
 
         Object.keys(changes).forEach(key => {
+            console.log(key + " changed");
             switch (key) {
                 case ("gradient_cards"):
                     changeGradientCards();
@@ -217,6 +218,9 @@ function startExtension() {
                     break;
                 case ("gpa_calc_bounds"):
                     calculateGPA2();
+                    break;
+                case("full_width"):
+                    changeFullWidth();
                     break;
                 case ("custom_font"):
                     loadCustomFont();
@@ -349,14 +353,15 @@ function checkDashboardReady() {
                 if (mutation.target == document.querySelector("#DashboardCard_Container")) {
                     let cards = document.querySelectorAll('.ic-DashboardCard');
                     changeGradientCards();
-                    changeOpacityCards();
                     setupCardAssignments(cards);
-                    setupBetterTodo();
                     customizeCards(cards);
+                    setupBetterTodo();
                     insertGrades();
-                    setupGPACalc();
                     loadDashboardNotes();
                     condenseCards();
+                    changeOpacityCards();
+                    setupGPACalc();
+                    changeFullWidth();
 
                 } else if (mutation.target == document.querySelector('#right-side')) {
                     resetTimer();
@@ -1065,6 +1070,14 @@ function changeOpacityCards() {
         if (cardcss) {
             cardcss.textContent = "";
         }
+    }
+}
+
+function changeFullWidth() {
+    if (options.full_width === true) {
+        document.body.classList.add("full-width");
+    } else {
+        document.body.classList.remove("full-width");
     }
 }
 

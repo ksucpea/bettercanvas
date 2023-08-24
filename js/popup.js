@@ -1,4 +1,4 @@
-const syncedSwitches = ['auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'disable_color_overlay', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
+const syncedSwitches = ['full_width', 'auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'disable_color_overlay', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
 const syncedSubOptions = ['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'num_todo_items', 'hover_preview'];
 const localSwitches = ['dark_mode'];
 
@@ -388,10 +388,10 @@ function changeToPresetCSS(e) {
                 css = ":root{--bcbackgrounddark0:#14181d;--bcbackgrounddark1:#1a2026;--bcbackgrounddark2:#212930;--bcbackgrounddark3:#2e3943;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#56Caf0;--bcstop:#000}";
                 break;
             case ('mint'):
-                css = ":root{--bcbackgrounddark0:#080808;--bcbackgrounddark1:#0c0c0c;--bcbackgrounddark2:#141414;--bcbackgrounddark3:#1e1e1e;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#7CF3CB;--bcstop:#000}";
+                css = ":root{--bcbackgrounddark0:#0f0f0f;--bcbackgrounddark1:#0c0c0c;--bcbackgrounddark2:#141414;--bcbackgrounddark3:#1e1e1e;--bctextlight0:#f5f5f5;--bctextlight1:#e2e2e2;--bctextlight2:#ababab;--bctextlink:#7CF3CB;--bcstop:#000}";
                 break;
             case ('burn'):
-                css = ":root{--bcbackgrounddark0:#fff;--bcbackgrounddark1:#fff;--bcbackgrounddark2:#fff;--bcbackgrounddark3:#ccc;--bctextlight0:#ccc;--bctextlight1:#ccc;--bctextlight2:#ccc;--bctextlink:#ccc;--bcstop:#000}";
+                css = ":root{--bcbackgrounddark0:#ffffff;--bcbackgrounddark1:#ffffff;--bcbackgrounddark2:#ffffff;--bcbackgrounddark3:#ccc;--bctextlight0:#cccccc;--bctextlight1:#cccccc;--bctextlight2:#cccccc;--bctextlink:#cccccc;--bcstop:#000}";
                 break;
             case ('unicorn'):
                 css = ":root{--bcbackgrounddark0:#ff6090;--bcbackgrounddark1:#00C1FF;--bcbackgrounddark2:#FFFF00;--bcbackgrounddark3:#FFFF00;--bctextlight0:#fff;--bctextlight1:#fff;--bctextlight2:#fff;--bctextlink:#000;--bcstop:#000}";

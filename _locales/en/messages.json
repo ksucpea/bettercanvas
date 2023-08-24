@@ -88,5 +88,8 @@
     },
     "text_colors": {
         "message": "Text"
+    },
+    "full_width": {
+        "message": "Dashboard full width"
     }
 }
