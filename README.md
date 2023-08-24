@@ -26,6 +26,8 @@ Contact me at ksucpea@gmail.com or you can open an issue here
 
 - Changed hex text input to color picker input
 
+- Dashboard Full width option added
+
 <h2>Links</h2>
 
 [Chrome version](https://chrome.google.com/webstore/detail/better-canvas/cndibmoanboadcifjkjbdpjgfedanolh)
