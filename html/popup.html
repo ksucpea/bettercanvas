@@ -207,9 +207,10 @@
                 <button id="customize-dark-btn" class="big-button" data-i18n="edit_dark_mode">Edit Dark Mode</button>
                 <button id="advanced-settings" class="big-button" data-i18n="card_customization">Card
                     Customization</button>
-                <button id="card-colors-btn" class="big-button" data-i18n="card_colors">Card Color Paletes</button>
+                <button id="card-colors-btn" class="big-button" data-i18n="card_colors">Card Color Palettes</button>
                 <button id="custom-font-btn" class="big-button" data-i18n="custom_font">Custom Font</button>
                 <button id="gpa-bounds-btn" class="big-button" data-i18n="gpa_settings">GPA Settings</button>
+                <button id="report-issue-btn" class="big-button" data-i18n="report_issue">Report an issue</button>
             </div>
         </div>
     </div>
@@ -254,8 +255,7 @@
         <div class="tab-header">
             <div>
                 <h2 style="margin-top: 0" data-i18n="card_customization">Card Customization</h2>
-                <p style="margin-top: 5px">Enter "none" to hide or leave blank to use the default.</p>
-                <p style="margin-top: 5px">Make sure external links start with https://</p>
+                <p style="margin-top: 5px">Enter "none" to hide images and links.</p>
             </div>
             <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
@@ -305,14 +305,23 @@
         </div>
         <div class="options-presets option-container">
             <button class="preset-button colors-button">Reds</button>
+            <button class="preset-button colors-button">Oranges</button>
+            <button class="preset-button colors-button">Greens</button>
+            <button class="preset-button colors-button">Blues</button>
             <button class="preset-button colors-button">Pinks</button>
             <button class="preset-button colors-button">Purples</button>
             <button class="preset-button colors-button">Pastels</button>
+            <button class="preset-button colors-button">Mesa</button>
+            <button class="preset-button colors-button">Fade</button>
             <button class="preset-button colors-button">Ocean</button>
-            <button class="preset-button colors-button">Sunset</button>
+            <button class="preset-button colors-button">Watermelon</button>
             <button class="preset-button colors-button">Army</button>
             <button class="preset-button colors-button">Rainbow</button>
             <button class="preset-button colors-button">Cotton Candy</button>
+            <button class="preset-button colors-button">Sunset</button>
+            <button class="preset-button colors-button">Popsicle</button>
+            <button class="preset-button colors-button">Berries</button>
+            <button class="preset-button colors-button">Chess Board</button>
         </div>
         <div>
             <h2>Single color</h2>
@@ -325,6 +334,7 @@
                 <button id="setSingleColor" class="big-button">Go</button>
             </div>
         </div>
+
         <div>
             <h2>Gradient</h2>
             <p>Choose 2 colors to create a gradient between them:</p>
@@ -339,6 +349,36 @@
                 </div>
                 <button id="setGradientColor" class="big-button">Go</button>
             </div>
+        </div>
+    </div>
+
+    <div class="report-issue-container tab">
+        <div class="tab-header">
+            <div>
+                <h2 style="margin-top: 0" data-i18n="report_issue">Report an issue</h2>
+            </div>
+            <button class="big-button back-btn" data-i18n="back">Back</button>
+        </div>
+        <h3 style="color: #ff4576">Please contact <b>ksucpea@gmail.com</b> for issues or feedback. Thank you!</h3>
+        <h2>Debug tools</h2>
+        <p id="dev-alert"></p>
+        <p>Change key</p>
+        <div style="display: flex; gap: 5px; margin-bottom: 10px;">
+            <input class="card-input" placeholder="key" id="ck_key" />
+            <input class="card-input" placeholder="value" id="ck_value" />
+            <button class="big-button" id="ck_btn">Go</button>
+        </div>
+        <p>Retrieve key</p>
+        <div style="margin-bottom: 10px">
+            <div style="display: flex; gap: 5px">
+                <input class="card-input" placeholder="key" id="rk_key" />
+                <button class="big-button" id="rk_btn">Go</button>
+            </div>
+            <textarea class="card-input" id="rk_output"></textarea>
+        </div>
+        <p>Error log</p>
+        <div>
+            <textarea id="error_log_output" class="card-input"></textarea>
         </div>
     </div>
 

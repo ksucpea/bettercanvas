@@ -81,6 +81,16 @@ document.querySelector("#customize-dark-btn").addEventListener("click", function
     document.querySelector(".customize-dark").style.display = "block";
 });
 
+document.querySelector("#report-issue-btn").addEventListener("click", function () {
+    document.querySelector(".main").style.display = "none";
+    document.querySelector(".report-issue-container").style.display = "block";
+    chrome.storage.local.get("errors", storage => {
+        storage["errors"].forEach(e => {
+            document.querySelector("#error_log_output").value += (e + "\n\n");
+        })
+    });
+});
+
 document.querySelectorAll(".back-btn").forEach(btn => {
     btn.addEventListener("click", function () {
         document.querySelector(".main").style.display = "block";
@@ -89,12 +99,38 @@ document.querySelectorAll(".back-btn").forEach(btn => {
         document.querySelector(".custom-font-container").style.display = "none";
         document.querySelector(".customize-dark").style.display = "none";
         document.querySelector(".card-colors-container").style.display = "none";
+        document.querySelector(".report-issue-container").style.display = "none";
     });
 });
 
 document.querySelectorAll('[data-i18n]').forEach(text => {
     text.innerText = chrome.i18n.getMessage(text.dataset.i18n);
+});
+
+document.querySelector("#ck_btn").addEventListener("click", () => {
+    let key = document.querySelector("#ck_key").value;
+    let val = document.querySelector("#ck_value").value;
+    chrome.storage.sync.set({ [key]: val });
+    if (chrome.runtime.lastError) {
+        setAlert("Error setting " + key + "(" + chrome.runtime.lastError.message + ")");
+    } else {
+        setAlert("Succesfully set " + key + ".");
+    }
+});
+
+document.querySelector("#rk_btn").addEventListener("click", () => {
+    let key = document.querySelector("#rk_key").value;
+    chrome.storage.sync.get(key, res => {
+        document.querySelector("#rk_output").value = JSON.stringify(res[key]);
+    })
 })
+
+function setAlert(msg) {
+    document.querySelector("#dev-alert").textContent = msg;
+    setTimeout(() => {
+        document.querySelector("#dev-alert").textContent = "";
+    }, 4000);
+}
 
 function updateCards(key, value) {
     chrome.storage.sync.get(["custom_cards"], result => {
@@ -134,6 +170,11 @@ function displayCustomFont() {
         const popularFonts = ["Caveat", "Comfortaa", "Happy Monkey", "Inconsolata", "Jost", "Lobster", "Montserrat", "Open Sans", "Oswald", "Poppins", "Redacted Script", "Rubik", "Silkscreen"];
         let quickFonts = document.querySelector(".quick-fonts");
         quickFonts.textContent = "";
+        let noFont = makeElement("button", "customization-button", quickFonts, "None");
+        noFont.addEventListener("click", () => {
+            chrome.storage.sync.set({ "custom_font": { "link": "", "family": "" } });
+            link.value = "";
+        })
         popularFonts.forEach(font => {
             let btn = makeElement("button", "customization-button", quickFonts, font);
             btn.addEventListener("click", () => {
@@ -196,47 +237,35 @@ function displayAdvancedCards() {
                 hideInput.addEventListener("change", function (e) { updateCards(key, { "hidden": e.target.checked }) });
                 container.querySelector(".custom-card-title").textContent = card.default;
 
+                if (card_2.links["custom"]) return;
+
                 for (let i = 0; i < 4; i++) {
                     let customLink = makeElement("input", "card-input", container.querySelector(".custom-links"));
-                    customLink.value = card_2.links.custom[i].default ? card_2.links.custom[i].type : card_2.links.custom[i].path;
+                    customLink.value = card_2.links[i].is_default ? "default" : card_2.links[i].path;
                     customLink.addEventListener("change", function (e) {
                         chrome.storage.sync.get("custom_cards_2", storage => {
-                            let newLinks = storage.custom_cards_2[key].links.custom;
-                            if (e.target.value === "") {
-                                newLinks[i] = { "type": storage.custom_cards_2[key].links.default[i].type, "default": true };
-                                customLink.value = storage.custom_cards_2[key].links.default[i].type;
+                            let newLinks = storage.custom_cards_2[key].links;
+                            if (e.target.value === "" || e.target.value === "default") {
+                                console.log("this value is empty....")
+                                //newLinks[i] = { "type": storage.custom_cards_2[key].links.default[i].type, "default": true };
+                                newLinks[i] = { "default": newLinks[i].default, "is_default": true, "path": newLinks[i].default };
+                                customLink.value = "default";
                             } else {
-                                newLinks[i] = { "type": getLinkType(e.target.value), "path": e.target.value, "default": false };
+                                //newLinks[i] = { "type": getLinkType(e.target.value), "path": e.target.value, "default": false };
+                                let val = e.target.value;
+                                if (!e.target.value.includes("https://") && e.target.value !== "none") val = "https://" + val;
+                                newLinks[i] = { "default": newLinks[i].default, "is_default": false, "path": val };
+                                customLink.value = val;
                             }
-                            console.log(newLinks);
-                            chrome.storage.sync.set({ "custom_cards_2": { ...storage.custom_cards_2, [key]: { ...storage.custom_cards_2[key], "links": { ...storage.custom_cards_2[key].links, "custom": newLinks } } } })
+                            chrome.storage.sync.set({ "custom_cards_2": { ...storage.custom_cards_2, [key]: { ...storage.custom_cards_2[key], "links": newLinks } } })
                         });
                     });
                 }
             });
         } else {
-            document.querySelector(".advanced-cards").innerHTML = "<h3>No cards found... make sure to open this menu on your Canvas page first. Please ontact me if this issue persists! (ksucpea@gmail.com)</h3>";
+            document.querySelector(".advanced-cards").innerHTML = "<h3>Make sure to open this menu on your Canvas page first/refresh your Canvas page to begin setup. <br /><br />If you're having issues please contact me - ksucpea@gmail.com</h3>";
         }
     });
-}
-
-function getLinkType(path) {
-    if (path === "none") {
-        return "none";
-    } else if (path.includes("piazza")) {
-        return "piazza";
-    } else if (path.includes("gradescope")) {
-        return "gradescope";
-    } else if (path.includes("drive.google")) {
-        return "google_drive";
-    } else if (path.includes("youtube")) {
-        return "youtube";
-    } else if (path.includes("docs.google")) {
-        return "google_docs";
-    } else if (path.includes("webassign")) {
-        return "webassign";
-    }
-    return "custom";
 }
 
 chrome.runtime.onMessage.addListener(message => {
@@ -429,9 +458,26 @@ function makeElement(element, elclass, location, text) {
 
 function sendFromPopup(message) {
     try {
-        chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+        chrome.tabs.query({ currentWindow: true }, function (tabs) {
+
+            /*
             let activeTab = tabs[0];
             chrome.tabs.sendMessage(activeTab.id, { "message": message });
+            */
+
+            tabs.forEach(tab => {
+                chrome.tabs.sendMessage(tab.id, { "message": message }, null, () => {
+                    if (chrome.runtime.lastError) {
+                        console.log(chrome.runtime.lastError);
+                    } else {
+                        return;
+                    }
+
+                });
+
+            });
+
+
         });
     } catch (e) {
     }

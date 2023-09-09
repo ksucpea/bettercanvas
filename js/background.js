@@ -1,6 +1,6 @@
 chrome.runtime.onInstalled.addListener(function () {
     const syncedOptions = ['full_width', 'new_install', 'hover_preview', 'num_todo_items', 'assignments_due', 'gpa_calc', 'gpa_calc_bounds', 'gradient_cards', 'disable_color_overlay', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignments_done', 'assignment_date_format', 'dashboard_notes', 'dashboard_notes_text', 'better_todo', 'todo_hr24', 'condensed_cards', 'custom_cards', 'custom_cards_2', 'custom_assignments', 'custom_assignments_overflow', 'grade_hover', 'hide_completed', 'custom_font'];
-    const localOptions = ['dark_mode', 'dark_css', 'custom_domain'];
+    const localOptions = ['errors', 'dark_mode', 'dark_css', 'custom_domain'];
     let default_options = {
         "new_install": true,
         "assignments_due": true,
@@ -45,7 +45,8 @@ chrome.runtime.onInstalled.addListener(function () {
             "D": { "cutoff": 63, "gpa": 1 },
             "D-": { "cutoff": 60, "gpa": .7 },
             "F": { "cutoff": 0, "gpa": 0 }
-        }
+        },
+        "errors": []
     };
 
     chrome.storage.local.get([...syncedOptions, "improved_todo"], local => {
@@ -75,6 +76,44 @@ chrome.runtime.onInstalled.addListener(function () {
                 }
             });
 
+
+
+            // converting old links to new system
+            try {
+                let old_cc2 = Object.keys(sync["custom_cards_2"]);
+                if (old_cc2.length > 0) {
+                    newOptions["custom_cards_2"] = sync["custom_cards_2"];
+                    old_cc2.forEach(id => {
+                        let links = [
+                            { "default": "default", "is_default": true, "path": "default" },
+                            { "default": "default", "is_default": true, "path": "default" },
+                            { "default": "default", "is_default": true, "path": "default" },
+                            { "default": "default", "is_default": true, "path": "default" }
+                        ];
+                        console.log(sync["custom_cards_2"][id]["links"]);
+                        if (sync["custom_cards_2"][id]["links"]["custom"]) {
+                            for (let i = 0; i < sync["custom_cards_2"][id]["links"]["default"].length; i++) {
+                                links[i] = { "default": sync["custom_cards_2"][id]["links"]["default"][0].type, "is_default": true, "path": sync["custom_cards_2"][id]["links"]["default"][0].type }
+                            }
+                            for (let i = 0; i < sync["custom_cards_2"][id]["links"]["custom"].length; i++) {
+                                if (sync["custom_cards_2"][id]["links"]["custom"][i].default === false) {
+                                    links[i].is_default = false;
+                                    links[i].path = sync["custom_cards_2"][id]["links"]["custom"][i].path;
+                                }
+                            }
+                            console.log(links);
+                            newOptions["custom_cards_2"][id]["links"] = links;
+                        }
+                    });
+                }
+            } catch (e) {
+                console.log("ERROR CONVERTING OLD LINKS...");
+            }
+
+
+            
+
+
             if (Object.keys(newOptions).length > 0) {
                 chrome.storage.sync.set(newOptions).then(() => {
                     if (newOptions.new_install === true) {
@@ -91,7 +130,8 @@ chrome.runtime.onInstalled.addListener(function () {
         localOptions.forEach(option => {
             if (storage[option] === undefined) {
                 switch (option) {
-                    case ("custom_domain"): newOptions.custom_domain = default_options["custom_domain"];
+                    case ("errors"): newOptions.errors = default_options["errors"]; break;
+                    case ("custom_domain"): newOptions.custom_domain = default_options["custom_domain"]; break;
                     case ("dark_mode"): newOptions.dark_mode = default_options["dark_mode"]; break;
                     case ("dark_css"): newInstallCSS(); break;
                 }

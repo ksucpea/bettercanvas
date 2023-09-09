@@ -82,6 +82,7 @@ h2 {margin-top: 20px}
 .more-options-container {display: grid; gap: 10px; grid-template-columns: 50% 50%; margin-top: 10px}
 .palette-selection {display: flex; gap: 5px;align-items: center;margin-top: 5px;}
 .palette-selection .card-input {width: 70px;margin: 0;}
+#error_log_output, #rk_output {min-height: 100px;}
 ::-webkit-scrollbar {width: 8px;}
 ::-webkit-scrollbar-track {background: #161616;}
 ::-webkit-scrollbar-thumb {background: #323232;border-radius:10px;}

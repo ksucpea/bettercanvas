@@ -72,7 +72,7 @@
         "message": "Due"
     },
     "card_colors": {
-        "message": "Card Color Paletes"
+        "message": "Card Color Palettes"
     },
     "back": {
         "message": "Back"
@@ -91,5 +91,8 @@
     },
     "full_width": {
         "message": "Dashboard full width"
+    },
+    "report_issue": {
+        "message": "Report an issue"
     }
 }

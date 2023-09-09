@@ -88,5 +88,11 @@
     },
     "text_colors": {
         "message": "Texto"
+    },
+    "full_width": {
+        "message": "Tablero de ancho completo"
+    },
+    "report_issue": {
+        "message": "Reportar un problema"
     }
 }

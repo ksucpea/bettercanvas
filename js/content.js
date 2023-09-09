@@ -70,7 +70,7 @@ async function changeColorPreset(preset) {
         let split = preset.split(" ");
         colors = [split[1]];
     } else if (preset === "Blues") {
-        colors = ["#34a0a4", "#76c893", "#52b69a", "#168aad", "#99d98c", "#1a759f", "#b5e48c", "#1e6091", "#d9ed92", "#184e77"];
+        colors = ["#ade8f4", "#90e0ef", "#48cae4", "#00b4d8", "#0096c7"]
     } else if (preset === "Reds") {
         colors = ["#e01e37", "#c71f37", "#b21e35", "#a11d33", "#6e1423"]
     } else if (preset === "Rainbow") {
@@ -89,6 +89,22 @@ async function changeColorPreset(preset) {
         colors = ["#6b705c", "#a5a58d", "#b7b7a4", "#ffe8d6", "#ddbea9", "#cb997e"]
     } else if (preset === "Pinks") {
         colors = ["#ff0a54", "#ff5c8a", "#ff85a1", "#ff99ac", "#fbb1bd"];
+    } else if (preset === "Watermelon") {
+        colors = ["#386641", "#6a994e", "#a7c957", "#f2e8cf", "#bc4749"];
+    } else if (preset === "Popsicle") {
+        colors = ["#70d6ff", "#ff70a6", "#ff9770", "#ffd670", "#e9ff70"];
+    } else if (preset === "Chess Board") {
+        colors = ["#ffffff", "#000000"];
+    } else if (preset === "Greens") {
+        colors = ["#d8f3dc", "#b7e4c7", "#95d5b2", "#74c69d", "#52b788"];
+    } else if (preset === "Fade") {
+        colors = ["#ff69eb", "#ff86c8", "#ffa3a5", "#ffbf81", "#ffdc5e"]
+    } else if (preset === "Oranges") {
+        colors = ["#ffc971", "#ffb627", "#ff9505", "#e2711d", "#cc5803"]
+    } else if (preset === "Mesa") {
+        colors = ["#f6bd60", "#f28482", "#f5cac3", "#84a59d", "#f7ede2"]
+    } else if (preset === "Berries") {
+        colors = ["#4cc9f0", "#4361ee", "#713aed", "#9348c3", "#f72585"]
     }
 
     blockColorChange = true;
@@ -165,6 +181,7 @@ function startExtension() {
         } else if (request.message.includes("colors,")) {
             changeColorPreset(request.message.split(",")[1]);
         }
+        return true;
     });
 
     chrome.storage.onChanged.addListener(changes => {
@@ -229,6 +246,11 @@ function startExtension() {
         });
     });
 
+    document.addEventListener("error", e => {
+        console.log("error reported");
+        console.log(e);
+    })
+
     console.log("Better Canvas - running");
 }
 
@@ -246,22 +268,24 @@ async function getCards(api = null) {
                 if (!storage["custom_cards"] || !storage["custom_cards"][id]) {
                     newCards = true;
                     cards[id] = { "default": card.longName, "name": "", "img": "", "hidden": false, "weight": "regular", "credits": 1 };
-                    console.log("NEW CARDS FOUND!!!!!");
+                    console.log("NEW CARDS FOUND!");
                 }
                 if (!storage["custom_cards_2"] || !storage["custom_cards_2"][id]) {
                     newCards = true;
                     let links = [];
+
                     card.links.forEach(link => {
-                        links.push({ "type": link.label, "default": true });
+                        links.push({ "path": link.label, "default": link.label, "is_default": true });
                     });
                     for (let i = links.length; i < 4; i++) {
-                        links.push({ "type": "none", "path": "none", "default": false });
+                        links.push({ "path": "none", "default": "none", "is_default": false });
                     }
-                    console.log("after", links);
-                    cards_2[id] = { "links": { "default": links, "custom": links } };
+
+                    cards_2[id] = { "links": links };
                 }
             });
 
+            //delete cards that aren't on the dashboard anymore
             Object.keys(cards).forEach(key => {
                 found = false;
                 dashboard_cards.forEach(card => {
@@ -270,10 +294,10 @@ async function getCards(api = null) {
                 if (found === false) {
                     delete cards[key];
                     delete cards_2[key];
-                    delete cards["jackass"];
                     newCards = true;
                 }
             });
+
         } finally {
             return chrome.storage.sync.set(newCards ? { "custom_cards": cards, "custom_cards_2": cards_2 } : {}).then(chrome.runtime.sendMessage("getCardsComplete"));
         }
@@ -971,19 +995,26 @@ function customizeCards(c = null) {
                 for (let i = links.length; i < 4; i++) {
                     makeElement("a", "ic-DashboardCard__action", card.querySelector(".ic-DashboardCard__action-container"));
                 }
+
                 links = card.querySelectorAll(".ic-DashboardCard__action");
 
                 for (let i = 0; i < 4; i++) {
+                    let img = links[i].querySelector(".bettercanvas-link-image") || makeElement("img", "bettercanvas-link-image", links[i]);
                     links[i].style.display = "inherit";
-                    if (cardOptions_2.links.custom[i].type === "none") {
+                    if (cardOptions_2.links[i].path === "none") {
                         links[i].style.display = "none";
-                    } else if (cardOptions_2.links.custom[i].default === false) {
-                        console.log(cardOptions_2.links.custom[i]);
-                        links[i].href = cardOptions_2.links.custom[i].path;
-                        let img = links[i].querySelector(".bettercanvas-link-image") || makeElement("img", "bettercanvas-link-image", links[i]);
-                        img.src = getCustomLinkImage(cardOptions_2.links.custom[i].path);
+                    } else if (cardOptions_2.links[i].is_default === false) {
+                        links[i].href = cardOptions_2.links[i].path;
+                        img.src = getCustomLinkImage(cardOptions_2.links[i].path);
                         if (links[i].querySelector(".ic-DashboardCard__action-layout")) links[i].querySelector(".ic-DashboardCard__action-layout").style.display = "none";
+                        img.style.display = "block";
+                    } else {
+                        if (links[i].querySelector(".ic-DashboardCard__action-layout"))  links[i].querySelector(".ic-DashboardCard__action-layout").style.display = "inherit";
+                        img.style.display = "none";
                     }
+                    img.addEventListener("error", () => {
+                        img.src = "https://www.instructure.com/favicon.ico";
+                    })
                 }
             }
         });
@@ -999,7 +1030,13 @@ function getCustomLinkImage(path) {
     } else if (path.includes("docs.google")) {
         return "https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico";
     } else {
-        let url = new URL(path);
+        let url = {"hostname": "instructure.com/"};
+        try {
+            url = new URL(path);
+        } catch (e) {
+            console.log(e);
+            logError(e);
+        }
         return "https://" + url.hostname + "/favicon.ico";;
     }
 }
@@ -1404,9 +1441,14 @@ function cleanDue(date) {
 }
 
 function logError(e) {
-    chrome.storage.sync.get(null, storage => {
-        if (!storage.custom_domain || storage.custom_domain.includes("logerrors")) {
-            console.error("Better Canvas - Error \n", e, storage);
+    chrome.storage.local.get("errors", storage => {
+        if(storage.errors.length > 20) {
+            storage["errors"] = [];
         }
-    });
+        chrome.storage.local.set({"errors": storage["errors"].concat(e.stack)});
+
+        console.log(e.stack);
+        console.log(storage["errors"].concat(e.stack));
+    })
+
 }
