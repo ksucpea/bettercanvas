@@ -10,23 +10,19 @@ Contact me at ksucpea@gmail.com or you can open an issue here
 
 - Press load unpacked and select the extension folder
 
-<h2>Update 5.7</h2>
+<h2>Update 5.8</h2>
 
-- Dark mode improvements
+- Card customization now sorted by current classes and previous classes
 
-- Menu redesign
+- Added "revert to original" for card colors
 
-- New card color palletes feature
+- Improved dark mode customization tab
 
-- Fixed custom link images
+- New import/export themes feature
 
-- Updated gpa calculator
+- Improved menu design
 
-- New locale added (es)
-
-- Changed hex text input to color picker input
-
-- Dashboard Full width option added
+- Improved setup
 
 <h2>Links</h2>
 
