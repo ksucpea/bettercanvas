@@ -11,7 +11,7 @@ h1, h2, p {margin:0;padding:0;}
 h1 {font-size: 38px;}
 h2 {font-size: 20px}
 .steps {margin-top: 10px; margin-bottom: 20px}
-.menu-frame {border: none; height: 150vh;flex: 1;max-width: 532px;max-height:700px;overflow:scroll;border:1px solid #323232;border-radius:14px;}
+.menu-frame {border: none; height: 150vh;flex: 1;max-width: 512px;max-height:700px;overflow:scroll;border:1px solid #323232;border-radius:14px;}
 .bettercanvas {background:-webkit-linear-gradient(0deg, #ff002e, #ff5200, #ff47ad);-webkit-background-clip: text;-webkit-text-fill-color: transparent;}
 .icon  {height: 22px; width: 22px;margin-right: 10px;}
 .pin-icon {fill: #727272}

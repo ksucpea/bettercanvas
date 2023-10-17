@@ -34,96 +34,47 @@ function changeAssignmentDueDate() {
 }
 */
 
-let blockColorChange = false;
-
-function componentToHex(c) {
-    var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
+function rgbToHex(rgb) {
+    let pat = /^rgb\(\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*\)$/;
+    let exec = pat.exec(rgb);
+    return "#" + parseInt(exec[1]).toString(16) + parseInt(exec[2]).toString(16) + parseInt(exec[3]).toString(16);
 }
 
-function getColorInGradient(d, from, to) {
-    let pat = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
-    var exec1 = pat.exec(from);
-    var exec2 = pat.exec(to);
-    let a1 = [parseInt(exec1[1], 16), parseInt(exec1[2], 16), parseInt(exec1[3], 16)];
-    let a2 = [parseInt(exec2[1], 16), parseInt(exec2[2], 16), parseInt(exec2[3], 16)];
-    let rgb = a1.map((x, i) => Math.floor(a1[i] + d * (a2[i] - a1[i])));
-    return "#" + componentToHex(rgb[0]) + componentToHex(rgb[1]) + componentToHex(rgb[2]);
-}
+let changeColorInterval = null;
+let colorChanges = [];
 
-async function changeColorPreset(preset) {
+async function changeColorPreset(colors) {
 
-    if (blockColorChange === true) return;
+    if (colors.length === 0) return;
 
+    // reset everything
     let res = await getData(`${domain}/api/v1/users/self/colors`);
+    clearInterval(changeColorInterval);
     const csrfToken = CSRFtoken();
-    const cards = document.querySelectorAll(".ic-DashboardCard");
-    let colors = [];
-    if (preset.includes("gradient")) {
-        let split = preset.split(" ");
-        let from = split[1];
-        let to = split[2];
-        for (let i = 0; i < cards.length; i++) {
-            colors.push(getColorInGradient(i / cards.length, from, to));
-        }
-    } else if (preset.includes("single")) {
-        let split = preset.split(" ");
-        colors = [split[1]];
-    } else if (preset === "Blues") {
-        colors = ["#ade8f4", "#90e0ef", "#48cae4", "#00b4d8", "#0096c7"]
-    } else if (preset === "Reds") {
-        colors = ["#e01e37", "#c71f37", "#b21e35", "#a11d33", "#6e1423"]
-    } else if (preset === "Rainbow") {
-        colors = ["#ff0000", "#ff5200", "#efea5a", "#3cf525", "#147df5", "#be0aff"];
-    } else if (preset === "Cotton Candy") {
-        colors = ["#cdb4db", "#ffc8dd", "#ffafcc", "#bde0fe", "#a2d2ff"];
-    } else if (preset === "Purples") {
-        colors = ["#e0aaff", "#c77dff", "#9d4edd", "#7b2cbf", "#5a189a"]
-    } else if (preset === "Pastels") {
-        colors = ["#fff1e6", "#fde2e4", "#fad2e1", "#bee1e6", "#cddafd"]
-    } else if (preset === "Ocean") {
-        colors = ["#22577a", "#38a3a5", "#57cc99", "#80ed99", "#c7f9cc"];
-    } else if (preset === "Sunset") {
-        colors = ["#eaac8b", "#e56b6f", "#b56576", "#6d597a", "#355070"]
-    } else if (preset === "Army") {
-        colors = ["#6b705c", "#a5a58d", "#b7b7a4", "#ffe8d6", "#ddbea9", "#cb997e"]
-    } else if (preset === "Pinks") {
-        colors = ["#ff0a54", "#ff5c8a", "#ff85a1", "#ff99ac", "#fbb1bd"];
-    } else if (preset === "Watermelon") {
-        colors = ["#386641", "#6a994e", "#a7c957", "#f2e8cf", "#bc4749"];
-    } else if (preset === "Popsicle") {
-        colors = ["#70d6ff", "#ff70a6", "#ff9770", "#ffd670", "#e9ff70"];
-    } else if (preset === "Chess Board") {
-        colors = ["#ffffff", "#000000"];
-    } else if (preset === "Greens") {
-        colors = ["#d8f3dc", "#b7e4c7", "#95d5b2", "#74c69d", "#52b788"];
-    } else if (preset === "Fade") {
-        colors = ["#ff69eb", "#ff86c8", "#ffa3a5", "#ffbf81", "#ffdc5e"]
-    } else if (preset === "Oranges") {
-        colors = ["#ffc971", "#ffb627", "#ff9505", "#e2711d", "#cc5803"]
-    } else if (preset === "Mesa") {
-        colors = ["#f6bd60", "#f28482", "#f5cac3", "#84a59d", "#f7ede2"]
-    } else if (preset === "Berries") {
-        colors = ["#4cc9f0", "#4361ee", "#713aed", "#9348c3", "#f72585"]
-    }
+    const delay = 250;
+    previous = []
+    colorChanges = [];
 
-    blockColorChange = true;
+    // sort cards
+    let cards = document.querySelectorAll(".ic-DashboardCard__header");
+    let sortedCards = [];
+    cards.forEach(card => {
+        sortedCards.push({ "href": card.querySelector(".ic-DashboardCard__link").href, "el": card });
+    });
+    sortedCards.sort((a, b) => a.href > b.href ? 1 : -1);
 
+    // push each color change into a queue
     try {
-        const delay = 400;
+        sortedCards.forEach((card, i) => {
+            let previousColor = rgbToHex(card.el.querySelector(".ic-DashboardCard__header_hero").style.backgroundColor);
+            previous.push(previousColor);
 
-        setTimeout(() => {
-            blockColorChange = false;
-            changeGradientCards();
-        }, delay * cards.length);
-
-        cards.forEach((card, i) => {
             Object.keys(res.custom_colors).forEach(item => {
                 let item_id = item.split("_")[1];
-                if (card.querySelector(".ic-DashboardCard__link").href.includes(item_id)) {
-                    setTimeout(() => {
-                        let cnum = i % colors.length;
+                if (card.href.includes(item_id)) {
+                    let cnum = i % colors.length;
 
+                    let fun = () => {
                         fetch(domain + "/api/v1/users/self/colors/" + item,
                             {
                                 method: "PUT",
@@ -134,18 +85,38 @@ async function changeColorPreset(preset) {
                                 },
                                 body: JSON.stringify({ "hexcode": colors[cnum] })
                             }).then(() => {
-                                card.querySelector(".ic-DashboardCard__header_hero").style.backgroundColor = colors[cnum];
-                                card.querySelector(".ic-DashboardCard__header-title span").style.color = colors[cnum];
+                                card.el.querySelector(".ic-DashboardCard__header_hero").style.backgroundColor = colors[cnum];
+                                card.el.querySelector(".ic-DashboardCard__header-title span").style.color = colors[cnum];
                             });
-                    }, delay * i);
-                }
+                    }
 
+                    colorChanges.push(fun);
+                }
             });
         });
-
     } catch (e) {
-        blockColorChange = false;
+        logError(e);
+        colorChanges = [];
     }
+
+    // go through the queue until empty
+    changeColorInterval = setInterval(() => {
+        if (colorChanges.length > 0) {
+            let current = colorChanges.shift();
+            current();
+        } else {
+            clearInterval(changeColorInterval);
+            changeGradientCards();
+        }
+    }, delay);
+
+    // set colors to revert back to
+    chrome.storage.local.get("previous_colors", local => {
+        const now = Date.now();
+        if (local["previous_colors"] === null || now >= local["previous_colors"].expire) {
+            chrome.storage.local.set({ "previous_colors": { "colors": previous, "expire": now + 86400000 } });
+        }
+    });
 }
 
 function startExtension() {
@@ -164,7 +135,7 @@ function startExtension() {
         logError(e);
     }
 
-    chrome.runtime.onMessage.addListener(function (request) {
+    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         if (request.message === "getCards") {
             console.log("getting cards...")
             getCards();
@@ -178,8 +149,18 @@ function startExtension() {
                     toggleAutoDarkMode();
                 }
             })
-        } else if (request.message.includes("colors,")) {
-            changeColorPreset(request.message.split(",")[1]);
+        } else if (request.message === "colors") {
+            changeColorPreset(request.options);
+        } else if (request.message === "getcolors") {
+            let cards = document.querySelectorAll(".ic-DashboardCard__header");
+            let colors = [];
+            cards.forEach((card, i) => {
+                let rgbColor = card.querySelector(".ic-DashboardCard__header_hero").style.backgroundColor;
+                colors.push({ "href": card.querySelector(".ic-DashboardCard__link").href, "color": rgbToHex(rgbColor) });
+            });
+            colors.sort((a, b) => a.href > b.href ? 1 : -1);
+            colors = colors.map(x => x.color);
+            sendResponse(colors);
         }
         return true;
     });
@@ -197,6 +178,12 @@ function startExtension() {
         Object.keys(changes).forEach(key => {
             console.log(key + " changed");
             switch (key) {
+                case ("dark_css"):
+                    toggleDarkMode();
+                    break;
+                case ("autodarkmode"):
+                    toggleAutoDarkMode();
+                    break;
                 case ("gradient_cards"):
                     changeGradientCards();
                     break;
@@ -223,6 +210,7 @@ function startExtension() {
                     break;
                 case ("custom_cards"):
                 case ("custom_cards_2"):
+                case ("custom_cards_3"):
                     customizeCards();
                     break;
                 case ("todo_hr24"):
@@ -236,7 +224,7 @@ function startExtension() {
                 case ("gpa_calc_bounds"):
                     calculateGPA2();
                     break;
-                case("full_width"):
+                case ("full_width"):
                     changeFullWidth();
                     break;
                 case ("custom_font"):
@@ -256,50 +244,66 @@ function startExtension() {
 
 
 async function getCards(api = null) {
-    let dashboard_cards = api ? api : await getData(`${domain}/api/v1/dashboard/dashboard_cards`);
-    console.log("ok i have gotten cards...")
-    chrome.storage.sync.get(["custom_cards", "custom_cards_2"], storage => {
+    let dashboard_cards = api ? api : await getData(`${domain}/api/v1/courses?per_page=30`);
+    chrome.storage.sync.get(["custom_cards", "custom_cards_2", "custom_cards_3"], storage => {
         let cards = storage["custom_cards"] || {};
         let cards_2 = storage["custom_cards_2"] || {};
+        let cards_3 = storage["custom_cards_3"] || {};
         let newCards = false;
         try {
             dashboard_cards.forEach(card => {
-                let id = card.id;
-                if (!storage["custom_cards"] || !storage["custom_cards"][id]) {
-                    newCards = true;
-                    cards[id] = { "default": card.longName, "name": "", "img": "", "hidden": false, "weight": "regular", "credits": 1 };
-                    console.log("NEW CARDS FOUND!");
-                }
-                if (!storage["custom_cards_2"] || !storage["custom_cards_2"][id]) {
-                    newCards = true;
-                    let links = [];
+                if (card.course_code) {
+                    let id = card.id;
+                    if (!cards || !cards[id]) {
+                        newCards = true;
+                        cards[id] = { "default": card.course_code.substring(0, 20), "name": "", "code": card.course_code.substring(0, 20), "img": "", "hidden": false, "weight": "regular", "credits": 1, "eid": card.enrollment_term_id || 0 };
+                    } else if (cards && cards[id]) {
+                        newCards = true;
+                        cards[id].eid = card.enrollment_term_id || 0;
+                        cards[id].code = card.course_code.substring(0, 20);
+                    }
+                    if (!cards_2 || !cards_2[id]) {
+                        newCards = true;
+                        let links = [];
 
-                    card.links.forEach(link => {
-                        links.push({ "path": link.label, "default": link.label, "is_default": true });
-                    });
-                    for (let i = links.length; i < 4; i++) {
-                        links.push({ "path": "none", "default": "none", "is_default": false });
+                        for (let i = 0; i < 4; i++) {
+                            links.push({ "path": "default", "is_default": true });
+                        }
+
+                        cards_2[id] = { "links": links };
                     }
 
-                    cards_2[id] = { "links": links };
+                    if (!cards_3 || !cards_3[id]) {
+                        newCards = true;
+                        cards_3[id] = { "url": domain };
+                    }
                 }
             });
 
             //delete cards that aren't on the dashboard anymore
             Object.keys(cards).forEach(key => {
-                found = false;
-                dashboard_cards.forEach(card => {
-                    if (parseInt(key) === card.id) found = true;
-                });
+
+                let found = false;
+                // ignore cards that are not for the current url
+                if (cards_3[key] && cards_3[key].url !== domain) {
+                    found = true;
+                } else {
+                    dashboard_cards.forEach(card => {
+                        if (parseInt(key) === card.id) found = true;
+                    });
+                }
                 if (found === false) {
-                    delete cards[key];
-                    delete cards_2[key];
+                    console.log("Deleting " + key + " from custom_cards...");
+                    cards[key] && delete cards[key];
+                    cards_2[key] && delete cards_2[key];
+                    cards_3[key] && delete cards_3[key];
                     newCards = true;
                 }
             });
-
+        } catch (e) {
+            console.log(e);
         } finally {
-            return chrome.storage.sync.set(newCards ? { "custom_cards": cards, "custom_cards_2": cards_2 } : {}).then(chrome.runtime.sendMessage("getCardsComplete"));
+            return chrome.storage.sync.set(newCards ? { "custom_cards": cards, "custom_cards_2": cards_2, "custom_cards_3": cards_3 } : {}).then(chrome.runtime.sendMessage("getCardsComplete"));
         }
     });
 }
@@ -882,7 +886,7 @@ function setAssignmentStatus(id, status, assignments_done = []) {
         const pos = assignments_done.indexOf(id);
         if (pos > -1) assignments_done.splice(pos, 1);
     }
-    chrome.storage.local.set({ assignments_done: assignments_done });
+    chrome.storage.sync.set({ assignments_done: assignments_done });
 }
 
 function loadCardAssignments(c = null) {
@@ -907,7 +911,7 @@ function loadCardAssignments(c = null) {
                                 let assignmentName = makeElement("a", "bettercanvas-assignment-link", assignmentContainer, assignment.plannable.title)
                                 let assignmentDueAt = makeElement("span", "bettercanvas-assignment-dueat", assignmentContainer, cleanDue(assignment.plannable_date));
                                 assignmentDueAt.setAttribute("data-asgmtid", assignment.plannable_id);
-                                if (assignment.submissions.submitted === true) {
+                                if (assignment?.submissions?.submitted === true) {
                                     assignmentContainer.classList.add("bettercanvas-completed");
                                 } else {
                                     options.assignments_done.forEach(function (done) {
@@ -962,11 +966,12 @@ function customizeCards(c = null) {
     if (!options.custom_cards) return;
     try {
         let cards = c ? c : document.querySelectorAll('.ic-DashboardCard');
-        if (cards[0].querySelectorAll(".ic-DashboardCard__link").length === 0) return;
+        if (cards.length && cards.length > 0 && cards[0].querySelectorAll(".ic-DashboardCard__link").length === 0) return;
 
         cards.forEach(card => {
-            let cardOptions = options["custom_cards"][card.querySelector(".ic-DashboardCard__link").href.split("courses/")[1]];
-            let cardOptions_2 = options["custom_cards_2"][card.querySelector(".ic-DashboardCard__link").href.split("courses/")[1]];
+            const id = card.querySelector(".ic-DashboardCard__link").href.split("courses/")[1].replace("~", "0000000");
+            let cardOptions = options["custom_cards"][id] || null;
+            let cardOptions_2 = options["custom_cards_2"][id] || null;
             if (cardOptions) {
                 if (cardOptions.hidden === true) {
                     card.style.display = "none";
@@ -1009,7 +1014,7 @@ function customizeCards(c = null) {
                         if (links[i].querySelector(".ic-DashboardCard__action-layout")) links[i].querySelector(".ic-DashboardCard__action-layout").style.display = "none";
                         img.style.display = "block";
                     } else {
-                        if (links[i].querySelector(".ic-DashboardCard__action-layout"))  links[i].querySelector(".ic-DashboardCard__action-layout").style.display = "inherit";
+                        if (links[i].querySelector(".ic-DashboardCard__action-layout")) links[i].querySelector(".ic-DashboardCard__action-layout").style.display = "inherit";
                         img.style.display = "none";
                     }
                     img.addEventListener("error", () => {
@@ -1030,7 +1035,7 @@ function getCustomLinkImage(path) {
     } else if (path.includes("docs.google")) {
         return "https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico";
     } else {
-        let url = {"hostname": "instructure.com/"};
+        let url = { "hostname": "instructure.com/" };
         try {
             url = new URL(path);
         } catch (e) {
@@ -1088,6 +1093,7 @@ function changeGradientCards() {
             let newh = h > 300 ? (360 - (h + 65)) + (65 + degree) : h + 65 + degree;
             cardcss.textContent += ".ic-DashboardCard:nth-of-type(" + (i + 1) + ") .ic-DashboardCard__header_hero{background: linear-gradient(115deg, hsl(" + h + "deg," + s + "%," + l + "%) 5%, hsl(" + newh + "deg," + s + "%," + l + "%) 100%)!important}";
         }
+
     } else {
         let cardcss = document.querySelector("#gradientcss");
         if (cardcss) {
@@ -1111,6 +1117,7 @@ function changeOpacityCards() {
 }
 
 function changeFullWidth() {
+    if (options.full_width == null) return;
     if (options.full_width === true) {
         document.body.classList.add("full-width");
     } else {
@@ -1189,7 +1196,7 @@ function calculateGPA2() {
 function setupGPACalc() {
     if (current_page !== "/" && current_page !== "") return;
     try {
-        grades.then(result => {
+        grades?.then(result => {
 
             let existing = document.querySelector(".bettercanvas-gpa-card");
             if (options.gpa_calc === true) {
@@ -1338,7 +1345,7 @@ function isDomainCanvasPage() {
 }
 
 function setupCustomURL() {
-    let test = getData(`${domain}/api/v1/dashboard/dashboard_cards`);
+    let test = getData(`${domain}/api/v1/dashboard/dashboard_cards?include[]=concluded&include[]=term`);
     test.then(res => {
         if (res.length) {
             getCards(res).then(() => {
@@ -1442,10 +1449,10 @@ function cleanDue(date) {
 
 function logError(e) {
     chrome.storage.local.get("errors", storage => {
-        if(storage.errors.length > 20) {
+        if (storage.errors.length > 20) {
             storage["errors"] = [];
         }
-        chrome.storage.local.set({"errors": storage["errors"].concat(e.stack)});
+        chrome.storage.local.set({ "errors": storage["errors"].concat(e.stack) });
 
         console.log(e.stack);
         console.log(storage["errors"].concat(e.stack));

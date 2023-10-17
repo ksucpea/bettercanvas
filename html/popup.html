@@ -119,7 +119,7 @@
             <div class="options-right">
                 <div class="option-container">
                     <div class="customDomain">
-                        <span data-i18n="enter_url">Enter your Canvas URL here:</span>
+                        <span data-i18n="enter_url">Your Canvas URL:</span>
                         <input type="text" id="customDomain" placeholder="Or just go to your Canvas page!"></input>
                     </div>
                 </div>
@@ -210,7 +210,67 @@
                 <button id="card-colors-btn" class="big-button" data-i18n="card_colors">Card Color Palettes</button>
                 <button id="custom-font-btn" class="big-button" data-i18n="custom_font">Custom Font</button>
                 <button id="gpa-bounds-btn" class="big-button" data-i18n="gpa_settings">GPA Settings</button>
+                <button id="import-export-btn" class="big-button" data-i18n="themes">Themes</button>
                 <button id="report-issue-btn" class="big-button" data-i18n="report_issue">Report an issue</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="import-export tab" style="display: none">
+        <div class="tab-header">
+            <h2 style="margin-top: 0" data-i18n="themes_e">Themes (Experimental)</h2>
+            <button class="big-button back-btn" data-i18n="back">Back</button>
+        </div>
+        <div class="option-container">
+            <p>Export your theme and send it to ksucpea@gmail.com so I can add it here!</p>
+        </div>
+        <div class="option-container">
+            <h3 class="header-small">User made themes</h3>
+            <div id="premade-themes">
+                <button id="theme-revert" class="customization-button">Revert changes</button>
+                <button id="theme-capybara" class="theme-button customization-button">Capybara by ksucpea</button>
+                <button id="theme-minecraft" class="theme-button customization-button">Minecraft by ksucpea</button>
+            </div>
+        </div>
+        <div class="import-export-details">
+            <div class="export-details option-container">
+                <h3 class="header-small">Export</h3>
+                <p>Choose what to export:</p>
+                <div>
+                    <input type="checkbox" id="export-toggles" />
+                    <span>On/off toggles</span>
+                </div>
+                <div>
+                    <input type="checkbox" id="export-dark" />
+                    <span>Dark mode colors</span>
+                </div>
+                <div>
+                    <input type="checkbox" id="export-cards" />
+                    <span>Card customizations</span>
+                </div>
+                <div>
+                    <input type="checkbox" id="export-colors" />
+                    <span>Card color pallete</span>
+                </div>
+                <div>
+                    <input type="checkbox" id="export-font" />
+                    <span>Custom font</span>
+                </div>
+                <div>
+                    <input type="checkbox" id="export-gpa" />
+                    <span>GPA settings</span>
+                </div>
+                <div>
+                    <p>Output:</p>
+                    <textarea class="card-input" id="export-output"></textarea>
+                </div>
+            </div>
+            <div class="import-details option-container">
+                <h3 class="header-small">Import</h3>
+                <p>Copy and paste exported themes here:</p>
+                <div>
+                    <textarea class="card-input" id="import-input"></textarea>
+                </div>
             </div>
         </div>
     </div>
@@ -222,29 +282,101 @@
         </div>
         <div class="customization">
             <div class="container">
-                <div class="options-presets option-container">
-                    <button id="lighter" class="preset-button customization-button">Lighter</button>
-                    <button id="light" class="preset-button customization-button">Light</button>
-                    <button id="setToDefaults" class="customization-button">Default</button>
-                    <button id="dark" class="preset-button customization-button">Dark</button>
-                    <button id="darker" class="preset-button customization-button">Darker</button>
-                    <button id="mint" class="preset-button customization-button">Mint</button>
-                    <button id="blue" class="preset-button customization-button">Blue tint</button>
-                    <button id="burn" class="preset-button customization-button">Eyeball burn</button>
-                    <button id="unicorn" class="preset-button customization-button">Unicorn</button>
+                <div class="option-container">
+                    <h3 class="header-small">Presets</h3>
+                    <div class="options-presets">
+                        <button id="lighter" class="preset-button customization-button">Lighter</button>
+                        <button id="light" class="preset-button customization-button">Light</button>
+                        <button id="setToDefaults" class="customization-button">Default</button>
+                        <button id="dark" class="preset-button customization-button">Dark</button>
+                        <button id="darker" class="preset-button customization-button">Darker</button>
+                        <button id="mint" class="preset-button customization-button">Mint</button>
+                        <button id="blue" class="preset-button customization-button">Blue tint</button>
+                        <button id="burn" class="preset-button customization-button">Eyeball burn</button>
+                        <button id="unicorn" class="preset-button customization-button">Unicorn</button>
+                    </div>
                 </div>
             </div>
             <div class="container">
-                <h2 data-i18n="manual_customization">Manual customization</h2>
-                <div class="color-options">
-                    <div style="width:49%">
-                        <p class="color-type-header" data-i18n="background_colors">Background</p>
-                        <div class="option-background" id="option-background"></div>
-                    </div>
-                    <div style="width:49%">
-                        <p class="color-type-header" data-i18n="text_colors">Text</p>
-                        <div class="option-color" id="option-text"></div>
-                    </div>
+                <div class="option-container">
+                    <h3 class="header-small" data-i18n="manual_customization">Manual customization</h2>
+                        <div class="color-options">
+                            <div style="width:49%">
+                                <div class="changer">
+                                    <h3 class="color-type-header">Background Main</h3>
+                                    <div class="changer-container" id="dp_background-0">
+                                        <input class="card-input" type="color"></input>
+                                        <input class="card-input" type="text"></input>
+                                    </div>
+                                </div>
+                                <div class="changer">
+                                    <h3 class="color-type-header">Background Alt</h3>
+                                    <div class="changer-container" id="dp_background-1">
+                                        <input class="card-input" type="color"></input>
+                                        <input class="card-input" type="text"></input>
+                                    </div>
+                                </div>
+                                <div class="changer">
+                                    <h3 class="color-type-header">Background Other</h3>
+                                    <div class="changer-container" id="dp_background-2">
+                                        <input class="card-input" type="color"></input>
+                                        <input class="card-input" type="text"></input>
+                                    </div>
+                                </div>
+                                <div class="changer">
+                                    <h3 class="color-type-header">Borders</h3>
+                                    <div class="changer-container" id="dp_borders">
+                                        <input class="card-input" type="color"></input>
+                                        <input class="card-input" type="text"></input>
+                                    </div>
+                                </div>
+                                <div class="changer">
+                                    <h3 class="color-type-header">Sidebar</h3>
+                                    <div class="changer-container" id="dp_sidebar">
+                                        <input class="card-input" type="color"></input>
+                                        <input class="card-input" type="text"></input>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div style="width:49%">
+                                <div class="changer">
+                                    <h3 class="color-type-header">Text Main</h3>
+                                    <div class="changer-container" id="dp_text-0">
+                                        <input class="card-input" type="color"></input>
+                                        <input class="card-input" type="text"></input>
+                                    </div>
+                                </div>
+                                <div class="changer">
+                                    <h3 class="color-type-header">Text Other</h3>
+                                    <div class="changer-container" id="dp_text-1">
+                                        <input class="card-input" type="color"></input>
+                                        <input class="card-input" type="text"></input>
+                                    </div>
+                                </div>
+                                <div class="changer">
+                                    <h3 class="color-type-header">Text Alt</h3>
+                                    <div class="changer-container" id="dp_text-2">
+                                        <input class="card-input" type="color"></input>
+                                        <input class="card-input" type="text"></input>
+                                    </div>
+                                </div>
+                                <div class="changer">
+                                    <h3 class="color-type-header">Links</h3>
+                                    <div class="changer-container" id="dp_links">
+                                        <input class="card-input" type="color"></input>
+                                        <input class="card-input" type="text"></input>
+                                    </div>
+                                </div>
+                                <div class="changer">
+                                    <h3 class="color-type-header">Sidebar Text</h3>
+                                    <div class="changer-container" id="dp_sidebar-text">
+                                        <input class="card-input" type="color"></input>
+                                        <input class="card-input" type="text"></input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -255,11 +387,14 @@
         <div class="tab-header">
             <div>
                 <h2 style="margin-top: 0" data-i18n="card_customization">Card Customization</h2>
-                <p style="margin-top: 5px">Enter "none" to hide images and links.</p>
             </div>
             <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
-        <div class="advanced-cards"></div>
+        <p class="option-container" style="margin: 5px 0">Enter "none" to hide images and links.</p>
+        <div class="advanced-cards">
+            <div id="advanced-current"></div>
+            <div id="advanced-past"></div>
+        </div>
     </div>
 
     <div class="gpa-bounds-container tab" style="display:none">
@@ -281,62 +416,126 @@
         <div class="tab-header">
             <div>
                 <h2 style="margin-top: 0" data-i18n="custom_font">Custom Font</h2>
-                <p>You can use a custom font from Google fonts here</p>
-                <p>Enter only the bold part after "?family="</p>
-                <p>Leave it blank to use no custom font</p>
             </div>
             <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
-        <div class="custom-font option-container"></div>
-        <div style="display: flex; align-items: center">
+        <div>
             <div class="quick-fonts-container">
-                <h2>Popular fonts</h2>
-                <div class="quick-fonts"></div>
+                <div class="option-container">
+                    <h3 class="header-small">Popular Fonts</h3>
+                    <div id="quick-fonts"></div>
+                </div>
             </div>
+        </div>
+        <div class="custom-font option-container">
+            <h3 class="header-small">Custom Font</h3>
+            <p>You can use a custom font from Google fonts here. Make sure to enter only the bold part after "?family="
+            </p>
         </div>
     </div>
 
     <div class="card-colors-container tab" style="display:none">
         <div class="tab-header">
             <div>
-                <h2 style="margin-top: 0" data-i18n="card_colors">Card Color Paletes</h2>
+                <h2 style="margin-top: 0" data-i18n="card_colors">Card Color Palettes</h2>
             </div>
             <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
-        <div class="options-presets option-container">
-            <button class="preset-button colors-button">Reds</button>
-            <button class="preset-button colors-button">Oranges</button>
-            <button class="preset-button colors-button">Greens</button>
-            <button class="preset-button colors-button">Blues</button>
-            <button class="preset-button colors-button">Pinks</button>
-            <button class="preset-button colors-button">Purples</button>
-            <button class="preset-button colors-button">Pastels</button>
-            <button class="preset-button colors-button">Mesa</button>
-            <button class="preset-button colors-button">Fade</button>
-            <button class="preset-button colors-button">Ocean</button>
-            <button class="preset-button colors-button">Watermelon</button>
-            <button class="preset-button colors-button">Army</button>
-            <button class="preset-button colors-button">Rainbow</button>
-            <button class="preset-button colors-button">Cotton Candy</button>
-            <button class="preset-button colors-button">Sunset</button>
-            <button class="preset-button colors-button">Popsicle</button>
-            <button class="preset-button colors-button">Berries</button>
-            <button class="preset-button colors-button">Chess Board</button>
+        <div class="option-container">
+            <h3 class="header-small">Popular Palettes</h3>
+            <div class="options-presets">
+                <button id="revert-colors" class="colors-button">Revert to original</button>
+                <button class="preset-button colors-button">
+                    <p>Reds</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Oranges</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Greens</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Blues</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Pinks</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Purples</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Pastels</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Mesa</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Fade</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Ocean</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Watermelon</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Army</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Rainbow</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Cotton Candy</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Sunset</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Popsicle</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Berries</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Chess Board</p>
+                    <div class="colors-preview"></div>
+                </button>
+                <button class="preset-button colors-button">
+                    <p>Abyss</p>
+                    <div class="colors-preview"></div>
+                </button>
+            </div>
         </div>
-        <div>
-            <h2>Single color</h2>
+        <div class="option-container">
+            <h3 class="header-small">Single color</h3>
             <p>Choose a color to set all cards to that color:</p>
             <div>
                 <div class="palette-selection">
                     <input type="color" value="#34FECB" id="singleColorInput" class="color-picker-small"></input>
                     <input type="text" class="card-input" value="#34FECB" id="singleColorText" />
+                    <button id="setSingleColor" class="big-button">Go</button>
                 </div>
-                <button id="setSingleColor" class="big-button">Go</button>
             </div>
         </div>
-
-        <div>
-            <h2>Gradient</h2>
+        <div class="option-container">
+            <h3 class="header-small">Gradient</h3>
             <p>Choose 2 colors to create a gradient between them:</p>
             <div>
                 <div class="palette-selection">
@@ -346,8 +545,8 @@
                 <div class="palette-selection">
                     <input type="color" value="#7B61FF" id="gradientColorTo" class="color-picker-small" />
                     <input type="text" class="card-input" value="#7B61FF" id="gradientColorToText" />
+                    <button id="setGradientColor" class="big-button">Go</button>
                 </div>
-                <button id="setGradientColor" class="big-button">Go</button>
             </div>
         </div>
     </div>
@@ -359,26 +558,23 @@
             </div>
             <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
-        <h3 style="color: #ff4576">Please contact <b>ksucpea@gmail.com</b> for issues or feedback. Thank you!</h3>
-        <h2>Debug tools</h2>
+        <p class="option-container">Please contact <b>ksucpea@gmail.com</b> for issues or feedback. Thank you!</p>
         <p id="dev-alert"></p>
-        <p>Change key</p>
-        <div style="display: flex; gap: 5px; margin-bottom: 10px;">
-            <input class="card-input" placeholder="key" id="ck_key" />
-            <input class="card-input" placeholder="value" id="ck_value" />
-            <button class="big-button" id="ck_btn">Go</button>
-        </div>
-        <p>Retrieve key</p>
-        <div style="margin-bottom: 10px">
-            <div style="display: flex; gap: 5px">
-                <input class="card-input" placeholder="key" id="rk_key" />
-                <button class="big-button" id="rk_btn">Go</button>
+        <div class="option-container">
+            <h3 class="header-small">Retrieve Key</h3>
+            <div style="margin-bottom: 10px">
+                <div style="display: flex; gap: 5px">
+                    <input class="card-input" placeholder="key" id="rk_key" />
+                    <button class="big-button" id="rk_btn">Go</button>
+                </div>
+                <textarea class="card-input" id="rk_output"></textarea>
             </div>
-            <textarea class="card-input" id="rk_output"></textarea>
         </div>
-        <p>Error log</p>
-        <div>
-            <textarea id="error_log_output" class="card-input"></textarea>
+        <div class="option-container">
+            <h3 class="header-small">Error log</h3>
+            <div>
+                <textarea id="error_log_output" class="card-input"></textarea>
+            </div>
         </div>
     </div>
 

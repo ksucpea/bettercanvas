@@ -1,5 +1,5 @@
 :root {--inputbg: #323232}
-body{width:520px;height: 100%; font-family: 'Wix Madefor Text', sans-serif;color: #e2e2e2;background: #161616;transition: .3s height}
+body{width:505px;height: 100%; font-family: 'Wix Madefor Text', sans-serif;color: #e2e2e2;background: #161616;transition: .3s height}
 h1, h2, p, body{margin:0;padding:0}
 h1 {font-size:34px;}
 h2 {font-size:24px;}
@@ -20,7 +20,7 @@ h2 {font-size:24px;}
 #bclogo {position:absolute;right:15px;height: 48px;width:48px;}
 #numAssignmentsSlider, #numTodoItemsSlider {display: block;margin-top: 14px;width: 100%;-webkit-appearance: none; appearance: none;background:var(--inputbg);outline: none;height:6px;border-radius:20px;}
 #numAssignmentsSlider::-webkit-slider-thumb,  #numTodoItemsSlider::-webkit-slider-thumb {-webkit-appearance: none; appearance: none;height: 18px; width: 18px;background: #727272;cursor: pointer;border-radius:30px;}
-.option-container {font-size: 14px; margin-top: 10px;background: #1e1e1e;padding: 10px;border-radius: 14px;box-sizing:border-box}
+.option-container {font-size: 14px; margin-top: 10px;background: #1e1e1e;padding: 12px;border-radius: 14px;box-sizing:border-box}
 a.option-container {display: block;color:#5ca5f6;font-size: 14px;}
 a.option-container:hover {background: #333}
 #customDomain {font-size: 12px; background: var(--inputbg); border: none;padding:8px;color: #e2e2e2;margin-top: 6px;border-radius: 7px; font-family: inherit;}
@@ -29,15 +29,14 @@ a.option-container:hover {background: #333}
 .options-left {margin-right: 10px;}
 .options-left, .options-right {width: 50%;}
 .customDomain {font-weight:600}
-.changer {margin:0;height:50px;width:100%}
+.changer {margin:0;margin-bottom: 10px;width:100%}
 .option-background {color: #fff}
 .color-changer { font-family: inherit;font-size: 20px;background: none;border: none;color: #000;height: 30px;width:100%;padding:10px 0px 10px 10px;}
 .color-changer input:focus-visible {outline: none;}
 .option-color, .option-background {width: 100%;}
 .options {display: flex;justify-content: space-between}
 .options-presets {display: flex;flex-wrap:wrap;gap:10px;}
-.changer:hover {border: 1px solid red;}
-.color-type-header {color: #e2e2e2;font-weight: normal;margin: 10px 0}
+.color-type-header {color: #e2e2e2;font-weight: normal;margin: 0;font-size:13px}
 button:hover {cursor: pointer;background:#adbcc724}
 button:active {filter:brightness(85%)}
 #updateCSS {border:1px solid #8dd28d;background: #8dd28d24}
@@ -47,10 +46,12 @@ button:active {filter:brightness(85%)}
 .customization {margin-top: 12px}
 .customization-header {font-size: 20px;margin-top: 10px}
 .colors-button, .customization-button { font-size:12px;color:#e2e2e2;background:var(--inputbg);border: none;padding: 10px 20px; font-family: inherit;border-radius:7px;transition:.1s background;font-weight:500}
+.colors-button {min-width:90px;}
 .sub-options {margin-top: 5px;}
 h2 {margin-top: 20px}
+.header-small {margin: 0 0 10px; font-weight: bold;font-size:16px;}
 .tab {display: none; padding: 20px;}
-.advanced-cards {min-height:66vh;display: flex; flex-direction: column; gap: 10px;margin-top:10px;}
+#advanced-current, #advanced-past {min-height:66vh;display: flex; flex-direction: column; gap: 10px;margin-top:10px;}
 .custom-card {width: 100%;margin: 0;font-size:12px}
 .custom-card-title {font-size:16px;overflow:hidden;height:18px;margin-bottom:4px;font-weight: bold;white-space: nowrap;}
 .card-input {font-size: inherit;background: var(--inputbg); border: none;padding:6px;color: #e2e2e2;margin-top: 6px;border-radius: 6px; font-family: inherit;width:100%; box-sizing: border-box;}
@@ -70,10 +71,9 @@ h2 {margin-top: 20px}
 #custom-font-family, #custom-font-link {width:150px}
 .custom-links-container, .custom-card-left {flex: 1;}
 .custom-card-inputs {display: flex; gap: 10px;margin-top: 10px;}
-.quick-fonts {display: flex; flex-wrap: wrap;gap: 10px;margin-top:10px;}
+#quick-fonts {display: flex; flex-wrap: wrap;gap: 10px;margin-top:10px;}
 .changer-container {display: flex; align-items: center;gap: 10px;}
-.changer-container .card-input[type="color"] {height: 40px; background: none; border: none; padding: 0; margin: 0;width:100%;cursor: pointer}
-.changer-container .card-input[type="text"] {width: 70px}
+.changer-container .card-input[type="color"] {height: 40px; background: none; border: none; padding: 0; margin: 0;cursor: pointer}
 .color-options {gap: 10px;display: flex; justify-content: space-between;}
 #gradientColorFrom:hover, #gradientColorTo:hover {cursor: pointer}
 .color-picker-small {height: 30px; width: 30px; border: none; background:var(--inputbg); border-radius: 4px}
@@ -82,7 +82,15 @@ h2 {margin-top: 20px}
 .more-options-container {display: grid; gap: 10px; grid-template-columns: 50% 50%; margin-top: 10px}
 .palette-selection {display: flex; gap: 5px;align-items: center;margin-top: 5px;}
 .palette-selection .card-input {width: 70px;margin: 0;}
-#error_log_output, #rk_output {min-height: 100px;}
+.colors-preview {display: flex}
+.color-preview {flex: 1;height:5px;margin-top:2px;}
+.theme-button {padding: 24px 20px; transition: .25s background; background-size: 100%; background-position: center}
+.theme-button:hover {background-size: 120%; background-position:center;}
+.color-options .card-input { flex: 1}
+.error-message {margin: 20px;font-size: 14px; color: red;}
+textarea {resize: vertical}
+#premade-themes {display: flex;flex-wrap:wrap;gap: 10px;}
+#error_log_output, #rk_output {min-height: 100px;} 
 ::-webkit-scrollbar {width: 8px;}
 ::-webkit-scrollbar-track {background: #161616;}
 ::-webkit-scrollbar-thumb {background: #323232;border-radius:10px;}
