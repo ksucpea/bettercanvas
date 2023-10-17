@@ -303,7 +303,7 @@ async function getCards(api = null) {
         } catch (e) {
             console.log(e);
         } finally {
-            return chrome.storage.sync.set(newCards ? { "custom_cards": cards, "custom_cards_2": cards_2, "custom_cards_3": cards_3 } : {}).then(chrome.runtime.sendMessage("getCardsComplete"));
+            return chrome.storage.sync.set(newCards ? { "custom_cards": cards, "custom_cards_2": cards_2, "custom_cards_3": cards_3 } : {});
         }
     });
 }

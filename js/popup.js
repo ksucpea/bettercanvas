@@ -270,7 +270,7 @@ function importTheme(theme) {
                         break;
                 }
             });
-            chrome.storage.sync.set(final).then(() => chrome.storage.local.get(null, res => console.log(res)));
+            chrome.storage.sync.set(final);
         });
     } catch (e) {
         console.log(e);
@@ -737,17 +737,19 @@ function makeElement(element, elclass, location, text) {
 }
 
 async function sendFromPopup(message, options = {}) {
-    const tabs = await chrome.tabs.query({ currentWindow: true });
-    for await (const tab of tabs) {
-        try {
-            const response = await chrome.tabs.sendMessage(tab.id, { "message": message, "options": options });
-            if (response) {
-                return response;
+
+    let response = new Promise((resolve, reject) => {
+        chrome.tabs.query({ currentWindow: true }).then(async tabs => {
+            for (let i = 0; i < tabs.length; i++) {
+                try {
+                    let res = await chrome.tabs.sendMessage(tabs[i].id, { "message": message, "options": options });
+                    if (res) resolve(res);
+                } catch (e) {
+                }
             }
-        } catch (e) {
-            console.log(e);
-        }
-    }
-    console.log("reached end of function...");
-    return null;
+            resolve(null);
+        });
+    })
+
+    return await response;
 }

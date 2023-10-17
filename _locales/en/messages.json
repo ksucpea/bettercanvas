@@ -15,7 +15,7 @@
         "message": "Edit dark mode"
     },
     "enter_url": {
-        "message": "Enter your Canvas url here:"
+        "message": "Your Canvas url:"
     },
     "card_grades": {
         "message": "Card grades"
@@ -94,5 +94,11 @@
     },
     "report_issue": {
         "message": "Report an issue"
+    },
+    "themes": {
+        "message": "Themes"
+    },
+    "themes_e": {
+        "message": "Themes (Experimental)"
     }
 }

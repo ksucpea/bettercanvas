@@ -130,10 +130,10 @@ chrome.runtime.onInstalled.addListener(function () {
                         console.log(key, code, preset);
                         switch (key) {
                             case "--bcbackgrounddark0": preset["background-0"] = code; break;
-                            case "--bcbackgrounddark1": preset["background-1"] = code; break;
+                            case "--bcbackgrounddark1": preset["background-1"] = code; preset["sidebar"] = code; break;
                             case "--bcbackgrounddark2": preset["background-2"] = code; break;
                             case "--bcbackgrounddark3": preset["borders"] = code; break;
-                            case "--bctextlight0": preset["text-0"] = code; break;
+                            case "--bctextlight0": preset["text-0"] = code; preset["sidebar-text"] = code; break;
                             case "--bctextlight1": preset["text-1"] = code; break;
                             case "--bctextlight2": preset["text-2"] = code; break;
                             case "--bctextlink": preset["links"] = code; break;

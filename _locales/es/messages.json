@@ -15,7 +15,7 @@
         "message": "Editar modo oscuro"
     },
     "enter_url": {
-        "message": "Ingrese su url de Canvas aquí:"
+        "message": "Su url de Canvas:"
     },
     "card_grades": {
         "message": "Grados en tarjetas"
@@ -94,5 +94,8 @@
     },
     "report_issue": {
         "message": "Reportar un problema"
+    },
+    "import_export": {
+        "message": "Import/Export settings"
     }
 }
