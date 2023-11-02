@@ -313,7 +313,7 @@ function toggleDarkMode() {
     if (options.dark_mode && styleElementCreated === false) {
         let style = document.createElement('style');
         style.textContent = options.dark_css;
-        document.documentElement.prepend(style);
+        document.documentElement.append(style);
         style.id = 'darkcss';
         styleElementCreated = true;
     } else if (styleElementCreated === true) {
