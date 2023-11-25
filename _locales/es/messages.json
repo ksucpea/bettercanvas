@@ -72,7 +72,7 @@
         "message": "Pendiente"
     },
     "card_colors": {
-        "message": "Paletas de colores de la tarjeta"
+        "message": "Colores de la tarjeta"
     },
     "back": {
         "message": "Atrás"
@@ -95,7 +95,13 @@
     "report_issue": {
         "message": "Reportar un problema"
     },
-    "import_export": {
-        "message": "Import/Export settings"
+    "themes": {
+        "message": "Temas"
+    },
+    "themes_e": {
+        "message": "Temas (Experimentales)"
+    },
+    "move_top": {
+        "message": "Moverse hacia arriba"
     }
 }

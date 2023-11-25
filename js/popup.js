@@ -1,5 +1,5 @@
 const syncedSwitches = ['full_width', 'auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'disable_color_overlay', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
-const syncedSubOptions = ['auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'num_todo_items', 'hover_preview'];
+const syncedSubOptions = ['gpa_calc_prepend', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'num_todo_items', 'hover_preview'];
 const localSwitches = ['dark_mode'];
 
 sendFromPopup("getCards");
@@ -26,6 +26,7 @@ chrome.storage.sync.get(syncedSubOptions, function (result) {
     document.querySelector("#assignment_date_format").checked = result.assignment_date_format == true;
     document.querySelector("#todo_hr24").checked = result.todo_hr24 == true;
     document.querySelector('#hover_preview').checked = result.hover_preview;
+    document.querySelector('#gpa_calc_prepend').checked = result.gpa_calc_prepend;
     toggleDarkModeDisable(result.auto_dark);
 });
 
@@ -43,7 +44,8 @@ document.querySelector('#numTodoItemsSlider').addEventListener('input', function
     chrome.storage.sync.set({ "num_todo_items": this.value });
 });
 
-['assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'hover_preview'].forEach(checkbox => {
+// checkboxes
+['assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'hover_preview', 'gpa_calc_prepend'].forEach(checkbox => {
     document.querySelector("#" + checkbox).addEventListener('change', function () {
         let status = this.checked;
         chrome.storage.sync.set(JSON.parse(`{"${checkbox}": ${status}}`));
@@ -54,10 +56,15 @@ document.querySelector('#customDomain').addEventListener('input', function () {
     let domains = this.value.split(",");
     domains.forEach((domain, index) => {
         let val = domain.replace(" ", "");
-        if (val.charAt(val.length - 1) === "/") {
-            val = val.slice(0, -1);
+        if (!val.includes("https://") && !val.includes("http://")) val = "https://" + val;
+        try {
+            let url = new URL(val);
+            domains[index] = url.hostname;
+            clearAlert();
+        } catch (e) {
+            domains[index] = val;
+            displayAlert("The URL you entered appears to be invalid, so it might not work.");
         }
-        domains[index] = val;
     });
     chrome.storage.local.set({ custom_domain: domains });
 });
@@ -166,7 +173,6 @@ document.querySelectorAll(".export-details input").forEach(input => {
                         }
                     }
                 }
-                console.log("final = ", final);
                 document.querySelector("#export-output").value = JSON.stringify(final);
             });
         });
@@ -199,7 +205,6 @@ async function getExport(storage, options) {
                 final[option] = storage[option];
         }
     }
-    console.log("OK DONE!", final);
     return final;
 }
 
@@ -241,11 +246,9 @@ function getTheme(name) {
 }
 
 function importTheme(theme) {
-    console.log(theme);
     try {
         let keys = Object.keys(theme);
         let final = {};
-        console.log(theme, keys);
         chrome.storage.sync.get("custom_cards", sync => {
             keys.forEach(key => {
                 switch (key) {
@@ -253,7 +256,7 @@ function importTheme(theme) {
                         changeToPresetCSS(null, theme["dark_preset"]);
                         break;
                     case "card_colors":
-                        sendFromPopup("colors", theme["card_colors"]);
+                        sendFromPopup("setcolors", theme["card_colors"]);
                         break;
                     case "custom_cards":
                         if (theme["custom_cards"].length > 0) {
@@ -277,23 +280,11 @@ function importTheme(theme) {
     }
 }
 
-function setAlert(msg) {
-    document.querySelector("#dev-alert").textContent = msg;
-    setTimeout(() => {
-        document.querySelector("#dev-alert").textContent = "";
-    }, 4000);
-}
-
 function updateCards(key, value) {
     chrome.storage.sync.get(["custom_cards"], result => {
-        console.log({ [key]: { ...result["custom_cards"][key], ...value } });
         chrome.storage.sync.set({ "custom_cards": { ...result["custom_cards"], [key]: { ...result["custom_cards"][key], ...value } } }, () => {
-            console.log(chrome.runtime.lastError);
             if (chrome.runtime.lastError) {
-                let err = document.createElement("p");
-                err.className = "error-message";
-                err.textContent = "Error: " + chrome.runtime.lastError.message + "... The data you're entering is exceeding the storage limit. Try using shorter links. If this isn't the issue, please contact me at ksucpea@gmail.com";
-                document.body.prepend(err);
+                displayAlert("The data you're entering is exceeding the storage limit, so it won't save. Try using shorter links, and make sure to press \"copy image address\" and not \"copy image\" for links.");
             }
         })
     });
@@ -362,15 +353,44 @@ function displayGPABounds() {
     });
 }
 
+let removeAlert = null;
+
+function clearAlert() {
+    clearTimeout(removeAlert);
+    document.querySelector("#alert").style.bottom = "-400px";
+}
+
+function displayAlert(msg) {
+    clearTimeout(removeAlert);
+    document.querySelector("#alert").style.bottom = "0";
+    document.querySelector("#alert").textContent = msg;
+    removeAlert = setTimeout(() => {
+        clearAlert();
+    }, 15000);
+}
+
+function setCustomImage(key, val) {
+    if (val !== "" && val !== "none") {
+        let test = new Image();
+        test.onerror = () => {
+            displayAlert("It seems that the image link you provided isn't working. Make sure to right click on any images you want to use and select \"copy image address\" to get the correct link.");
+
+            // ensures storage limit error will override previous error
+            updateCards(key, { "img": val });
+        }
+        test.onload = clearAlert;
+        test.src = val;
+    }
+    updateCards(key, { "img": val });
+}
+
 function displayAdvancedCards() {
     sendFromPopup("getCards");
     chrome.storage.sync.get(["custom_cards", "custom_cards_2"], storage => {
-        console.log(storage["custom_cards"]);
-        document.querySelector(".advanced-cards").innerHTML = '<div id="advanced-current"></div><div id="advanced-past"><h2>Past</h2></div>';
+        document.querySelector(".advanced-cards").innerHTML = '<div id="advanced-current"></div><div id="advanced-past"><h2>Past Courses</h2></div>';
         const keys = storage["custom_cards"] ? Object.keys(storage["custom_cards"]) : [];
         if (keys.length > 0) {
             let currentEnrollment = keys.reduce((max, key) => storage["custom_cards"][key]?.eid > max ? storage["custom_cards"][key].eid : max, -1);
-            console.log(currentEnrollment);
             keys.forEach(key => {
                 let term = document.querySelector("#advanced-past");
                 if (storage["custom_cards"][key].eid === currentEnrollment) {
@@ -384,18 +404,22 @@ function displayAdvancedCards() {
                 } else {
                     let container = makeElement("div", "custom-card", term);
                     container.classList.add("option-container");
-                    container.innerHTML = '<p class="custom-card-title"></p><div class="custom-card-inputs"><div class="custom-card-left"><div class="custom-card-image"><span class="custom-key">Image</span></div><div class="custom-card-name"><span class="custom-key">Name</span></div><div class="custom-card-hide"><p class="custom-key">Hide</p></div></div><div class="custom-links-container"><p class="custom-key">Links</p><div class="custom-links"></div></div></div>';
+                    container.innerHTML = '<p class="custom-card-title"></p><div class="custom-card-inputs"><div class="custom-card-left"><div class="custom-card-image"><span class="custom-key">Image</span></div><div class="custom-card-name"><span class="custom-key">Name</span></div><div class="custom-card-code"><span class="custom-key">Code</span></div><div class="custom-card-hide"><p class="custom-key">Hide</p></div></div><div class="custom-links-container"><p class="custom-key">Links</p><div class="custom-links"></div></div></div>';
                     let imgInput = makeElement("input", "card-input", container.querySelector(".custom-card-image"));
-                    imgInput.placeholder = "Image url";
                     let nameInput = makeElement("input", "card-input", container.querySelector(".custom-card-name"));
-                    nameInput.placeholder = "Custom name";
+                    let codeInput = makeElement("input", "card-input", container.querySelector(".custom-card-code"));
                     let hideInput = makeElement("input", "card-input-checkbox", container.querySelector(".custom-card-hide"));
+                    imgInput.placeholder = "Image url";
+                    nameInput.placeholder = "Custom name";
+                    codeInput.placeholder = "Custom code";
                     hideInput.type = "checkbox";
                     imgInput.value = card.img;
                     nameInput.value = card.name;
+                    codeInput.value = card.code;
                     hideInput.checked = card.hidden;
-                    imgInput.addEventListener("change", function (e) { updateCards(key, { "img": e.target.value }) });
+                    imgInput.addEventListener("change", e => setCustomImage(key, e.target.value));
                     nameInput.addEventListener("change", function (e) { updateCards(key, { "name": e.target.value }) });
+                    codeInput.addEventListener("change", function (e) { updateCards(key, { "code": e.target.value }) });
                     hideInput.addEventListener("change", function (e) { updateCards(key, { "hidden": e.target.checked }) });
                     container.querySelector(".custom-card-title").textContent = card.default;
 
@@ -424,7 +448,7 @@ function displayAdvancedCards() {
                 };
             });
         } else {
-            document.querySelector(".advanced-cards").innerHTML = "<h3>Make sure to open this menu on your Canvas page first/refresh both your canvas page to begin setup.<br /><br />If you're having issues please contact me - ksucpea@gmail.com</h3>";
+            document.querySelector(".advanced-cards").innerHTML = "<h3>Couldn't find your cards - you may need to refresh your Canvas page and/or this menu page.<br /><br />If you're having issues please contact me - ksucpea@gmail.com</h3>";
         }
     });
 }
@@ -450,11 +474,9 @@ syncedSwitches.forEach(function (option) {
         optionSwitch.querySelector("#on").classList.toggle('checked');
         optionSwitch.querySelector("#off").classList.toggle('checked');
         let status = optionSwitch.querySelector("#on").checked;
-        console.log({ [option]: status });
         chrome.storage.sync.set({ [option]: status });
         if (option === "auto_dark") {
             toggleDarkModeDisable(status);
-            sendFromPopup("autodarkmode");
         }
     });
 });
@@ -471,10 +493,13 @@ localSwitches.forEach(option => {
         optionSwitch.querySelector("#on").classList.toggle('checked');
         optionSwitch.querySelector("#off").classList.toggle('checked');
         let status = optionSwitch.querySelector("#on").checked;
+        chrome.storage.local.set({ [option]: status });
 
+        /*
         switch (option) {
             case 'dark_mode': chrome.storage.local.set({ dark_mode: status }); sendFromPopup("darkmode"); break;
         }
+        */
     });
 });
 
@@ -482,7 +507,6 @@ localSwitches.forEach(option => {
     document.querySelector('#' + timeset).addEventListener('change', function () {
         let timeinput = { "hour": this.value.split(':')[0], "minute": this.value.split(':')[1] };
         timeset === "autodark_start" ? chrome.storage.sync.set({ auto_dark_start: timeinput }) : chrome.storage.sync.set({ auto_dark_end: timeinput });
-        sendFromPopup("autodarkmode");
     });
 });
 
@@ -515,7 +539,7 @@ document.querySelector("#gradientColorToText").addEventListener("change", e => d
 document.querySelector("#revert-colors").addEventListener("click", () => {
     chrome.storage.local.get("previous_colors", local => {
         if (local["previous_colors"] !== null) {
-            sendFromPopup("colors", local["previous_colors"].colors);
+            sendFromPopup("setcolors", local["previous_colors"].colors);
         }
     })
 })
@@ -528,13 +552,13 @@ document.querySelectorAll(".preset-button.colors-button").forEach(btn => {
         div.style.background = color;
     });
     btn.addEventListener("click", () => {
-        sendFromPopup("colors", colors);
+        sendFromPopup("setcolors", colors);
     })
 });
 
 document.querySelector("#setSingleColor").addEventListener("click", () => {
     let colors = [document.querySelector("#singleColorInput").value];;
-    sendFromPopup("colors", colors);
+    sendFromPopup("setcolors", colors);
 });
 
 function getPalette(name) {
@@ -589,7 +613,7 @@ document.querySelector("#setGradientColor").addEventListener("click", () => {
         for (let i = 1; i <= length; i++) {
             colors.push(getColorInGradient(i / length, from, to));
         }
-        sendFromPopup("colors", colors);
+        sendFromPopup("setcolors", colors);
     });
 });
 
@@ -649,7 +673,7 @@ chrome.storage.local.get(["dark_preset"], storage => {
         let text = c.querySelector('input[type="text"]');
         [color, text].forEach(changer => {
             changer.value = storage["dark_preset"][key];
-            changer.addEventListener("change", function (e) {
+            changer.addEventListener("input", function (e) {
                 changeCSS(key, e.target.value);
             });
         });

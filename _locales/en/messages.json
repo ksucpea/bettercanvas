@@ -72,7 +72,7 @@
         "message": "Due"
     },
     "card_colors": {
-        "message": "Card Color Palettes"
+        "message": "Card color palettes"
     },
     "back": {
         "message": "Back"
@@ -100,5 +100,8 @@
     },
     "themes_e": {
         "message": "Themes (Experimental)"
+    },
+    "move_top": {
+        "message": "Move to top"
     }
 }
