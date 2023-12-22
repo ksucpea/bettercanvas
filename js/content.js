@@ -15,7 +15,10 @@ const quiz_svg = '<svg label="Quiz" name="IconQuiz" viewBox="0 0 1920 1920" rota
 const announcement_svg = '<svg label="Announcement" name="IconAnnouncement" viewBox="0 0 1920 1920" rotate="0" aria-hidden="true" role="presentation" focusable="false" class="dUOHu_bGBk dUOHu_drOs dUOHu_eXrk cGqzL_bGBk cGqzL_owrh ToDoSidebarItem__Icon"><g role="presentation"><path d="M1587.16235,31.2784941 C1598.68235,7.78672942 1624.43294,-4.41091764 1650.63529,1.46202354 C1676.16,7.56084707 1694.11765,30.2620235 1694.11765,56.4643765 L1694.11765,56.4643765 L1694.11765,570.459671 C1822.87059,596.662024 1920,710.732612 1920,847.052612 C1920,983.372612 1822.87059,1097.55614 1694.11765,1123.75849 L1694.11765,1123.75849 L1694.11765,1637.64085 C1694.11765,1663.8432 1676.16,1686.65732 1650.63529,1692.6432 C1646.23059,1693.65967 1641.93882,1694.11144 1637.64706,1694.11144 C1616.52706,1694.11144 1596.87529,1682.36555 1587.16235,1662.93967 C1379.23765,1247.2032 964.178824,1242.34673 960,1242.34673 L960,1242.34673 L564.705882,1242.34673 L564.705882,1807.05261 L652.461176,1807.05261 C640.602353,1716.92555 634.955294,1560.05026 715.934118,1456.37026 C768.338824,1389.2832 845.590588,1355.28791 945.882353,1355.28791 L945.882353,1355.28791 L945.882353,1468.22908 C881.392941,1468.22908 835.312941,1487.09026 805.044706,1525.71614 C736.263529,1613.58438 759.981176,1789.54673 774.776471,1849.97026 C778.955294,1866.79849 775.115294,1884.6432 764.498824,1898.30908 C753.769412,1911.97496 737.28,1919.99379 720,1919.99379 L720,1919.99379 L508.235294,1919.99379 C477.063529,1919.99379 451.764706,1894.80791 451.764706,1863.5232 L451.764706,1863.5232 L451.764706,1242.34673 L395.294118,1242.34673 C239.548235,1242.34673 112.941176,1115.73967 112.941176,959.993788 L112.941176,959.993788 L112.941176,903.5232 L56.4705882,903.5232 C25.2988235,903.5232 0,878.337318 0,847.052612 C0,815.880847 25.2988235,790.582024 56.4705882,790.582024 L56.4705882,790.582024 L112.941176,790.582024 L112.941176,734.111435 C112.941176,578.478494 239.548235,451.758494 395.294118,451.758494 L395.294118,451.758494 L959.887059,451.758494 C976.828235,451.645553 1380.36706,444.756141 1587.16235,31.2784941 Z M1581.17647,249.706729 C1386.46588,492.078494 1128.96,547.871435 1016.47059,560.746729 L1016.47059,560.746729 L1016.47059,1133.47144 C1128.96,1146.34673 1386.46588,1202.02673 1581.17647,1444.51144 L1581.17647,1444.51144 Z M903.529412,564.699671 L395.294118,564.699671 C301.891765,564.699671 225.882353,640.709082 225.882353,734.111435 L225.882353,734.111435 L225.882353,959.993788 C225.882353,1053.39614 301.891765,1129.40555 395.294118,1129.40555 L395.294118,1129.40555 L903.529412,1129.40555 L903.529412,564.699671 Z M1694.11765,688.144376 L1694.11765,1006.07379 C1759.73647,982.694965 1807.05882,920.577318 1807.05882,847.052612 C1807.05882,773.527906 1759.73647,711.5232 1694.11765,688.144376 L1694.11765,688.144376 Z" fill-rule="evenodd" stroke="none" stroke-width="1"></path></g></svg>';
 const assignment_svg = '<svg label="Assignment" name="IconAssignment" viewBox="0 0 1920 1920" rotate="0" aria-hidden="true" role="presentation" focusable="false" class="dUOHu_bGBk dUOHu_drOs dUOHu_eXrk cGqzL_bGBk cGqzL_owrh ToDoSidebarItem__Icon"><g role="presentation"><path d="M1468.2137,0 L1468.2137,564.697578 L1355.27419,564.697578 L1355.27419,112.939516 L112.939516,112.939516 L112.939516,1807.03225 L1355.27419,1807.03225 L1355.27419,1581.15322 L1468.2137,1581.15322 L1468.2137,1919.97177 L2.5243549e-29,1919.97177 L2.5243549e-29,0 L1468.2137,0 Z M1597.64239,581.310981 C1619.77853,559.174836 1655.46742,559.174836 1677.60356,581.310981 L1677.60356,581.310981 L1903.4826,807.190012 C1925.5058,829.213217 1925.5058,864.902104 1903.4826,887.038249 L1903.4826,887.038249 L1225.8455,1564.67534 C1215.22919,1575.17872 1200.88587,1581.16451 1185.86491,1581.16451 L1185.86491,1581.16451 L959.985883,1581.16451 C928.814576,1581.16451 903.516125,1555.86606 903.516125,1524.69475 L903.516125,1524.69475 L903.516125,1298.81572 C903.516125,1283.79477 909.501919,1269.45145 920.005294,1258.94807 L920.005294,1258.94807 Z M1442.35055,896.29929 L1016.45564,1322.1942 L1016.45564,1468.225 L1162.48643,1468.225 L1588.38135,1042.33008 L1442.35055,896.29929 Z M677.637094,1242.34597 L677.637094,1355.28548 L338.818547,1355.28548 L338.818547,1242.34597 L677.637094,1242.34597 Z M903.516125,1016.46693 L903.516125,1129.40645 L338.818547,1129.40645 L338.818547,1016.46693 L903.516125,1016.46693 Z M1637.62298,701.026867 L1522.19879,816.451052 L1668.22958,962.481846 L1783.65377,847.057661 L1637.62298,701.026867 Z M1129.39516,338.829841 L1129.39516,790.587903 L338.818547,790.587903 L338.818547,338.829841 L1129.39516,338.829841 Z M1016.45564,451.769356 L451.758062,451.769356 L451.758062,677.648388 L1016.45564,677.648388 L1016.45564,451.769356 Z" fill-rule="evenodd" stroke="none" stroke-width="1"></path></g></svg>';
 
-
+/*
+const testdata = [{ "id": 2072825, "name": "B_E201-201: Introduction to Business (Fall 2023)", "account_id": 131496, "uuid": "25Y6Uawx2w0evbsyicudA4WpXEHtkF6KMTJH6uE5", "start_at": null, "grading_standard_id": null, "is_public": false, "created_at": "2022-11-18T21:18:56Z", "course_code": "B_E201-201", "default_view": "wiki", "root_account_id": 88786, "enrollment_term_id": 10757, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": false, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_25Y6Uawx2w0evbsyicudA4WpXEHtkF6KMTJH6uE5.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": null, "computed_current_score": 91.09, "computed_current_letter_grade": null, "computed_final_grade": null, "computed_final_score": 91.09, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "online", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2055227, "name": "CS115: Intro to Computer Programming (Spring 2023)", "account_id": 131483, "uuid": "kmoeU7KNdWR1AV8seYq2Yp0gMFeasEWENmrRf5Xa", "start_at": null, "grading_standard_id": 4464731, "is_public": false, "created_at": "2022-07-08T14:09:48Z", "course_code": "CS115-001", "default_view": "syllabus", "root_account_id": 88786, "enrollment_term_id": 10754, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": true, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_kmoeU7KNdWR1AV8seYq2Yp0gMFeasEWENmrRf5Xa.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": "C", "computed_current_score": 77.17, "computed_current_letter_grade": "C", "computed_final_grade": "C", "computed_final_score": 77.05, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "on_campus", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2036896, "name": "EGR101 Engineering Exploration I (Fall 2022) with Dr. Lovely", "account_id": 131477, "uuid": "tYXUNxi3D84jDMMjqis9UKfl3PMdfEexxE7WAF0u", "start_at": null, "grading_standard_id": 4951639, "is_public": false, "created_at": "2021-12-20T16:46:31Z", "course_code": "EGR 101", "default_view": "wiki", "root_account_id": 88786, "enrollment_term_id": 10748, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": false, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_tYXUNxi3D84jDMMjqis9UKfl3PMdfEexxE7WAF0u.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": "A", "computed_current_score": 98.45, "computed_current_letter_grade": "A", "computed_final_grade": "A", "computed_final_score": 98.45, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "on_campus", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2036966, "name": "EGR102 (Francis): Fundamentals of Engineering Computing (Fall 2022)", "account_id": 131477, "uuid": "SDTiWkzxTs3hyDR5Rsnfq4kxTzjSL4omnMfWTgmj", "start_at": null, "grading_standard_id": 5003320, "is_public": false, "created_at": "2021-12-20T19:23:05Z", "course_code": "EGR102 (Francis)", "default_view": "wiki", "root_account_id": 88786, "enrollment_term_id": 10748, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": true, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_SDTiWkzxTs3hyDR5Rsnfq4kxTzjSL4omnMfWTgmj.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": "A", "computed_current_score": 90.04, "computed_current_letter_grade": "A", "computed_final_grade": "A", "computed_final_score": 90.04, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "on_campus", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2063262, "name": "EGR103-001: Engineering Exploration II (Fall 2023)", "account_id": 131477, "uuid": "lJg5sGFS1yEGOviOMZquprGBgjeVxNlc4D5K5Haf", "start_at": "2023-08-21T04:00:00Z", "grading_standard_id": 4951639, "is_public": false, "created_at": "2022-10-05T17:07:49Z", "course_code": "EGR103-001", "default_view": "wiki", "root_account_id": 88786, "enrollment_term_id": 10757, "license": "private", "grade_passback_setting": null, "end_at": "2023-12-18T05:00:00Z", "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": true, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_lJg5sGFS1yEGOviOMZquprGBgjeVxNlc4D5K5Haf.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": "A", "computed_current_score": 96.92, "computed_current_letter_grade": "A", "computed_final_grade": "A", "computed_final_score": 96.92, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "on_campus", "restrict_enrollments_to_course_dates": true, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2056528, "name": "EM221-002: Statics (Spring 2023)", "account_id": 131479, "uuid": "qYe0HcqQpFueD2Na6WwqhOvoZlWCR5scuS3WgmBn", "start_at": null, "grading_standard_id": 5004749, "is_public": false, "created_at": "2022-07-18T18:14:45Z", "course_code": "EM221-002", "default_view": "modules", "root_account_id": 88786, "enrollment_term_id": 10754, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": true, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_qYe0HcqQpFueD2Na6WwqhOvoZlWCR5scuS3WgmBn.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": "C", "computed_current_score": 74.68, "computed_current_letter_grade": "C", "computed_final_grade": "C", "computed_final_score": 74.68, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "on_campus", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2074809, "name": "EM313-001: Dynamics (Fall 2023)", "account_id": 131479, "uuid": "CvS8FhlrOekevHEx0Sa5pAwN5U1zRk2buirrXrew", "start_at": null, "grading_standard_id": null, "is_public": null, "created_at": "2023-01-17T17:26:47Z", "course_code": "EM313-001", "default_view": "modules", "root_account_id": 88786, "enrollment_term_id": 10757, "license": null, "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": true, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_CvS8FhlrOekevHEx0Sa5pAwN5U1zRk2buirrXrew.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": null, "computed_current_score": 65.46, "computed_current_letter_grade": null, "computed_final_grade": null, "computed_final_score": 65.46, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "on_campus", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 1902219, "name": "Engineering Innovation Center", "account_id": 88786, "uuid": "hvt1Yc6DfGwUqoPUYr7sV3bM3zvX8eZ2wPln1LkP", "start_at": "2017-08-31T20:45:00Z", "grading_standard_id": null, "is_public": false, "created_at": "2017-07-24T13:34:54Z", "course_code": "UK - IC ", "default_view": "wiki", "root_account_id": 88786, "enrollment_term_id": 6451, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": false, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_hvt1Yc6DfGwUqoPUYr7sV3bM3zvX8eZ2wPln1LkP.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "StudentEnrollment", "role_id": 7327, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": null, "computed_current_score": 100.0, "computed_current_letter_grade": null, "computed_final_grade": null, "computed_final_score": 88.0, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2017947, "name": "F22: College of Engineering First-Year Advising", "account_id": 139439, "uuid": "Vt1Ymewz2rTjxknA7ZltEvDURhBqukYJD8DE8KJH", "start_at": null, "grading_standard_id": null, "is_public": false, "created_at": "2021-04-02T18:11:16Z", "course_code": "EGR First-Year Advising", "default_view": "wiki", "root_account_id": 88786, "enrollment_term_id": 6451, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": false, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_Vt1Ymewz2rTjxknA7ZltEvDURhBqukYJD8DE8KJH.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "StudentEnrollment", "role_id": 7327, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": null, "computed_current_score": null, "computed_current_letter_grade": null, "computed_final_grade": null, "computed_final_score": null, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2083464, "name": "KHP118-211: Walk/Jog (Fall 2023)", "account_id": 131489, "uuid": "eCTReiqqWHFeLPlzlASD9jkgwtEHQQzrEQtyTLLQ", "start_at": null, "grading_standard_id": null, "is_public": null, "created_at": "2023-03-29T13:03:56Z", "course_code": "KHP118-211", "default_view": "wiki", "root_account_id": 88786, "enrollment_term_id": 10757, "license": null, "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": false, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_eCTReiqqWHFeLPlzlASD9jkgwtEHQQzrEQtyTLLQ.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": null, "computed_current_score": 97.23, "computed_current_letter_grade": null, "computed_final_grade": null, "computed_final_score": 97.23, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "online", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2064806, "name": "ME/AER 251-001: Materials and Manufacturing (Fall 2023)", "account_id": 131479, "uuid": "xqDxkGdjTr2JPRBQkZrNjla3IGqKuwdiQmKxIoyX", "start_at": "2023-08-21T04:00:00Z", "grading_standard_id": 4951639, "is_public": false, "created_at": "2022-10-17T19:31:52Z", "course_code": "ME/AER 251-001", "default_view": "wiki", "root_account_id": 88786, "enrollment_term_id": 10757, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": true, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_xqDxkGdjTr2JPRBQkZrNjla3IGqKuwdiQmKxIoyX.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": "B", "computed_current_score": 81.78, "computed_current_letter_grade": "B", "computed_final_grade": "D", "computed_final_score": 60.85, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "on_campus", "restrict_enrollments_to_course_dates": true, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2056540, "name": "ME205-001: Computer Aided Engineering Graphics (Spring 2023)", "account_id": 131479, "uuid": "Bsq8fDy91mYWze92WTlomYMgtRv5tGDYSJbXSDcC", "start_at": "2023-01-09T05:00:00Z", "grading_standard_id": 4464731, "is_public": false, "created_at": "2022-07-18T18:31:17Z", "course_code": "ME205-001", "default_view": "modules", "root_account_id": 88786, "enrollment_term_id": 10754, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": false, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_Bsq8fDy91mYWze92WTlomYMgtRv5tGDYSJbXSDcC.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": "B", "computed_current_score": 87.26, "computed_current_letter_grade": "B", "computed_final_grade": "B", "computed_final_score": 87.26, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "on_campus", "restrict_enrollments_to_course_dates": true, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2029032, "name": "On-Campus Freshman BBN Orientation 2022", "account_id": 139439, "uuid": "Tk4u5gJ5EOZtSEWXPEEQZvBQxLC54lGZenI0TwJo", "start_at": "2020-05-01T13:59:00Z", "grading_standard_id": null, "is_public": false, "created_at": "2021-09-07T13:12:53Z", "course_code": "On- Campus Freshman BBN Orientation 2022", "default_view": "wiki", "root_account_id": 88786, "enrollment_term_id": 6451, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": false, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_Tk4u5gJ5EOZtSEWXPEEQZvBQxLC54lGZenI0TwJo.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "StudentEnrollment", "role_id": 7327, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": null, "computed_current_score": null, "computed_current_letter_grade": null, "computed_final_grade": null, "computed_final_score": 0.0, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 1903253, "name": "PHY: The Society of Physics Students ", "account_id": 131583, "uuid": "pruYcKdxi5Sm8uaFnL9XPpXEd7vGvZGy9IIMqJJi", "start_at": "2017-08-25T16:19:00Z", "grading_standard_id": null, "is_public": true, "created_at": "2017-08-15T22:02:22Z", "course_code": "PHY: SPS", "default_view": "wiki", "root_account_id": 88786, "enrollment_term_id": 6451, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": true, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": false, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_pruYcKdxi5Sm8uaFnL9XPpXEd7vGvZGy9IIMqJJi.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "StudentEnrollment", "role_id": 7327, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false }], "hide_final_grades": true, "workflow_state": "available", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2046098, "name": "PHY231-016: General University Physics (Fall 2022)", "account_id": 131583, "uuid": "UsM3qaT4LV6Ywnx8mAlRxeCPKgKBduF8XCn52TCU", "start_at": null, "grading_standard_id": 5004550, "is_public": false, "created_at": "2022-03-05T19:51:35Z", "course_code": "PHY231-016", "default_view": "syllabus", "root_account_id": 88786, "enrollment_term_id": 10748, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": true, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_UsM3qaT4LV6Ywnx8mAlRxeCPKgKBduF8XCn52TCU.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": "C", "computed_current_score": 79.19, "computed_current_letter_grade": "C", "computed_final_grade": "C", "computed_final_score": 79.19, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "on_campus", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2064393, "name": "PHY232: General University Physics (Spring 2023) Kelton", "account_id": 131583, "uuid": "Y4F4VnBhdGaJPBXRZiNK4HSHt1FLYx3pKMG1AiIU", "start_at": null, "grading_standard_id": 5006601, "is_public": false, "created_at": "2022-10-14T17:32:42Z", "course_code": "PHY232 (Spring 2023) Kelton", "default_view": "syllabus", "root_account_id": 88786, "enrollment_term_id": 10754, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": true, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_Y4F4VnBhdGaJPBXRZiNK4HSHt1FLYx3pKMG1AiIU.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": "C+", "computed_current_score": 76.33, "computed_current_letter_grade": "C+", "computed_final_grade": "C+", "computed_final_score": 76.33, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "on_campus", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2040373, "name": "PHY241: General University Physics Laboratory (Fall 2022)", "account_id": 131583, "uuid": "zqInyXVKYx1d2cPJlh2OaxTTGOFQKHY4CJBAMioU", "start_at": null, "grading_standard_id": 4464731, "is_public": false, "created_at": "2022-01-05T20:59:08Z", "course_code": "PHY241", "default_view": "modules", "root_account_id": 88786, "enrollment_term_id": 10748, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": true, "locale": "en", "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_zqInyXVKYx1d2cPJlh2OaxTTGOFQKHY4CJBAMioU.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": "A", "computed_current_score": 90.19, "computed_current_letter_grade": "A", "computed_final_grade": "A", "computed_final_score": 90.36, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "on_campus", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2052217, "name": "PHY242: General University Physics Laboratory (Spring 2023)", "account_id": 131583, "uuid": "ltE09Thr09lywm7n07b0XXJjFKeGXSHi4JijJWgc", "start_at": null, "grading_standard_id": 4464731, "is_public": false, "created_at": "2022-04-28T18:22:38Z", "course_code": "PHY242", "default_view": "modules", "root_account_id": 88786, "enrollment_term_id": 10754, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": true, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_ltE09Thr09lywm7n07b0XXJjFKeGXSHi4JijJWgc.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": "B", "computed_current_score": 87.21, "computed_current_letter_grade": "B", "computed_final_grade": "B", "computed_final_score": 87.21, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "on_campus", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2044516, "name": "UK101-044: Academic Orientation (Fall 2022)", "account_id": 131616, "uuid": "oLmNWDmf2mC9vovCoeryiSbtjwiQWiRit0qpMu94", "start_at": null, "grading_standard_id": 4464731, "is_public": false, "created_at": "2022-01-25T15:47:19Z", "course_code": "UK101-044", "default_view": "wiki", "root_account_id": 88786, "enrollment_term_id": 10748, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": false, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_oLmNWDmf2mC9vovCoeryiSbtjwiQWiRit0qpMu94.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": "A", "computed_current_score": 98.0, "computed_current_letter_grade": "A", "computed_final_grade": "A", "computed_final_score": 98.0, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "on_campus", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2031124, "name": "Veterans Resource Center eLounge", "account_id": 139439, "uuid": "6ryH69AESd574STa4VmF3prlqiqiekN25L19ls6X", "start_at": "2021-10-11T14:29:39Z", "grading_standard_id": null, "is_public": false, "created_at": "2021-10-07T10:41:01Z", "course_code": "Veterans Res", "default_view": "wiki", "root_account_id": 88786, "enrollment_term_id": 6451, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": false, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_6ryH69AESd574STa4VmF3prlqiqiekN25L19ls6X.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "StudentEnrollment", "role_id": 7327, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": null, "computed_current_score": null, "computed_current_letter_grade": null, "computed_final_grade": null, "computed_final_score": null, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "restrict_enrollments_to_course_dates": false, "overridden_course_visibility": "", "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2054323, "name": "Wildcats First! 2026", "account_id": 139439, "uuid": "XiGn1Xp7TorAi4mfBCH5wjVz8UKCI4hEROzqeOwt", "start_at": null, "grading_standard_id": null, "is_public": false, "created_at": "2022-06-27T12:08:28Z", "course_code": "Wildcats First!", "default_view": "wiki", "root_account_id": 88786, "enrollment_term_id": 6451, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": false, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_XiGn1Xp7TorAi4mfBCH5wjVz8UKCI4hEROzqeOwt.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "StudentEnrollment", "role_id": 7327, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": null, "computed_current_score": null, "computed_current_letter_grade": null, "computed_final_grade": null, "computed_final_score": null, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }, { "id": 2047836, "name": "WRD204-008: Technical Writing (Fall 2022)", "account_id": 139456, "uuid": "nPhOtybBxcpNp68KTVhwLwBSOLcba1vaXZb24vWC", "start_at": null, "grading_standard_id": null, "is_public": false, "created_at": "2022-03-30T15:03:37Z", "course_code": "WRD204-008", "default_view": "wiki", "root_account_id": 88786, "enrollment_term_id": 10748, "license": "private", "grade_passback_setting": null, "end_at": null, "public_syllabus": false, "public_syllabus_to_auth": false, "storage_quota_mb": 4000, "is_public_to_auth_users": false, "homeroom_course": false, "course_color": null, "friendly_name": null, "apply_assignment_group_weights": false, "calendar": { "ics": "https://uk.instructure.com/feeds/calendars/course_nPhOtybBxcpNp68KTVhwLwBSOLcba1vaXZb24vWC.ics" }, "time_zone": "America/New_York", "blueprint": false, "template": false, "enrollments": [{ "type": "student", "role": "SAPStudent", "role_id": 3408, "user_id": 7102340, "enrollment_state": "active", "limit_privileges_to_course_section": false, "current_grading_period_id": null, "current_grading_period_title": null, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "computed_current_grade": null, "computed_current_score": 91.3, "computed_current_letter_grade": null, "computed_final_grade": null, "computed_final_score": 91.3, "totals_for_all_grading_periods_option": false, "current_period_computed_current_score": null, "current_period_computed_final_score": null, "current_period_computed_current_grade": null, "current_period_computed_final_grade": null }], "hide_final_grades": false, "workflow_state": "available", "course_format": "on_campus", "restrict_enrollments_to_course_dates": false, "has_grading_periods": false, "multiple_grading_periods_enabled": false, "has_weighted_grading_periods": false }];
+console.log(getCards(testdata));
+*/
 /* 
 Start
 */
@@ -65,7 +68,7 @@ function startExtension() {
 
     chrome.runtime.onMessage.addListener(recieveMessage);
 
-    chrome.storage.onChanged.addListener(applyOptionsChanges)
+    chrome.storage.onChanged.addListener(applyOptionsChanges);
 
     console.log("Better Canvas - running");
 }
@@ -112,6 +115,8 @@ function applyOptionsChanges(changes) {
             case ("assignments_due"):
             case ("num_assignments"):
             case ("assignment_date_format"):
+            case ("card_overdues"):
+            case ("relative_dues"):
                 if (!assignments) getAssignments();
                 if (document.querySelectorAll(".bettercanvas-card-assignment").length === 0) setupCardAssignments();
                 loadCardAssignments();
@@ -124,6 +129,7 @@ function applyOptionsChanges(changes) {
             case ("todo_hr24"):
             case ("num_todo_items"):
             case ("hover_preview"):
+            case ("todo_overdues"):
                 loadBetterTodo();
                 break;
             case ("gpa_calc"):
@@ -219,34 +225,36 @@ async function getCards(api = null) {
         let newCards = false;
         try {
             dashboard_cards.forEach(card => {
-                if (card.course_code) {
-                    let id = card.id;
-                    if (!cards || !cards[id]) {
-                        newCards = true;
-                        cards[id] = { "default": card.course_code.substring(0, 20), "name": "", "code": "", "img": "", "hidden": false, "weight": "regular", "credits": 1, "eid": card.enrollment_term_id || 0 };
-                    } else if (cards && cards[id]) {
-                        newCards = true;
-                        cards[id].default = card.course_code.substring(0, 20);
-                        cards[id].eid = card.enrollment_term_id || 0;
-                        if (!cards[id].code) cards[id].code = "";
-                    }
-                    if (!cards_2 || !cards_2[id]) {
-                        newCards = true;
-                        let links = [];
-
-                        for (let i = 0; i < 4; i++) {
-                            links.push({ "path": "default", "is_default": true });
-                        }
-
-                        cards_2[id] = { "links": links };
-                    }
-
-                    if (!cards_3 || !cards_3[id]) {
-                        newCards = true;
-                        cards_3[id] = { "url": domain };
-                    }
+                if (!card.course_code) return;
+                let id = card.id;
+                if (!cards || !cards[id]) {
+                    newCards = true;
+                    cards[id] = { "default": card.course_code.substring(0, 20), "name": "", "code": "", "img": "", "hidden": false, "weight": "regular", "credits": 1, "eid": card.enrollment_term_id || 0, "gr": null };
+                } else if (cards && cards[id]) {
+                    newCards = true;
+                    cards[id].default = card.course_code.substring(0, 20);
+                    cards[id].eid = card.enrollment_term_id || 0;
+                    if (!cards[id].code) cards[id].code = "";
                 }
+                if (!cards_2 || !cards_2[id]) {
+                    newCards = true;
+                    let links = [];
+
+                    for (let i = 0; i < 4; i++) {
+                        links.push({ "path": "default", "is_default": true });
+                    }
+
+                    cards_2[id] = { "links": links };
+                }
+
+                if (!cards_3 || !cards_3[id]) {
+                    newCards = true;
+                    cards_3[id] = { "url": domain };
+                }
+
             });
+
+            console.log("\n\n\n\n", cards);
 
             //delete cards that aren't on the dashboard anymore
             Object.keys(cards).forEach(key => {
@@ -259,13 +267,15 @@ async function getCards(api = null) {
                         if (parseInt(key) === card.id) found = true;
                     });
                 }
+
                 if (found === false) {
-                    console.log("Deleting " + key + " from custom_cards...");
+                    console.log("Deleting " + key + " from custom_cards...", cards[key]);
                     cards[key] && delete cards[key];
                     cards_2[key] && delete cards_2[key];
                     cards_3[key] && delete cards_3[key];
                     newCards = true;
                 }
+
             });
 
         } catch (e) {
@@ -408,7 +418,7 @@ let delay;
 function loadBetterTodo() {
     if (options.better_todo !== true) return;
     try {
-        const itemCount = options.num_todo_items;
+        const maxItemCount = options.num_todo_items;
         const hr24 = options.todo_hr24;
         const now = new Date();
         const csrfToken = CSRFtoken();
@@ -421,155 +431,174 @@ function loadBetterTodo() {
             chrome.storage.sync.get(options.custom_assignments_overflow, storage => {
                 //assignmentData = assignmentData === null ? data : assignmentData;
                 let items = combineAssignments(data);
-                items.forEach(item => {
+                items.forEach((item, index) => {
                     let date = new Date(item.plannable_date);
-                    if ((item.plannable_type === "announcement") || ((item.plannable_type === "assignment" || item.plannable_type === "quiz" || item.plannable_type === "discussion_topic") && assignmentsToInsert.length < itemCount && date >= now)) {
-                        if (!item.planner_override || item.planner_override.marked_complete === false) {
-                            if (options.hide_completed === false || item.plannable_type === "announcement" || (options.hide_completed === true && item.submissions.submitted === false)) {
 
-                                let listItemContainer = document.createElement("div");
-                                listItemContainer.classList.add("bettercanvas-todo-container");
-                                listItemContainer.innerHTML = '<div class="bettercanvas-hover-preview"><p class="bettercanvas-preview-text"></p></div><div class="bettercanvas-todo-icon"></div><a class="bettercanvas-todo-item"></a><button class="bettercanvas-todo-complete-btn"><svg name="IconX" viewBox="0 0 1920 1920" rotate="0" aria-hidden="true" role="presentation" focusable="false" class="dUOHu_bGBk dUOHu_drOs dUOHu_eXrk cGqzL_bGBk" style="width: 1em; height: 1em;"><g role="presentation"><path d="M797.319865 985.881673L344.771525 1438.43001 533.333333 1626.99182 985.881673 1174.44348 1438.43001 1626.99182 1626.99182 1438.43001 1174.44348 985.881673 1626.99182 533.333333 1438.43001 344.771525 985.881673 797.319865 533.333333 344.771525 344.771525 533.333333z" fill-rule="nonzero" stroke="none" stroke-width="1"></path></g></svg></button>';
-                                listItemContainer.querySelector(".bettercanvas-todo-item").href = item.html_url;
-                                listItemContainer.dataset.id = item.plannable_id;
-                                let svg = assignment_svg;
-                                switch (item.plannable_type) {
-                                    case 'discussion_topic':
-                                        svg = discussion_svg; break;
-                                    case 'quiz':
-                                        svg = quiz_svg; break;
-                                    case 'announcement':
-                                        svg = announcement_svg; break;
-                                }
-                                listItemContainer.querySelector('.bettercanvas-todo-icon').innerHTML += svg;
-                                let listItem = listItemContainer.querySelector(".bettercanvas-todo-item");
-                                makeElement("a", "bettercanvas-todoitem-title", listItem, item.plannable.title);
-                                makeElement("p", "bettercanvas-todoitem-course", listItem, item.context_name);
-                                let format = formatDate(date, item.submissions, hr24);
-                                let todoDate = makeElement("p", "bettercanvas-todoitem-date", listItem, format.date);
-                                if (format.dueSoon) todoDate.classList.add("bettercanvas-due-soon");
+                    // trying to remove insane nested conditions
+                    // for announcements:
+                    // 1) announcements list isn't full 
+                    // for todos:
+                    // 2) confirm item is assignment, quiz, or discussion 
+                    // 3) list isn't full, item isn't past due, or allow overdue is on and item is not submitted
+                    // for both:
+                    // 4) user has not marked it complete
+                    if (item.plannable_type === "announcement") {
+                        if (announcementsToInsert.length >= maxItemCount) return;
+                    } else {
+                        if (item.plannable_type !== "assignment" && item.plannable_type !== "quiz" && item.plannable_type !== "discussion_topic") return;
+                        if (((assignmentsToInsert.length >= maxItemCount) || (options.todo_overdues !== true && date < now) || (options.todo_overdues === true && item.submissions.submitted === true))) return;
+                        if (options.hide_completed === true && item.submissions.submitted === true) return;
+                        console.log(options.todo_overdues, "where" + date.getTime() + " < " + now.getTime() + " || " + (item.submissions.submitted ? "true" : "false"), item);
 
-                                if (options.hover_preview === true) {
-                                    const customItem = item.planner_override && item.planner_override.custom && item.planner_override.custom === true;
-                                    listItem.addEventListener("mouseover", () => {
-                                        listItem.classList.add("bettercanvas-todo-hover");
-                                        let preview = listItemContainer.querySelector(".bettercanvas-hover-preview");
-                                        let previewText = preview.querySelector(".bettercanvas-preview-text");
-                                        clearTimeout(delay);
-                                        delay = setTimeout(async () => {
-                                            if (listItem.classList.contains("bettercanvas-todo-hover")) {
-                                                // custom assignment
-                                                if (customItem) {
-                                                    previewText.textContent = "Custom assignment";
+                    }
+                    if (item.planner_override && item.planner_override.marked_complete === true) return;
 
-                                                } else {
-                                                    let found = false;
-                                                    let searchCount = 1;
-                                                    while (searchCount < 5 && found === false) {
-                                                        for (let i = 0; i < announcements.length; i++) {
-                                                            if (announcements[i].id === item.plannable_id) {
-                                                                found = true;
-                                                                if (previewText.textContent === "") {
-                                                                    let description = item.plannable_type === "announcement" ? announcements[i].message : announcements[i].description;
-                                                                    previewText.textContent = description === "" ? "No details given" : description.replace(/<\/?[^>]+(>|$)/g, " ");
-                                                                }
-                                                                break;
-                                                            }
-                                                        }
-                                                        if (found === false) {
-                                                            let apiLink = domain + "/api/v1/";
-                                                            if (item.plannable_type === "assignment") {
-                                                                apiLink += `courses/${item.course_id}/assignments/${item.plannable_id}`;
-                                                            } else if (item.plannable_type === "announcement") {
-                                                                apiLink += `announcements?context_codes[]=course_${item.course_id}&per_page=3&page=${searchCount}`;
-                                                            }
-                                                            let data = await getData(apiLink);
-                                                            item.plannable_type === "announcement" ? announcements.push(...data) : announcements.push(data);
-                                                            searchCount++;
-                                                        }
-                                                    }
-                                                    if (found === false) {
-                                                        previewText.textContent = "Couldn't load preview";
-                                                    }
-                                                }
-                                                preview.style.display = "block";
-                                            }
-                                        }, 250);
-                                    });
+                    //if (!item.planner_override || item.planner_override.marked_complete === false) {
+                    //if (options.hide_completed === false || item.plannable_type === "announcement" || (options.hide_completed === true && item.submissions.submitted === false)) {
 
-                                    listItem.addEventListener("mouseleave", () => {
-                                        listItem.classList.remove("bettercanvas-todo-hover");
-                                        listItemContainer.querySelector(".bettercanvas-hover-preview").style.display = "none";
-                                    });
-                                }
+                    let listItemContainer = document.createElement("div");
+                    listItemContainer.classList.add("bettercanvas-todo-container");
+                    listItemContainer.innerHTML = '<div class="bettercanvas-hover-preview"><p class="bettercanvas-preview-text"></p></div><div class="bettercanvas-todo-icon"></div><a class="bettercanvas-todo-item"></a><button class="bettercanvas-todo-complete-btn"><svg name="IconX" viewBox="0 0 1920 1920" rotate="0" aria-hidden="true" role="presentation" focusable="false" class="dUOHu_bGBk dUOHu_drOs dUOHu_eXrk cGqzL_bGBk" style="width: 1em; height: 1em;"><g role="presentation"><path d="M797.319865 985.881673L344.771525 1438.43001 533.333333 1626.99182 985.881673 1174.44348 1438.43001 1626.99182 1626.99182 1438.43001 1174.44348 985.881673 1626.99182 533.333333 1438.43001 344.771525 985.881673 797.319865 533.333333 344.771525 344.771525 533.333333z" fill-rule="nonzero" stroke="none" stroke-width="1"></path></g></svg></button>';
+                    listItemContainer.querySelector(".bettercanvas-todo-item").href = item.html_url;
+                    listItemContainer.dataset.id = item.plannable_id;
+                    let svg = assignment_svg;
+                    switch (item.plannable_type) {
+                        case 'discussion_topic':
+                            svg = discussion_svg; break;
+                        case 'quiz':
+                            svg = quiz_svg; break;
+                        case 'announcement':
+                            svg = announcement_svg; break;
+                    }
+                    listItemContainer.querySelector('.bettercanvas-todo-icon').innerHTML += svg;
+                    let listItem = listItemContainer.querySelector(".bettercanvas-todo-item");
+                    makeElement("a", "bettercanvas-todoitem-title", listItem, item.plannable.title);
+                    makeElement("p", "bettercanvas-todoitem-course", listItem, item.context_name);
+                    let format = formatTodoDate(date, item.submissions, hr24);
+                    let todoDate = makeElement("p", "bettercanvas-todoitem-date", listItem, format.date);
+                    if (format.dueSoon) todoDate.classList.add("bettercanvas-due-soon");
 
-                                // remove item button
-                                listItemContainer.querySelector(".bettercanvas-todo-complete-btn").addEventListener('click', function () {
-                                    if (item.planner_override && item.planner_override.custom && item.planner_override.custom === true) {
-                                        /* set item as complete locally */
-                                        chrome.storage.sync.get("custom_assignments_overflow", overflow => {
-                                            chrome.storage.sync.get(overflow["custom_assignments_overflow"], storage => {
-                                                overflow["custom_assignments_overflow"].forEach(overflow => {
-                                                    for (let i = 0; i < storage[overflow].length; i++) {
-                                                        if (storage[overflow][i].plannable_id === item.plannable_id) {
-                                                            storage[overflow].splice(i, 1);
-                                                            chrome.storage.sync.set({ [overflow]: storage[overflow] }).then(() => {
-                                                                let container = listItemContainer.parentElement;
-                                                                container.removeChild(listItemContainer);
-                                                                loadBetterTodo();
-                                                                loadCardAssignments();
-                                                            });
-                                                            break;
-                                                        }
-                                                    }
-                                                });
-                                            });
-                                        });
+                    if (options.hover_preview === true) {
+                        const customItem = item.planner_override && item.planner_override.custom && item.planner_override.custom === true;
+                        listItem.addEventListener("mouseover", () => {
+                            listItem.classList.add("bettercanvas-todo-hover");
+                            let preview = listItemContainer.querySelector(".bettercanvas-hover-preview");
+                            let previewText = preview.querySelector(".bettercanvas-preview-text");
+                            clearTimeout(delay);
+                            delay = setTimeout(async () => {
+                                if (listItem.classList.contains("bettercanvas-todo-hover")) {
+                                    // custom assignment
+                                    if (customItem) {
+                                        previewText.textContent = "Custom assignment";
+
                                     } else {
-                                        /* set the item as complete through api */
-                                        fetch(domain + '/api/v1/planner/overrides' + (item.planner_override ? "/" + item.planner_override.id : ""),
-                                            {
-                                                method: item.planner_override ? "PUT" : "POST",
-                                                headers: {
-                                                    "content-type": "application/json",
-                                                    'accept': 'application/json',
-                                                    'X-CSRF-Token': csrfToken,
-                                                },
-                                                body: JSON.stringify({ id: item.planner_override ? item.planner_override.id : null, marked_complete: true, plannable_id: item.plannable_id, plannable_type: item.plannable_type })
-                                            }).then(resp => {
-                                                if (resp.status === 200 || resp.status === 201) {
+                                        let found = false;
+                                        let searchCount = 1;
+                                        while (searchCount < 5 && found === false) {
+                                            for (let i = 0; i < announcements.length; i++) {
+                                                if (announcements[i].id === item.plannable_id) {
+                                                    found = true;
+                                                    if (previewText.textContent === "") {
+                                                        let description = item.plannable_type === "announcement" ? announcements[i].message : announcements[i].description;
+                                                        previewText.textContent = description === "" ? "No details given" : description.replace(/<\/?[^>]+(>|$)/g, " ");
+                                                    }
+                                                    break;
+                                                }
+                                            }
+                                            if (found === false) {
+                                                let apiLink = domain + "/api/v1/";
+                                                if (item.plannable_type === "assignment") {
+                                                    apiLink += `courses/${item.course_id}/assignments/${item.plannable_id}`;
+                                                } else if (item.plannable_type === "announcement") {
+                                                    apiLink += `announcements?context_codes[]=course_${item.course_id}&per_page=3&page=${searchCount}`;
+                                                }
+                                                let data = await getData(apiLink);
+                                                item.plannable_type === "announcement" ? announcements.push(...data) : announcements.push(data);
+                                                searchCount++;
+                                            }
+                                        }
+                                        if (found === false) {
+                                            previewText.textContent = "Couldn't load preview";
+                                        }
+                                    }
+                                    preview.style.display = "block";
+                                }
+                            }, 250);
+                        });
+
+                        listItem.addEventListener("mouseleave", () => {
+                            listItem.classList.remove("bettercanvas-todo-hover");
+                            listItemContainer.querySelector(".bettercanvas-hover-preview").style.display = "none";
+                        });
+                    }
+
+                    // remove item button
+                    listItemContainer.querySelector(".bettercanvas-todo-complete-btn").addEventListener('click', function () {
+                        if (item.planner_override && item.planner_override.custom && item.planner_override.custom === true) {
+                            /* set item as complete locally */
+                            chrome.storage.sync.get("custom_assignments_overflow", overflow => {
+                                chrome.storage.sync.get(overflow["custom_assignments_overflow"], storage => {
+                                    overflow["custom_assignments_overflow"].forEach(overflow => {
+                                        for (let i = 0; i < storage[overflow].length; i++) {
+                                            if (storage[overflow][i].plannable_id === item.plannable_id) {
+                                                storage[overflow].splice(i, 1);
+                                                chrome.storage.sync.set({ [overflow]: storage[overflow] }).then(() => {
                                                     let container = listItemContainer.parentElement;
                                                     container.removeChild(listItemContainer);
-                                                    assignmentData.forEach(assignment => {
-                                                        if (assignment.plannable_id === item.plannable_id) {
-                                                            item.planner_override = { "marked_complete": true };
-                                                        }
-                                                    });
                                                     loadBetterTodo();
                                                     loadCardAssignments();
-                                                }
-                                            });
+                                                });
+                                                break;
+                                            }
+                                        }
+                                    });
+                                });
+                            });
+                        } else {
+                            /* set the item as complete through api */
+                            fetch(domain + '/api/v1/planner/overrides' + (item.planner_override ? "/" + item.planner_override.id : ""),
+                                {
+                                    method: item.planner_override ? "PUT" : "POST",
+                                    headers: {
+                                        "content-type": "application/json",
+                                        'accept': 'application/json',
+                                        'X-CSRF-Token': csrfToken,
+                                    },
+                                    body: JSON.stringify({ id: item.planner_override ? item.planner_override.id : null, marked_complete: true, plannable_id: item.plannable_id, plannable_type: item.plannable_type })
+                                }).then(resp => {
+                                    if (resp.status === 200 || resp.status === 201) {
+                                        let container = listItemContainer.parentElement;
+                                        container.removeChild(listItemContainer);
+                                        assignmentData.forEach(assignment => {
+                                            if (assignment.plannable_id === item.plannable_id) {
+                                                item.planner_override = { "marked_complete": true };
+                                            }
+                                        });
+                                        loadBetterTodo();
+                                        loadCardAssignments();
                                     }
                                 });
+                        }
+                    });
 
-                                if (item.plannable_type === "announcement") {
-                                    announcementsToInsert.push(listItemContainer);
-                                } else {
-                                    assignmentsToInsert.push(listItemContainer);
-                                    if (item.submissions && item.submissions.submitted) {
-                                        listItemContainer.classList.add("bettercanvas-todo-item-completed");
-                                    }
-                                }
-                            }
+                    if (item.plannable_type === "announcement") {
+                        announcementsToInsert.push(listItemContainer);
+                    } else {
+                        assignmentsToInsert.push(listItemContainer);
+                        if (item.submissions && item.submissions.submitted) {
+                            listItemContainer.classList.add("bettercanvas-todo-item-completed");
                         }
                     }
+                    //}
+                    //}
+
 
                 });
 
                 // appending assignments all at once
                 todoAssignments.textContent = "";
                 if (assignmentsToInsert.length > 0) {
-                    for (let i = 0; i < (assignmentsToInsert.length > 5 ? itemCount : assignmentsToInsert.length); i++) {
+                    for (let i = 0; i < (assignmentsToInsert.length > 5 ? maxItemCount : assignmentsToInsert.length); i++) {
                         todoAssignments.append(assignmentsToInsert[i]);
                     }
                 } else {
@@ -579,7 +608,7 @@ function loadBetterTodo() {
                 // appending announcements all at once
                 todoAnnouncements.textContent = "";
                 if (announcementsToInsert.length > 0) {
-                    for (let i = announcementsToInsert.length - 1; i >= (announcementsToInsert.length - itemCount < 0 ? 0 : announcementsToInsert.length - itemCount); i--) {
+                    for (let i = announcementsToInsert.length - 1; i >= (announcementsToInsert.length - maxItemCount < 0 ? 0 : announcementsToInsert.length - maxItemCount); i--) {
                         todoAnnouncements.append(announcementsToInsert[i]);
                     }
                 } else {
@@ -812,11 +841,12 @@ function setAssignmentStatus(id, status, assignments_done = []) {
     chrome.storage.sync.set({ assignments_done: assignments_done });
 }
 
-function createCardAssignment(location, assignment) {
+function createCardAssignment(location, assignment, overdue) {
     let assignmentContainer = makeElement("div", "bettercanvas-assignment-container", location);
     let assignmentName = makeElement("a", "bettercanvas-assignment-link", assignmentContainer, assignment.plannable.title)
-    let assignmentDueAt = makeElement("span", "bettercanvas-assignment-dueat", assignmentContainer, cleanDue(assignment.plannable_date));
+    let assignmentDueAt = makeElement("span", "bettercanvas-assignment-dueat", assignmentContainer, formatCardDue(assignment.plannable_date, options.relative_dues));
     assignmentDueAt.setAttribute("data-asgmtid", assignment.plannable_id);
+    if (overdue === true) assignmentDueAt.classList.add("bettercanvas-assignment-overdue");
     if (assignment?.submissions?.submitted === true) {
         assignmentContainer.classList.add("bettercanvas-completed");
     } else {
@@ -849,10 +879,13 @@ function loadCardAssignments(c = null) {
                     cardContainer.parentElement.style.display = "block";
 
                     items.forEach(assignment => {
+                        let due = new Date(assignment.plannable_date);
                         if (course_id !== assignment.course_id || count >= options.num_assignments || (assignment.submissions.submitted === true && options.hide_completed === true)) return;
-                        if (now <= new Date(assignment.plannable_date) && (assignment.plannable_type === "assignment" || assignment.plannable_type === "quiz" || assignment.plannable_type === "discussion_topic")) {
-                            createCardAssignment(cardContainer, assignment);
-                            count++;
+                        if ((now <= due) || (options.card_overdues === true && assignment.submissions.submitted === false)) {
+                            if ((assignment.plannable_type === "assignment" || assignment.plannable_type === "quiz" || assignment.plannable_type === "discussion_topic")) {
+                                createCardAssignment(cardContainer, assignment, now >= due);
+                                count++;
+                            }
                         }
                     });
 
@@ -900,16 +933,13 @@ function customizeCards(c = null) {
         if (cards.length && cards.length > 0 && cards[0].querySelectorAll(".ic-DashboardCard__link").length === 0) return;
 
         cards.forEach(card => {
+            console.log("935", card);
             const id = card.querySelector(".ic-DashboardCard__link").href.split("courses/")[1].replace("~", "0000000");
             let cardOptions = options["custom_cards"][id] || null;
             let cardOptions_2 = options["custom_cards_2"][id] || null;
             if (cardOptions) {
                 // hide card
-                if (cardOptions.hidden === true) {
-                    card.style.display = "none";
-                } else {
-                    card.style.display = "inline-block";
-                }
+                card.style.display = cardOptions.hidden === true ? "none" : "inline-block";
 
                 // card image
                 if (cardOptions.img === "none") {
@@ -965,6 +995,7 @@ function customizeCards(c = null) {
         });
 
     } catch (e) {
+        console.log("997", e);
         logError(e);
     }
 }
@@ -1066,10 +1097,10 @@ function changeGPASettings(course_id, update) {
 }
 
 function createGPACalcCourse(location, course) {
-    let customs = options.custom_cards && options.custom_cards[course.id] ? options.custom_cards[course.id] : { "name": course.name, "hidden": false, "weight": "regular", "credits": 1 };
+    let customs = options.custom_cards && options.custom_cards[course.id] ? options.custom_cards[course.id] : { "name": course.name, "hidden": false, "weight": "regular", "credits": 1, "gr": null };
     if (customs.hidden === true) return;
     let courseContainer = makeElement("div", "bettercanvas-gpa-course", location);
-    courseContainer.innerHTML = '<div class="bettercanvas-gpa-course-left"></div><div class="bettercanvas-gpa-course-right"></div><div class="bettercanvas-gpa-letter-grade"></div>';
+    courseContainer.innerHTML = '<div class="bettercanvas-gpa-letter-grade"></div>';
     let courseName = makeElement("p", "bettercanvas-gpa-name", courseContainer);
     courseName.textContent = customs.name === "" ? course.course_code : customs.name;
     let changerContainer = makeElement("div", "bettercanvas-gpa-percent-container", courseContainer);
@@ -1084,15 +1115,38 @@ function createGPACalcCourse(location, course) {
     creditsChanger.value = customs.credits;
     let changer = makeElement("input", "bettercanvas-course-percent", changerContainer);
     let courseGrade = course.enrollments[0].has_grading_periods === true ? course.enrollments[0].current_period_computed_current_score : course.enrollments[0].computed_current_score;
-    if (courseGrade) {
+    if (customs["gr"] !== null) {
+        changer.value = customs["gr"];
+    } else if (courseGrade) {
         changer.value = courseGrade;
     } else {
         changer.value = "--";
         weightChanger.value = "dnc";
     }
-    changer.addEventListener('input', calculateGPA2);
-    weightChanger.addEventListener('change', () => changeGPASettings(course.id, {"weight": weightSelections.querySelector(".bettercanvas-course-weight").value }));
-    credits.querySelector(".bettercanvas-course-credit").addEventListener('input', () => changeGPASettings(course.id, {"credits": credits.querySelector(".bettercanvas-course-credit").value}));
+    let useCustomGr = makeElement("input", "bettercanvas-course-customgr", courseContainer);
+    let useCustomGrLabel = makeElement("span", "bettercanvas-course-customgr-label", courseContainer, "Save custom grade");
+    useCustomGr.type = "checkbox";
+    useCustomGr.checked = customs.gr !== null ? true : false;
+    useCustomGr.addEventListener("input", () => {
+        if (options["custom_cards"][course.id]) {
+            if (options["custom_cards"][course.id]["gr"] !== undefined && options["custom_cards"][course.id]["gr"] !== null) {
+                changer.value = courseGrade;
+                changeGPASettings(course.id, { "gr": null });
+            } else {
+                changeGPASettings(course.id, { "gr": changer.value });
+            }
+        }
+    });
+
+    changer.addEventListener('input', (e) => {
+        if (options["custom_cards"][course.id]["gr"] !== undefined && options["custom_cards"][course.id]["gr"] !== null) {
+            changeGPASettings(course.id, { "gr": e.target.value });
+        } else {
+            calculateGPA2();
+        }
+    });
+    weightChanger.addEventListener('change', () => changeGPASettings(course.id, { "weight": weightSelections.querySelector(".bettercanvas-course-weight").value }));
+    credits.querySelector(".bettercanvas-course-credit").addEventListener('input', () => changeGPASettings(course.id, { "credits": credits.querySelector(".bettercanvas-course-credit").value }));
 
     /*
     weightChanger.addEventListener('change', () => {
@@ -1331,7 +1385,8 @@ function cleanCustomAssignments() {
 }
 
 function setupCustomURL() {
-    let test = getData(`${domain}/api/v1/dashboard/dashboard_cards?include[]=concluded&include[]=term`);
+    //let test = getData(`${domain}/api/v1/dashboard/dashboard_cards?include[]=concluded&include[]=term`);
+    let test = getData(`${domain}/api/v1/courses?enrollment_state=active&per_page=30`);
     test.then(res => {
         if (res.length) {
             getCards(res).then(() => {
@@ -1356,7 +1411,7 @@ function getGrades() {
 
 function getAssignments() {
     if (options.assignments_due === true || options.better_todo === true) {
-        let weekAgo = new Date(new Date() - (604800000));
+        let weekAgo = new Date(new Date() - 604800000);
         assignments = getData(`${domain}/api/v1/planner/items?start_date=${weekAgo.toISOString()}&per_page=75`);
     }
 }
@@ -1422,41 +1477,45 @@ function rgbToHsl(r, g, b) {
     return [h * 360, s * 100, l * 100];
 }
 
-const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-function formatDate(date, submissions, hr24) {
-    let timeSince = (new Date().getTime() - date.getTime()) / 60000;
+function getRelativeDate(date, short = false) {
+    let now = new Date();
+    let timeSince = (now.getTime() - date.getTime()) / 60000;
     let time = "min";
-    let future = timeSince < 0;
     timeSince = Math.abs(timeSince);
     if (timeSince >= 60) {
         timeSince /= 60;
-        time = "hr";
+        time = short ? "h" : "hour";
         if (timeSince >= 24) {
             timeSince /= 24;
-            time = "day";
+            time = short ? "d" : "day";
             if (timeSince >= 7) {
                 timeSince /= 7;
-                time = "week";
+                time = short ? "w" : "week";
             }
         }
     }
     timeSince = Math.round(timeSince);
-    let fromNow = timeSince + " " + time + (timeSince > 1 ? "s" : "");
-    fromNow = future ? "in " + fromNow : fromNow + " ago";
+    let relative = timeSince + (short ? "" : " ") + time + (timeSince > 1 && !short ? "s" : "");
+    return { time: relative, ms: now.getTime() - date.getTime() };
+}
+
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+function formatTodoDate(date, submissions, hr24) {
+    let { time, ms } = getRelativeDate(date);
+    let fromNow = ms < 0 ? "in " + time : time + " ago";
     let dueSoon = false;
-    if (future && submissions && submissions.submitted === false && (time === "hr" && timeSince <= 6 || time === "min")) {
+    if (submissions && submissions.submitted === false && ms >= -21600000) {
         dueSoon = true;
     }
     return { "dueSoon": dueSoon, "date": months[date.getMonth()] + " " + date.getDate() + " at " + (date.getHours() - (hr24 ? "" : date.getHours() > 12 ? 12 : 0)) + ":" + (date.getMinutes() < 10 ? "0" : "") + date.getMinutes() + (hr24 ? "" : date.getHours() >= 12 ? "pm" : "am") + " (" + fromNow + ")" };
 }
 
-const CSRFtoken = function () {
-    return decodeURIComponent((document.cookie.match('(^|;) *_csrf_token=([^;]*)') || '')[2])
-}
-
-function cleanDue(date) {
-    let newdate = new Date(date);
-    return options.assignment_date_format ? (newdate.getDate()) + "/" + (newdate.getMonth() + 1) : (newdate.getMonth() + 1) + "/" + (newdate.getDate());
+function formatCardDue(date, relative = false) {
+    let due = new Date(date);
+    if (relative === true) {
+        return getRelativeDate(due, true).time;
+    }
+    return options.assignment_date_format ? (due.getDate()) + "/" + (due.getMonth() + 1) : (due.getMonth() + 1) + "/" + (due.getDate());
 }
 
 function logError(e) {
@@ -1470,4 +1529,8 @@ function logError(e) {
         console.log(storage["errors"].concat(e.stack));
     })
 
+}
+
+const CSRFtoken = function () {
+    return decodeURIComponent((document.cookie.match('(^|;) *_csrf_token=([^;]*)') || '')[2])
 }

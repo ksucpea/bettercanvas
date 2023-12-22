@@ -25,7 +25,10 @@ const syncedOptions = [
     'custom_assignments_overflow',
     'grade_hover',
     'hide_completed',
-    'custom_font'
+    'custom_font',
+    'todo_overdues',
+    'card_overdues',
+    'relative_dues'
 ];
 const localOptions = [
     'previous_colors',
@@ -98,6 +101,9 @@ chrome.runtime.onInstalled.addListener(function () {
             "D-": { "cutoff": 60, "gpa": .7 },
             "F": { "cutoff": 0, "gpa": 0 }
         },
+        "todo_overdues": false,
+        "card_overdues": false,
+        "relative_dues": false,
         "errors": []
     };
     chrome.storage.local.get([...syncedOptions, ...localOptions], local => {
@@ -123,6 +129,14 @@ chrome.runtime.onInstalled.addListener(function () {
                 }
             });
 
+            // add custom grade
+            let old_cc = sync["custom_cards"] ? Object.keys(sync["custom_cards_2"]) : [] 
+            if (old_cc.length > 0) {
+                newSyncOptions["custom_cards"] = sync["custom_cards"];
+                old_cc.forEach(id => {
+                    if (newSyncOptions["custom_cards"][id]["gr"] === undefined) newSyncOptions["custom_cards"][id]["gr"] = null;
+                });
+            }
 
             // converting old links to new system REMOVE IN > 5.8.0
             try {

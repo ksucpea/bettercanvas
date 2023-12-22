@@ -58,19 +58,33 @@
                     </div>
                 </div>
                 <div class="option-container">
-                    <div class="option" id="dashboard_grades">
-                        <input type="radio" id="off" name="dashboard_grades">
-                        <input type="radio" id="on" name="dashboard_grades">
+                    <div class="option" id="assignments_due">
+                        <input type="radio" id="off" name="assignments_due">
+                        <input type="radio" id="on" name="assignments_due">
                         <div class="slider">
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div>
-                        <span class="option-name" data-i18n="card_grades">Card Grades</span>
+                        <span class="option-name" data-i18n="card_assignments">Card assignments</span>
                     </div>
-                    <div style="margin-top:5px">
-                        <input type="checkbox" id="grade_hover" name="grade_hover">
-                        <label for="grade_hover" class="sub-text" data-i18n="grade_hover">Show only when
-                            hovering</label>
+                    <div class="sub-options">
+                        <div>
+                            <input type="checkbox" id="assignment_date_format" name="assignment_date_format">
+                            <label for="assignment_date_format" class="sub-text" data-i18n="useddmm">Use dd/mm</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="card_overdues" name="card_overdues">
+                            <label for="card_overdues" class="sub-text">Show past due</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="relative_dues" name="relative_dues">
+                            <label for="relative_dues" class="sub-text">Relative due dates</label>
+                        </div>
+                        <div style="margin-top: 5px">
+                            <span class="sub-text" data-i18n="max_items">Max items to show: </span><span
+                                id="numAssignments"></span>
+                            <input type="range" min="1" max="10" id="numAssignmentsSlider">
+                        </div>
                     </div>
                 </div>
                 <div class="option-container">
@@ -109,16 +123,6 @@
                         </div><span class="option-name" data-i18n="condensed_cards">Condensed Cards</span>
                     </div>
                 </div>
-                <div class="option-container">
-                    <div class="option" id="dashboard_notes">
-                        <input type="radio" id="off" name="dashboard_notes">
-                        <input type="radio" id="on" name="dashboard_notes">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div><span class="option-name" data-i18n="dashboard_notes">Dashboard Notes</span>
-                    </div>
-                </div>
             </div>
 
             <div class="options-right">
@@ -126,28 +130,6 @@
                     <div class="customDomain">
                         <span data-i18n="enter_url">Your Canvas URL:</span>
                         <input type="text" id="customDomain" placeholder="Or just go to your Canvas page!"></input>
-                    </div>
-                </div>
-                <div class="option-container">
-                    <div class="option" id="assignments_due">
-                        <input type="radio" id="off" name="assignments_due">
-                        <input type="radio" id="on" name="assignments_due">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div>
-                        <span class="option-name" data-i18n="card_assignments">Card assignments</span>
-                    </div>
-                    <div class="sub-options">
-                        <div>
-                            <input type="checkbox" id="assignment_date_format" name="assignment_date_format">
-                            <label for="assignment_date_format" class="sub-text" data-i18n="useddmm">Use dd/mm</label>
-                        </div>
-                        <div style="margin-top: 5px">
-                            <span class="sub-text" data-i18n="max_items">Max items to show: </span><span
-                                id="numAssignments"></span>
-                            <input type="range" min="1" max="10" id="numAssignmentsSlider">
-                        </div>
                     </div>
                 </div>
                 <div class="option-container">
@@ -175,11 +157,31 @@
                             <input type="checkbox" id="todo_hr24" name="todo_hr24">
                             <label for="todo_hr24" class="sub-text" data-i18n="24hrformat">Use 24hr format</label>
                         </div>
+                        <div>
+                            <input type="checkbox" id="todo_overdues" name="todo_overdues">
+                            <label for="todo_overdues" class="sub-text">Show past due</label>
+                        </div>
                         <div style="margin-top: 5px">
                             <span class="sub-text" data-i18n="max_items">Max items to show: </span><span
                                 id="numTodoItems"></span>
                             <input type="range" min="1" max="7" id="numTodoItemsSlider">
                         </div>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="option" id="dashboard_grades">
+                        <input type="radio" id="off" name="dashboard_grades">
+                        <input type="radio" id="on" name="dashboard_grades">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div>
+                        <span class="option-name" data-i18n="card_grades">Card Grades</span>
+                    </div>
+                    <div style="margin-top:5px">
+                        <input type="checkbox" id="grade_hover" name="grade_hover">
+                        <label for="grade_hover" class="sub-text" data-i18n="grade_hover">Show only when
+                            hovering</label>
                     </div>
                 </div>
                 <div class="option-container">
@@ -201,6 +203,16 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div><span class="option-name" data-i18n="disable_color">Disable Color Overlay</span>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="option" id="dashboard_notes">
+                        <input type="radio" id="off" name="dashboard_notes">
+                        <input type="radio" id="on" name="dashboard_notes">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span class="option-name" data-i18n="dashboard_notes">Dashboard Notes</span>
                     </div>
                 </div>
             </div>
@@ -254,6 +266,9 @@
                 <button id="theme-revert" class="customization-button">Revert changes</button>
                 <button id="theme-capybara" class="theme-button customization-button">Capybara by ksucpea</button>
                 <button id="theme-minecraft" class="theme-button customization-button">Minecraft by ksucpea</button>
+                <button id="theme-ocean" class="theme-button customization-button">Ocean by Grant</button>
+                <button id="theme-pokemon" class="theme-button customization-button">Pokemon by Jason</button>
+                <button id="theme-kirby" class="theme-button customization-button">Kirby by Siri</button>
             </div>
         </div>
         <div class="import-export-details">
