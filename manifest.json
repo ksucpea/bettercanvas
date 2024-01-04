@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Better Canvas",
   "description": "Feature packed extension for Canvas.",
-  "version": "5.8.8",
+  "version": "5.8.9",
   "icons": {
     "16": "icon/icon-16.png",
     "32": "icon/icon-32.png",
