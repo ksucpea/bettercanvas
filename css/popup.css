@@ -45,8 +45,8 @@ button:active {filter:brightness(85%)}
 .option-color .color-changer {color:#000;}
 .customization {margin-top: 12px}
 .customization-header {font-size: 20px;margin-top: 10px}
-.colors-button, .customization-button { font-size:12px;color:#e2e2e2;background:var(--inputbg);border: none;padding: 10px 20px; font-family: inherit;border-radius:7px;transition:.1s background;font-weight:500}
-.colors-button {min-width:90px;}
+.colors-button, .customization-button {flex: auto; font-size:12px;color:#e2e2e2;background:var(--inputbg);border: none;padding: 10px 20px; font-family: inherit;border-radius:7px;transition:.1s background;font-weight:500}
+.colors-button {min-width:90px}
 .sub-options {margin-top: 5px;}
 h2 {margin-top: 20px}
 .header-small {margin: 0 0 10px; font-weight: bold;font-size:16px;}
@@ -95,6 +95,8 @@ textarea {resize: vertical}
 #error_log_output, #rk_output {min-height: 100px;} 
 #image-tester {display: none;}
 #alert {font-size:13px;background: #e7495ebd; backdrop-filter: blur(2px); border-radius: 8px; padding: 15px; margin: 20px;position: fixed; transition: .3s bottom; bottom: -400px; left: 0;z-index:1000;}
+#alert:hover {cursor:pointer;}
+.custom-card-header {display: flex; justify-content: space-between;gap: 20px;}
 ::-webkit-scrollbar {width: 8px;}
 ::-webkit-scrollbar-track {background: #161616;}
 ::-webkit-scrollbar-thumb {background: #323232;border-radius:10px;}

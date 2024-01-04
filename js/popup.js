@@ -7,7 +7,6 @@ sendFromPopup("getCards");
 // refresh the cards if new ones were just recieved
 chrome.storage.onChanged.addListener((changes) => {
     if (changes["custom_cards"]) {
-        console.log(Object.keys(changes["custom_cards"].oldValue).length, Object.keys(changes["custom_cards"].newValue).length);
         if (Object.keys(changes["custom_cards"].oldValue).length !== Object.keys(changes["custom_cards"].newValue).length) {
             displayAdvancedCards();
         }
@@ -136,9 +135,10 @@ document.querySelectorAll('[data-i18n]').forEach(text => {
 });
 
 document.querySelector("#rk_btn").addEventListener("click", () => {
-    let key = document.querySelector("#rk_key").value;
-    chrome.storage.sync.get(key, res => {
-        document.querySelector("#rk_output").value = JSON.stringify(res[key]);
+    chrome.storage.local.get(null, local => {
+        chrome.storage.sync.get(null, sync => {
+            document.querySelector("#rk_output").value = JSON.stringify(local) + JSON.stringify(sync);
+        })
     })
 })
 
@@ -357,6 +357,8 @@ function displayGPABounds() {
     });
 }
 
+document.querySelector("#alert").addEventListener("click", clearAlert);
+
 let removeAlert = null;
 
 function clearAlert() {
@@ -408,7 +410,7 @@ function displayAdvancedCards() {
                 } else {
                     let container = makeElement("div", "custom-card", term);
                     container.classList.add("option-container");
-                    container.innerHTML = '<p class="custom-card-title"></p><div class="custom-card-inputs"><div class="custom-card-left"><div class="custom-card-image"><span class="custom-key">Image</span></div><div class="custom-card-name"><span class="custom-key">Name</span></div><div class="custom-card-code"><span class="custom-key">Code</span></div><div class="custom-card-hide"><p class="custom-key">Hide</p></div></div><div class="custom-links-container"><p class="custom-key">Links</p><div class="custom-links"></div></div></div>';
+                    container.innerHTML = '<div class="custom-card-header"><p class="custom-card-title"></p><div class="custom-card-hide"><p class="custom-key">Hide</p></div></div><div class="custom-card-inputs"><div class="custom-card-left"><div class="custom-card-image"><span class="custom-key">Image</span></div><div class="custom-card-name"><span class="custom-key">Name</span></div><div class="custom-card-code"><span class="custom-key">Code</span></div></div><div class="custom-links-container"><p class="custom-key">Links</p><div class="custom-links"></div></div></div>';
                     let imgInput = makeElement("input", "card-input", container.querySelector(".custom-card-image"));
                     let nameInput = makeElement("input", "card-input", container.querySelector(".custom-card-name"));
                     let codeInput = makeElement("input", "card-input", container.querySelector(".custom-card-code"));
@@ -570,7 +572,7 @@ function getPalette(name) {
         "Blues": ["#ade8f4", "#90e0ef", "#48cae4", "#00b4d8", "#0096c7"],
         "Reds": ["#e01e37", "#c71f37", "#b21e35", "#a11d33", "#6e1423"],
         "Rainbow": ["#ff0000", "#ff5200", "#efea5a", "#3cf525", "#147df5", "#be0aff"],
-        "Cotton Candy": ["#cdb4db", "#ffc8dd", "#ffafcc", "#bde0fe", "#a2d2ff"],
+        "Candy": ["#cdb4db", "#ffc8dd", "#ffafcc", "#bde0fe", "#a2d2ff"],
         "Purples": ["#e0aaff", "#c77dff", "#9d4edd", "#7b2cbf", "#5a189a"],
         "Pastels": ["#fff1e6", "#fde2e4", "#fad2e1", "#bee1e6", "#cddafd"],
         "Ocean": ["#22577a", "#38a3a5", "#57cc99", "#80ed99", "#c7f9cc"],
@@ -579,13 +581,17 @@ function getPalette(name) {
         "Pinks": ["#ff0a54", "#ff5c8a", "#ff85a1", "#ff99ac", "#fbb1bd"],
         "Watermelon": ["#386641", "#6a994e", "#a7c957", "#f2e8cf", "#bc4749"],
         "Popsicle": ["#70d6ff", "#ff70a6", "#ff9770", "#ffd670", "#e9ff70"],
-        "Chess Board": ["#ffffff", "#000000"],
+        "Chess": ["#ffffff", "#000000"],
         "Greens": ["#d8f3dc", "#b7e4c7", "#95d5b2", "#74c69d", "#52b788"],
         "Fade": ["#ff69eb", "#ff86c8", "#ffa3a5", "#ffbf81", "#ffdc5e"],
         "Oranges": ["#ffc971", "#ffb627", "#ff9505", "#e2711d", "#cc5803"],
         "Mesa": ["#f6bd60", "#f28482", "#f5cac3", "#84a59d", "#f7ede2"],
         "Berries": ["#4cc9f0", "#4361ee", "#713aed", "#9348c3", "#f72585"],
-        "Abyss": ["#56e39f", "#59C9A5", "#5B6C5D", "#3B2C35", "#2A1F2D"]
+        "Fade2": ["#f2f230", "#C2F261", "#91f291", "#61F2C2", "#30f2f2"],
+        "Muted": ["#E7E6F7", "#E3D0D8", "#AEA3B0", "#827081", "#C6D2ED"],
+        "Base": ["#e3b505", "#95190C", "#610345", "#107E7D", "#044B7F"],
+        "Fruit": ["#7DDF64", "#C0DF85", "#DEB986", "#DB6C79", "#ED4D6E"],
+        "Night": ["#25171A", "#4B244A", "#533A7B", "#6969B3", "#7F86C6"]
     }
     return colors[name] || [];
 }
