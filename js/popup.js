@@ -149,29 +149,30 @@ document.querySelector("#import-input").addEventListener("input", (e) => {
 
 document.querySelectorAll(".export-details input").forEach(input => {
     input.addEventListener("change", () => {
-        let final = {};
         chrome.storage.sync.get(syncedSwitches.concat(syncedSubOptions).concat(["custom_cards", "custom_font", "gpa_calc_bounds"]), sync => {
             chrome.storage.local.get(["dark_preset"], async local => {
+                let storage = {...sync, ...local};
+                let final = {};
                 for await (item of document.querySelectorAll(".export-details input")) {
                     if (item.checked) {
                         switch (item.id) {
                             case "export-toggles":
-                                final = { ...final, ...(await getExport(sync, syncedSwitches.concat(syncedSubOptions))) };
+                                final = { ...final, ...(await getExport(storage, syncedSwitches.concat(syncedSubOptions))) };
                                 break;
                             case "export-dark":
-                                final = { ...final, ...(await getExport(local, ["dark_preset"])) };
+                                final = { ...final, ...(await getExport(storage, ["dark_preset"])) };
                                 break;
                             case "export-cards":
-                                final = { ...final, ...(await getExport(sync, ["custom_cards"])) };
+                                final = { ...final, ...(await getExport(storage, ["custom_cards"])) };
                                 break;
                             case "export-font":
-                                final = { ...final, ...(await getExport(sync, ["custom_font"])) };
+                                final = { ...final, ...(await getExport(storage, ["custom_font"])) };
                                 break;
                             case "export-colors":
-                                final = { ...final, ...(await getExport(null, ["card_colors"])) }
+                                final = { ...final, ...(await getExport(storage, ["card_colors"])) }
                                 break;
                             case "export-gpa":
-                                final = { ...final, ...(await getExport(sync, ["gpa_calc_bounds"])) }
+                                final = { ...final, ...(await getExport(storage, ["gpa_calc_bounds"])) }
                                 break;
                         }
                     }
@@ -200,6 +201,7 @@ async function getExport(storage, options) {
                 final["card_colors"] = [];
                 try {
                     final["card_colors"] = await sendFromPopup("getcolors");
+                    console.log(final["card_colors"]);
                 } catch (e) {
                     console.log(e);
                 }
@@ -221,7 +223,7 @@ document.querySelectorAll(".theme-button").forEach(btn => {
                 const now = Date.now();
                 if (local["previous_theme"] === null || now >= local["previous_theme"].expire) {
                     let previous = { ...(await getExport(sync, allOptions)), ...(await getExport(local, ["dark_preset"])) };
-                    chrome.storage.local.set({ "previous_theme": { "theme": previous, "expire": now + 86400000 } });
+                    chrome.storage.local.set({ "previous_theme": { "theme": previous, "expire": now + 28800000 } });
                 }
             });
         });
@@ -245,6 +247,10 @@ function getTheme(name) {
         "theme-ocean": { "exports": { "dark_preset": { "background-0": "#212838", "background-1": "#1a2026", "background-2": "#212930", "borders": "#2e3943", "sidebar": "#1a2026", "text-0": "#f5f5f5", "text-1": "#e2e2e2", "text-2": "#ababab", "links": "#56Caf0", "sidebar-text": "#f5f5f5" }, "custom_cards": ["https://gifdb.com/images/high/shark-school-swarming-ocean-8zqd4b90h7j8r8is.gif", "https://media1.giphy.com/media/Y4K9JjSigTV1FkgiNE/200w.webp?cid=ecf05e47qvqduufaxfzre6akpzg4ikbdx9f8f779krrkb89n&ep=v1_gifs_search&rid=200w.webp&ct=g", "https://media4.giphy.com/media/htdnXEhlPDVDZI3CMu/200w.webp?cid=ecf05e47qvqduufaxfzre6akpzg4ikbdx9f8f779krrkb89n&ep=v1_gifs_search&rid=200w.webp&ct=g", "https://i.gifer.com/6jDi.gif", "https://i.redd.it/2p9in2g3va2b1.gif"], "card_colors": ["#32f6cc", "#31eece", "#30e7cf", "#2fdfd1", "#2ed8d2"], "custom_font": { "link": "Comfortaa:wght@400;700", "family": "'Comfortaa'" }, }, "preview": "https://media4.giphy.com/media/htdnXEhlPDVDZI3CMu/200w.webp?cid=ecf05e47qvqduufaxfzre6akpzg4ikbdx9f8f779krrkb89n&ep=v1_gifs_search&rid=200w.webp&ct=g" },
         "theme-pokemon": { "exports": { "dark_preset": { "background-0": "#110c12", "background-1": "#704776", "background-2": "#5b3960", "borders": "#836487", "links": "#f5a8ff", "sidebar": "linear-gradient(#000000a6, #000000a6), url(\"https://64.media.tumblr.com/c6e4deca70a7e430d8ebe7a6266c4cc1/tumblr_n6gqw4EGiW1tvub8wo1_500.png\")", "sidebar-text": "#ffffff", "text-0": "#ffffff", "text-1": "#c7c7c7", "text-2": "#adadad" }, "custom_cards": ["https://i.pinimg.com/564x/94/29/67/942967bd1f4651e00f019aeddaf10851.jpg", "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRZGt2iwyDxBuKJmIalhxlkUM_a_PRUpqEqAcbqO_ZXToer3x9Z", "https://i.pinimg.com/originals/96/c1/65/96c1651cc85f05e22390eac2a7e76978.png", "https://i.pinimg.com/originals/62/a6/1c/62a61c78a2228e23c14fb5b27951c5df.jpg", "https://i.pinimg.com/564x/2f/75/11/2f751137735438b81e3abd3bd954b901.jpg"], "card_colors": ["#e0aaff", "#c77dff", "#9d4edd", "#7b2cbf", "#5a189a"], "custom_font": { "family": "'Rubik'", "link": "Rubik:wght@400;700" } }, "preview": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRZGt2iwyDxBuKJmIalhxlkUM_a_PRUpqEqAcbqO_ZXToer3x9Z" },
         "theme-kirby": { "exports": { "dark_preset": { "background-0": "#fbc1cf", "background-1": "#ae2d45", "background-2": "#5b3960", "borders": "#ae2d45", "links": "#ae2d45", "sidebar": "#ae2d45", "sidebar-text": "#ffffff", "text-0": "#292929", "text-1": "#000000", "text-2": "#000000" }, "custom_cards": ["https://i.pinimg.com/236x/30/19/ab/3019ab7b9f6d2b230a6178231ba3817a.jpg", "https://i.pinimg.com/236x/f0/52/d9/f052d9d8867b66ca7942cf4a2a6c968b.jpg", "https://i.pinimg.com/564x/2e/f0/70/2ef0705eb021d59065239dd553661d4f.jpg", "https://i.pinimg.com/236x/36/a4/73/36a47369afbdb6e91544af173fb0e92d.jpg", "https://i.pinimg.com/236x/6a/9c/60/6a9c604d4070e6d03e15717472851356.jpg"], "card_colors": ["#ae2d45"], "custom_font": { "family": "'Rubik'", "link": "Rubik:wght@400;700" } }, "preview": "https://i.pinimg.com/236x/30/19/ab/3019ab7b9f6d2b230a6178231ba3817a.jpg" },
+        "theme-catppuccin": { "exports": {"dark_preset":{"background-0":"#11111b","background-1":"#181825","background-2":"#1e1e2e","borders":"#4f5463","text-0":"#cdd6f4","text-1":"#7f849c","text-2":"#a6e3a1","links":"#f5c2e7","sidebar":"#181825","sidebar-text":"#7f849c"}}, "preview": "https://avatars.githubusercontent.com/u/93489351?s=88&v=4" },
+        "theme-mcdonalds": { "exports": {"dark_preset":{"background-0":"#CB2115","background-1":"#FFC72C","background-2":"#FFC72C","borders":"#FFC72C","links":"#FFC72C","sidebar":"#FFC72C","sidebar-text":"#514010","text-0":"#ffffff","text-1":"#ffffff","text-2":"#ffffff"},"custom_cards":["https://i.pinimg.com/236x/03/c3/b7/03c3b7ce47480a7dc6f2fbbb4eee730f.jpg","https://i.pinimg.com/236x/3e/39/ef/3e39ef786197b2694b34c51ab511dddb.jpg","https://i.pinimg.com/236x/f8/31/bd/f831bd305b19e9d67471afb4f778e697.jpg","https://i.pinimg.com/236x/a6/5d/ee/a65dee0c9aeea08bc850f9be5eb8d4dc.jpg","https://i.pinimg.com/236x/27/a9/5c/27a95c0aefc2d5f260088fd409bb6dd0.jpg","https://i.pinimg.com/236x/90/9c/eb/909ceb03715e98844f0d617b34740157.jpg"],"card_colors":["#ffc72c"],"custom_font":{"family":"'Poppins'","link":"Poppins:wght@400;700"}}, "preview": "https://i.pinimg.com/236x/03/c3/b7/03c3b7ce47480a7dc6f2fbbb4eee730f.jpg"},
+        "theme-wavy": { "exports": {"dark_preset":{"background-0":"#080808","background-1":"#0a0a0a","background-2":"#0a0a0a","borders":"#2e2b3b","links":"#b1a2fb","sidebar":"linear-gradient(#101010c7, #101010c7), url(\"https://i.pinimg.com/236x/80/f6/1f/80f61fadd498cd8201b678a8cdee2746.jpg\")","sidebar-text":"#f5f5f5","text-0":"#f5f5f5","text-1":"#e2e2e2","text-2":"#ababab"},"custom_cards":["https://i.pinimg.com/236x/b2/ff/99/b2ff994c598a5916ca250fd6429a3c01.jpg", "https://i.pinimg.com/236x/34/41/9d/34419d09e540d062a6b43df26c626c20.jpg", "https://i.pinimg.com/236x/c0/d4/cc/c0d4cc0d7041fec03fa21f856a33431c.jpg", "https://i.pinimg.com/236x/bf/46/67/bf4667a532b874050eb477bd891f0551.jpg", "https://i.pinimg.com/236x/ce/0b/8b/ce0b8baaea85445b86d87a610231cf82.jpg", "https://i.pinimg.com/236x/65/c4/ca/65c4ca10b0270634404f2614f30ad684.jpg", ],"card_colors":["#267282", "#d53825", "#1bb0b7", "#c94b43", "#8ebaa6", "#4c8cc4"],"custom_font":{"family":"'Chakra Petch'","link":"Chakra+Petch:wght@400;700"}}, "preview": "https://i.pinimg.com/236x/34/41/9d/34419d09e540d062a6b43df26c626c20.jpg"},
+        "theme-dark": { "exports": {"dark_preset":{"background-0":"#131515","background-1":"#1f2323","background-2":"#1f2323","borders":"#2a3232","links":"#6c95a7","sidebar":"#1f2323","sidebar-text":"#dedede","text-0":"#c7c7c7","text-1":"#b0b0b0","text-2":"#9c9c9c"},"custom_cards":["https://i.pinimg.com/236x/c2/09/bc/c209bc5e71df606082deae962cee0e78.jpg","https://i.pinimg.com/236x/21/54/9f/21549f96b7173fe2c9dc6507dcd4c193.jpg","https://i.pinimg.com/236x/5b/a2/c2/5ba2c203ce3c1968bdb80c3bbe568520.jpg","https://i.pinimg.com/236x/da/ab/2c/daab2c18fc3910e3419f8dbc8b4d0acb.jpg","https://i.pinimg.com/236x/6b/5c/90/6b5c90c34191a3a1ee9c7ca64d822389.jpg","https://i.pinimg.com/236x/28/a8/fb/28a8fbcde35257c8117e31f502f0b64b.jpg"],"card_colors":["#284057","#3e589b","#3f626f","#2c4c58","#2d3e3f","#535c73"],"custom_font":{"family":"'Merriweather'","link":"Merriweather:wght@400;700"}}, "preview": "https://i.pinimg.com/236x/21/54/9f/21549f96b7173fe2c9dc6507dcd4c193.jpg"}
     }
     return themes[name] || {};
 }

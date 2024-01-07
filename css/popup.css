@@ -86,7 +86,7 @@ h2 {margin-top: 20px}
 .palette-selection .card-input {width: 70px;margin: 0;}
 .colors-preview {display: flex}
 .color-preview {flex: 1;height:5px;margin-top:2px;}
-.theme-button {padding: 14px 10px; transition: .25s background; background-size: 100%; background-position: center}
+.theme-button {padding: 15px 10px; transition: .25s background; background-size: 100%; background-position: center}
 .theme-button:hover {background-size: 120%; background-position:center;}
 .color-options .card-input { flex: 1;margin: 0;}
 .error-message {margin: 20px;font-size: 14px; color: red;}

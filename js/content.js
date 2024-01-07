@@ -193,11 +193,11 @@ function checkDashboardReady() {
 
 function recieveMessage(request, sender, sendResponse) {
     switch (request.message) {
-        case ("getCards"): getCards(); break;
-        case ("setcolors"): changeColorPreset(request.options); break;
+        case ("getCards"): getCards(); sendResponse(true); break;
+        case ("setcolors"): changeColorPreset(request.options); sendResponse(true); break;
         case ("getcolors"): sendResponse(getCardColors()); break;
+        default: sendResponse(true);
     }
-    return true;
 }
 
 function getCardColors() {
