@@ -213,7 +213,7 @@ function getCardColors() {
 }
 
 async function getCards(api = null) {
-    let dashboard_cards = api ? api : await getData(`${domain}/api/v1/courses?per_page=50`);
+    let dashboard_cards = api ? api : await getData(`${domain}/api/v1/courses?enrollment_state=active&per_page=100`);
     chrome.storage.sync.get(["custom_cards", "custom_cards_2", "custom_cards_3"], storage => {
         let cards = storage["custom_cards"] || {};
         let cards_2 = storage["custom_cards_2"] || {};
@@ -222,9 +222,10 @@ async function getCards(api = null) {
         let count = 0;
         // sort cards by enrollment id (i think the higher the id, the more recent it is)
         dashboard_cards.sort((a, b) => (b?.enrollment_term_id || 0) - (a?.enrollment_term_id || 0));
+        console.log(dashboard_cards);
         try {
             dashboard_cards.forEach(card => {
-                if (!card.course_code || count >= 30) return;
+                if (!card.course_code || count >= 25) return;
                 let id = card.id;
                 if (!cards || !cards[id]) {
                     newCards = true;
@@ -1407,7 +1408,7 @@ function setupCustomURL() {
 
 function getGrades() {
     if (options.gpa_calc === true || options.dashboard_grades === true) {
-        grades = getData(`${domain}/api/v1/courses?enrollment_state=active&include[]=total_scores&include[]=current_grading_period_scores&per_page=30`);
+        grades = getData(`${domain}/api/v1/courses?enrollment_state=active&include[]=total_scores&include[]=current_grading_period_scores&per_page=100`);
     }
 }
 
