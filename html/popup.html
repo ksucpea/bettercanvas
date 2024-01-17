@@ -88,64 +88,6 @@
                     </div>
                 </div>
                 <div class="option-container">
-                    <div class="option" id="gpa_calc">
-                        <input type="radio" id="off" name="gpa_calc">
-                        <input type="radio" id="on" name="gpa_calc">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div>
-                        <span class="option-name" data-i18n="gpa_calculator">GPA calculator</span>
-                    </div>
-                    <div class="sub-options">
-                        <div class="sub-option" style="margin-top:5px">
-                            <input type="checkbox" id="gpa_calc_prepend" name="gpa_calc_prepend">
-                            <label for="gpa_calc_prepend" class="sub-text" data-i18n="move_top">Move to top</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="option-container">
-                    <div class="option" id="gradient_cards">
-                        <input type="radio" id="off" name="gradient_cards">
-                        <input type="radio" id="on" name="gradient_cards">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div>
-                        <span class="option-name" data-i18n="gradient_cards">Gradient cards</span>
-                    </div>
-                </div>
-                <div class="option-container">
-                    <div class="option" id="condensed_cards">
-                        <input type="radio" id="off" name="condensed_cards">
-                        <input type="radio" id="on" name="condensed_cards">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div><span class="option-name" data-i18n="condensed_cards">Condensed Cards</span>
-                    </div>
-                </div>
-                <div class="option-container">
-                    <div class="option" id="remlogo">
-                        <input type="radio" id="off" name="remlogo">
-                        <input type="radio" id="on" name="remlogo">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div><span class="option-name">Remove sidebar logo</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="options-right">
-                <div class="option-container">
-                    <div class="customDomain">
-                        <span data-i18n="enter_url">Your Canvas URL:</span>
-                        <p style="font-size: 11px;color:#8d8d8d" data-i18n="enter_multiple">(Enter multiple with a comma)</p>
-                        <input type="text" id="customDomain" placeholder="Or just refresh your Canvas page!"></input>
-                    </div>
-                </div>
-                <div class="option-container">
                     <div class="option" id="better_todo">
                         <input type="radio" id="off" name="better_todo">
                         <input type="radio" id="on" name="better_todo">
@@ -181,6 +123,33 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="options-right">
+                <div class="option-container">
+                    <div class="customDomain">
+                        <span data-i18n="enter_url">Your Canvas URL:</span>
+                        <p style="font-size: 11px;color:#8d8d8d" data-i18n="enter_multiple">(Enter multiple with a comma)</p>
+                        <input type="text" id="customDomain" placeholder="Or just refresh your Canvas page!"></input>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="option" id="gpa_calc">
+                        <input type="radio" id="off" name="gpa_calc">
+                        <input type="radio" id="on" name="gpa_calc">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div>
+                        <span class="option-name" data-i18n="gpa_calculator">GPA calculator</span>
+                    </div>
+                    <div class="sub-options">
+                        <div class="sub-option" style="margin-top:5px">
+                            <input type="checkbox" id="gpa_calc_prepend" name="gpa_calc_prepend">
+                            <label for="gpa_calc_prepend" class="sub-text" data-i18n="move_top">Move to top</label>
+                        </div>
+                    </div>
+                </div>
                 <div class="option-container">
                     <div class="option" id="dashboard_grades">
                         <input type="radio" id="off" name="dashboard_grades">
@@ -198,7 +167,40 @@
                         </div>
                     </div>
                 </div>
-                <div class="option-container">
+                <div class="option-container" style="display:flex;flex-direction:column;gap:6px;">
+                    <div class="option" id="dashboard_notes">
+                        <input type="radio" id="off" name="dashboard_notes">
+                        <input type="radio" id="on" name="dashboard_notes">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span class="option-name" data-i18n="dashboard_notes">Dashboard Notes</span>
+                    </div>
+                    <div class="option" id="gradient_cards">
+                        <input type="radio" id="off" name="gradient_cards">
+                        <input type="radio" id="on" name="gradient_cards">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div>
+                        <span class="option-name" data-i18n="gradient_cards">Gradient cards</span>
+                    </div>
+                    <div class="option" id="condensed_cards">
+                        <input type="radio" id="off" name="condensed_cards">
+                        <input type="radio" id="on" name="condensed_cards">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span class="option-name" data-i18n="condensed_cards">Condensed Cards</span>
+                    </div>
+                    <div class="option" id="disable_color_overlay">
+                        <input type="radio" id="off" name="disable_color_overlay">
+                        <input type="radio" id="on" name="disable_color_overlay">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span class="option-name" data-i18n="disable_color">Disable Color Overlay</span>
+                    </div>
                     <div class="option" id="full_width">
                         <input type="radio" id="off" name="full_width">
                         <input type="radio" id="on" name="full_width">
@@ -208,25 +210,13 @@
                         </div>
                         <span class="option-name" data-i18n="full_width">Dashboard full width</span>
                     </div>
-                </div>
-                <div class="option-container">
-                    <div class="option" id="disable_color_overlay">
-                        <input type="radio" id="off" name="disable_color_overlay">
-                        <input type="radio" id="on" name="disable_color_overlay">
+                    <div class="option" id="remlogo">
+                        <input type="radio" id="off" name="remlogo">
+                        <input type="radio" id="on" name="remlogo">
                         <div class="slider">
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
-                        </div><span class="option-name" data-i18n="disable_color">Disable Color Overlay</span>
-                    </div>
-                </div>
-                <div class="option-container">
-                    <div class="option" id="dashboard_notes">
-                        <input type="radio" id="off" name="dashboard_notes">
-                        <input type="radio" id="on" name="dashboard_notes">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div><span class="option-name" data-i18n="dashboard_notes">Dashboard Notes</span>
+                        </div><span class="option-name">Remove sidebar logo</span>
                     </div>
                 </div>
             </div>
