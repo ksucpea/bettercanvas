@@ -98,10 +98,16 @@
     "themes": {
         "message": "Themes"
     },
-    "themes_e": {
-        "message": "Themes (Experimental)"
-    },
     "move_top": {
         "message": "Move to top"
+    },
+    "show_past_due": {
+        "message": "Show past due"
+    },
+    "relative_due_dates": {
+        "message": "Relative due dates"
+    },
+    "enter_multiple": {
+        "message": "(Enter multiple with a comma)"
     }
 }

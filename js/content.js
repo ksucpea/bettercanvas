@@ -59,7 +59,7 @@ function startExtension() {
         getApiData();
         checkDashboardReady();
         loadCustomFont();
-        //changeAssignmentDueDate();
+        removeSidebarLogo();
     });
 
     chrome.runtime.onMessage.addListener(recieveMessage);
@@ -142,6 +142,9 @@ function applyOptionsChanges(changes) {
             case ("custom_font"):
                 loadCustomFont();
                 break;
+            case ("remlogo"):
+                removeSidebarLogo();
+                break;
         }
     });
 }
@@ -222,7 +225,6 @@ async function getCards(api = null) {
         let count = 0;
         // sort cards by enrollment id (i think the higher the id, the more recent it is)
         dashboard_cards.sort((a, b) => (b?.enrollment_term_id || 0) - (a?.enrollment_term_id || 0));
-        console.log(dashboard_cards);
         try {
             dashboard_cards.forEach(card => {
                 if (!card.course_code || count >= 25) return;
@@ -671,6 +673,7 @@ async function changeColorPreset(colors) {
                             }).then(() => {
                                 card.el.querySelector(".ic-DashboardCard__header_hero").style.backgroundColor = colors[cnum];
                                 card.el.querySelector(".ic-DashboardCard__header-title span").style.color = colors[cnum];
+                                card.el.querySelector(".ic-DashboardCard__header-button-bg").style.backgroundColor = colors[cnum];
                             });
                     }
 
@@ -1292,6 +1295,20 @@ function loadCustomFont() {
 Smaller features
 */
 
+function removeSidebarLogo() {
+    console.log("remove", options.remlogo);
+    if (options.remlogo === null) return;
+    if (options.remlogo === true) {
+        let style = document.querySelector("#bettercanvas-remlogo") || document.createElement('style');
+        style.id = "bettercanvas-remlogo";
+        style.textContent = ".ic-app-header__logomark-container { display: none }";
+        document.documentElement.prepend(style);
+    } else {
+        let style = document.querySelector("#bettercanvas-remlogo");
+        if (style) style.textContent = "";
+    }
+}
+
 function condenseCards() {
     if (options.condensed_cards === true) {
         let style = document.querySelector("#bettercanvas-condense-cards") || document.createElement('style');
@@ -1389,7 +1406,7 @@ function cleanCustomAssignments() {
 
 function setupCustomURL() {
     //let test = getData(`${domain}/api/v1/dashboard/dashboard_cards?include[]=concluded&include[]=term`);
-    let test = getData(`${domain}/api/v1/courses?enrollment_state=active&per_page=30`);
+    let test = getData(`${domain}/api/v1/courses?enrollment_state=active&per_page=100`);
     test.then(res => {
         if (res.length) {
             getCards(res).then(() => {

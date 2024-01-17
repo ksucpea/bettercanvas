@@ -98,10 +98,16 @@
     "themes": {
         "message": "Temas"
     },
-    "themes_e": {
-        "message": "Temas (Experimentales)"
-    },
     "move_top": {
         "message": "Moverse hacia arriba"
+    },
+    "show_past_due": {
+        "message": "Mostrar vencida"
+    },
+    "relative_due_dates": {
+        "message": "Fechas pendientes relativas"
+    },
+    "enter_multiple": {
+        "message": "(Ingresa multiple con una coma)"
     }
 }

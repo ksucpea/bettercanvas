@@ -76,7 +76,7 @@
 .bettercanvas-gpa-course {padding:6px;display:flex; align-items: center;border-bottom:1px solid #c7cdd1}
 .bettercanvas-gpa-open {text-align:center}
 .bettercanvas-gpa-open:hover {cursor: pointer}
-.bettercanvas-gpa-courses {width:600px;}
+.bettercanvas-gpa-courses {min-width:600px;width:max-content;}
 .bettercanvas-gpa-course-top, .bettercanvas-gpa-course-bottom {display: flex;}
 .bettercanvas-gpa-header {font-weight:700;font-size:16px;margin-top:0;margin-bottom:6px;padding-bottom:6px;}
 .bettercanvas-dashboard-notes {width: 100%; box-sizing: border-box; margin-top: 18px;border: 1px solid #c7cdd1;border-radius:3px;padding:8px 14px;resize:vertical}

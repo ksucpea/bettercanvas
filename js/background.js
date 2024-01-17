@@ -28,7 +28,8 @@ const syncedOptions = [
     'custom_font',
     'todo_overdues',
     'card_overdues',
-    'relative_dues'
+    'relative_dues',
+    'remlogo'
 ];
 const localOptions = [
     'previous_colors',
@@ -86,6 +87,7 @@ chrome.runtime.onInstalled.addListener(function () {
         "full_width": null,
         "previous_colors": null,
         "previous_theme": null,
+        "remlogo": null,
         "gpa_calc_bounds": {
             "A+": { "cutoff": 97, "gpa": 4.3 },
             "A": { "cutoff": 93, "gpa": 4 },
