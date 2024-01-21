@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    <div id="gradientbg"></div>
     <div id="alert"></div>
     <div class="main">
         <div class="header">
@@ -55,6 +56,10 @@
                                 <span class="sub-text" data-i18n="auto_end_time">End time</span>
                             </div>
                         </div>
+                        <div class="sub-option" style="margin-top:5px">
+                            <input type="checkbox" id="device_dark" name="device_dark">
+                            <label for="device_dark" class="sub-text">Use device dark mode settings</label>
+                        </div>
                     </div>
                 </div>
                 <div class="option-container">
@@ -85,6 +90,50 @@
                                 id="numAssignments"></span>
                             <input type="range" min="1" max="10" id="numAssignmentsSlider">
                         </div>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="option" id="gpa_calc">
+                        <input type="radio" id="off" name="gpa_calc">
+                        <input type="radio" id="on" name="gpa_calc">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div>
+                        <span class="option-name" data-i18n="gpa_calculator">GPA calculator</span>
+                    </div>
+                    <div class="sub-options">
+                        <div class="sub-option" style="margin-top:5px">
+                            <input type="checkbox" id="gpa_calc_prepend" name="gpa_calc_prepend">
+                            <label for="gpa_calc_prepend" class="sub-text" data-i18n="move_top">Move to top</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="option" id="dashboard_grades">
+                        <input type="radio" id="off" name="dashboard_grades">
+                        <input type="radio" id="on" name="dashboard_grades">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div>
+                        <span class="option-name" data-i18n="card_grades">Card Grades</span>
+                    </div>
+                    <div class="sub-options">
+                        <div class="sub-option" style="margin-top:5px">
+                            <input type="checkbox" id="grade_hover" name="grade_hover">
+                            <label for="grade_hover" class="sub-text" data-i18n="grade_hover">Show only when hovering</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="options-right">
+                <div class="option-container">
+                    <div class="customDomain">
+                        <span data-i18n="enter_url">Your Canvas URL:</span>
+                        <p style="font-size: 11px;color:#8d8d8d" data-i18n="enter_multiple">(Enter multiple with a comma)</p>
+                        <input type="text" id="customDomain" placeholder="Or just refresh your Canvas page!"></input>
                     </div>
                 </div>
                 <div class="option-container">
@@ -120,50 +169,6 @@
                             <span class="sub-text" data-i18n="max_items">Max items to show: </span><span
                                 id="numTodoItems"></span>
                             <input type="range" min="1" max="7" id="numTodoItemsSlider">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="options-right">
-                <div class="option-container">
-                    <div class="customDomain">
-                        <span data-i18n="enter_url">Your Canvas URL:</span>
-                        <p style="font-size: 11px;color:#8d8d8d" data-i18n="enter_multiple">(Enter multiple with a comma)</p>
-                        <input type="text" id="customDomain" placeholder="Or just refresh your Canvas page!"></input>
-                    </div>
-                </div>
-                <div class="option-container">
-                    <div class="option" id="gpa_calc">
-                        <input type="radio" id="off" name="gpa_calc">
-                        <input type="radio" id="on" name="gpa_calc">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div>
-                        <span class="option-name" data-i18n="gpa_calculator">GPA calculator</span>
-                    </div>
-                    <div class="sub-options">
-                        <div class="sub-option" style="margin-top:5px">
-                            <input type="checkbox" id="gpa_calc_prepend" name="gpa_calc_prepend">
-                            <label for="gpa_calc_prepend" class="sub-text" data-i18n="move_top">Move to top</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="option-container">
-                    <div class="option" id="dashboard_grades">
-                        <input type="radio" id="off" name="dashboard_grades">
-                        <input type="radio" id="on" name="dashboard_grades">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div>
-                        <span class="option-name" data-i18n="card_grades">Card Grades</span>
-                    </div>
-                    <div class="sub-options">
-                        <div class="sub-option" style="margin-top:5px">
-                            <input type="checkbox" id="grade_hover" name="grade_hover">
-                            <label for="grade_hover" class="sub-text" data-i18n="grade_hover">Show only when hovering</label>
                         </div>
                     </div>
                 </div>
@@ -234,7 +239,7 @@
                 </button>
                 <button id="card-colors-btn" class="big-button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 3m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z"></path><path d="M19 6h1a2 2 0 0 1 2 2a5 5 0 0 1 -5 5l-5 0v2"></path><path d="M10 15m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z"></path></svg>
-                    <span data-i18n="card_colors">Card Color Palettes</span>
+                    <span data-i18n="card_colors">Card Colors</span>
                 </button>
                 <button id="import-export-btn" class="big-button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 21v-4a4 4 0 1 1 4 4h-4"></path><path d="M21 3a16 16 0 0 0 -12.8 10.2"></path><path d="M21 3a16 16 0 0 1 -10.2 12.8"></path><path d="M10.6 9a9 9 0 0 1 4.4 4.4"></path></svg>
@@ -250,7 +255,7 @@
                 </button>
                 <button id="report-issue-btn" class="big-button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 9v4"></path><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z"></path><path d="M12 16h.01"></path></svg>
-                    <span data-i18n="report_issue">Report an issue</span>
+                    <span data-i18n="report_issue">Report issue</span>
                 </button>
             </div>
         </div>
@@ -324,16 +329,23 @@
                 <button id="theme-sillycats" class="theme-button customization-button">Silly Cats by Stephanie</button>
                 <button id="theme-onepiece" class="theme-button customization-button">OnePiece by Allison</button>
                 <button id="theme-shark" class="theme-button customization-button">Shark by Myles</button>
+                <button id="theme-pastelpink" class="theme-button customization-button">PastelPink by Kai</button>
+                <button id="theme-pastelgreen" class="theme-button customization-button">PastelGreen by Kai</button>
+                <button id="theme-darkside" class="theme-button customization-button">DarkSide by Whitney</button>
+                <button id="theme-waveform" class="theme-button customization-button">Waveform by Evan</button>
+                <button id="theme-THEME" class="theme-button customization-button">THEME by Dalila</button>
+
                 <button id="theme-placeholder1" style="opacity:0" class="theme-button customization-button">placeholder</button>
-               <!--<button id="theme-placeholder2" style="opacity:0" class="theme-button customization-button">placeholder</button>-->
+                <button id="theme-placeholder2" style="opacity:0" class="theme-button customization-button">placeholder</button>
             </div>
         </div>
         <div class="option-container">
             <h3 class="header-small">User made dark modes</h3>
             <div id="premade-darkmodes">
-                <button id="theme-catppuccin" class="theme-button customization-button" style="background:#11111b;border:1px solid #4f5463;color:#f5c2e7;">Catppuccin by Angel</button>
-                <button id="theme-sage" class="theme-button customization-button" style="background:#2f3e46;border:1px solid #84a98c;color:#d8f5c7;">Sage by LivDoesDevStuf</button>
-                <button id="theme-placeholder3" style="opacity:0" class="theme-button customization-button">placeholder</button>
+                <button id="theme-catppuccin" class="theme-button customization-button" style="background:#11111b!important;border:1px solid #4f5463;color:#f5c2e7;">Catppuccin by Angel</button>
+                <button id="theme-sage" class="theme-button customization-button" style="background:#2f3e46!important;border:1px solid #84a98c;color:#d8f5c7;">Sage by LivDoesDevStuf</button>
+                <button id="theme-pink" class="theme-button customization-button" style="background:#ffe0ed!important;border:1px solid #ff007b;color:#ff0088;">Pink by Sayde</button>
+                <!--<button id="theme-placeholder3" style="opacity:0" class="theme-button customization-button">placeholder</button>-->
             </div>
         </div>
         <div class="import-export-details">
@@ -670,7 +682,7 @@
     <div class="report-issue-container tab">
         <div class="tab-header">
             <div>
-                <h2 style="margin-top: 0" data-i18n="report_issue">Report an issue</h2>
+                <h2 style="margin-top: 0" data-i18n="report_issue">Report issue</h2>
             </div>
             <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
@@ -692,7 +704,7 @@
                 <textarea id="error_log_output" class="card-input"></textarea>
             </div>
         </div>
-        <p>5.9.0</p>
+        <p>5.9.2</p>
     </div>
 
     <script type="text/javascript" src="../js/popup.js"></script>

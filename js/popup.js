@@ -1,6 +1,6 @@
-const syncedSwitches = ['remlogo', 'full_width', 'auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'disable_color_overlay', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
-const syncedSubOptions = ['relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'num_todo_items', 'hover_preview'];
-const localSwitches = ['dark_mode'];
+const syncedSwitches = ['dark_mode', 'remlogo', 'full_width', 'auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'disable_color_overlay', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
+const syncedSubOptions = ['device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'num_todo_items', 'hover_preview'];
+const localSwitches = [];
 
 sendFromPopup("getCards");
 
@@ -29,10 +29,11 @@ chrome.storage.sync.get(syncedSubOptions, function (result) {
     document.querySelector('#card_overdues').checked = result.card_overdues;
     document.querySelector('#todo_overdues').checked = result.todo_overdues;
     document.querySelector('#relative_dues').checked = result.relative_dues;
+    document.querySelector('#device_dark').checked = result.device_dark;
     toggleDarkModeDisable(result.auto_dark);
 });
 
-chrome.storage.local.get(["custom_domain"], storage => {
+chrome.storage.sync.get(["custom_domain"], storage => {
     document.querySelector("#customDomain").value = storage.custom_domain ? storage.custom_domain : "";
 });
 
@@ -47,7 +48,7 @@ document.querySelector('#numTodoItemsSlider').addEventListener('input', function
 });
 
 // checkboxes
-['assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'hover_preview', 'gpa_calc_prepend', 'todo_overdues', 'card_overdues', 'relative_dues'].forEach(checkbox => {
+['assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'hover_preview', 'gpa_calc_prepend', 'todo_overdues', 'card_overdues', 'relative_dues', 'device_dark'].forEach(checkbox => {
     document.querySelector("#" + checkbox).addEventListener('change', function () {
         let status = this.checked;
         chrome.storage.sync.set(JSON.parse(`{"${checkbox}": ${status}}`));
@@ -58,7 +59,8 @@ document.querySelector('#customDomain').addEventListener('input', function () {
     let domains = this.value.split(",");
     domains.forEach((domain, index) => {
         let val = domain.replace(" ", "");
-        if (!val.includes("https://") && !val.includes("http://")) val = "https://" + val;
+        if (val === "") return;
+        //if (!val.includes("https://") && !val.includes("http://")) val = "https://" + val;
         try {
             let url = new URL(val);
             domains[index] = url.hostname;
@@ -68,7 +70,7 @@ document.querySelector('#customDomain').addEventListener('input', function () {
             displayAlert("The URL you entered appears to be invalid, so it might not work.");
         }
     });
-    chrome.storage.local.set({ custom_domain: domains });
+    chrome.storage.sync.set({ custom_domain: domains });
 });
 
 document.querySelector("#advanced-settings").addEventListener("click", function () {
@@ -149,9 +151,8 @@ document.querySelector("#import-input").addEventListener("input", (e) => {
 
 document.querySelectorAll(".export-details input").forEach(input => {
     input.addEventListener("change", () => {
-        chrome.storage.sync.get(syncedSwitches.concat(syncedSubOptions).concat(["custom_cards", "custom_font", "gpa_calc_bounds"]), sync => {
-            chrome.storage.local.get(["dark_preset"], async local => {
-                let storage = { ...sync, ...local };
+        chrome.storage.sync.get(syncedSwitches.concat(syncedSubOptions).concat(["custom_cards", "custom_font", "gpa_calc_bounds"]), async storage => {
+            //chrome.storage.local.get(["dark_preset"], async local => {
                 let final = {};
                 for await (item of document.querySelectorAll(".export-details input")) {
                     if (item.checked) {
@@ -178,7 +179,7 @@ document.querySelectorAll(".export-details input").forEach(input => {
                     }
                 }
                 document.querySelector("#export-output").value = JSON.stringify(final);
-            });
+            //});
         });
     });
 });
@@ -215,14 +216,14 @@ async function getExport(storage, options) {
 
 document.querySelectorAll(".theme-button").forEach(btn => {
     let theme = getTheme(btn.id);
-    btn.style.backgroundImage = "linear-gradient(#0000008c, #0000008c), url(" + theme.preview + ")";
+   if (!btn.style.background) btn.style.backgroundImage = "linear-gradient(#0000008c, #0000008c), url(" + theme.preview + ")";
     btn.addEventListener("click", () => {
-        const allOptions = syncedSwitches.concat(syncedSubOptions).concat(["custom_cards", "custom_font", "gpa_calc_bounds", "card_colors"]);
+        const allOptions = syncedSwitches.concat(syncedSubOptions).concat(["dark_preset", "custom_cards", "custom_font", "gpa_calc_bounds", "card_colors"]);
         chrome.storage.sync.get(allOptions, sync => {
-            chrome.storage.local.get(["dark_preset", "previous_theme"], async local => {
+            chrome.storage.local.get(["previous_theme"], async local => {
                 const now = Date.now();
                 if (local["previous_theme"] === null || now >= local["previous_theme"].expire) {
-                    let previous = { ...(await getExport(sync, allOptions)), ...(await getExport(local, ["dark_preset"])) };
+                    let previous = await getExport(sync, allOptions);
                     chrome.storage.local.set({ "previous_theme": { "theme": previous, "expire": now + 28800000 } });
                 }
             });
@@ -261,9 +262,15 @@ function getTheme(name) {
         "theme-sillycats": { "exports": { "disable_color_overlay": true, "gradient_cards": false, "dark_preset":{"background-0":"#0d0d21","background-1":"#0d0d21","background-2":"#341849","borders":"#0c466c","links":"#56Caf0","sidebar":"#0c466c","sidebar-text":"#3f7eaa","text-0":"#f5f5f5","text-1":"#e2e2e2","text-2":"#ababab"},"custom_cards":["https://i.pinimg.com/564x/46/88/1d/46881dbea1181428c18eb49f60212bd5.jpg","https://i.pinimg.com/474x/0e/9f/5a/0e9f5a491305242147907ad86539f010.jpg","https://i.pinimg.com/236x/74/51/d5/7451d50902dddb215e193734ac49981b.jpg","https://i.pinimg.com/236x/cf/88/6a/cf886ad3d12477b4dee8f98072806dbd.jpg","https://i.pinimg.com/736x/6d/e0/4e/6de04e262c56dc9a9b733eec9a16e5b3.jpg","https://i.pinimg.com/236x/b3/d9/1e/b3d91e35684a51f3afa5abefae1a7ce5.jpg"],"card_colors":["#3f7eaa"],"custom_font":{"family":"'Comfortaa'","link":"Comfortaa:wght@400;700"}}, "preview": "https://i.pinimg.com/236x/b3/d9/1e/b3d91e35684a51f3afa5abefae1a7ce5.jpg"},
         "theme-onepiece": { "exports": { "disable_color_overlay": true, "gradient_cards": false, "dark_preset":{"background-0":"#fef6d7","background-1":"#942222","background-2":"#1a1a1a","borders":"#272727","links":"#942222","sidebar":"#feefb4","sidebar-text":"#000000","text-0":"#000000","text-1":"#000000","text-2":"#000000"},"custom_cards":["https://preview.redd.it/goofy-frames-v0-gcoti56dlltb1.jpg?width=567&format=pjpg&auto=webp&s=3b44cbcc94cdcc360e07115dc17d1f9a23c7c2e1","https://i.pinimg.com/236x/df/c0/74/dfc074b259975bc010100eb36439fe18.jpg","https://preview.redd.it/if-zoro-got-lost-and-ended-up-in-the-back-rooms-do-you-v0-404t0gtyebcb1.png?auto=webp&s=f188b2b5be9e79886d78bab59e03f9eb3cb0a331","https://4.bp.blogspot.com/-11EYfCo7EB4/TwNYx_cDKmI/AAAAAAAAJy4/5eZn-GElZkY/s1600/luffy%2Bpeace%2Bsign.jpeg"], "card_colors": ["#942222"], "custom_font":{"family":"'Caveat'","link":"Caveat:wght@400;700"}}, "preview": "https://i.pinimg.com/236x/df/c0/74/dfc074b259975bc010100eb36439fe18.jpg"},
         "theme-shark": { "exports": { "disable_color_overlay": true, "gradient_cards": false, "dark_preset":{"background-0":"#0a272e","background-1":"#103842","background-2":"#103842","borders":"#1a5766","links":"#3bb9d8","sidebar":"#103842","sidebar-text":"#f5f5f5","text-0":"#f5f5f5","text-1":"#e2e2e2","text-2":"#ababab"},"custom_cards":["https://i.pinimg.com/originals/0b/9e/a3/0b9ea33d064d84a40ef294728c41f85b.jpg","https://i.pinimg.com/736x/6b/ee/df/6beedf5c1258a1ab3c2b244bcb8cf9d1.jpg","https://i.pinimg.com/474x/ef/06/eb/ef06eb139d8e8d1300e2a6f4a2e352af.jpg","https://p16-va.lemon8cdn.com/tos-maliva-v-ac5634-us/oUoyiAz4EgBhAAG1N6BoIRAfDOR60jIyX062E2~tplv-tej9nj120t-origin.webp","https://p16-va.lemon8cdn.com/tos-maliva-v-ac5634-us/oANyp42A6TziDRJhR2fy6EAXghAoIoBGOIAE6B~tplv-tej9nj120t-origin.webp"],"card_colors":["#1770ab","#74c69d","#74c69d","#74c69d","#52b788"],"custom_font":{"family":"'Silkscreen'","link":"Silkscreen:wght@400;700"}}, "preview": "https://p16-va.lemon8cdn.com/tos-maliva-v-ac5634-us/oANyp42A6TziDRJhR2fy6EAXghAoIoBGOIAE6B~tplv-tej9nj120t-origin.webp"}, 
+        "theme-pastelpink": { "exports": { "disable_color_overlay": false, "gradient_cards": false, "dark_preset":{"background-0":"#fae3ef","background-1":" #f5a2cb","background-2":"#f78bc1","borders":"#f78bc1","links":"#802a55","sidebar":"#db76a9","sidebar-text":"#000000","text-0":"#000000","text-1":"#000000","text-2":"#000000"},"custom_cards":["https://m.media-amazon.com/images/I/61SDXeSVUXL._AC_UF894,1000_QL80_.jpg","https://64.media.tumblr.com/d4a13a446aa5e5f289e20814e0a94235/tumblr_or32x0dlHD1wp29mto1_1280.jpg","https://i.pinimg.com/originals/9f/77/6f/9f776fe088d31b850058c4bc5fcc52cc.jpg","https://i.pinimg.com/564x/ee/6d/5c/ee6d5c9693406c3d90555efd9cd2fdb9.jpg","https://t3.ftcdn.net/jpg/05/70/74/80/360_F_570748088_ggUWmbyHXAJwVuSgkXwUHaCldPFMLv32.jpg"],"card_colors":["#db93aa","#f7b2de","#de87be","#f29bbe","#f7b2c8"],"custom_font":{"family":"'Poppins'","link":"Poppins:wght@400;700"}}, "preview": "https://m.media-amazon.com/images/I/61SDXeSVUXL._AC_UF894,1000_QL80_.jpg"},
+        "theme-pastelgreen": { "exports": { "disable_color_overlay": false, "gradient_cards": false, "dark_preset":{"background-0":"#ebfcef","background-1":"#a2f5b3","background-2":"#8bf79d","borders":"#8bf7a4","links":"#2d802a","sidebar":"#76db8a","sidebar-text":"#000000","text-0":"#000000","text-1":"#000000","text-2":"#000000"},"custom_cards":["https://ih0.redbubble.net/image.3235809503.1667/raf,360x360,075,t,fafafa:ca443f4786.jpg","https://img.freepik.com/free-vector/hand-drawn-olive-green-background_23-2149724849.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1705536000&semt=ais","https://p16-va.lemon8cdn.com/tos-alisg-v-a3e477-sg/7d047e85ab274eaabe32e3ac27337e90~tplv-tej9nj120t-origin.webp","https://ih1.redbubble.net/image.2945978530.3100/flat,750x1000,075,f.jpg","https://img.freepik.com/premium-photo/green-aesthetic-classic-simple-floral-background-cover-journal-spiral_873036-53.jpg"],"card_colors":["#60ba5d","#92e88e","#286b25","#4ec248","#6fbf6b"],"custom_font":{"family":"'Poppins'","link":"Poppins:wght@400;700"}}, "preview": "https://p16-va.lemon8cdn.com/tos-alisg-v-a3e477-sg/7d047e85ab274eaabe32e3ac27337e90~tplv-tej9nj120t-origin.webp"},
+        "theme-darkside": { "exports": { "disable_color_overlay": true, "gradient_cards": false, "dark_preset":{"background-0":"#922020","background-1":"#922020","background-2":"#000000","borders":"#000000","links":"#000000","sidebar":"#000000","sidebar-text":"#922020","text-0":"#000000","text-1":"#000000","text-2":"#000000"},"custom_cards":["https://media0.giphy.com/media/1HPUSulSOHDpe/200w.webp?cid=ecf05e478c5mdsl8uhcr9yj35p01vmuk5m4rflibey76ke14&ep=v1_gifs_search&rid=200w.webp&ct=g","https://media2.giphy.com/media/voKRB2g96S8q4/giphy.webp?cid=ecf05e478c5mdsl8uhcr9yj35p01vmuk5m4rflibey76ke14&ep=v1_gifs_search&rid=giphy.webp&ct=g","https://media4.giphy.com/media/mZAL1GTRA8VnkRaU47/200w.webp?cid=ecf05e47frhquzpazkdzjkapdyionh70512xx37fddji4736&ep=v1_gifs_search&rid=200w.webp&ct=g","https://media1.giphy.com/media/1FZqAOn4hzGO4/giphy.webp?cid=ecf05e478c5mdsl8uhcr9yj35p01vmuk5m4rflibey76ke14&ep=v1_gifs_search&rid=giphy.webp&ct=g","https://media4.giphy.com/media/GIIC4jmmUlXZS/100.webp?cid=ecf05e478c5mdsl8uhcr9yj35p01vmuk5m4rflibey76ke14&ep=v1_gifs_search&rid=100.webp&ct=g"],"card_colors":["#000000"],"custom_font":{"family":"'Orbitron'","link":"Orbitron:wght@400;700"}}, "preview": "https://media4.giphy.com/media/mZAL1GTRA8VnkRaU47/200w.webp?cid=ecf05e47frhquzpazkdzjkapdyionh70512xx37fddji4736&ep=v1_gifs_search&rid=200w.webp&ct=g"},
+        "theme-waveform": { "exports": { "disable_color_overlay": false, "gradient_cards": true, "dark_preset":{"background-0":"#212838","background-1":"#1a2026","background-2":"#212930","borders":"#2e3943","links":"#56Caf0","sidebar":"#1a2026","sidebar-text":"#f5f5f5","text-0":"#f5f5f5","text-1":"#e2e2e2","text-2":"#ababab"},"custom_cards":["https://64.media.tumblr.com/8b8355866f27dcfc2cf61c4635b97403/tumblr_p0dhkklO2K1txe8seo1_500.gif","https://i.imgur.com/HEMgWMm.gif","https://i.pinimg.com/originals/6a/a2/91/6aa291a29c9ff0674e0777f86e6f4bf8.gif","https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXB2aHR4aXU1YTU1YnY1NHplcHgwOHBycHZndnpqbnUxZXlrbzhxciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1YiJ9qOYgWPCQKhRjj/giphy.gif","https://i.pinimg.com/originals/46/03/97/460397c66c7e383f03a0f06cbb9060bd.gif","https://64.media.tumblr.com/f53c69d759bc119edda51e3eb4e6074b/tumblr_oxa6a3Faj31txe8seo1_500.gif"],"card_colors":["#e0aaff","#ffcce9","#da70d6","#fc9c54","#65499d","#f25b43","#e0aaff","#ffe373"],"custom_font":{"family":"'Montserrat'","link":"Montserrat:wght@400;700"}}, "preview": "https://i.pinimg.com/originals/46/03/97/460397c66c7e383f03a0f06cbb9060bd.gif"},
+        "theme-THEME": { "exports": { "disable_color_overlay": false, "gradient_cards": false, "dark_preset":{"background-0":"#f8a382","background-1":"#F67280","background-2":"#C06C84","borders":"#C5E7B","links":"#355C7D","sidebar":"#355C7D","sidebar-text":"#f5f5f5","text-0":"#f5f5f5","text-1":"#e2e2e2","text-2":"#ababab"},"custom_cards":["https://i.pinimg.com/originals/87/87/b4/8787b48e6e7f084b71cff1fd11cc5e73.gif","https://media1.giphy.com/media/l3vRdDjIXS9dmt2Vi/giphy.gif","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsis9hJTKJXZheHchbF10kXRZKYjRlsXkZrw&usqp=CAU","https://media4.giphy.com/media/Y8AeLA5ZRSREY/giphy.gif?cid=6c09b952apmfzj9gmfzjatex930izsrbu83xagkziv1ahw9x&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g","https://gifdb.com/images/high/emma-stone-crying-ft5r7z63iuyox4ov.gif","https://media.tenor.com/1kZ2j73pGDUAAAAC/capybara-ok-he-pull-up.gif","https://i.pinimg.com/originals/b1/90/87/b1908765be9fad1cee19fcb4c0156aea.gif","https://media1.giphy.com/media/h1QI7dgjZUJO60nu2X/giphy.gif"],"card_colors":["#355C7D"],"custom_font":{"family":"'Corben'","link":"Corben:wght@400;700"}}, "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsis9hJTKJXZheHchbF10kXRZKYjRlsXkZrw&usqp=CAU"},
 
         "theme-catppuccin": { "exports": { "dark_preset": { "background-0": "#11111b", "background-1": "#181825", "background-2": "#1e1e2e", "borders": "#4f5463", "text-0": "#cdd6f4", "text-1": "#7f849c", "text-2": "#a6e3a1", "links": "#f5c2e7", "sidebar": "#181825", "sidebar-text": "#7f849c" } }, "preview": "" },
         "theme-sage": { "exports": { "dark_preset": { "background-0": "#2f3e46", "background-1": "#354f52", "background-2": "#52796f", "borders": "#84a98c", "links": "#d8f5c7", "sidebar": "#354f52", "sidebar-text": "#e2e8de", "text-0": "#e2e8de", "text-1": "#cad2c5", "text-2": "#adb1aa" }}, "preview": "" },
+        "theme-pink": { "exports": { "dark_preset":{"background-0":"#ffffff","background-1":"#ffe0ed","background-2":"#ff0066","borders":"#ff007b","links":"#ff0088","sidebar":"#f490b3","sidebar-text":"#ffffff","text-0":"#ff0095","text-1":"#ff8f8f","text-2":"#ff5c5c"}}, "preview": ""},
     }
     return themes[name] || {};
 }
@@ -285,7 +292,6 @@ function importTheme(theme) {
                         if (theme["custom_cards"].length > 0) {
                             let pos = 0;
                             Object.keys(sync["custom_cards"]).forEach(key => {
-                                console.log("setting image to ", theme["custom_cards"][pos]);
                                 sync["custom_cards"][key].img = theme["custom_cards"][pos];
                                 pos = (pos === theme["custom_cards"].length - 1) ? 0 : pos + 1;
                             });
@@ -553,7 +559,7 @@ function toggleDarkModeDisable(disabled) {
 
 // customization tab
 
-document.querySelector("#setToDefaults").addEventListener("click", setToDefaults);
+//document.querySelector("#setToDefaults").addEventListener("click", setToDefaults);
 
 document.querySelectorAll(".preset-button.customization-button").forEach(btn => btn.addEventListener("click", changeToPresetCSS));
 
@@ -704,11 +710,9 @@ function showd() {
 }
 
 function displaySidebarMode(mode, style) {
-    console.log("changing to", mode, "with existing", style);
     style = style.replace(" ", "");
     let match = style.match(/linear-gradient\((?<color1>\#\w*),(?<color2>\#\w*)\)/);
     let c1 = c2 = "#000000";
-    console.log(match);
 
     if (mode === "image") {
         document.querySelector("#radio-sidebar-image").checked = true;
@@ -741,7 +745,9 @@ function displaySidebarMode(mode, style) {
     document.querySelector('#sidebar-color2 input[type="color"]').value = c2;
 }
 
-chrome.storage.local.get(["dark_preset"], storage => {
+let presetChangeTimeout = null;
+
+chrome.storage.sync.get(["dark_preset"], storage => {
     let tab = document.querySelector(".customize-dark");
     Object.keys(storage["dark_preset"]).forEach(key => {
         if (key !== "sidebar") {
@@ -751,7 +757,8 @@ chrome.storage.local.get(["dark_preset"], storage => {
             [color, text].forEach(changer => {
                 changer.value = storage["dark_preset"][key];
                 changer.addEventListener("input", function (e) {
-                    changeCSS(key, e.target.value);
+                    clearTimeout(presetChangeTimeout);
+                    presetChangeTimeout = setTimeout(() => changeCSS(key, e.target.value), 200);
                 });
             });
         } else {
@@ -761,7 +768,6 @@ chrome.storage.local.get(["dark_preset"], storage => {
                 let c1 = tab.querySelector('#sidebar-color1 input[type="text"]').value.replace("c7", "");
                 let c2 = tab.querySelector('#sidebar-color2 input[type="text"]').value.replace("c7", "");
                 let url = tab.querySelector('#sidebar-image input[type="text"]').value;
-                console.log("input detected", c1, c2, url);
                 if (tab.querySelector("#radio-sidebar-image").checked) {
                     changeCSS(key, `linear-gradient(${c1}c7, ${c2}c7), center url("${url}")`);
                 } else if (tab.querySelector("#radio-sidebar-gradient").checked) {
@@ -776,7 +782,8 @@ chrome.storage.local.get(["dark_preset"], storage => {
                         ['input[type="text"]', 'input[type="color"]'].forEach(i => {
                             document.querySelector(group + " " + i).value = e.target.value;
                         });
-                        changeSidebar();
+                        clearTimeout(presetChangeTimeout);
+                        presetChangeTimeout = setTimeout(() => changeSidebar(), 200);
                     });
                 });
             });
@@ -787,7 +794,7 @@ chrome.storage.local.get(["dark_preset"], storage => {
 
 ["#radio-sidebar-image", "#radio-sidebar-gradient", "#radio-sidebar-solid"].forEach(radio => {
     document.querySelector(radio).addEventListener("click", () => {
-        chrome.storage.local.get(["dark_preset"], storage => {
+        chrome.storage.sync.get(["dark_preset"], storage => {
             let mode = radio === "#radio-sidebar-image" ? "image" : radio === "#radio-sidebar-gradient" ? "gradient" : "solid";
             displaySidebarMode(mode, storage["dark_preset"]["sidebar"]);
         });
@@ -795,7 +802,7 @@ chrome.storage.local.get(["dark_preset"], storage => {
 });
 
 function refreshColors() {
-    chrome.storage.local.get(["dark_preset"], storage => {
+    chrome.storage.sync.get(["dark_preset"], storage => {
         Object.keys(storage["dark_preset"]).forEach(key => {
             let c = document.querySelector("#dp_" + key);
             let color = c.querySelector('input[type="color"]');
@@ -809,19 +816,21 @@ function refreshColors() {
 }
 
 function changeCSS(name, color) {
-    chrome.storage.local.get(["dark_preset", "dark_css"], storage => {
+    chrome.storage.sync.get("dark_preset", storage => {
         storage["dark_preset"][name] = color;
+        /*
         let chopped = storage["dark_css"].split("--bcstop:#000}")[1];
         let css = "";
         Object.keys(storage["dark_preset"]).forEach(key => {
             css += ("--bc" + key + ":" + storage["dark_preset"][key] + ";");
         });
-        chrome.storage.local.set({ "dark_css": ":root{" + css + "--bcstop:#000}" + chopped, "dark_preset": storage["dark_preset"] }).then(() => refreshColors());
+        */
+        chrome.storage.sync.set({ /*"dark_css": ":root{" + css + "--bcstop:#000}" + chopped,*/ "dark_preset": storage["dark_preset"] }).then(() => refreshColors());
     });
 }
 
 function changeToPresetCSS(e, preset = null) {
-    chrome.storage.local.get(['dark_css'], function (result) {
+    //chrome.storage.local.get(['dark_css'], function (result) {
         const presets = {
             "lighter": { "background-0": "#272727", "background-1": "#353535", "background-2": "#404040", "borders": "#454545", "sidebar": "#353535", "text-0": "#f5f5f5", "text-1": "#e2e2e2", "text-2": "#ababab", "links": "#56Caf0", "sidebar-text": "#f5f5f5" },
             "light": { "background-0": "#202020", "background-1": "#2e2e2e", "background-2": "#4e4e4e", "borders": "#404040", "sidebar": "#2e2e2e", "text-0": "#f5f5f5", "text-1": "#e2e2e2", "text-2": "#ababab", "links": "#56Caf0", "sidebar-text": "#f5f5f5" },
@@ -835,21 +844,23 @@ function changeToPresetCSS(e, preset = null) {
         }
         if (preset === null) preset = presets[e.target.id] || presets["default"];
         applyPreset(preset);
-    });
+    //});
 }
 
 function applyPreset(preset) {
-    console.log("preset here -> ", preset);
+    /*
     chrome.storage.local.get(["dark_preset", "dark_css"], storage => {
         let chopped = storage["dark_css"].split("--bcstop:#000}")[1];
         let css = "";
         Object.keys(preset).forEach(key => {
             css += ("--bc" + key + ":" + preset[key] + ";");
         });
-        chrome.storage.local.set({ "dark_css": ":root{" + css + "--bcstop:#000}" + chopped, "dark_preset": preset }).then(() => refreshColors());
-    });
+        */
+        chrome.storage.sync.set({ /*"dark_css": ":root{" + css + "--bcstop:#000}" + chopped,*/ "dark_preset": preset }).then(() => refreshColors());
+    //});
 }
 
+/*
 function setToDefaults() {
     fetch(chrome.runtime.getURL('js/darkcss.json'))
         .then((resp) => resp.json())
@@ -857,6 +868,7 @@ function setToDefaults() {
             chrome.storage.local.set({ "dark_css": result["dark_css"], "dark_preset": { "background-0": "#161616", "background-1": "#1e1e1e", "background-2": "#262626", "borders": "#3c3c3c", "text-0": "#f5f5f5", "text-1": "#e2e2e2", "text-2": "#ababab", "links": "#56Caf0", "sidebar": "#1e1e1e", "sidebar-text": "#f5f5f5" } }).then(() => refreshColors());
         });
 }
+*/
 
 function makeElement(element, elclass, location, text) {
     let creation = document.createElement(element);

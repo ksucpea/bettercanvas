@@ -29,15 +29,21 @@ const syncedOptions = [
     'todo_overdues',
     'card_overdues',
     'relative_dues',
-    'remlogo'
+    'remlogo',
+    'device_dark',
+    'dark_mode',
+    'dark_preset',
+    'custom_domain'
 ];
 const localOptions = [
     'previous_colors',
     'previous_theme',
     'errors',
+    /*
     'dark_mode',
     'dark_css',
     'dark_preset',
+    */
     'custom_domain'
 ];
 
@@ -108,28 +114,11 @@ chrome.runtime.onInstalled.addListener(function () {
         "relative_dues": false,
         "errors": []
     };
-    chrome.storage.local.get([...syncedOptions, ...localOptions], local => {
+    chrome.storage.local.get(["dark_css", ...syncedOptions, ...localOptions], local => {
         chrome.storage.sync.get(syncedOptions, sync => {
 
             let newSyncOptions = {};
             let newLocalOptions = {};
-
-            syncedOptions.forEach(function (option) {
-                // moving relevant local options to sync REMOVE IN > 5.8.0
-                if (local[option] !== undefined) {
-                    if (option === "new_install") {
-                        default_options["new_install"] = false;
-                    } else {
-                        default_options[option] = local[option];
-                    }
-                    chrome.storage.local.remove(option);
-                }
-                // end move
-
-                if (sync[option] === undefined) {
-                    newSyncOptions[option] = default_options[option];
-                }
-            });
 
             // add custom grade
             let old_cc = sync["custom_cards"] ? Object.keys(sync["custom_cards_2"]) : [] 
@@ -193,18 +182,38 @@ chrome.runtime.onInstalled.addListener(function () {
                         }
                     });
                 } catch (e) {
-                    console.log(e);
                     preset = default_options["dark_preset"];
                 }
+                local["dark_preset"] = preset;
+                
+            } else {
+                console.log("no darkcss detected...");
             }
             // end conversion
+
+            syncedOptions.forEach(function (option) {
+                // move local options to sync storage
+                if (local[option] !== undefined) {
+                    if (option === "new_install") {
+                        default_options["new_install"] = false;
+                    } else {
+                        default_options[option] = local[option];
+                    }
+                    chrome.storage.local.remove(option);
+                }
+                // end move
+
+                if (sync[option] === undefined) {
+                    newSyncOptions[option] = default_options[option];
+                }
+            });
 
             localOptions.forEach(option => {
                 if (local[option] === undefined) {
                     switch (option) {
                         case ("errors"): newLocalOptions.errors = default_options["errors"]; break;
                         case ("custom_domain"): newLocalOptions.custom_domain = default_options["custom_domain"]; break;
-                        case ("dark_mode"): newLocalOptions.dark_mode = default_options["dark_mode"]; break;
+                        //case ("dark_mode"): newLocalOptions.dark_mode = default_options["dark_mode"]; break;
                         case ("previous_theme"): newLocalOptions.previous_theme = default_options["previous_theme"]; break;
                         case ("previous_colors"): newLocalOptions.previous_colors = default_options["previous_colors"]; break;
                     }
@@ -224,13 +233,15 @@ chrome.runtime.onInstalled.addListener(function () {
                 });
             }
 
-            updateCSS(preset);
+            //updateCSS(preset);
         });
     });
 });
 
 chrome.runtime.setUninstallURL("https://diditupe.dev/bettercanvas/goodbye");
 
+// shouldnt need to update css anymore with the new method
+/*
 function updateCSS(preset) {
     fetch(chrome.runtime.getURL('js/darkcss.json')).then((resp) => resp.json()).then(result => {
         let chopped = result["dark_css"].split("--bcstop:#000}")[1];
@@ -241,6 +252,7 @@ function updateCSS(preset) {
         chrome.storage.local.set({ "dark_css": ":root{" + css + "--bcstop:#000}" + chopped, "new_install": false, "dark_preset": preset });
     });
 }
+*/
 
 /*
 function newInstallCSS() {
