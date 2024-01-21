@@ -10,19 +10,19 @@ Contact me at ksucpea@gmail.com or you can open an issue here
 
 - Press load unpacked and select the extension folder
 
-<h2>Update 5.8</h2>
+<h2>Update 5.10</h2>
 
-- Card customization now sorted by current classes and previous classes
-
-- Added "revert to original" for card colors
-
-- Improved dark mode customization tab
-
-- New import/export themes feature
-
-- Improved menu design
-
-- Improved setup
+- Card customization now shows preview of image
+- New sidebar options
+- Dark mode buttons preview their appearance
+- "Remove sidebar logo" feature
+- Added new themes
+- Menu redesign
+- Fixed card assignment bug
+- Card assignment efficiency improvements
+- Dark mode rework
+- Dark mode now syncs
+- Option to use device dark mode settings
 
 <h2>Links</h2>
 
