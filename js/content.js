@@ -1556,8 +1556,8 @@ function getGrades() {
 
 function getAssignments() {
     if (options.assignments_due === true || options.better_todo === true) {
-        //let weekAgo = new Date(new Date() - 604800000);
-        let weekAgo = new Date(new Date() - (604800000 * 10));
+        let weekAgo = new Date(new Date() - 604800000);
+        //let weekAgo = new Date(new Date() - (604800000 * 10));
         assignments = getData(`${domain}/api/v1/planner/items?start_date=${weekAgo.toISOString()}&per_page=75`);
         cardAssignments = preloadAssignmentEls();
     }
