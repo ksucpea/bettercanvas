@@ -33,7 +33,8 @@ const syncedOptions = [
     'device_dark',
     'dark_mode',
     'dark_preset',
-    'custom_domain'
+    'custom_domain',
+    'hide_feedback',
 ];
 const localOptions = [
     'previous_colors',
@@ -112,6 +113,7 @@ chrome.runtime.onInstalled.addListener(function () {
         "todo_overdues": false,
         "card_overdues": false,
         "relative_dues": false,
+        "hide_feedback": false,
         "errors": []
     };
     chrome.storage.local.get(["dark_css", ...syncedOptions, ...localOptions], local => {

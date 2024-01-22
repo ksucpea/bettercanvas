@@ -79,7 +79,7 @@ function startExtension() {
         getApiData();
         checkDashboardReady();
         loadCustomFont();
-        removeSidebarLogo();
+        applyAestheticChanges();
     });
 
     chrome.runtime.onMessage.addListener(recieveMessage);
@@ -115,12 +115,14 @@ function applyOptionsChanges(changes) {
             case ("gradient_cards"):
                 changeGradientCards();
                 break;
+                /*
             case ("condensed_cards"):
                 condenseCards();
                 break;
             case ("disable_color_overlay"):
                 changeOpacityCards();
                 break;
+                */
             case ("dashboard_notes"):
                 loadDashboardNotes();
                 break;
@@ -167,7 +169,10 @@ function applyOptionsChanges(changes) {
                 loadCustomFont();
                 break;
             case ("remlogo"):
-                removeSidebarLogo();
+            case ("disable_color_overlay"):
+            case ("condensed_cards"):
+            case ("hide_feedback"):
+                applyAestheticChanges();
                 break;
         }
     });
@@ -199,8 +204,8 @@ function checkDashboardReady() {
                     customizeCards(cards);
                     insertGrades();
                     loadDashboardNotes();
-                    condenseCards();
-                    changeOpacityCards();
+                    //condenseCards();
+                    //changeOpacityCards();
                     setupGPACalc();
                     changeFullWidth();
                 } else if (mutation.target == document.querySelector('#right-side')) {
@@ -222,8 +227,36 @@ function recieveMessage(request, sender, sendResponse) {
         case ("getCards"): getCards(); sendResponse(true); break;
         case ("setcolors"): changeColorPreset(request.options); sendResponse(true); break;
         case ("getcolors"): sendResponse(getCardColors()); break;
+        case ("inspect"): sendResponse(inspectDarkMode()); break;
         default: sendResponse(true);
     }
+}
+
+function inspectDarkMode() {
+    let output = "";
+    document.querySelectorAll("*").forEach(el => {
+        let style = getComputedStyle(el);
+        let bgcolor = style.getPropertyValue("background-color").match(/rgb\((?<r>\d*)\, ?(?<g>\d*)\, ?(?<b>\d*)/);
+        if (bgcolor) {
+            const r = parseInt(bgcolor.groups["r"]);
+            const g = parseInt(bgcolor.groups["g"]);
+            const b = parseInt(bgcolor.groups["b"]);
+            let selector = "class=." + el.className +",id=#" + el.id;
+            if (r > 250 && g > 250 && b > 250) {
+                el.style.background = options.dark_preset["background-0"];
+                el.style.color = options.dark_preset["text-0"];
+                output += selector + "{background: background-0, color: text-0}\n";
+                console.log(el, r, g, b, r > 250 && g > 250 && b > 250, bgcolor, style.getPropertyValue("background-color"));
+            } else if (r > 240 && g > 240 && b > 240) {
+                el.style.background = options.dark_preset["background-1"];
+                el.style.color = options.dark_preset["text-0"];
+                output += selector + "{background: background-1, color: text-0}";
+                console.log(el, style.getPropertyValue("background-color"));
+
+            }
+        }
+    });
+    return output === "" ? "No gaps detected" : output;
 }
 
 function getCardColors() {
@@ -744,7 +777,7 @@ function toggleDarkMode() {
     if ((options.dark_mode === true || options.device_dark === true) && !darkStyleInserted) {
         let style = document.createElement('style');
         style.textContent = css;
-        document.documentElement.prepend(style);
+        document.documentElement.append(style);
         style.id = 'darkcss';
         darkStyleInserted = true;
     } else if (darkStyleInserted) {
@@ -1420,6 +1453,18 @@ function loadCustomFont() {
 Smaller features
 */
 
+function applyAestheticChanges() {
+    let style = document.querySelector("#bettercanvas-aesthetics") || document.createElement('style');
+    style.id = "bettercanvas-aesthetics";
+    style.textContent = "";
+    if (options.condensed_cards === true) style.textContent += ".ic-DashboardCard__header_hero {height:60px!important}.ic-DashboardCard__header-subtitle, .ic-DashboardCard__header-term{display:none}";
+    if (options.remlogo === true) style.textContent += ".ic-app-header__logomark-container{display:none}";
+    if (options.disable_color_overlay === true) style.textContent += ".ic-DashboardCard__header_hero{opacity: 0!important} .ic-DashboardCard__header-button-bg{opacity: 1!important}";
+    if (options.hide_feedback) style.textContent += ".recent_feedback {display: none}";
+    document.documentElement.appendChild(style);
+}
+
+/*
 function removeSidebarLogo() {
     if (options.remlogo === null) return;
     if (options.remlogo === true) {
@@ -1458,6 +1503,7 @@ function changeOpacityCards() {
         }
     }
 }
+*/
 
 function changeFullWidth() {
     if (options.full_width == null) return;

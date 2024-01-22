@@ -101,7 +101,7 @@ textarea {resize: vertical}
 .custom-card-header {display: flex; justify-content: space-between;gap: 20px;}
 .sidebar-changer {display: flex;gap: 10px;}
 .custom-key { margin-right: 5px; }
-.options-presets .customization-button {padding: 8px 16px;}
+.options-presets .customization-button {padding:9px 14px}
 #export-output {margin: 0; height: 100%;}
 input[type="checkbox"] { appearance: none; background: #323232; margin: 0; width: 16px; height: 16px; border: 1px solid #1a1a1a;;border-radius: 4px; display: grid; place-content: center;}
 input[type="checkbox"]::before { content: ""; width: 10px; height: 10px; transform: scale(0); box-shadow: inset 1em 1em #323232; transform-origin: center; clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);}

@@ -223,6 +223,14 @@
                             <div class="sliderbg"></div>
                         </div><span class="option-name">Remove sidebar logo</span>
                     </div>
+                    <div class="option" id="hide_feedback">
+                        <input type="radio" id="off" name="hide_feedback">
+                        <input type="radio" id="on" name="hide_feedback">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span class="option-name">Hide recent feedback</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -334,18 +342,14 @@
                 <button id="theme-darkside" class="theme-button customization-button">DarkSide by Whitney</button>
                 <button id="theme-waveform" class="theme-button customization-button">Waveform by Evan</button>
                 <button id="theme-THEME" class="theme-button customization-button">THEME by Dalila</button>
-
+                <button id="theme-onepiece2" class="theme-button customization-button">OnePiece by Alex</button>
+                <button id="theme-royalty" class="theme-button customization-button">Royalty by Kat</button>
+                <button id="theme-snoopy" class="theme-button customization-button">Snoopy by Lauren</button>
+                <button id="theme-forest" class="theme-button customization-button">Forest by Virginia</button>
+                
                 <button id="theme-placeholder1" style="opacity:0" class="theme-button customization-button">placeholder</button>
                 <button id="theme-placeholder2" style="opacity:0" class="theme-button customization-button">placeholder</button>
-            </div>
-        </div>
-        <div class="option-container">
-            <h3 class="header-small">User made dark modes</h3>
-            <div id="premade-darkmodes">
-                <button id="theme-catppuccin" class="theme-button customization-button" style="background:#11111b!important;border:1px solid #4f5463;color:#f5c2e7;">Catppuccin by Angel</button>
-                <button id="theme-sage" class="theme-button customization-button" style="background:#2f3e46!important;border:1px solid #84a98c;color:#d8f5c7;">Sage by LivDoesDevStuf</button>
-                <button id="theme-pink" class="theme-button customization-button" style="background:#ffe0ed!important;border:1px solid #ff007b;color:#ff0088;">Pink by Sayde</button>
-                <!--<button id="theme-placeholder3" style="opacity:0" class="theme-button customization-button">placeholder</button>-->
+            
             </div>
         </div>
         <div class="import-export-details">
@@ -369,16 +373,19 @@
                 <div class="option-container">
                     <h3 class="header-small">Presets</h3>
                     <div class="options-presets">
-                        <button id="lighter" class="preset-button customization-button" style="background:#272727;border:1px solid #454545;color:#f5f5f5">Lighter</button>
-                        <button id="light" class="preset-button customization-button" style="background:#202020;border:1px solid #404040;color:#f5f5f5">Light</button>
-                        <button id="setToDefaults" class="customization-button" style="background:#161616;border:1px solid #3c3c3c;color:#f5f5f5">Default</button>
-                        <button id="dark" class="preset-button customization-button" style="background:#101010;border:1px solid #272727;color:#f5f5f5">Dark</button>
-                        <button id="darker" class="preset-button customization-button" style="background:#000000;border:1px solid #000000;color:#c5c5c5">Darker</button>
-                        <button id="mint" class="preset-button customization-button" style="background:#0f0f0f;border:1px solid #1e1e1e;color:#7CF3CB">Mint</button>
-                        <button id="blue" class="preset-button customization-button" style="background:#14181d;border:1px solid #2e3943;color:#f5f5f5">Blue tint</button>
-                        <button id="burn" class="preset-button customization-button" style="background:#ffffff;border:1px solid #cccccc;color:#cccccc">Eyeball burn</button>
-                        <button id="unicorn" class="preset-button customization-button" style="background:#ff6090;border:1px solid #00C1FF;color:#FFFF00">Unicorn</button>
-                        <button id="lightmode" class="preset-button customization-button" style="background:#fff;border:1px solid #c7cdd1;color:#2d3b45">Lightmode</button>
+                        <button id="dark-lighter" class="preset-button customization-button" style="background:#272727;border:1px solid #454545;color:#f5f5f5">Lighter</button>
+                        <button id="dark-light" class="preset-button customization-button" style="background:#202020;border:1px solid #404040;color:#f5f5f5">Light</button>
+                        <button id="dark-default" class="preset-button customization-button" style="background:#161616;border:1px solid #3c3c3c;color:#f5f5f5">Default</button>
+                        <button id="dark-dark" class="preset-button customization-button" style="background:#101010;border:1px solid #272727;color:#f5f5f5">Dark</button>
+                        <button id="dark-darker" class="preset-button customization-button" style="background:#000000;border:1px solid #000000;color:#c5c5c5">Darker</button>
+                        <button id="dark-mint" class="preset-button customization-button" style="background:#0f0f0f;border:1px solid #1e1e1e;color:#7CF3CB">Mint</button>
+                        <button id="dark-blue" class="preset-button customization-button" style="background:#14181d;border:1px solid #2e3943;color:#f5f5f5">Blue tint</button>
+                        <button id="dark-burn" class="preset-button customization-button" style="background:#ffffff;border:1px solid #cccccc;color:#cccccc">Eyeball burn</button>
+                        <button id="dark-unicorn" class="preset-button customization-button" style="background:#ff6090;border:1px solid #00C1FF;color:#FFFF00">Unicorn</button>
+                        <button id="dark-lightmode" class="preset-button customization-button" style="background:#fff;border:1px solid #c7cdd1;color:#2d3b45">Lightmode</button>
+                        <button id="dark-catppuccin" class="preset-button customization-button" style="background:#11111b!important;border:1px solid #4f5463;color:#f5c2e7;">Catppuccin by Angel</button>
+                        <button id="dark-sage" class="preset-button customization-button" style="background:#2f3e46!important;border:1px solid #84a98c;color:#d8f5c7;">Sage by LivDoesDevStuf</button>
+                        <button id="dark-pink" class="preset-button customization-button" style="background:#ffe0ed!important;border:1px solid #ff007b;color:#ff0088;">Pink by Sayde</button>
                         <!--
                         <button id="preset-placeholder1" class="preset-button customization-button" style="opacity: 0;">button</button>
                         <button id="preset-placeholder2" class="preset-button customization-button" style="opacity: 0;">button</button>
@@ -704,7 +711,17 @@
                 <textarea id="error_log_output" class="card-input"></textarea>
             </div>
         </div>
-        <p>5.9.2</p>
+        <div class="option-container">
+            <h3 class="header-small">Dark mode inspector</h3>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <button class="big-button" id="inspector-btn">Go</button>
+                <span>This will inspect the page for any dark mode gaps.</span>
+            </div>
+            <div>
+                <textarea id="inspector-output" class="card-input"></textarea>
+            </div>
+        </div>
+        <p>5.10.3</p>
     </div>
 
     <script type="text/javascript" src="../js/popup.js"></script>
