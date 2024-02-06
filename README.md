@@ -33,6 +33,7 @@ Contact me at ksucpea@gmail.com or you can open an issue here
 <h2>Contribute</h2>
 
 <h3>Adding a new feature:</h3>
+(I will probably make this automated in the future but it's a bit of work right now)
 
 <h4>Identifier</h4>
 
