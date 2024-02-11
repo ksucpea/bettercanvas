@@ -14,6 +14,16 @@ Enhancements to Canvas like dark mode, better todo list, GPA calculator, and mor
 
 To contact me, please email ksucpea@gmail.com, or you can open an issue within the "Issues" tab on GitHub.
 
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Version Notes](#version-notes)
+- [Color Reference](#color-reference)
+- [Contributing](#contributing)
+- [Authors](#authors)
+
 ## Features
 
 Better Canvas introduces improvements to the Canvas user interface:
@@ -58,6 +68,13 @@ To use Better Canvas, select your browser below to install the extension.
 
 [Firefox](https://addons.mozilla.org/addon/better-canvas/)
 
+### How to use
+
+- Once the extension is installed, navigate to your institution's Canvas homepage.
+- To edit the available options, click on the "Extensions" button in the upper right corner of the viewport.
+- When the menu opens, click on the Better Canvas extension.
+  - A menu will appear with configuration options for your Canvas homepage.
+
 ## Version Notes
 
 #### Update 5.10
@@ -90,18 +107,18 @@ To use Better Canvas, select your browser below to install the extension.
 
 To add a new feature, please follow these guidelines.
 
-Note: (I will probably make this automated in the future but it's a bit of work right now)
+Note: I will probably make this automated in the future but it's a bit of work right now.
 
 #### Identifier
 
-- Should be a unqiue one/two word storage identifier to indicate it's status. (ie "dark_mode" or "dashboard_grades")
+- Should be a unqiue one/two word storage identifier to indicate its status. (ie "dark_mode" or "dashboard_grades")
 - If it has sub options (options that are specific to the main feature) these will also each need a unique identifier.
 - All options are synced and have a 8kb storage limit, so if your feature needs more than this please contact me.
 
 #### Changes to html/popup.html
 
 - Add the appropriate HTML into this file. The corresponding id and name (see below) should be the identifier.
-- If it has no sub options, it should be put in the same container as the other options with no sub options:<br />
+- If it has no sub options, it should be put in the same container as the other options with no sub options:
 
 ```
 <div class="option" id="<identifier>">
@@ -185,5 +202,77 @@ You can export a theme using the export tool in the menu and sending an email to
 ```
 
 - The theme name should be one/two words so it doesn't take up too much space.
+
+## File structure
+
+```
+.
+├── README.md
+├── \_locales
+│ ├── en
+│ │ └── messages.json
+│ └── es
+│ └── messages.json
+├── css
+│ ├── content.css
+│ ├── options.css
+│ └── popup.css
+├── html
+│ ├── options.html
+│ └── popup.html
+├── icon
+│ ├── icon-128.png
+│ ├── icon-16.png
+│ ├── icon-19.png
+│ ├── icon-32.png
+│ ├── icon-38.png
+│ ├── icon-48.png
+│ ├── icon-wide.png
+│ ├── iconwpadding.png
+│ └── oldicon-128.png
+├── js
+│ ├── background.js
+│ ├── content.js
+│ └── popup.js
+└── manifest.json
+```
+
+### Update the file structure
+
+#### Use the tree command
+
+- Linux/Unix
+  - Install [tree command line tool](https://www.geeksforgeeks.org/tree-command-unixlinux/)
+  - Use the tree command to generate file structure:
+  ```
+  tree
+  ```
+
+Learn more about tree commands for Linux/Unix [here](https://www.geeksforgeeks.org/tree-command-unixlinux/).
+
+- Windows
+  - Use the tree command to generate file structure:
+  ```
+  tree /
+  ```
+
+Learn more about tree commands for Windows [here](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree).
+
+## Authors
+
+#### Owner
+
+- [ksucpea](https://github.com/ksucpea)
+
+#### Contributors
+
+- [fudgeu](https://github.com/fudgeu)
+- [Tibo Geeraerts](https://github.com/tibogeeraerts)
+- [Jacob Mungle](https://github.com/Jelgnum)
+- [FireIsGood](https://github.com/FireIsGood)
+
+## License
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ![Better Canvas](/icon/icon-48.png)
