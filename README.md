@@ -1,16 +1,83 @@
-<h1>Better Canvas</h1>
+![Better Canvas](/icon/icon-wide.png)
 
-Contact me at ksucpea@gmail.com or you can open an issue here
+# Better Canvas
 
-<h2>Manual Installation</h2>
+Enhancements to Canvas like dark mode, better todo list, GPA calculator, and more!
 
-- Download this repo
+### Supported on
 
-- Go to chrome://extensions in the browser and enable developer mode
+![Google Chrome](https://img.shields.io/badge/Google%20Chrome-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)
 
-- Press load unpacked and select the extension folder
+![Firefox](https://img.shields.io/badge/Firefox-FF7139?style=for-the-badge&logo=Firefox-Browser&logoColor=white)
 
-<h2>Update 5.10</h2>
+## Inquiries
+
+To contact me, please email ksucpea@gmail.com, or you can open an issue within the "Issues" tab on GitHub.
+
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Version Notes](#version-notes)
+- [Color Reference](#color-reference)
+- [Contributing](#contributing)
+- [Authors](#authors)
+
+## Features
+
+Better Canvas introduces improvements to the Canvas user interface:
+
+- Fully customizable dark mode (choose from premade options or manually edit dark mode)
+- Automatic scheduling for dark mode
+- Dashboard card color palletes
+- Themes created by users
+- Assignments due list
+- Dashboard notes
+- Better todo list
+- Custom fonts
+- Condensed cards
+- Dashboard grades
+- Remove sidebar logo
+- Customizable card links
+- Gradient dashboard cards
+- Advanced card customization
+- GPA calculator (college and highschool)
+- Preview assignments and announcements from the dashboard
+
+## Installation
+
+To install, run, and build with this repository,
+
+- Clone the repository locally with
+
+```bash
+  git clone https://github.com/ksucpea/bettercanvas.git
+```
+
+- Visit `chrome://extensions` in your browser.
+- Enable developer mode by toggling the switch in the upper right corner of the viewport.
+- Click the "Load upacked" button in the header.
+- When prompted to open a file, select the root directory of this repository.
+
+## Usage
+
+To use Better Canvas, select your browser below to install the extension.
+
+[Chrome](https://chrome.google.com/webstore/detail/better-canvas/cndibmoanboadcifjkjbdpjgfedanolh)
+
+[Firefox](https://addons.mozilla.org/addon/better-canvas/)
+
+### How to use
+
+- Once the extension is installed, navigate to your institution's Canvas homepage.
+- To edit the available options, click on the "Extensions" button in the upper right corner of the viewport.
+- When the menu opens, click on the Better Canvas extension.
+  - A menu will appear with configuration options for your Canvas homepage.
+
+## Version Notes
+
+#### Update 5.10
 
 - Card customization now shows preview of image
 - New sidebar options
@@ -24,27 +91,34 @@ Contact me at ksucpea@gmail.com or you can open an issue here
 - Dark mode now syncs
 - Option to use device dark mode settings
 
-<h2>Links</h2>
+## Color Reference
 
-[Chrome version](https://chrome.google.com/webstore/detail/better-canvas/cndibmoanboadcifjkjbdpjgfedanolh)
+| Color      | Hex                                                              |
+| ---------- | ---------------------------------------------------------------- |
+| Background | ![#161616](https://via.placeholder.com/10/0a192f?text=+) #161616 |
+| Text       | ![#ffffff](https://via.placeholder.com/10/ffffff?text=+) #ffffff |
+| Accent 01  | ![#ff002e](https://via.placeholder.com/10/ff002e?text=+) #ff002e |
+| Accent 02  | ![#ff5200](https://via.placeholder.com/10/ff5200?text=+) #ff5200 |
+| Accent 03  | ![#ff47ad](https://via.placeholder.com/10/ff47ad?text=+) #ff47ad |
 
-[Firefox version](https://addons.mozilla.org/addon/better-canvas/)
+## Contributing
 
-<h2>Contribute</h2>
+### Add a new feature
 
-<h3>Adding a new feature:</h3>
-(I will probably make this automated in the future but it's a bit of work right now)
+To add a new feature, please follow these guidelines.
 
-<h4>Identifier</h4>
+Note: I will probably make this automated in the future but it's a bit of work right now.
 
-- Should be a unqiue one/two word storage identifier to indicate it's status. (ie "dark_mode" or "dashboard_grades")
+#### Identifier
+
+- Should be a unqiue one/two word storage identifier to indicate its status. (ie "dark_mode" or "dashboard_grades")
 - If it has sub options (options that are specific to the main feature) these will also each need a unique identifier.
 - All options are synced and have a 8kb storage limit, so if your feature needs more than this please contact me.
 
-<h4>Changes to html/popup.html</h4>
+#### Changes to html/popup.html
 
 - Add the appropriate HTML into this file. The corresponding id and name (see below) should be the identifier.
-- If it has no sub options, it should be put in the same container as the other options with no sub options:<br />
+- If it has no sub options, it should be put in the same container as the other options with no sub options:
 
 ```
 <div class="option" id="<identifier>">
@@ -80,48 +154,125 @@ Contact me at ksucpea@gmail.com or you can open an issue here
 </div>
 ```
 
-<h4>Changes to js/popup.js</h4>
+#### Changes to js/popup.js
 
-- Add the main identifier into the ```syncedSwitches``` array.
+- Add the main identifier into the `syncedSwitches` array.
 - If you have sub-options:
-    - Add these identifiers to the array found under the comment that says ```//checkboxes```. 
+  - Add these identifiers to the array found under the comment that says `//checkboxes`.
 
-<h4>Changes to js/background.js</h4>
+#### Changes to js/background.js
 
-- Add all identifiers into the ```syncedOptions``` array.
-- Add a default value for your option to the ```default_options``` array. 
-    - Preferably this value should be ```false``` for booleans or ``` ""``` for strings (```null``` can also be used if Canvas has a default for this option already)
+- Add all identifiers into the `syncedOptions` array.
+- Add a default value for your option to the `default_options` array.
+  - Preferably this value should be `false` for booleans or ` ""` for strings (`null` can also be used if Canvas has a default for this option already)
 
-<h4>Changes to js/content.js</h4>
+#### Changes to js/content.js
 
 - There should be a function(s) included in the this file that does the work. The name should clearly indicate it's purpose.
-- Under ```applyOptionsChanges()```, add a switch case to call this function when the menu toggle is changed.
-- Depending on what your feature does, it needs to be told when to fire.    
-    - If the function changes any aspect of the dashboard, it should be put inside ```checkDashboardReady()```.
-    - If the function only adds css, it should be added to ```applyAestheticChanges()```, and in this case should not be a separate function, instead add the css to the existing styles found in this function.
-    - Anything else should be put under ```startExtension()``` and should be placed no higher than the ```checkDashboardReady``` function found here.
+- Under `applyOptionsChanges()`, add a switch case to call this function when the menu toggle is changed.
+- Depending on what your feature does, it needs to be told when to fire.
+  - If the function changes any aspect of the dashboard, it should be put inside `checkDashboardReady()`.
+  - If the function only adds css, it should be added to `applyAestheticChanges()`, and in this case should not be a separate function, instead add the css to the existing styles found in this function.
+  - Anything else should be put under `startExtension()` and should be placed no higher than the `checkDashboardReady` function found here.
 
-<h3>Adding a theme:</h3>
+### Add a new theme
+
+To add a new theme, please follow these guidelines.
+
 You can export a theme using the export tool in the menu and sending an email to me, or you can merge it here after doing the following:
 
-<h4>Exporting</h4>
+#### Exporting
 
-- Go to the Themes tab and export dark mode, card images, card colors, and custom font.
-    - The only on/off toggles that need be included are ```disable_color_overlay``` and ```gradient_cards```. 
-Any other toggles aren't necessary, so you should manually add these keys and the appropriate values in with the export code.
+- Go to the Themes tab and export dark mode, card images, card colors, and custom font. - The only on/off toggles that need be included are `disable_color_overlay` and `gradient_cards`.
+  Any other toggles aren't necessary, so you should manually add these keys and the appropriate values in with the export code.
 - Pick a unique id for the theme, doesn't matter how long this is.
 
-<h4>Changes to js/popup.js</h4>
+#### Changes to js/popup.js
 
-- Add the export code under ```getTheme()```.
-    - Make sure it follows this format: ```"theme-<id>: { "exports": {"..."}, "preview": "..." }```
+- Add the export code under `getTheme()`.
+  - Make sure it follows this format: `"theme-<id>: { "exports": {"..."}, "preview": "..." }`
 - For the preivew, try to pick the smallest image size from the card images (under ~50kb is perfect), or you can find a smaller display image that isn't included in the card images.
 
-<h4>Changes to html/popup.html</h4>
+#### Changes to html/popup.html
 
 - Add the following under all the other theme buttons:
+
 ```
 <button id="theme-<id>" class="theme-button customization-button"><theme name> by <you></button>
 ```
 
 - The theme name should be one/two words so it doesn't take up too much space.
+
+## File structure
+
+```
+.
+├── README.md
+├── \_locales
+│ ├── en
+│ │ └── messages.json
+│ └── es
+│ └── messages.json
+├── css
+│ ├── content.css
+│ ├── options.css
+│ └── popup.css
+├── html
+│ ├── options.html
+│ └── popup.html
+├── icon
+│ ├── icon-128.png
+│ ├── icon-16.png
+│ ├── icon-19.png
+│ ├── icon-32.png
+│ ├── icon-38.png
+│ ├── icon-48.png
+│ ├── icon-wide.png
+│ ├── iconwpadding.png
+│ └── oldicon-128.png
+├── js
+│ ├── background.js
+│ ├── content.js
+│ └── popup.js
+└── manifest.json
+```
+
+### Update the file structure
+
+#### Use the tree command
+
+- Linux/Unix
+  - Install [tree command line tool](https://www.geeksforgeeks.org/tree-command-unixlinux/)
+  - Use the tree command to generate file structure:
+  ```
+  tree
+  ```
+
+Learn more about tree commands for Linux/Unix [here](https://www.geeksforgeeks.org/tree-command-unixlinux/).
+
+- Windows
+  - Use the tree command to generate file structure:
+  ```
+  tree /
+  ```
+
+Learn more about tree commands for Windows [here](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree).
+
+## Authors
+
+#### Owner
+
+- [ksucpea](https://github.com/ksucpea)
+
+#### Contributors
+
+- [fudgeu](https://github.com/fudgeu)
+- [Tibo Geeraerts](https://github.com/tibogeeraerts)
+- [Jacob Mungle](https://github.com/Jelgnum)
+- [FireIsGood](https://github.com/FireIsGood)
+
+## License
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+![Better Canvas](/icon/icon-48.png)
