@@ -48,11 +48,11 @@
                     <div class="sub-options">
                         <div class="timesets">
                             <div class="timeset">
-                                <input type="time" id="autodark_start" step="60"></input>
+                                <input type="time" id="auto_dark_start" step="60"></input>
                                 <span class="sub-text" data-i18n="auto_start_time">Start time</span>
                             </div>
                             <div class="timeset">
-                                <input type="time" id="autodark_end" step="60"></input>
+                                <input type="time" id="auto_dark_end" step="60"></input>
                                 <span class="sub-text" data-i18n="auto_end_time">End time</span>
                             </div>
                         </div>
@@ -237,31 +237,31 @@
         <div>
             <h2 data-i18n="more_options">More options</h2>
             <div class="more-options-container">
-                <button id="customize-dark-btn" class="big-button">
+                <button id="customize-dark-btn" class="big-button tab-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg>
                     <span data-i18n="edit_dark_mode">Edit Dark Mode</span>
                 </button>
-                <button id="advanced-settings" class="big-button">
+                <button id="advanced-settings" class="big-button tab-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path><path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path><path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path><path d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path></svg>
                     <span data-i18n="card_customization">Card Customization</span>
                 </button>
-                <button id="card-colors-btn" class="big-button">
+                <button id="card-colors-btn" class="big-button tab-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 3m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z"></path><path d="M19 6h1a2 2 0 0 1 2 2a5 5 0 0 1 -5 5l-5 0v2"></path><path d="M10 15m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z"></path></svg>
                     <span data-i18n="card_colors">Card Colors</span>
                 </button>
-                <button id="import-export-btn" class="big-button">
+                <button id="import-export-btn" class="big-button tab-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 21v-4a4 4 0 1 1 4 4h-4"></path><path d="M21 3a16 16 0 0 0 -12.8 10.2"></path><path d="M21 3a16 16 0 0 1 -10.2 12.8"></path><path d="M10.6 9a9 9 0 0 1 4.4 4.4"></path></svg>
                     <span data-i18n="themes">Themes</span>
                 </button>
-                <button id="custom-font-btn" class="big-button">
+                <button id="custom-font-btn" class="big-button tab-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 7v-2h13v2"></path><path d="M10 5v14"></path><path d="M12 19h-4"></path><path d="M15 13v-1h6v1"></path><path d="M18 12v7"></path><path d="M17 19h2"></path></svg>
                     <span data-i18n="custom_font">Custom Font</span>
                 </button>
-                <button id="gpa-bounds-btn" class="big-button">
+                <button id="gpa-bounds-btn" class="big-button tab-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M22 9l-10 -4l-10 4l10 4l10 -4v6"></path><path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4"></path></svg>
                     <span data-i18n="gpa_settings">GPA Settings</span>
                 </button>
-                <button id="report-issue-btn" class="big-button">
+                <button id="report-issue-btn" class="big-button tab-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 9v4"></path><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z"></path><path d="M12 16h.01"></path></svg>
                     <span data-i18n="report_issue">Report issue</span>
                 </button>
@@ -271,7 +271,7 @@
 
     <div class="import-export tab" style="display: none">
         <div class="tab-header">
-            <h2 style="margin-top: 0" data-i18n="themes">Themes (Experimental)</h2>
+            <h2 style="margin-top: 0" data-i18n="themes">Themes</h2>
             <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
         <div class="export-details option-container">
@@ -307,6 +307,7 @@
                     <textarea class="card-input" id="export-output" placeholder="Output"></textarea>
                 </div>
             </div>
+            <p class="sub-text" style="margin-top:10px">Export your theme and send it to ksucpea@gmail.com to add it here!</p>
         </div>
         <!--
         <div class="option-container">
@@ -314,42 +315,14 @@
         </div>
         -->
         <div class="option-container">
-            <h3 class="header-small">User made themes</h3>
-            <p class="sub-text" style="margin-bottom:10px">Export your theme and send it to ksucpea@gmail.com to add it here!</p>
-            <div id="premade-themes">
-                <button id="theme-revert" class="customization-button">Revert changes</button>
-                <button id="theme-capybara" class="theme-button customization-button">Capybara by ksucpea</button>
-                <button id="theme-minecraft" class="theme-button customization-button">Minecraft by ksucpea</button>
-                <button id="theme-ocean" class="theme-button customization-button">Ocean by Grant</button>
-                <button id="theme-pokemon" class="theme-button customization-button">Pokemon by Jason</button>
-                <button id="theme-kirby" class="theme-button customization-button">Kirby by Siri</button>
-                <button id="theme-mcdonalds" class="theme-button customization-button">McDonalds by cmoon3611</button>
-                <button id="theme-wavy" class="theme-button customization-button">Wavy by Siri</button>
-                <button id="theme-dark" class="theme-button customization-button">Dark by Liz</button>
-                <button id="theme-totoro" class="theme-button customization-button">Totoro by Matt</button>
-                <button id="theme-eras" class="theme-button customization-button">Eras Tour by Brady</button>
-                <button id="theme-ghibli" class="theme-button customization-button">Ghibli by Francine</button>
-                <button id="theme-purple" class="theme-button customization-button">Purple by otulpp</button>
-                <button id="theme-flowers" class="theme-button customization-button">Flowers by Claire</button>
-                <button id="theme-pinkjapan" class="theme-button customization-button">PinkJapan by Claire</button>
-                <button id="theme-lilac" class="theme-button customization-button">Lilac by Jacee</button>
-                <button id="theme-kuromi" class="theme-button customization-button">Kuromi by Melissa</button>
-                <button id="theme-sillycats" class="theme-button customization-button">Silly Cats by Stephanie</button>
-                <button id="theme-onepiece" class="theme-button customization-button">OnePiece by Allison</button>
-                <button id="theme-shark" class="theme-button customization-button">Shark by Myles</button>
-                <button id="theme-pastelpink" class="theme-button customization-button">PastelPink by Kai</button>
-                <button id="theme-pastelgreen" class="theme-button customization-button">PastelGreen by Kai</button>
-                <button id="theme-darkside" class="theme-button customization-button">DarkSide by Whitney</button>
-                <button id="theme-waveform" class="theme-button customization-button">Waveform by Evan</button>
-                <button id="theme-THEME" class="theme-button customization-button">THEME by Dalila</button>
-                <button id="theme-onepiece2" class="theme-button customization-button">OnePiece by Alex</button>
-                <button id="theme-royalty" class="theme-button customization-button">Royalty by Kat</button>
-                <button id="theme-snoopy" class="theme-button customization-button">Snoopy by Lauren</button>
-                <button id="theme-forest" class="theme-button customization-button">Forest by Virginia</button>
-                
-                <button id="theme-placeholder1" style="opacity:0" class="theme-button customization-button">placeholder</button>
-                <button id="theme-placeholder2" style="opacity:0" class="theme-button customization-button">placeholder</button>
-            
+            <div style="display:flex;justify-content: space-between;margin-bottom:10px;align-items:center">
+                <h3 class="header-small" style="flex:100;margin:0">User made themes</h3>
+                <div style="display:flex;gap:5px;align-items:center"><button id="premade-themes-left">Back</button><button id="premade-themes-right">Next</button></div>
+            </div>
+            <div id="premade-themes"></div>
+            <div style="display:flex;justify-content: space-between;">
+                <button id="theme-revert" class="customization-button" style="margin-top:5px;width:100%">Revert to original</button>
+                <!--<span id="premade-themes-pagenum"></span>-->
             </div>
         </div>
         <div class="import-export-details">
@@ -493,6 +466,17 @@
                                 </div>
                             </div>
                         </div>
+                </div>
+            </div>
+            <div class="option-container">
+                <h3 class="header-small">Dark mode fixer (beta)</h3>
+                <div style="display: flex; gap: 10px;align-items: center">
+                    <button id="fix-dm-btn" class="big-button">Go</button>
+                    <span>This will to fix any dark mode gaps on the current page.</span> 
+                </div>
+                <p id="fix-dm-output" style="margin-top: 10px;color:#ffee00;"></p>
+                <p style="margin: 15px 0 5px;">The fixer is automatically running on these pages:</p>
+                <div id="dark-mode-fix-urls">
                 </div>
             </div>
         </div>

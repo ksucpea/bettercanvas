@@ -25,6 +25,7 @@ const syncedOptions = [
     'custom_assignments_overflow',
     'grade_hover',
     'hide_completed',
+    'hide_completed_cards',
     'custom_font',
     'todo_overdues',
     'card_overdues',
@@ -35,6 +36,7 @@ const syncedOptions = [
     'dark_preset',
     'custom_domain',
     'hide_feedback',
+    'dark_mode_fix'
 ];
 const localOptions = [
     'previous_colors',
@@ -114,7 +116,8 @@ chrome.runtime.onInstalled.addListener(function () {
         "card_overdues": false,
         "relative_dues": false,
         "hide_feedback": false,
-        "errors": []
+        "errors": [],
+        "dark_mode_fix": [],
     };
     chrome.storage.local.get(["dark_css", ...syncedOptions, ...localOptions], local => {
         chrome.storage.sync.get(syncedOptions, sync => {
@@ -241,43 +244,3 @@ chrome.runtime.onInstalled.addListener(function () {
 });
 
 chrome.runtime.setUninstallURL("https://diditupe.dev/bettercanvas/goodbye");
-
-// shouldnt need to update css anymore with the new method
-/*
-function updateCSS(preset) {
-    fetch(chrome.runtime.getURL('js/darkcss.json')).then((resp) => resp.json()).then(result => {
-        let chopped = result["dark_css"].split("--bcstop:#000}")[1];
-        let css = "";
-        Object.keys(preset).forEach(key => {
-            css += ("--bc" + key + ":" + preset[key] + ";");
-        });
-        chrome.storage.local.set({ "dark_css": ":root{" + css + "--bcstop:#000}" + chopped, "new_install": false, "dark_preset": preset });
-    });
-}
-*/
-
-/*
-function newInstallCSS() {
-    fetch(chrome.runtime.getURL('js/darkcss.json'))
-        .then((resp) => resp.json())
-        .then(function (result) {
-            chrome.storage.local.set({ dark_css: result.dark_css });
-        });
-    chrome.storage.sync.set({ new_install: false });
-}
-
-
-function updateNewCSS(preset) {
-    fetch(chrome.runtime.getURL('js/darkcss.json'))
-        .then((resp) => resp.json())
-        .then(function (updated) {
-            chrome.storage.local.get(['dark_css'], storage => {
-                if (!storage["dark_css"]) return;
-                const old = storage["dark_css"].split('--bcstop:#000}')[0];
-                const cur = updated.dark_css.split('--bcstop:#000}')[1];
-                const new_dark_css = old + "--bcstop:#000}" + cur;
-                chrome.storage.local.set({ dark_css: new_dark_css });
-            });
-        });
-}
-*/
