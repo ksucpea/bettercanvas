@@ -81,7 +81,7 @@
 .bettercanvas-gpa-header {font-weight:700;font-size:16px;margin-top:0;margin-bottom:6px;padding-bottom:6px;}
 .bettercanvas-dashboard-notes {width: 100%; box-sizing: border-box; margin-top: 18px;border: 1px solid #c7cdd1;border-radius:3px;padding:8px 14px;resize:vertical}
 .bettercanvas-todosidebar, #bettercanvas-todo-list, #bettercanvas-announcement-list {margin: 0}
-.bettercanvas-todo-container {display: flex; margin-top: 14px;position: relative;transition: .2s all; max-height:100px;}
+.bettercanvas-todo-container {display: flex; margin-top: 14px;position: relative;transition: .2s all;}
 .bettercanvas-removing {max-height: 0;margin-top: 0}
 #bettercanvas-todo-list, #bettercanvas-announcement-list {font-size: 12px}
 .bettercanvas-todo-container, .bettercanvas-todo-container:hover {color:#777}
