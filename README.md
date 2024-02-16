@@ -79,11 +79,15 @@ To use Better Canvas, select your browser below to install the extension.
 
 #### Update 5.10
 
+- Fixed dark mode bug in discussion text boxes
+- Added new themes + fonts
+- Card colors now change instantly
+- Dark mode fixer feature
 - Card customization now shows preview of image
 - New sidebar options
 - Dark mode buttons preview their appearance
 - "Remove sidebar logo" feature
-- Added new themes
+- "Hide recent feedback" feature
 - Menu redesign
 - Fixed card assignment bug
 - Card assignment efficiency improvements
