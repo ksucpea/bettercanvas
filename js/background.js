@@ -1,3 +1,114 @@
+chrome.runtime.onInstalled.addListener(function () {
+    let default_options = {
+        "local": {
+            "previous_colors": null,
+            "previous_theme": null,
+            "errors": [],
+        },
+        "sync": {
+            "dark_preset": {
+                "background-0": "#161616",
+                "background-1": "#1e1e1e",
+                "background-2": "#262626",
+                "borders": "#3c3c3c",
+                "text-0": "#f5f5f5",
+                "text-1": "#e2e2e2",
+                "text-2": "#ababab",
+                "links": "#56Caf0",
+                "sidebar": "#1e1e1e",
+                "sidebar-text": "#f5f5f5"
+            },
+            "new_install": true,
+            "assignments_due": true,
+            "gpa_calc": false,
+            "dark_mode": true,
+            "gradent_cards": false,
+            "disable_color_overlay": false,
+            "auto_dark": false,
+            "auto_dark_start": { "hour": "20", "minute": "00" },
+            "auto_dark_end": { "hour": "08", "minute": "00" },
+            "num_assignments": 4,
+            "custom_domain": [""],
+            "assignments_done": [],
+            "dashboard_grades": false,
+            "assignment_date_format": false,
+            "dashboard_notes": false,
+            "dashboard_notes_text": "",
+            "better_todo": false,
+            "todo_hr24": false,
+            "condensed_cards": false,
+            "custom_cards": {},
+            "custom_cards_2": {},
+            "custom_cards_3": {},
+            "custom_assignments": [],
+            "custom_assignments_overflow": ["custom_assignments"],
+            "grade_hover": false,
+            "hide_completed": false,
+            "num_todo_items": 4,
+            "custom_font": { "link": "", "family": "" },
+            "hover_preview": true,
+            "full_width": null,
+            "remlogo": null,
+            "gpa_calc_bounds": {
+                "A+": { "cutoff": 97, "gpa": 4.3 },
+                "A": { "cutoff": 93, "gpa": 4 },
+                "A-": { "cutoff": 90, "gpa": 3.7 },
+                "B+": { "cutoff": 87, "gpa": 3.3 },
+                "B": { "cutoff": 83, "gpa": 3 },
+                "B-": { "cutoff": 80, "gpa": 2.7 },
+                "C+": { "cutoff": 77, "gpa": 2.3 },
+                "C": { "cutoff": 73, "gpa": 2 },
+                "C-": { "cutoff": 70, "gpa": 1.7 },
+                "D+": { "cutoff": 67, "gpa": 1.3 },
+                "D": { "cutoff": 63, "gpa": 1 },
+                "D-": { "cutoff": 60, "gpa": .7 },
+                "F": { "cutoff": 0, "gpa": 0 }
+            },
+            "todo_overdues": false,
+            "card_overdues": false,
+            "relative_dues": false,
+            "hide_feedback": false,
+            "dark_mode_fix": [],
+            "assignment_states": {},
+            "tab_icons": false,
+            "todo_colors": false,
+        }
+    };
+
+    chrome.storage.local.get(null, local => {
+        chrome.storage.sync.get(null, sync => {
+            let newSyncOptions = {};
+            let newLocalOptions = {};
+            Object.keys(default_options["sync"]).forEach(option => {
+                if (sync[option] !== undefined) return;
+                newSyncOptions[option] = default_options["sync"][option];
+            });
+            Object.keys(default_options["local"]).forEach(option => {
+                if (local[option] !== undefined) return;
+                newLocalOptions[option] = default_options["local"][option];
+            })
+
+            if (Object.keys(newLocalOptions).length > 0) {
+                chrome.storage.local.set(newLocalOptions);
+            }
+
+            if (Object.keys(newSyncOptions).length > 0) {
+                chrome.storage.sync.set(newSyncOptions).then(() => {
+                    console.log(newSyncOptions);
+                    if (newSyncOptions.new_install === true) {
+                        chrome.runtime.openOptionsPage();
+                        chrome.storage.sync.set({ new_install: false });
+                    }
+                });
+            }
+        });
+    });
+});
+
+chrome.runtime.setUninstallURL("https://diditupe.dev/bettercanvas/goodbye");
+
+
+/*
 const syncedOptions = [
     'full_width',
     'new_install',
@@ -36,7 +147,8 @@ const syncedOptions = [
     'dark_preset',
     'custom_domain',
     'hide_feedback',
-    'dark_mode_fix'
+    'dark_mode_fix',
+    "assignment_states",
 ];
 const localOptions = [
     'previous_colors',
@@ -46,86 +158,25 @@ const localOptions = [
     'dark_mode',
     'dark_css',
     'dark_preset',
-    */
-    'custom_domain'
+    'custom_domain
 ];
+*/
 
-chrome.runtime.onInstalled.addListener(function () {
-    let default_options = {
-        "dark_preset": {
-            "background-0": "#161616",
-            "background-1": "#1e1e1e",
-            "background-2": "#262626",
-            "borders": "#3c3c3c",
-            "text-0": "#f5f5f5",
-            "text-1": "#e2e2e2",
-            "text-2": "#ababab",
-            "links": "#56Caf0",
-            "sidebar": "#1e1e1e",
-            "sidebar-text": "#f5f5f5"
-        },
-        "new_install": true,
-        "assignments_due": true,
-        "gpa_calc": false,
-        "dark_mode": true,
-        "gradent_cards": false,
-        "disable_color_overlay": false,
-        "auto_dark": false,
-        "auto_dark_start": { "hour": "20", "minute": "00" },
-        "auto_dark_end": { "hour": "08", "minute": "00" },
-        "num_assignments": 4,
-        "custom_domain": [""],
-        "assignments_done": [],
-        "dashboard_grades": false,
-        "assignment_date_format": false,
-        "dashboard_notes": false,
-        "dashboard_notes_text": "",
-        "better_todo": false,
-        "todo_hr24": false,
-        "condensed_cards": false,
-        "custom_cards": {},
-        "custom_cards_2": {},
-        "custom_cards_3": {},
-        "custom_assignments": [],
-        "custom_assignments_overflow": ["custom_assignments"],
-        "grade_hover": false,
-        "hide_completed": false,
-        "num_todo_items": 4,
-        "custom_font": { "link": "", "family": "" },
-        "hover_preview": true,
-        "full_width": null,
-        "previous_colors": null,
-        "previous_theme": null,
-        "remlogo": null,
-        "gpa_calc_bounds": {
-            "A+": { "cutoff": 97, "gpa": 4.3 },
-            "A": { "cutoff": 93, "gpa": 4 },
-            "A-": { "cutoff": 90, "gpa": 3.7 },
-            "B+": { "cutoff": 87, "gpa": 3.3 },
-            "B": { "cutoff": 83, "gpa": 3 },
-            "B-": { "cutoff": 80, "gpa": 2.7 },
-            "C+": { "cutoff": 77, "gpa": 2.3 },
-            "C": { "cutoff": 73, "gpa": 2 },
-            "C-": { "cutoff": 70, "gpa": 1.7 },
-            "D+": { "cutoff": 67, "gpa": 1.3 },
-            "D": { "cutoff": 63, "gpa": 1 },
-            "D-": { "cutoff": 60, "gpa": .7 },
-            "F": { "cutoff": 0, "gpa": 0 }
-        },
-        "todo_overdues": false,
-        "card_overdues": false,
-        "relative_dues": false,
-        "hide_feedback": false,
-        "errors": [],
-        "dark_mode_fix": [],
-    };
-    chrome.storage.local.get(["dark_css", ...syncedOptions, ...localOptions], local => {
-        chrome.storage.sync.get(syncedOptions, sync => {
+/*
+function moveLocalToSync() {
+    if (local[option] !== undefined) {
+        if (option === "new_install") {
+            default_options["new_install"] = false;
+        } else {
+            default_options[option] = local[option];
+        }
+        chrome.storage.local.remove(option);
+    }
+}
+*/
 
-            let newSyncOptions = {};
-            let newLocalOptions = {};
-
-            // add custom grade
+// add custom grade
+            /*
             let old_cc = sync["custom_cards"] ? Object.keys(sync["custom_cards_2"]) : [] 
             if (old_cc.length > 0) {
                 newSyncOptions["custom_cards"] = sync["custom_cards"];
@@ -133,8 +184,10 @@ chrome.runtime.onInstalled.addListener(function () {
                     if (newSyncOptions["custom_cards"][id]["gr"] === undefined) newSyncOptions["custom_cards"][id]["gr"] = null;
                 });
             }
+            */
 
             // converting old links to new system REMOVE IN > 5.8.0
+            /*
             try {
                 let old_cc2 = sync["custom_cards_2"] ? Object.keys(sync["custom_cards_2"]) : [];
                 if (old_cc2.length > 0) {
@@ -165,7 +218,9 @@ chrome.runtime.onInstalled.addListener(function () {
                 console.log("ERROR CONVERTING OLD LINKS...");
             }
             /// end conversion
+            */
 
+            /*
             let preset = local["dark_preset"] || default_options["dark_preset"];
 
             // converting dark mode to new system REMOVE IN > 5.8.0 
@@ -194,53 +249,5 @@ chrome.runtime.onInstalled.addListener(function () {
             } else {
                 console.log("no darkcss detected...");
             }
+            */
             // end conversion
-
-            syncedOptions.forEach(function (option) {
-                // move local options to sync storage
-                if (local[option] !== undefined) {
-                    if (option === "new_install") {
-                        default_options["new_install"] = false;
-                    } else {
-                        default_options[option] = local[option];
-                    }
-                    chrome.storage.local.remove(option);
-                }
-                // end move
-
-                if (sync[option] === undefined) {
-                    newSyncOptions[option] = default_options[option];
-                }
-            });
-
-            localOptions.forEach(option => {
-                if (local[option] === undefined) {
-                    switch (option) {
-                        case ("errors"): newLocalOptions.errors = default_options["errors"]; break;
-                        case ("custom_domain"): newLocalOptions.custom_domain = default_options["custom_domain"]; break;
-                        //case ("dark_mode"): newLocalOptions.dark_mode = default_options["dark_mode"]; break;
-                        case ("previous_theme"): newLocalOptions.previous_theme = default_options["previous_theme"]; break;
-                        case ("previous_colors"): newLocalOptions.previous_colors = default_options["previous_colors"]; break;
-                    }
-                }
-            });
-
-            if (Object.keys(newLocalOptions).length > 0) {
-                chrome.storage.local.set(newLocalOptions);
-            }
-
-            if (Object.keys(newSyncOptions).length > 0) {
-                chrome.storage.sync.set(newSyncOptions).then(() => {
-                    if (newSyncOptions.new_install === true) {
-                        chrome.runtime.openOptionsPage();
-                        chrome.storage.sync.set({ new_install: false });
-                    }
-                });
-            }
-
-            //updateCSS(preset);
-        });
-    });
-});
-
-chrome.runtime.setUninstallURL("https://diditupe.dev/bettercanvas/goodbye");

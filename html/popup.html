@@ -93,6 +93,56 @@
                     </div>
                 </div>
                 <div class="option-container">
+                    <div class="option" id="better_todo">
+                        <input type="radio" id="off" name="better_todo">
+                        <input type="radio" id="on" name="better_todo">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div>
+                        <span class="option-name" data-i18n="better_todo">Better Todo List</span>
+                    </div>
+                    <div class="sub-options">
+                        <div class="sub-option">
+                            <input type="checkbox" id="hover_preview" name="hover_preview">
+                            <label for="hover_preview" class="sub-text" data-i18n="hover_preview">Hover to preview
+                                details</label>
+                        </div>
+                        <div class="sub-option">
+                            <input type="checkbox" id="hide_completed" name="hide_completed">
+                            <label for="hide_completed" class="sub-text" data-i18n="hide_completed">Hide
+                                completed</label>
+                        </div>
+                        <div class="sub-option">
+                            <input type="checkbox" id="todo_hr24" name="todo_hr24">
+                            <label for="todo_hr24" class="sub-text" data-i18n="24hrformat">Use 24hr format</label>
+                        </div>
+                        <div class="sub-option">
+                            <input type="checkbox" id="todo_overdues" name="todo_overdues">
+                            <label for="todo_overdues" class="sub-text" data-i18n="show_past_due">Show past due</label>
+                        </div>
+                        <div class="sub-option">
+                            <input type="checkbox" id="todo_colors" name="todo_colors">
+                            <label for="todo_colors" class="sub-text">Use card colors</label>
+                        </div>
+                        <div style="margin-top: 5px">
+                            <span class="sub-text" data-i18n="max_items">Max items to show: </span><span
+                                id="numTodoItems"></span>
+                            <input type="range" min="1" max="7" id="numTodoItemsSlider">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="options-right">
+                <div class="option-container">
+                    <div class="customDomain">
+                        <span data-i18n="enter_url">Your Canvas URL:</span>
+                        <p style="font-size: 11px;color:#8d8d8d" data-i18n="enter_multiple">(Enter multiple with a comma)</p>
+                        <input type="text" id="customDomain" placeholder="Or just refresh your Canvas page!"></input>
+                    </div>
+                </div>
+                <div class="option-container">
                     <div class="option" id="gpa_calc">
                         <input type="radio" id="off" name="gpa_calc">
                         <input type="radio" id="on" name="gpa_calc">
@@ -123,52 +173,6 @@
                         <div class="sub-option" style="margin-top:5px">
                             <input type="checkbox" id="grade_hover" name="grade_hover">
                             <label for="grade_hover" class="sub-text" data-i18n="grade_hover">Show only when hovering</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="options-right">
-                <div class="option-container">
-                    <div class="customDomain">
-                        <span data-i18n="enter_url">Your Canvas URL:</span>
-                        <p style="font-size: 11px;color:#8d8d8d" data-i18n="enter_multiple">(Enter multiple with a comma)</p>
-                        <input type="text" id="customDomain" placeholder="Or just refresh your Canvas page!"></input>
-                    </div>
-                </div>
-                <div class="option-container">
-                    <div class="option" id="better_todo">
-                        <input type="radio" id="off" name="better_todo">
-                        <input type="radio" id="on" name="better_todo">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div>
-                        <span class="option-name" data-i18n="better_todo">Better Todo List</span>
-                    </div>
-                    <div class="sub-options">
-                        <div class="sub-option">
-                            <input type="checkbox" id="hover_preview" name="hover_preview">
-                            <label for="hover_preview" class="sub-text" data-i18n="hover_preview">Hover to preview
-                                details</label>
-                        </div>
-                        <div class="sub-option">
-                            <input type="checkbox" id="hide_completed" name="hide_completed">
-                            <label for="hide_completed" class="sub-text" data-i18n="hide_completed">Hide
-                                completed</label>
-                        </div>
-                        <div class="sub-option">
-                            <input type="checkbox" id="todo_hr24" name="todo_hr24">
-                            <label for="todo_hr24" class="sub-text" data-i18n="24hrformat">Use 24hr format</label>
-                        </div>
-                        <div class="sub-option">
-                            <input type="checkbox" id="todo_overdues" name="todo_overdues">
-                            <label for="todo_overdues" class="sub-text" data-i18n="show_past_due">Show past due</label>
-                        </div>
-                        <div style="margin-top: 5px">
-                            <span class="sub-text" data-i18n="max_items">Max items to show: </span><span
-                                id="numTodoItems"></span>
-                            <input type="range" min="1" max="7" id="numTodoItemsSlider">
                         </div>
                     </div>
                 </div>
@@ -230,6 +234,14 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div><span class="option-name">Hide recent feedback</span>
+                    </div>
+                    <div class="option" id="tab_icons">
+                        <input type="radio" id="off" name="tab_icons">
+                        <input type="radio" id="on" name="tab_icons">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span class="option-name">Color coded tab icons</span>
                     </div>
                 </div>
             </div>
@@ -307,7 +319,7 @@
                     <textarea class="card-input" id="export-output" placeholder="Output"></textarea>
                 </div>
             </div>
-            <p class="sub-text" style="margin-top:10px">Export your theme and send it to ksucpea@gmail.com to add it here!</p>
+            <p class="sub-text" style="margin-top:10px">Want to submit your theme? <a style="color:inherit" target="_blank" href="https://diditupe.dev/bettercanvas/questions/?highlight=2">Click here</a></p>
         </div>
         <!--
         <div class="option-container">
@@ -318,6 +330,9 @@
             <div style="display:flex;justify-content: space-between;margin-bottom:10px;align-items:center">
                 <h3 class="header-small" style="flex:100;margin:0">User made themes</h3>
                 <div style="display:flex;gap:5px;align-items:center"><button id="premade-themes-left">Back</button><button id="premade-themes-right">Next</button></div>
+            </div>
+            <div>
+                
             </div>
             <div id="premade-themes"></div>
             <div style="display:flex;justify-content: space-between;">

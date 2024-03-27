@@ -49,6 +49,7 @@
 .bettercanvas-custom-open {max-height: 250px}
 .bettercanvas-custom-input {box-sizing: border-box!important; width: 100%!important; height: 32px!important}
 .bettercanvas-custom-btn {background: #f5f5f5; border: 1px solid #c7cdd1; border-radius:6px; padding: 2px 8px;}
+.bettercanvas-viewmore-btn {display: block;margin:0 auto;margin-top: 8px;}
 .bettercanvas-course-percent, .bettercanvas-course-credit {border: 1px solid #ccc; color: var(--ic-brand-font-color-dark)}
 
 .bettercanvas-course-percent, .bettercanvas-course-weight, .bettercanvas-course-credit {
@@ -81,18 +82,18 @@
 .bettercanvas-gpa-header {font-weight:700;font-size:16px;margin-top:0;margin-bottom:6px;padding-bottom:6px;}
 .bettercanvas-dashboard-notes {width: 100%; box-sizing: border-box; margin-top: 18px;border: 1px solid #c7cdd1;border-radius:3px;padding:8px 14px;resize:vertical}
 .bettercanvas-todosidebar, #bettercanvas-todo-list, #bettercanvas-announcement-list {margin: 0}
-.bettercanvas-todo-container {display: flex; margin-top: 14px;position: relative;transition: .2s all; max-height:100px;}
+.bettercanvas-todo-container {display: flex; margin-top: 14px;position: relative;transition: .2s all;}
 .bettercanvas-removing {max-height: 0;margin-top: 0}
 #bettercanvas-todo-list, #bettercanvas-announcement-list {font-size: 12px}
 .bettercanvas-todo-container, .bettercanvas-todo-container:hover {color:#777}
 .bettercanvas-todo-container p {margin: 0!important;}
-.bettercanvas-todo-container svg {height: 18px; width: 18px;margin:0}
+.bettercanvas-todo-icon svg {height: 18px; width: 18px;margin:0}
 .bettercanvas-todoitem-course {overflow: hidden; text-overflow: ellipsis;white-space: nowrap;}
-.bettercanvas-todoitem-title {font-size: 14px;}
+.bettercanvas-todoitem-title {font-size: 14px;font-weight:bold;display:inline;margin-top:2px;}
 .bettercanvas-todoitem-date {font-weight: bold}
 .bettercanvas-todo-item-completed {text-decoration: line-through;}
 .bettercanvas-todo-item {overflow: hidden;margin-left: 12px;}
-.bettercanvas-todo-item {margin-left: 12px;color: #777}
+.bettercanvas-todo-item {width:100%;margin-left: 12px;color: #777}
 .bettercanvas-todo-item:hover {text-decoration: underline;cursor: pointer;color: #777;}
 .bettercanvas-customurl-setup {font-size: 18px;max-width: 400px;position: fixed; top: 40px; left: 40px; z-index: 10000; padding: 24px; background: #fff; border-radius: 6px; border: 1px solid #c7cdd1;box-shadow: 0 2px 5px rgb(0 0 0 / 30%)}
 .bettercanvas-customurl-setup p {margin: 0;}
@@ -106,6 +107,7 @@
 .bettercanvas-todo-item-loader .bettercanvas-skeleton-text {height:12px;margin-top: 8px;margin-bottom:0;margin-left:25px}
 .bettercanvas-hover-preview {position: absolute;top: -6px;left: -400px;display: none; background: #fff; color: #000; max-height: 300%; width: 350px; padding:12px;border-radius:5px; overflow: hidden;box-shadow: 0 2px 5px rgba(0,0,0,.3)}
 .bettercanvas-preview-text {text-overflow: ellipsis;}
+.bettercanvas-preview-title {font-weight:bold;font-size:14px;}
 .bettercanvas-hover-preview::after {content:'';position:absolute;width:100%;height: 18px;bottom:0;left:0;background:linear-gradient(0deg, #fff 50%, transparent)}
 .bettercanvas-link-image {height: 21px; width: 21px;padding: 0px}
 .bettercanvas-link-image:hover {filter: brightness(66%)}
@@ -120,6 +122,19 @@
 .bettercanvas-course-customgr {margin: 0 10px;}
 .bettercanvas-course-customgr-label {margin-left: 5px;}
 .bettercanvas-course-credits {margin-right: 20px;}
+.bettercanvas-todo-label-btn {display:inline-block;margin:0px 2px 2px 0;background: #f5f5f5;border:1px solid #c7cdd1;padding: 2px;border-radius:4px;}
+.bettercanvas-todo-label {background: var(--ic-link-color);color:#fff;padding:2px 4px;border-radius:3px;display:inline;height:100%;margin-right:5px;}
+.bettercanvas-todo-action {border-radius: 5px;}
+.bettercanvas-todo-actions {position: absolute; top: 0; right: 0; background: #fff;width:110px;font-weight:bold; color:#000;display:none;z-index:1000;border-radius:3px;border: 1px solid #c7cdd1;padding:10px}
+.bettercanvas-todo-actions-btn { border:1px solid transparent; height: 20px;width: 20px;background: none;padding: 0;margin: 0;border-radius:3px;}
+/*.bettercanvas-dots-icon {display: block!important;}
+.bettercanvas-todo-actions-btn:hover {background: #f5f5f5; border:1px solid #c7cdd1;}*/
+.bettercanvas-todo-action, .bettercanvas-todo-action-tag { padding: 4px; margin: -2px 0;display:flex;justify-content: space-between;align-items:center;}
+.bettercanvas-todo-action:hover {background: #f5f5f5;cursor:pointer}
+.bettercanvas-todo-input {width: 100%!important;box-sizing: border-box!important;border-radius: 5px!important;height: 24px!important;padding:4px!important;margin:0!important;font-size:12px!important}
+.bettercanvas-todo-header:hover {cursor:pointer;text-decoration:underline}
+.bettercanvas-todo-actions svg {height: 18px; width:18px;}
+.bettercanvas-todo-item-header {max-height:80px;overflow:hidden;}
 @keyframes blink {
     50% {
         opacity: .5;
