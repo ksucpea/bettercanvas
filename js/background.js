@@ -72,6 +72,7 @@ chrome.runtime.onInstalled.addListener(function () {
             "assignment_states": {},
             "tab_icons": false,
             "todo_colors": false,
+            "device_dark": false,
         }
     };
 
