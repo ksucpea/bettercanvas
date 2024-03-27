@@ -94,6 +94,9 @@ To use Better Canvas, select your browser below to install the extension.
 - Dark mode rework
 - Dark mode now syncs
 - Option to use device dark mode settings
+- Improved todo list
+- "Color coded tab icons" feature
+- "Use card colors" option for todo list
 
 ## Color Reference
 
