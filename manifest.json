@@ -27,6 +27,10 @@
       "js": ["js/content.js"],
       "css": ["css/content.css"],
       "run_at": "document_start"
+    },
+    {"matches": ["https://*/*"],
+    "js": ["js/gradesPageContent.js"],
+    "run_at": "document_idle"
     }
   ],
   "permissions": ["storage"],
