@@ -46,7 +46,7 @@ function startExtension() {
         setTimeout(() => runDarkModeFixer(false), 4500);
     });
 
-    // idle page grades script
+    // update grades page when page is idle
     if (document.readyState === "complete") {
         updateGradesPage();
       } else {
@@ -1891,6 +1891,10 @@ const CSRFtoken = function () {
     return decodeURIComponent((document.cookie.match('(^|;) *_csrf_token=([^;]*)') || '')[2])
 }
 
+/*
+* Grades page logic
+*/
+
 function updateGradesPage() {
     console.info("Better Canvas Grades Page running.");
     allChanges = true;
@@ -2078,7 +2082,6 @@ function calculateAndDisplayGrades() {
         // add the percentage if it was used, otherwise do not, this allows the current grade to be discerned rather than using the overall categories
         let totalPercentageUsed = 0;
         categoryDetails.forEach(category => {
-            // display statistics if in debug mode
             console.log(`${category.title} (${category.percentage * 100}%)\nYour Score: ${category.yourGrade}\nMean: ${category.meanPoints}\nMedian: ${category.medianPoints}\nTotal possible: ${category.totalPoints}`);
             if (category.totalPoints > 0) {
                 totalPercentageUsed += category.percentage;
