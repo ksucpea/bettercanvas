@@ -135,6 +135,7 @@
 .bettercanvas-todo-header:hover {cursor:pointer;text-decoration:underline}
 .bettercanvas-todo-actions svg {height: 18px; width:18px;}
 .bettercanvas-todo-item-header {max-height:80px;overflow:hidden;}
+.bettercanvas-todo-svg {fill:#2d3b45!important}
 @keyframes blink {
     50% {
         opacity: .5;
