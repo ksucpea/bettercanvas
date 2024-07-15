@@ -1471,6 +1471,11 @@ function calculateGPA2() {
             letter = "F";
             gpa = options.gpa_calc_bounds["F"].gpa;
         }
+        if (course.id === "cumulative-gpa") {
+            gpa = parseFloat(options["cumulative_gpa"]["gr"]);
+        } else {
+            course.querySelector(".bettercanvas-gpa-letter-grade").textContent = letter;
+        }
 
         let weightMultiplier;
         if (weight === "ap") {
@@ -1483,7 +1488,6 @@ function calculateGPA2() {
         qualityPoints += gpa * credits;
         weightedQualityPoints += (gpa + weightMultiplier) * credits;
         numCredits += credits;
-        course.querySelector(".bettercanvas-gpa-letter-grade").textContent = letter;
     });
     document.querySelector("#bettercanvas-gpa-unweighted").textContent = (qualityPoints / numCredits).toFixed(2);
     document.querySelector("#bettercanvas-gpa-weighted").textContent = (weightedQualityPoints / numCredits).toFixed(2);
@@ -1491,20 +1495,32 @@ function calculateGPA2() {
 
 function changeGPASettings(course_id, update) {
     calculateGPA2();
-    chrome.storage.sync.get(["custom_cards"], storage => {
-        chrome.storage.sync.set({ "custom_cards": { ...storage["custom_cards"], [course_id]: { ...storage["custom_cards"][course_id], ...update } } });
+    chrome.storage.sync.get(["custom_cards", "cumulative_gpa"], storage => {
+        if (course_id === "cumulative") {
+            console.log(update, storage["cumulative_gpa"], {...storage["cumulative_gpa"], ...update}); //{ "cumulative_gpa": {...storage["cumulative_gpa"], ...update}});
+            chrome.storage.sync.set({ "cumulative_gpa": {...storage["cumulative_gpa"], ...update}});
+        } else {
+            chrome.storage.sync.set({ "custom_cards": { ...storage["custom_cards"], [course_id]: { ...storage["custom_cards"][course_id], ...update } } });
+        }
     });
 }
 
 function createGPACalcCourse(location, course) {
-    let customs = options.custom_cards && options.custom_cards[course.id] ? options.custom_cards[course.id] : { "name": course.name, "hidden": false, "weight": "regular", "credits": 1, "gr": null };
+    let customs;
+    if (course.id === "cumulative") {
+        customs = options["cumulative_gpa"];
+    } else if (options.custom_cards && options.custom_cards[course.id]) {
+        customs = options.custom_cards[course.id];
+    } else {
+        customs = { "name": course.name, "hidden": false, "weight": "regular", "credits": 1, "gr": null };
+    }
+    //let customs = options.custom_cards && options.custom_cards[course.id] ? options.custom_cards[course.id] : { "name": course.name, "hidden": false, "weight": "regular", "credits": 1, "gr": null };
     if (customs.hidden === true) return;
     let courseContainer = makeElement("div", location, { "className": "bettercanvas-gpa-course", "innerHTML": '<div class="bettercanvas-gpa-letter-grade"></div>' });
     //courseContainer.innerHTML = '<div class="bettercanvas-gpa-letter-grade"></div>';
     let courseName = makeElement("p", courseContainer, { "className": "bettercanvas-gpa-name", "textContent": customs.name === "" ? course.course_code : customs.name });
     //courseName.textContent = customs.name === "" ? course.course_code : customs.name;
     let changerContainer = makeElement("div", courseContainer, { "className": "bettercanvas-gpa-percent-container" });
-    let percent = makeElement("span", changerContainer, { "className": "bettercanvas-course-percent-sign", "textContent": "%" });
     let weightSelections = makeElement("form", courseContainer, { "className": "bettercanvas-course-weights" });
     weightSelections.innerHTML = '<select name="weight-selection" class="bettercanvas-course-weight"><option value="dnc">Do not count</option><option value="regular">Regular/College</option><option value="honors">Honors</option><option value="ap">AP/IB</option></select>';
     let weightChanger = weightSelections.querySelector(".bettercanvas-course-weight");
@@ -1514,6 +1530,7 @@ function createGPACalcCourse(location, course) {
     let creditsChanger = credits.querySelector(".bettercanvas-course-credit");
     creditsChanger.value = customs.credits;
     let changer = makeElement("input", changerContainer, { "className": "bettercanvas-course-percent" });
+    let percent = makeElement("span", changerContainer, { "className": "bettercanvas-course-percent-sign", "textContent": course.id === "cumulative" ? "/4" : "%" });
     let courseGrade = course.enrollments[0].has_grading_periods === true ? course.enrollments[0].current_period_computed_current_score : course.enrollments[0].computed_current_score;
     if (customs["gr"] !== null) {
         changer.value = customs["gr"];
@@ -1539,7 +1556,7 @@ function createGPACalcCourse(location, course) {
     });
 
     changer.addEventListener('input', (e) => {
-        if (options["custom_cards"][course.id]["gr"] !== undefined && options["custom_cards"][course.id]["gr"] !== null) {
+        if (course.id === "cumulative" || (options["custom_cards"][course.id]["gr"] !== undefined && options["custom_cards"][course.id]["gr"] !== null)) {
             changeGPASettings(course.id, { "gr": e.target.value });
         } else {
             calculateGPA2();
@@ -1547,6 +1564,7 @@ function createGPACalcCourse(location, course) {
     });
     weightChanger.addEventListener('change', () => changeGPASettings(course.id, { "weight": weightSelections.querySelector(".bettercanvas-course-weight").value }));
     credits.querySelector(".bettercanvas-course-credit").addEventListener('input', () => changeGPASettings(course.id, { "credits": credits.querySelector(".bettercanvas-course-credit").value }));
+    return courseContainer;
 }
 
 function setupGPACalc() {
@@ -1576,6 +1594,8 @@ function setupGPACalc() {
             }
 
             let location = document.querySelector(".bettercanvas-gpa-courses");
+            let cumulative = createGPACalcCourse(location, {"id": "cumulative", "enrollments": [{"has_grading_periods": true, "current_period_computed_current_score": 0}]});
+            cumulative.id = "cumulative-gpa";
             result.forEach(course => createGPACalcCourse(location, course));
 
             container.style.display = "none";
@@ -1682,6 +1702,7 @@ function applyAestheticChanges() {
     if (options.disable_color_overlay === true) style.textContent += ".ic-DashboardCard__header_hero{opacity: 0!important} .ic-DashboardCard__header-button-bg{opacity: 1!important}";
     if (options.hide_feedback === true) style.textContent += ".recent_feedback {display: none}";
     if (options.full_width === true) style.textContent += ".ic-Layout-wrapper{max-width:100%!important}";
+    //if (options.full_width === true) style.textContent += ".ic-DashboardCard__link{position:absolute;top:0;left:0;max-width:100%;}.ic-DashboardCard__header_content{background:none!important;padding-top:18px;}.ic-DashboardCard{position:relative;width:333px}.bettercanvas-card-assignment{position:absolute;bottom:0;left:0;}.bettercanvas-assignment-container{background:none!important}.ic-DashboardCard__action-container{display:none}.ic-DashboardCard__header-title span{color:#fff!important;font-size:16px;margin-top:8px;}.ic-DashboardCard__header-term{display:none}";
     document.documentElement.appendChild(style);
 }
 

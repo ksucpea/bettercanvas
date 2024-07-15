@@ -74,7 +74,7 @@
 .bettercanvas-course-weights, .bettercanvas-gpa-percent-container {margin: 0; margin-right: 10px}
 .bettercanvas-course-percent-sign{margin-left: 4px;}
 .bettercanvas-gpa-name {margin: 0;width: 120px;}
-.bettercanvas-gpa-course {padding:6px;display:flex; align-items: center;border-bottom:1px solid #c7cdd1}
+.bettercanvas-gpa-course {padding:6px;display:flex; align-items: center;border-bottom:1px solid #c7cdd1;border-bottom:none!important;}
 .bettercanvas-gpa-open {text-align:center}
 .bettercanvas-gpa-open:hover {cursor: pointer}
 .bettercanvas-gpa-courses {min-width:600px;width:max-content;}
@@ -112,8 +112,9 @@
 .bettercanvas-link-image {height: 21px; width: 21px;padding: 0px}
 .bettercanvas-link-image:hover {filter: brightness(66%)}
 .bettercanvas-gpa-header {font-size:16px;font-weight: bold;padding: 0;margin: 0;}
-.bettercanvas-gpa-card {width: 262px; box-shadow: 0 2px 5px rgba(0,0,0,.3);border-radius:4px;margin: 36px 0 0 36px;display: inline-block;padding: 18px;box-sizing: border-box}
+.bettercanvas-gpa-card {width: 262px; box-shadow: 0 2px 5px rgba(0,0,0,.3);border-radius:4px;margin: 36px 0 0 36px;display: inline-block;padding: 18px;box-sizing: border-box;vertical-align: top;}
 .bettercanvas-gpa-card p {margin: 0;}
+#cumulative-gpa .bettercanvas-gpa-name {font-weight:bold;}
 #bettercanvas-gpa-unweighted, #bettercanvas-gpa-weighted {font-size: 24px; font-weight: bold;margin-top: 10px}
 .bettercanvas-gpa-edit-btn {background: #f5f5f5; border: 1px solid #c7cdd1; border-radius:6px; width: 100%; padding: 5px 0px; color: #000;margin-top: 10px}
 .bettercanvas-due-soon {background: #db3754; padding: 1px 4px; color: #fff; border-radius: 4px;display:inline-block}

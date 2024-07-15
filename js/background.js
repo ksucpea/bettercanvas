@@ -73,6 +73,7 @@ chrome.runtime.onInstalled.addListener(function () {
             "tab_icons": false,
             "todo_colors": false,
             "device_dark": false,
+            "cumulative_gpa": { "name": "Cumulative GPA", "hidden": false, "weight": "dnc", "credits": 999, "gr": 3.21 }
         }
     };
 

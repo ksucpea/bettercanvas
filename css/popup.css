@@ -88,12 +88,13 @@ h2 {margin-top: 20px}
 .palette-selection .card-input {width: 70px;margin: 0;}
 .colors-preview {display: flex}
 .color-preview {flex: 1;height:5px;margin-top:2px;}
-.theme-button {padding: 17px 10px; transition: .25s background; background-size: 100%; background-position: center;text-shadow: 0 0 4px black;}
+.theme-button {padding: 17px 10px; padding: 12px 10px 24px;text-align:left;transition: .25s background; background-size: cover; background-position: center;text-shadow: 0 0 4px #313131;}
 .theme-button:hover {background-size: 120%; background-position:center;}
+.theme-button-creator {font-size:10px;}
 .color-options .card-input { flex: 1;margin: 0;}
 .error-message {margin: 20px;font-size: 14px; color: red;}
 textarea {resize: vertical}
-#premade-themes, #premade-darkmodes {display: flex;flex-wrap:wrap;gap: 5px;}
+#premade-themes, #premade-darkmodes {display:grid;grid-template-columns: repeat(4, 1fr);gap: 5px;}
 #error_log_output, #rk_output {min-height: 100px;} 
 #image-tester {display: none;}
 #alert {font-size:13px;background: #e7495ebd; backdrop-filter: blur(2px); border-radius: 8px; padding: 15px; margin: 20px;position: fixed; transition: .3s bottom; bottom: -400px; left: 0;z-index:1000;}

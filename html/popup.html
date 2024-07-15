@@ -329,16 +329,19 @@
         <div class="option-container">
             <div style="display:flex;justify-content: space-between;margin-bottom:10px;align-items:center">
                 <h3 class="header-small" style="flex:100;margin:0">User made themes</h3>
-                <div style="display:flex;gap:5px;align-items:center"><button id="premade-themes-left">Back</button><button id="premade-themes-right">Next</button></div>
+                <div style="display:flex;gap:5px;align-items:center">
+                    <span id="premade-themes-pagenum"></span>
+                </div>
             </div>
             <div>
                 
             </div>
-            <div id="premade-themes"></div>
-            <div style="display:flex;justify-content: space-between;">
-                <button id="theme-revert" class="customization-button" style="margin-top:5px;width:100%">Revert to original</button>
-                <!--<span id="premade-themes-pagenum"></span>-->
+            <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:5px;margin-bottom:5px;">
+                <button id="theme-revert" class="customization-button" style="width:100%;grid-column: span 2;">Revert to original</button>
+                <button id="premade-themes-left">Back</button>
+                <button id="premade-themes-right">Next</button>
             </div>
+            <div id="premade-themes"></div>
         </div>
         <div class="import-export-details">
             <div class="import-details option-container">
