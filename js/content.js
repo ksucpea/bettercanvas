@@ -632,7 +632,7 @@ function loadBetterTodo() {
 
                     let svg;
                     switch (item.plannable_type) {
-                        case "assignment": svg = assignment_svg
+                        case "assignment": svg = assignment_svg; break;
                         case "discussion_topic": svg = discussion_svg; break;
                         case "quiz": svg = quiz_svg; break;
                         case "announcement": svg = announcement_svg; break;
