@@ -1798,7 +1798,7 @@ function setupCustomURL() {
 
 function getGrades() {
     if (options.gpa_calc === true || options.dashboard_grades === true) {
-        grades = getData(`${domain}/api/v1/courses?enrollment_state=active&include[]=concluded&include[]=total_scores&include[]=current_grading_period_scores&per_page=100`);
+        grades = getData(`${domain}/api/v1/courses?enrollment_state=active&include[]=concluded&include[]=total_scores&include[]=computed_current_grade&per_page=100`);
     }
 }
 
