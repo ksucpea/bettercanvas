@@ -189,11 +189,11 @@ function applyOptionsChanges(changes) {
             case ("gpa_calc_bounds"):
                 calculateGPA2();
                 break;
-                /*
-            case ("full_width"):
-                changeFullWidth();
-                break;
-                */
+            /*
+        case ("full_width"):
+            changeFullWidth();
+            break;
+            */
             case ("custom_font"):
                 loadCustomFont();
                 break;
@@ -203,6 +203,9 @@ function applyOptionsChanges(changes) {
             case ("hide_feedback"):
             case ("full_width"):
                 applyAestheticChanges();
+                break;
+            case ("show_updates"):
+                showUpdateMsg();
                 break;
         }
     });
@@ -234,10 +237,8 @@ function checkDashboardReady() {
                     customizeCards(cards);
                     insertGrades();
                     loadDashboardNotes();
-                    //condenseCards();
-                    //changeOpacityCards();
                     setupGPACalc();
-                    //changeFullWidth();
+                    showUpdateMsg();
                 } else if (mutation.target == document.querySelector('#right-side')) {
                     if (!mutation.target.querySelector(".bettercanvas-todosidebar")) {
                         setupBetterTodo();
@@ -346,7 +347,7 @@ function getCardColors() {
 
 
 async function getCards(api = null) {
-    let dashboard_cards = api ? api : await getData(`${domain}/api/v1/courses?enrollment_state=active&per_page=100`);
+    let dashboard_cards = api ? api : await getData(`${domain}/api/v1/courses?${/*enrollment_state=active&*/""}per_page=100`);
     chrome.storage.sync.get(["custom_cards", "custom_cards_2", "custom_cards_3"], storage => {
         let cards = storage["custom_cards"] || {};
         let cards_2 = storage["custom_cards_2"] || {};
@@ -1497,8 +1498,8 @@ function changeGPASettings(course_id, update) {
     calculateGPA2();
     chrome.storage.sync.get(["custom_cards", "cumulative_gpa"], storage => {
         if (course_id === "cumulative") {
-            console.log(update, storage["cumulative_gpa"], {...storage["cumulative_gpa"], ...update}); //{ "cumulative_gpa": {...storage["cumulative_gpa"], ...update}});
-            chrome.storage.sync.set({ "cumulative_gpa": {...storage["cumulative_gpa"], ...update}});
+            console.log(update, storage["cumulative_gpa"], { ...storage["cumulative_gpa"], ...update }); //{ "cumulative_gpa": {...storage["cumulative_gpa"], ...update}});
+            chrome.storage.sync.set({ "cumulative_gpa": { ...storage["cumulative_gpa"], ...update } });
         } else {
             chrome.storage.sync.set({ "custom_cards": { ...storage["custom_cards"], [course_id]: { ...storage["custom_cards"][course_id], ...update } } });
         }
@@ -1507,7 +1508,9 @@ function changeGPASettings(course_id, update) {
 
 function createGPACalcCourse(location, course) {
     let customs;
-    if (course.id === "cumulative") {
+    if (course.access_restricted_by_date === true) {
+        return null;
+    } if (course.id === "cumulative") {
         customs = options["cumulative_gpa"];
     } else if (options.custom_cards && options.custom_cards[course.id]) {
         customs = options.custom_cards[course.id];
@@ -1531,7 +1534,8 @@ function createGPACalcCourse(location, course) {
     creditsChanger.value = customs.credits;
     let changer = makeElement("input", changerContainer, { "className": "bettercanvas-course-percent" });
     let percent = makeElement("span", changerContainer, { "className": "bettercanvas-course-percent-sign", "textContent": course.id === "cumulative" ? "/4" : "%" });
-    let courseGrade = course.enrollments[0].has_grading_periods === true ? course.enrollments[0].current_period_computed_current_score : course.enrollments[0].computed_current_score;
+    let courseGrade = course?.enrollments[0].has_grading_periods === true ? course.enrollments[0].current_period_computed_current_score : course.enrollments[0].computed_current_score;
+    //let courseGrade = course?.enrollments[0].has_grading_periods === true ? course.enrollments[0].current_period_computed_current_score : course.enrollments[0].computed_current_score;
     if (customs["gr"] !== null) {
         changer.value = customs["gr"];
     } else if (courseGrade) {
@@ -1594,7 +1598,7 @@ function setupGPACalc() {
             }
 
             let location = document.querySelector(".bettercanvas-gpa-courses");
-            let cumulative = createGPACalcCourse(location, {"id": "cumulative", "enrollments": [{"has_grading_periods": true, "current_period_computed_current_score": 0}]});
+            let cumulative = createGPACalcCourse(location, { "id": "cumulative", "enrollments": [{ "has_grading_periods": true, "current_period_computed_current_score": 0 }] });
             cumulative.id = "cumulative-gpa";
             result.forEach(course => createGPACalcCourse(location, course));
 
@@ -1740,6 +1744,35 @@ function changeGradientCards() {
     }
 }
 
+function showUpdateMsg() {
+    // dont run if not on dashboard
+    const el = document.getElementById("announcementWrapper");
+    if (!el) return;
+
+    // option off or div already created
+    let div = document.getElementById("bettercanvas-update-msg");
+    if (options.show_updates !== true || options.update_msg === "") {
+        if (div) div.style.display = "none";
+        return;
+    } else if (div) {
+        div.style.display = "flex";
+        return;
+    }
+
+    // first creation 
+    div = makeElement("div", el, { "id": "bettercanvas-update-msg" });
+    makeElement("p", div, { "textContent": options.update_msg });
+    const close = makeElement("button", div, { "id": "bettercanvas-update-close", "textContent": "Close" });
+    close.addEventListener("click", () => {
+        readUpdate();
+        div.remove();
+    });
+}
+
+function readUpdate() {
+    chrome.storage.sync.set({"update_msg": ""});
+}
+
 /*
 Other functions 
 */
@@ -1779,7 +1812,7 @@ function cleanCustomAssignments() {
 
 function setupCustomURL() {
     //let test = getData(`${domain}/api/v1/dashboard/dashboard_cards?include[]=concluded&include[]=term`);
-    let test = getData(`${domain}/api/v1/courses?enrollment_state=active&per_page=100`);
+    let test = getData(`${domain}/api/v1/courses?${/*enrollment_state=active&*/""}per_page=100`);
     test.then(res => {
         if (res.length) {
             getCards(res).then(() => {
@@ -1798,7 +1831,7 @@ function setupCustomURL() {
 
 function getGrades() {
     if (options.gpa_calc === true || options.dashboard_grades === true) {
-        grades = getData(`${domain}/api/v1/courses?enrollment_state=active&include[]=concluded&include[]=total_scores&include[]=computed_current_grade&per_page=100`);
+        grades = getData(`${domain}/api/v1/courses?${/*enrollment_state=active&*/""}include[]=concluded&include[]=total_scores&include[]=computed_current_grade&per_page=100`);
     }
 }
 

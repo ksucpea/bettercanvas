@@ -1,9 +1,12 @@
 {
+    "updates": {
+        "message": "Updates"
+    },
     "dark_mode": {
         "message": "Dark mode"
     },
     "automatic_dark_mode": {
-        "message": "Automatic dark mode"
+        "message": "Scheduled dark mode"
     },
     "auto_start_time": {
         "message": "Start time"
@@ -12,7 +15,7 @@
         "message": "End time"
     },
     "edit_dark_mode": {
-        "message": "Edit dark mode"
+        "message": "Dark mode"
     },
     "enter_url": {
         "message": "Your Canvas url:"
@@ -33,10 +36,10 @@
         "message": "Card assignments"
     },
     "card_customization": {
-        "message": "Card customization"
+        "message": "Cards"
     },
     "custom_font": {
-        "message": "Custom font"
+        "message": "Fonts"
     },
     "useddmm": {
         "message": "Use dd/mm"

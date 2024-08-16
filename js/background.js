@@ -1,4 +1,5 @@
 chrome.runtime.onInstalled.addListener(function () {
+
     let default_options = {
         "local": {
             "previous_colors": null,
@@ -73,13 +74,16 @@ chrome.runtime.onInstalled.addListener(function () {
             "tab_icons": false,
             "todo_colors": false,
             "device_dark": false,
-            "cumulative_gpa": { "name": "Cumulative GPA", "hidden": false, "weight": "dnc", "credits": 999, "gr": 3.21 }
+            "cumulative_gpa": { "name": "Cumulative GPA", "hidden": false, "weight": "dnc", "credits": 999, "gr": 3.21 },
+            "show_updates": false,
         }
     };
 
+    const updateMsg = "Better Canvas was just updated!\nThis version added new themes, cumulative GPA into the GPA calculator, and a new sorting function for themes.";
+
     chrome.storage.local.get(null, local => {
         chrome.storage.sync.get(null, sync => {
-            let newSyncOptions = {};
+            let newSyncOptions = {"update_msg": updateMsg};
             let newLocalOptions = {};
             Object.keys(default_options["sync"]).forEach(option => {
                 if (sync[option] !== undefined) return;

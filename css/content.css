@@ -137,6 +137,9 @@
 .bettercanvas-todo-actions svg {height: 18px; width:18px;}
 .bettercanvas-todo-item-header {max-height:80px;overflow:hidden;}
 .bettercanvas-todo-svg {fill:#2d3b45!important}
+#bettercanvas-update-msg {margin-top: 5px; display: flex; justify-content: space-between; font-size:15px;background: linear-gradient(115deg, rgb(255, 53, 88, .9), rgb(255, 131, 73, .9), rgb(255, 103, 187, .9)); color: #fff; border-radius:4px; padding: 20px;white-space: pre-line;}
+#bettercanvas-update-msg p {margin: 0;color:#fff!important;}
+#bettercanvas-update-close { background: #2f2f2f59; padding: 3px 6px; border-radius: 3px; height:100%; border:none; color: #fff!important;}
 @keyframes blink {
     50% {
         opacity: .5;
