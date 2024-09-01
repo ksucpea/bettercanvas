@@ -255,7 +255,14 @@ function checkDashboardReady() {
 
 function recieveMessage(request, sender, sendResponse) {
     switch (request.message) {
-        case ("getCards"): getCards(); sendResponse(true); break;
+        case ("getCards"): 
+            if (options["card_method_dashboard"] === true) {
+                getCardsFromDashboard();
+            } else {
+                getCards();
+            } 
+            sendResponse(true); 
+            break;
         case ("setcolors"): changeColorPreset(request.options); sendResponse(true); break;
         case ("getcolors"): sendResponse(getCardColors()); break;
         case ("inspect"): sendResponse(inspectDarkMode(true)); break;
@@ -345,6 +352,83 @@ function getCardColors() {
     return colors;
 }
 
+function getCardsFromDashboard() {
+    console.log("getting cards from dashboard")
+    const dashboard_cards = document.querySelectorAll(".ic-DashboardCard");
+    chrome.storage.sync.get(["custom_cards", "custom_cards_2", "custom_cards_3"], storage => {
+        let cards = storage["custom_cards"] || {};
+        let cards_2 = storage["custom_cards_2"] || {};
+        let cards_3 = storage["custom_cards_3"] || {};
+        let newCards = false;
+        let count = 0;
+        try {
+            dashboard_cards.forEach(card => {
+                const id = card.querySelector(".ic-DashboardCard__link").href.split("courses/")[1];
+                if (count >= (options["card_limit"] || 25)) return;
+                if (!cards || !cards[id]) {
+                    console.log("adding to custom_cards");
+                    newCards = true;
+                    cards[id] = { "default": card.querySelector(".ic-DashboardCard__header-subtitle").textContent.substring(0, 20), "name": "", "code": "", "img": "", "hidden": false, "weight": "regular", "credits": 1, "eid": options["card_limit"] - count, "gr": null };
+                } /*else if (cards && cards[id]) {
+                    newCards = true;
+                    if (!cards[id].default) cards[id].default = card.querySelector(".ic-DashboardCard__header-subtitle").textContent.substring(0, 20);
+                    if (!cards[id].eid) cards[id].eid = options["card_limit"] - count;
+                    if (!cards[id].code) cards[id].code = "";
+                } */
+                if (!cards_2 || !cards_2[id]) {
+                    console.log("adding to custom_cards_2");
+                    newCards = true;
+                    let links = [];
+
+                    for (let i = 0; i < 4; i++) {
+                        links.push({ "path": "default", "is_default": true });
+                    }
+
+                    cards_2[id] = { "links": links };
+                }
+
+                if (!cards_3 || !cards_3[id]) {
+                    console.log("adding to custom_cards_3");
+                    newCards = true;
+                    cards_3[id] = { "url": domain };
+                }
+                count++;
+            });
+
+            console.log(cards);
+
+            //delete cards that aren't on the dashboard anymore
+            Object.keys(cards).forEach(key => {
+                let found = false;
+                // ignore cards that are not for the current url
+                if (cards_3[key] && cards_3[key].url !== domain) {
+                    found = true;
+                } else {
+                    dashboard_cards.forEach(card => {
+                        const id = card.querySelector(".ic-DashboardCard__link").href.split("courses/")[1];
+                        if (parseInt(key) === parseInt(id)) found = true;
+                    });
+                }
+
+                if (found === false) {
+                    console.log("Deleting " + key);
+                    cards[key] && delete cards[key];
+                    cards_2[key] && delete cards_2[key];
+                    cards_3[key] && delete cards_3[key];
+                    newCards = true;
+                }
+
+            });
+
+        } catch (e) {
+            console.log(e);
+            logError(e);
+        } finally {
+            console.log(newCards ? "new cards found" : "");
+            return chrome.storage.sync.set(newCards ? { "custom_cards": cards, "custom_cards_2": cards_2, "custom_cards_3": cards_3 } : {});
+        }
+    });
+}
 
 async function getCards(api = null) {
     let dashboard_cards = api ? api : await getData(`${domain}/api/v1/courses?${/*enrollment_state=active&*/""}per_page=100`);
@@ -355,10 +439,14 @@ async function getCards(api = null) {
         let newCards = false;
         let count = 0;
         // sort cards by enrollment id (i think the higher the id, the more recent it is)
-        dashboard_cards.sort((a, b) => (b?.enrollment_term_id || 0) - (a?.enrollment_term_id || 0));
+        if (options["card_method_date"] === true) {
+            dashboard_cards.sort((a, b) => (b?.created_at) > (a?.created_at) ? 1 : -1);
+        } else {
+            dashboard_cards.sort((a, b) => (b?.enrollment_term_id || 0) - (a?.enrollment_term_id || 0));
+        }
         try {
             dashboard_cards.forEach(card => {
-                if (!card.course_code || count >= 25) return;
+                if (!card.course_code || count >= (options["card_limit"] || 25)) return;
                 let id = card.id;
                 if (!cards || !cards[id]) {
                     newCards = true;
@@ -1331,6 +1419,24 @@ function setupCardAssignments() {
 Card customization
 */
 
+function getCardId(card) {
+    let id = card.querySelector(".ic-DashboardCard__link").href.split("courses/")[1];
+    // no ~
+    if (!id.includes("~")) return id;
+
+    // has ~ but dashboard card method is used
+    if (options["custom_cards"][id]) return id;
+    
+    // weird case, some canvases replace consecutive 0s with a ~ in the id
+    // but the number of 0s isn't consistent between schools
+    id = id.split("~");
+    let re = new RegExp(`${id[0]}0+${id[1]}`);
+    for (const c of Object.keys(options["custom_cards"])) {
+        if (c.match(re)) return c;
+    }
+    return -1;
+}
+
 function customizeCards(c = null) {
     if (!options.custom_cards) return;
     try {
@@ -1338,64 +1444,63 @@ function customizeCards(c = null) {
         if (cards.length && cards.length > 0 && cards[0].querySelectorAll(".ic-DashboardCard__link").length === 0) return;
 
         cards.forEach(card => {
-            const id = card.querySelector(".ic-DashboardCard__link").href.split("courses/")[1].replace("~", "0000000");
+            const id = getCardId(card);
             let cardOptions = options["custom_cards"][id] || null;
             let cardOptions_2 = options["custom_cards_2"][id] || null;
-            if (cardOptions) {
-                // hide card
-                card.style.display = cardOptions.hidden === true ? "none" : "inline-block";
+            if (!cardOptions) return;
+            // hide card
+            card.style.display = cardOptions.hidden === true ? "none" : "inline-block";
 
-                // card image
-                if (cardOptions.img === "none") {
-                    let currentImg = card.querySelector(".ic-DashboardCard__header_image");
-                    if (currentImg) {
-                        card.querySelector(".ic-DashboardCard__header_hero").style.opacity = 1;
-                    }
-                } else if (cardOptions.img !== "") {
-                    let topColor = card.querySelector(".ic-DashboardCard__header_hero");
-                    let container = card.querySelector(".ic-DashboardCard__header_image") || makeElement("div", card, { "className": "ic-DashboardCard__header_image" });
-                    card.querySelector(".ic-DashboardCard__header").prepend(container);
-                    container.appendChild(topColor);
-                    container.style.backgroundImage = "url(\"" + cardOptions.img + "\")";
-                    topColor.style.opacity = .5;
+            // card image
+            if (cardOptions.img === "none") {
+                let currentImg = card.querySelector(".ic-DashboardCard__header_image");
+                if (currentImg) {
+                    card.querySelector(".ic-DashboardCard__header_hero").style.opacity = 1;
                 }
-
-                // card name
-                if (cardOptions.name !== "") {
-                    card.querySelector(".ic-DashboardCard__header-title > span").textContent = cardOptions.name;
-                }
-
-                // card code
-                if (cardOptions.code !== "") {
-                    card.querySelector(".ic-DashboardCard__header-subtitle").textContent = cardOptions.code;
-                }
-
-                // card links
-                let links = card.querySelectorAll(".ic-DashboardCard__action");
-                for (let i = links.length; i < 4; i++) {
-                    makeElement("a", card.querySelector(".ic-DashboardCard__action-container"), { "className": "ic-DashboardCard__action" });
-                }
-                links = card.querySelectorAll(".ic-DashboardCard__action");
-                for (let i = 0; i < 4; i++) {
-                    let img = links[i].querySelector(".bettercanvas-link-image") || makeElement("img", links[i], { "className": "bettercanvas-link-image" });
-                    links[i].style.display = "inherit";
-                    if (cardOptions_2.links[i].path === "none") {
-                        links[i].style.display = "none";
-                    } else if (cardOptions_2.links[i].is_default === false) {
-                        links[i].href = cardOptions_2.links[i].path;
-                        img.src = getCustomLinkImage(cardOptions_2.links[i].path);
-                        if (links[i].querySelector(".ic-DashboardCard__action-layout")) links[i].querySelector(".ic-DashboardCard__action-layout").style.display = "none";
-                        img.style.display = "block";
-                    } else {
-                        if (links[i].querySelector(".ic-DashboardCard__action-layout")) links[i].querySelector(".ic-DashboardCard__action-layout").style.display = "inherit";
-                        img.style.display = "none";
-                    }
-                    img.addEventListener("error", () => {
-                        img.src = "https://www.instructure.com/favicon.ico";
-                    })
-                }
-
+            } else if (cardOptions.img !== "") {
+                let topColor = card.querySelector(".ic-DashboardCard__header_hero");
+                let container = card.querySelector(".ic-DashboardCard__header_image") || makeElement("div", card, { "className": "ic-DashboardCard__header_image" });
+                card.querySelector(".ic-DashboardCard__header").prepend(container);
+                container.appendChild(topColor);
+                container.style.backgroundImage = "url(\"" + cardOptions.img + "\")";
+                topColor.style.opacity = .5;
             }
+
+            // card name
+            if (cardOptions.name !== "") {
+                card.querySelector(".ic-DashboardCard__header-title > span").textContent = cardOptions.name;
+            }
+
+            // card code
+            if (cardOptions.code !== "") {
+                card.querySelector(".ic-DashboardCard__header-subtitle").textContent = cardOptions.code;
+            }
+
+            // card links
+            let links = card.querySelectorAll(".ic-DashboardCard__action");
+            for (let i = links.length; i < 4; i++) {
+                makeElement("a", card.querySelector(".ic-DashboardCard__action-container"), { "className": "ic-DashboardCard__action" });
+            }
+            links = card.querySelectorAll(".ic-DashboardCard__action");
+            for (let i = 0; i < 4; i++) {
+                let img = links[i].querySelector(".bettercanvas-link-image") || makeElement("img", links[i], { "className": "bettercanvas-link-image" });
+                links[i].style.display = "inherit";
+                if (cardOptions_2.links[i].path === "none") {
+                    links[i].style.display = "none";
+                } else if (cardOptions_2.links[i].is_default === false) {
+                    links[i].href = cardOptions_2.links[i].path;
+                    img.src = getCustomLinkImage(cardOptions_2.links[i].path);
+                    if (links[i].querySelector(".ic-DashboardCard__action-layout")) links[i].querySelector(".ic-DashboardCard__action-layout").style.display = "none";
+                    img.style.display = "block";
+                } else {
+                    if (links[i].querySelector(".ic-DashboardCard__action-layout")) links[i].querySelector(".ic-DashboardCard__action-layout").style.display = "inherit";
+                    img.style.display = "none";
+                }
+                img.addEventListener("error", () => {
+                    img.src = "https://www.instructure.com/favicon.ico";
+                })
+            }
+
         });
 
     } catch (e) {
@@ -1770,7 +1875,7 @@ function showUpdateMsg() {
 }
 
 function readUpdate() {
-    chrome.storage.sync.set({"update_msg": ""});
+    chrome.storage.sync.set({ "update_msg": "" });
 }
 
 /*

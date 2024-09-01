@@ -17,7 +17,7 @@
 
 </head>
 
-<body style="background: #1a1a1ad6; background: #1c1c1c">
+<body style="background: #1a1a1ad6; background: #232323">
     <div id="gradientbg"></div>
     <div id="alert"></div>
     <div class="main">
@@ -332,14 +332,18 @@
                 <span id="premade-themes-pagenum"></span>
             </div>
             <div class="theme-controls">
-                <div class="theme-sorts">
-                    <div style="margin: 0 10px;color:#898989;">
-                        <svg style="display: block" xmlns="http://www.w3.org/2000/svg"  width="17"  height="17"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrows-up-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 3l0 18" /><path d="M10 6l-3 -3l-3 3" /><path d="M20 18l-3 3l-3 -3" /><path d="M17 21l0 -18" /></svg>
+                <button id="theme-sorts">
+                    <div>
+                        <svg style="display: block" xmlns="http://www.w3.org/2000/svg"  width="14"  height="14"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrows-up-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 3l0 18" /><path d="M10 6l-3 -3l-3 3" /><path d="M20 18l-3 3l-3 -3" /><path d="M17 21l0 -18" /></svg>
                     </div>
+                    <span id="theme-current-sort"></span>
+                    <!--
                     <button id="theme-sort-score" class="theme-sort-btn">Rating</button>
+                    <button id="theme-sort-color" class="theme-sort-btn">Color</button>
                     <button id="theme-sort-new" class="theme-sort-btn">New</button>
                     <button id="theme-sort-old" class="theme-sort-btn">Old</button>
-                </div>
+                -->
+                </button>
                 <div style="display:flex;gap:4px;align-items:center">
                     <button id="premade-themes-left">Back</button>
                     <button id="premade-themes-right">Next</button>
@@ -390,6 +394,9 @@
                         <button id="dark-catppuccin" class="preset-button customization-button" style="background:#11111b!important;border:1px solid #4f5463;color:#f5c2e7;">Catppuccin<br />by Angel</button>
                         <button id="dark-sage" class="preset-button customization-button" style="background:#2f3e46!important;border:1px solid #84a98c;color:#d8f5c7;">Sage<br />by LivDoesDevStuf</button>
                         <button id="dark-pink" class="preset-button customization-button" style="background:#ffe0ed!important;border:1px solid #ff007b;color:#ff0088;">Pink<br />by Sayde</button>
+                        <button id="dark-coral" class="preset-button customization-button" style="background:#131c26!important;border:1px solid #0e1721;color:#f88379;">Coral<br />by Superchido</button>
+                        <button style="opacity: 0">placeholder</button>
+                        <button style="opacity: 0">placeholder</button>
                         <!--
                         <button id="preset-placeholder1" class="preset-button customization-button" style="opacity: 0;">button</button>
                         <button id="preset-placeholder2" class="preset-button customization-button" style="opacity: 0;">button</button>
@@ -503,7 +510,7 @@
                 <h3 class="header-small">Dark mode fixer (beta)</h3>
                 <div style="display: flex; gap: 10px;align-items: center">
                     <button id="fix-dm-btn" class="big-button">Go</button>
-                    <span>This will to fix any dark mode gaps on the current page.</span> 
+                    <span>This will try to fix any dark mode gaps on the current page.</span> 
                 </div>
                 <p id="fix-dm-output" style="margin-top: 10px;color:#ffee00;"></p>
                 <p style="margin: 15px 0 5px;">The fixer is automatically running on these pages:</p>
@@ -708,8 +715,15 @@
             </div>
             <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
-        <p class="option-container">Please contact <b>ksucpea@gmail.com</b> for issues or feedback. Thank you!</p>
+        <p class="option-container">Find solutions to common issues: <a target="_blank" style="color: inherit" href="https://diditupe.dev/bettercanvas/questions">click here</a> <br /><br />You can also email <b style="font-weight:600">ksucpea@gmail.com</b> for any issues or feedback. Thank you!</p>
         <p id="dev-alert"></p>
+        <div class="option-container">
+            <h3 class="header-small">Storage reset</h3>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <button class="big-button" id="storage-reset-btn">Go</button>
+                <span>This will reset all settings to the default. You will need to refresh the page after.</span>
+            </div>
+        </div>
         <div class="option-container">
             <h3 class="header-small">Storage Dump</h3>
             <div style="margin-bottom: 10px">
@@ -718,12 +732,6 @@
                     <span>This will retrieve all the settings saved by the extension.</span>
                 </div>
                 <textarea class="card-input" id="rk_output"></textarea>
-            </div>
-        </div>
-        <div class="option-container">
-            <h3 class="header-small">Error log</h3>
-            <div>
-                <textarea id="error_log_output" class="card-input"></textarea>
             </div>
         </div>
         <div class="option-container">
@@ -736,7 +744,37 @@
                 <textarea id="inspector-output" class="card-input"></textarea>
             </div>
         </div>
-        <p>5.10.12</p>
+        <div class="option-container">
+            <h3 class="header-small">Card limit</h3>
+            <div style="display: flex; gap: 10px; align-items: center;width:100%">
+                <div>
+                    <input type="range" max="40" min="5" id="card_limit"></input>
+                    <p style="text-align: center" id="card_limit_num"></p>
+                </div>
+                <p><b style="font-weight:600">This is an experimental feature.</b> Adjusting this number will reset your cards and could cause storage issues.</p>
+
+            </div>
+
+        </div>
+        <div class="option-container">
+            <h3 class="header-small">Card method</h3>
+            <p><b style="font-weight:600">This is an experimental feature.</b> You shouldn't need these on.</p>
+            <div style="display: flex; gap: 10px; align-items: center;margin-top: 5px;">
+                <input type="checkbox" id="card_method_creation"></input>
+                <span>Date</span>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="checkbox" id="card_method_dashboard"></input>
+                <span>Dashboard</span>
+            </div>
+        </div>
+        <div class="option-container">
+            <h3 class="header-small">Error log</h3>
+            <div>
+                <textarea id="error_log_output" class="card-input"></textarea>
+            </div>
+        </div>
+        <p>5.11.2</p>
     </div>
 
     <div class="updates-container tab">
@@ -751,12 +789,13 @@
             <span>Show update messages on dashboard</span>
         </div>
         <div class="option-container">
-            <h3 class="header-small">Update 5.11.0</h3>
-            <h4 class="update-date">Aug. 14, 2024</h4>
+            <h3 class="header-small">Update 5.11.2</h3>
+            <h4 class="update-date">Aug. 31, 2024</h4>
             <ul>
                 <li>New themes</li>
                 <li>Updated menu</li>
-                <li>New sorting function for themes (sort by score or date)</li>
+                <li>New sorting function for themes (score, color, alphabetical, date)</li>
+                <li>More troubleshooting features</li>
             </ul>
         </div>
         <div class="option-container">

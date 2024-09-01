@@ -99,7 +99,7 @@ h2 {margin-top: 20px;font-weight:600}
 .theme-sort-btn {padding:8px 16px;border-radius:7px;background:none;border:none;color: #9d9d9d;font-size:12px;font-weight:600;}
 .theme-header {display:flex;justify-content: space-between;margin-bottom:10px;align-items:center}
 .theme-controls {display:flex;justify-content: space-between;margin-bottom:6px}
-.theme-sorts {display:flex;gap:3px;align-items:center;background:var(--inputbg);border-radius: 7px;padding:3px;}
+#theme-sorts {display:flex;align-items:center;background:var(--inputbg);border-radius: 7px;padding:10px 16px;gap:10px;color: #fff;border:none;font-weight: 600;}
 #premade-themes-pagenum {font-size:13px;margin-right: 6px;font-weight:600}
 .color-options .card-input { flex: 1;margin: 0;}
 .error-message {margin: 20px;font-size: 14px; color: red;}
@@ -122,7 +122,7 @@ input[type="checkbox"]:checked {background: #8dd28d;}
 #dark-mode-fix-urls { display: flex; gap: 5px;flex-wrap: wrap;}
 .fixed-url {display: flex; gap:10px; align-items: center;flex: 0;padding: 7px 14px;}
 .fixed-url button {background: #1e1e1e;padding: 3px 6px;border-radius:4px;color: #fff;border:none;font-size:12px}
-#premade-themes-right, #premade-themes-left {background: var(--inputbg);color:#fff;border-radius:7px;border:none;padding:8px 12px;font-size:12px;font-weight:600}
+#premade-themes-right, #premade-themes-left {background: var(--inputbg);color:#fff;border-radius:7px;border:none;padding:8px 14px;font-size:12px;font-weight:600}
 .update-date {color: #9f9f9f;margin-top: 0;margin-bottom: 10px;font-weight: 600;}
 .updates-container .header-small {margin-bottom: 5px;}
 ::-webkit-scrollbar {width: 8px;}
