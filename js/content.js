@@ -365,16 +365,13 @@ function getCardsFromDashboard() {
             dashboard_cards.forEach(card => {
                 const id = card.querySelector(".ic-DashboardCard__link").href.split("courses/")[1];
                 if (count >= (options["card_limit"] || 25)) return;
+                
                 if (!cards || !cards[id]) {
                     console.log("adding to custom_cards");
                     newCards = true;
-                    cards[id] = { "default": card.querySelector(".ic-DashboardCard__header-subtitle").textContent.substring(0, 20), "name": "", "code": "", "img": "", "hidden": false, "weight": "regular", "credits": 1, "eid": options["card_limit"] - count, "gr": null };
-                } /*else if (cards && cards[id]) {
-                    newCards = true;
-                    if (!cards[id].default) cards[id].default = card.querySelector(".ic-DashboardCard__header-subtitle").textContent.substring(0, 20);
-                    if (!cards[id].eid) cards[id].eid = options["card_limit"] - count;
-                    if (!cards[id].code) cards[id].code = "";
-                } */
+                    cards[id] = { "default": card.querySelector(".ic-DashboardCard__header-subtitle").textContent.substring(0, 20), "name": "", "code": "", "img": "", "hidden": false, "weight": "regular", "credits": 1, "eid": 100000 - count, "gr": null };
+                }
+
                 if (!cards_2 || !cards_2[id]) {
                     console.log("adding to custom_cards_2");
                     newCards = true;
@@ -1426,7 +1423,7 @@ function getCardId(card) {
 
     // has ~ but dashboard card method is used
     if (options["custom_cards"][id]) return id;
-    
+
     // weird case, some canvases replace consecutive 0s with a ~ in the id
     // but the number of 0s isn't consistent between schools
     id = id.split("~");

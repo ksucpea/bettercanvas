@@ -169,11 +169,19 @@ function setupCardLimitSlider(initial) {
     })
 }
 
+function setupDashboardMethod(initial) {
+    let el = document.querySelector("#card_method_dashboard");
+    el.checked = initial;
+    el.addEventListener("change", (e) => {
+        chrome.storage.sync.set({ "custom_cards": {}, "custom_cards_2": {}, "custom_cards_3": {}, "card_method_dashboard": e.target.checked });
+    });
+}
+
 function setup() {
 
     const menu = {
         "switches": syncedSwitches,
-        "checkboxes": ['card_method_dashboard', 'card_method_date', 'show_updates', 'todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'hover_preview'],
+        "checkboxes": ['card_method_date', 'show_updates', 'todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'hover_preview'],
         "tabs": {
             "advanced-settings": { "setup": displayAdvancedCards, "tab": ".advanced" },
             "gpa-bounds-btn": { "setup": displayGPABounds, "tab": ".gpa-bounds-container" },
@@ -189,7 +197,9 @@ function setup() {
             { "identifier": "auto_dark_end", "setup": (initial) => setupAutoDarkInput(initial, "auto_dark_end") },
             { "identifier": "num_assignments", "setup": (initial) => setupAssignmentsSlider(initial) },
             { "identifier": "num_todo_items", "setup": (initial) => setupTodoSlider(initial) },
-            { "identifier": "card_limit", "setup": (initial) => setupCardLimitSlider(initial) }],
+            { "identifier": "card_limit", "setup": (initial) => setupCardLimitSlider(initial) },
+            { "identifier": "card_method_dashboard", "setup": (initial) => setupDashboardMethod(initial) }
+        ],
     }
 
     chrome.storage.sync.get(menu.switches, sync => {
