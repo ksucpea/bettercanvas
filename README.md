@@ -110,6 +110,22 @@ To use Better Canvas, select your browser below to install the extension.
 
 ## Contributing
 
+### Localization
+
+This extension is using [chrome.i18n](https://developer.chrome.com/docs/extensions/reference/api/i18n) for localization.
+
+#### Add a new language
+
+- Add a new folder in the `_locales` directory with the name of [Locale code](https://developer.chrome.com/docs/extensions/reference/api/i18n#locales).
+- Add a new `messages.json` file in the new folder.
+- Copy the content from `en/messages.json` to the new file.
+- Translate all strings to the new language.
+
+#### Update an existing language
+
+- Open the `messages.json` file in the desired language folder.
+- Update the strings.
+
 ### Add a new feature
 
 To add a new feature, please follow these guidelines.

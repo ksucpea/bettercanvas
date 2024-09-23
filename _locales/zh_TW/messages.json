@@ -1,0 +1,116 @@
+{
+    "updates": {
+        "message": "更新"
+    },
+    "dark_mode": {
+        "message": "開啟深色模式"
+    },
+    "automatic_dark_mode": {
+        "message": "定時開啟深色模式"
+    },
+    "auto_start_time": {
+        "message": "開始時間"
+    },
+    "auto_end_time": {
+        "message": "結束時間"
+    },
+    "edit_dark_mode": {
+        "message": "編輯深色模式"
+    },
+    "enter_url": {
+        "message": "你的 Canvas 網址:"
+    },
+    "card_grades": {
+        "message": "卡片顯示成績"
+    },
+    "gradient_cards": {
+        "message": "卡片漸變色"
+    },
+    "condensed_cards": {
+        "message": "縮小卡片"
+    },
+    "disable_color": {
+        "message": "禁用卡片疊加"
+    },
+    "card_assignments": {
+        "message": "卡片顯示作業"
+    },
+    "card_customization": {
+        "message": "卡片"
+    },
+    "custom_font": {
+        "message": "字體"
+    },
+    "useddmm": {
+        "message": "使用 dd/mm"
+    },
+    "better_todo": {
+        "message": "優化待辦列表"
+    },
+    "max_items": {
+        "message": "最大項目數量: "
+    },
+    "hover_preview": {
+        "message": "懸停預覽詳細信息"
+    },
+    "hide_completed": {
+        "message": "隱藏已完成"
+    },
+    "24hrformat": {
+        "message": "24小時制"
+    },
+    "dashboard_notes": {
+        "message": "控制面板備忘錄"
+    },
+    "gpa_calculator": {
+        "message": "GPA 計算器"
+    },
+    "gpa_settings": {
+        "message": "GPA 設定"
+    },
+    "grade_hover": {
+        "message": "僅在懸停時顯示"
+    },
+    "due": {
+        "message": "截止時間"
+    },
+    "card_colors": {
+        "message": "卡片顏色"
+    },
+    "back": {
+        "message": "返回"
+    },
+    "more_options": {
+        "message": "更多選項"
+    },
+    "manual_customization": {
+        "message": "手動個性化"
+    },
+    "background_colors": {
+        "message": "背景"
+    },
+    "text_colors": {
+        "message": "文字"
+    },
+    "full_width": {
+        "message": "解除寬度限制"
+    },
+    "report_issue": {
+        "message": "回報問題"
+    },
+    "themes": {
+        "message": "主題"
+    },
+    "move_top": {
+        "message": "置頂"
+    },
+    "show_past_due": {
+        "message": "顯示逾期作業"
+    },
+    "relative_due_dates": {
+        "message": "相對截止日期"
+    },
+    "enter_multiple": {
+        "message": "(多個網址用英文逗號分隔)"
+    }
+}

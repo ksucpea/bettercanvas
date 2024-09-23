@@ -1,0 +1,116 @@
+{
+    "updates": {
+        "message": "更新"
+    },
+    "dark_mode": {
+        "message": "开启深色模式"
+    },
+    "automatic_dark_mode": {
+        "message": "定时开启深色模式"
+    },
+    "auto_start_time": {
+        "message": "开始时间"
+    },
+    "auto_end_time": {
+        "message": "结束时间"
+    },
+    "edit_dark_mode": {
+        "message": "编辑深色模式"
+    },
+    "enter_url": {
+        "message": "你的 Canvas 网址:"
+    },
+    "card_grades": {
+        "message": "卡片显示成绩"
+    },
+    "gradient_cards": {
+        "message": "卡片渐变色"
+    },
+    "condensed_cards": {
+        "message": "缩小卡片"
+    },
+    "disable_color": {
+        "message": "禁用卡片叠加"
+    },
+    "card_assignments": {
+        "message": "卡片显示作业"
+    },
+    "card_customization": {
+        "message": "卡片"
+    },
+    "custom_font": {
+        "message": "字体"
+    },
+    "useddmm": {
+        "message": "使用 dd/mm"
+    },
+    "better_todo": {
+        "message": "优化待办列表"
+    },
+    "max_items": {
+        "message": "最大项目数量: "
+    },
+    "hover_preview": {
+        "message": "悬停预览详细信息"
+    },
+    "hide_completed": {
+        "message": "隐藏已完成"
+    },
+    "24hrformat": {
+        "message": "24小时制"
+    },
+    "dashboard_notes": {
+        "message": "控制面板备忘录"
+    },
+    "gpa_calculator": {
+        "message": "GPA 计算器"
+    },
+    "gpa_settings": {
+        "message": "GPA 设置"
+    },
+    "grade_hover": {
+        "message": "仅在悬停时显示"
+    },
+    "due": {
+        "message": "截止时间"
+    },
+    "card_colors": {
+        "message": "卡片颜色"
+    },
+    "back": {
+        "message": "返回"
+    },
+    "more_options": {
+        "message": "更多选项"
+    },
+    "manual_customization": {
+        "message": "手动个性化"
+    },
+    "background_colors": {
+        "message": "背景"
+    },
+    "text_colors": {
+        "message": "文本"
+    },
+    "full_width": {
+        "message": "解除宽度限制"
+    },
+    "report_issue": {
+        "message": "反馈问题"
+    },
+    "themes": {
+        "message": "主题"
+    },
+    "move_top": {
+        "message": "置顶"
+    },
+    "show_past_due": {
+        "message": "显示逾期作业"
+    },
+    "relative_due_dates": {
+        "message": "相对截止日期"
+    },
+    "enter_multiple": {
+        "message": "(多个网址用英文逗号分隔)"
+    }
+}
