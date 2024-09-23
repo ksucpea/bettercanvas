@@ -36,7 +36,7 @@
         "message": "卡片顯示作業"
     },
     "card_customization": {
-        "message": "卡片"
+        "message": "卡片個性化"
     },
     "custom_font": {
         "message": "字體"
@@ -108,7 +108,7 @@
         "message": "顯示逾期作業"
     },
     "relative_due_dates": {
-        "message": "相對截止日期"
+        "message": "顯示甚於時間"
     },
     "enter_multiple": {
         "message": "(多個網址用英文逗號分隔)"
