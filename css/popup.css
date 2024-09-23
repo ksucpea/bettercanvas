@@ -129,3 +129,5 @@ input[type="checkbox"]:checked {background: #8dd28d;}
 ::-webkit-scrollbar-track {background: #161616;}
 ::-webkit-scrollbar-thumb {background: #323232;border-radius:2px;}
 ::-webkit-scrollbar-button {background: #161616; height: 4px}
+#centerMaxWidthSlider, #centerMaxWidthSlider {display: block;margin-top: 14px;width: 100%;-webkit-appearance: none; appearance: none;background:var(--inputbg);outline: none;height:6px;border-radius:20px;}
+#centerMaxWidthSlider::-webkit-slider-thumb,  #centerMaxWidthSlider::-webkit-slider-thumb {-webkit-appearance: none; appearance: none;height: 18px; width: 18px;background: #727272;cursor: pointer;border-radius:30px;}

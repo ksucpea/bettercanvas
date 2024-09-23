@@ -112,5 +112,11 @@
     },
     "enter_multiple": {
         "message": "(多个网址用英文逗号分隔)"
+    },
+    "centered_layout": {
+        "message": "居中排版"
+    },
+    "max_width": {
+        "message": "最大宽度: "
     }
 }

@@ -202,6 +202,9 @@ function applyOptionsChanges(changes) {
             case ("condensed_cards"):
             case ("hide_feedback"):
             case ("full_width"):
+            case ("centered_layout"):
+            case ("content_width_limit"):
+            case ("center_max_width"):
                 applyAestheticChanges();
                 break;
             case ("show_updates"):
@@ -1808,6 +1811,8 @@ function applyAestheticChanges() {
     if (options.disable_color_overlay === true) style.textContent += ".ic-DashboardCard__header_hero{opacity: 0!important} .ic-DashboardCard__header-button-bg{opacity: 1!important}";
     if (options.hide_feedback === true) style.textContent += ".recent_feedback {display: none}";
     if (options.full_width === true) style.textContent += ".ic-Layout-wrapper{max-width:100%!important}";
+    if (options.content_width_limit === true) style.textContent += `.ic-Layout-contentMain{max-width:${options.center_max_width}px;}`;
+    if (options.centered_layout === true) style.textContent += `.ic-Layout-contentMain{margin-right:auto;margin-left:auto;}`;
     //if (options.full_width === true) style.textContent += ".ic-DashboardCard__link{position:absolute;top:0;left:0;max-width:100%;}.ic-DashboardCard__header_content{background:none!important;padding-top:18px;}.ic-DashboardCard{position:relative;width:333px}.bettercanvas-card-assignment{position:absolute;bottom:0;left:0;}.bettercanvas-assignment-container{background:none!important}.ic-DashboardCard__action-container{display:none}.ic-DashboardCard__header-title span{color:#fff!important;font-size:16px;margin-top:8px;}.ic-DashboardCard__header-term{display:none}";
     document.documentElement.appendChild(style);
 }

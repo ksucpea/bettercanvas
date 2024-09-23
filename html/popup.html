@@ -211,15 +211,7 @@
                             <div class="sliderbg"></div>
                         </div><span class="option-name" data-i18n="disable_color">Disable Color Overlay</span>
                     </div>
-                    <div class="option" id="full_width">
-                        <input type="radio" id="off" name="full_width">
-                        <input type="radio" id="on" name="full_width">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div>
-                        <span class="option-name" data-i18n="full_width">Dashboard full width</span>
-                    </div>
+                    
                     <div class="option" id="remlogo">
                         <input type="radio" id="off" name="remlogo">
                         <input type="radio" id="on" name="remlogo">
@@ -243,6 +235,32 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div><span class="option-name">Color coded tab icons</span>
+                    </div>
+                </div>
+                <div class="option-container" style="display:flex;flex-direction:column;gap:6px;">
+                    <div class="option" id="full_width">
+                        <input type="radio" id="off" name="full_width">
+                        <input type="radio" id="on" name="full_width">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span class="option-name" data-i18n="full_width">Dashboard full width</span>
+                    </div>
+                    <div class="option" id="centered_layout">
+                        <input type="radio" id="off" name="centered_layout">
+                        <input type="radio" id="on" name="centered_layout">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div><span class="option-name" data-i18n="centered_layout">Centered layout</span>
+                    </div>
+                    <div class="sub-option">
+                        <input type="checkbox" id="content_width_limit" name="content_width_limit">
+                        <label for="content_width_limit" class="sub-text">Content width limit</label>
+                    </div>
+                    <div style="margin-top: 5px">
+                        <span class="sub-text" data-i18n="max_width">Max width: </span><span id="centerMaxWidth"></span>
+                        <input type="range" min="862" max="2560" id="centerMaxWidthSlider">
                     </div>
                 </div>
             </div>

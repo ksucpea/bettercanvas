@@ -112,5 +112,11 @@
     },
     "enter_multiple": {
         "message": "(Ingresa multiple con una coma)"
+    },
+    "centered_layout": {
+        "message": "Diseño central"
+    },
+    "max_width": {
+        "message": "Ancho máximo:"
     }
 }

@@ -1,5 +1,5 @@
-const syncedSwitches = ['tab_icons', 'hide_feedback', 'dark_mode', 'remlogo', 'full_width', 'auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'disable_color_overlay', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
-const syncedSubOptions = ['todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'num_todo_items', 'hover_preview'];
+const syncedSwitches = ['tab_icons', 'hide_feedback', 'dark_mode', 'remlogo', 'full_width', 'centered_layout', 'auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'disable_color_overlay', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
+const syncedSubOptions = ['todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'num_todo_items', 'hover_preview', 'content_width_limit', 'center_max_width'];
 const localSwitches = [];
 
 const defaultOptions = {
@@ -51,6 +51,9 @@ const defaultOptions = {
         "custom_font": { "link": "", "family": "" },
         "hover_preview": true,
         "full_width": null,
+        "centered_layout": false,
+        content_width_limit: true,
+        "center_max_width": 1028,
         "remlogo": null,
         "gpa_calc_bounds": {
             "A+": { "cutoff": 97, "gpa": 4.3 },
@@ -177,11 +180,21 @@ function setupDashboardMethod(initial) {
     });
 }
 
+function setupCenterMaxWidthSlider(initial) {
+    let el = document.querySelector('#centerMaxWidthSlider');
+    el.value = initial;
+    document.querySelector('#centerMaxWidth').textContent = initial + "px";
+    document.querySelector('#centerMaxWidthSlider').addEventListener('input', function () {
+        document.querySelector('#centerMaxWidth').textContent = this.value + "px";
+        chrome.storage.sync.set({ "center_max_width": this.value });
+    });
+}
+
 function setup() {
 
     const menu = {
         "switches": syncedSwitches,
-        "checkboxes": ['card_method_date', 'show_updates', 'todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'hover_preview'],
+        "checkboxes": ['card_method_date', 'show_updates', 'todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'hover_preview', 'content_width_limit'],
         "tabs": {
             "advanced-settings": { "setup": displayAdvancedCards, "tab": ".advanced" },
             "gpa-bounds-btn": { "setup": displayGPABounds, "tab": ".gpa-bounds-container" },
@@ -198,7 +211,8 @@ function setup() {
             { "identifier": "num_assignments", "setup": (initial) => setupAssignmentsSlider(initial) },
             { "identifier": "num_todo_items", "setup": (initial) => setupTodoSlider(initial) },
             { "identifier": "card_limit", "setup": (initial) => setupCardLimitSlider(initial) },
-            { "identifier": "card_method_dashboard", "setup": (initial) => setupDashboardMethod(initial) }
+            { "identifier": "card_method_dashboard", "setup": (initial) => setupDashboardMethod(initial) },
+            { "identifier": "center_max_width", "setup": (initial) => setupCenterMaxWidthSlider(initial) }
         ],
     }
 

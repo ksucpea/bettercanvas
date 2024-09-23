@@ -112,5 +112,11 @@
     },
     "enter_multiple": {
         "message": "(Enter multiple with a comma)"
+    },
+    "centered_layout": {
+        "message": "Centered layout"
+    },
+    "max_width": {
+        "message": "Max width:"
     }
 }

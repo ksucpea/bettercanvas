@@ -49,6 +49,9 @@ chrome.runtime.onInstalled.addListener(function () {
             "custom_font": { "link": "", "family": "" },
             "hover_preview": true,
             "full_width": null,
+            "centered_layout": false,
+            "content_width_limit": true,
+            "center_max_width": 1280,
             "remlogo": null,
             "gpa_calc_bounds": {
                 "A+": { "cutoff": 97, "gpa": 4.3 },
