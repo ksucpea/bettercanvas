@@ -20,7 +20,6 @@ For any questions, please refer to the FAQ page, found [here](https://diditupe.d
 - [Installation](#installation)
 - [Usage](#usage)
 - [Version Notes](#version-notes)
-- [Color Reference](#color-reference)
 - [Authors](#authors)
 
 ## Features
@@ -85,18 +84,6 @@ To use Better Canvas, select your browser below to install the extension.
   - Cards: instant color changes, image previews, and improved assignment efficiency.
   - To-do list: redesign, use card colors for list
   - Menu: redesign
-
-
-## Color Reference
-
-| Color      | Hex                                                              |
-| ---------- | ---------------------------------------------------------------- |
-| Background | ![#161616](https://via.placeholder.com/10/0a192f?text=+) #161616 |
-| Text       | ![#ffffff](https://via.placeholder.com/10/ffffff?text=+) #ffffff |
-| Accent 01  | ![#ff002e](https://via.placeholder.com/10/ff002e?text=+) #ff002e |
-| Accent 02  | ![#ff5200](https://via.placeholder.com/10/ff5200?text=+) #ff5200 |
-| Accent 03  | ![#ff47ad](https://via.placeholder.com/10/ff47ad?text=+) #ff47ad |
-
 
 ## Authors
 
