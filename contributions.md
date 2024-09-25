@@ -18,7 +18,6 @@
 ## File structure
 
 Below is an overview of the file structure of this project. The contributions should be edits to the files in the html and js directories.
-
 ```
 .
 ├── README.md
