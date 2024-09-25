@@ -21,29 +21,21 @@ To contact me, please email ksucpea@gmail.com, or you can open an issue within t
 - [Usage](#usage)
 - [Version Notes](#version-notes)
 - [Color Reference](#color-reference)
-- [Contributing](#contributing)
+- [File Structure](#file-structure)
 - [Authors](#authors)
 
 ## Features
 
 Better Canvas introduces improvements to the Canvas user interface:
 
-- Fully customizable dark mode (choose from premade options or manually edit dark mode)
-- Automatic scheduling for dark mode
-- Dashboard card color palletes
-- Themes created by users
-- Assignments due list
-- Dashboard notes
-- Better todo list
-- Custom fonts
-- Condensed cards
-- Dashboard grades
-- Remove sidebar logo
-- Customizable card links
-- Gradient dashboard cards
-- Advanced card customization
+- Customizable color themes (including dark mode) and fonts
+- Automatic scheduling for color modes (including dark mode)
+- Customizable dashboard
+  - Preview assingments and announcments
+  - View grades
+  - Add user notes
+- Improved todo and assignments lists
 - GPA calculator (college and highschool)
-- Preview assignments and announcements from the dashboard
 
 ## Installation
 
@@ -79,24 +71,22 @@ To use Better Canvas, select your browser below to install the extension.
 
 #### Update 5.10
 
-- Fixed dark mode bug in discussion text boxes
-- Added new themes + fonts
-- Card colors now change instantly
-- Dark mode fixer feature
-- Card customization now shows preview of image
-- New sidebar options
-- Dark mode buttons preview their appearance
-- "Remove sidebar logo" feature
-- "Hide recent feedback" feature
-- Menu redesign
-- Fixed card assignment bug
-- Card assignment efficiency improvements
-- Dark mode rework
-- Dark mode now syncs
-- Option to use device dark mode settings
-- Improved todo list
-- "Color coded tab icons" feature
-- "Use card colors" option for todo list
+- Bug Fixes
+  - Fixed dark mode bugs in discussion text boxes.
+  - Fixed card assignment bug.
+
+- New Features
+  - New themes, fonts, and sidebar options
+  - "Remove sidebar logo" option
+  - "Hide recent feedback" option
+  - "Color coded tab icons" option
+
+- Improved Features
+  - Dark mode: syncs with device settings, preview buttons, and a "dark mode fixer" feature.
+  - Cards: instant color changes, image previews, and improved assignment efficiency.
+  - To-do list: redesign, use card colors for list
+  - Menu: redesign
+
 
 ## Color Reference
 
@@ -108,107 +98,6 @@ To use Better Canvas, select your browser below to install the extension.
 | Accent 02  | ![#ff5200](https://via.placeholder.com/10/ff5200?text=+) #ff5200 |
 | Accent 03  | ![#ff47ad](https://via.placeholder.com/10/ff47ad?text=+) #ff47ad |
 
-## Contributing
-
-### Add a new feature
-
-To add a new feature, please follow these guidelines.
-
-Note: I will probably make this automated in the future but it's a bit of work right now.
-
-#### Identifier
-
-- Should be a unqiue one/two word storage identifier to indicate its status. (ie "dark_mode" or "dashboard_grades")
-- If it has sub options (options that are specific to the main feature) these will also each need a unique identifier.
-- All options are synced and have a 8kb storage limit, so if your feature needs more than this please contact me.
-
-#### Changes to html/popup.html
-
-- Add the appropriate HTML into this file. The corresponding id and name (see below) should be the identifier.
-- If it has no sub options, it should be put in the same container as the other options with no sub options:
-
-```
-<div class="option" id="<identifier>">
-    <input type="radio" id="off" name="<identifier>">
-    <input type="radio" id="on" name="<identifier>">
-    <div class="slider">
-        <div class="sliderknob"></div>
-        <div class="sliderbg"></div>
-    </div>
-    <span class="option-name"><option name></span>
-</div>
-```
-
-- If it does have sub options it becomes it's own container:
-
-```
-<div class="option-container">
-  <div class="option" id="<identifier>">
-    <input type="radio" id="off" name="<identifier>">
-    <input type="radio" id="on" name="<identifier>">
-    <div class="slider">
-      <div class="sliderknob"></div>
-      <div class="sliderbg"></div>
-    </div>
-    <span class="option-name"><option name></span>
-  </div>
-  <div class="sub-options">
-    <div class="sub-option">
-      <input type="checkbox" id="<sub identifier>" name="<sub identifier>">
-      <label for="<sub identifier>" class="sub-text"><option name></label>
-    </div>
-  </div>
-</div>
-```
-
-#### Changes to js/popup.js
-
-- Add the main identifier into the `syncedSwitches` array.
-- If you have sub-options:
-  - Add these identifiers to the array found under the comment that says `//checkboxes`.
-
-#### Changes to js/background.js
-
-- Add all identifiers into the `syncedOptions` array.
-- Add a default value for your option to the `default_options` array.
-  - Preferably this value should be `false` for booleans or ` ""` for strings (`null` can also be used if Canvas has a default for this option already)
-
-#### Changes to js/content.js
-
-- There should be a function(s) included in the this file that does the work. The name should clearly indicate it's purpose.
-- Under `applyOptionsChanges()`, add a switch case to call this function when the menu toggle is changed.
-- Depending on what your feature does, it needs to be told when to fire.
-  - If the function changes any aspect of the dashboard, it should be put inside `checkDashboardReady()`.
-  - If the function only adds css, it should be added to `applyAestheticChanges()`, and in this case should not be a separate function, instead add the css to the existing styles found in this function.
-  - Anything else should be put under `startExtension()` and should be placed no higher than the `checkDashboardReady` function found here.
-
-### Add a new theme
-
-To add a new theme, please follow these guidelines.
-
-You can export a theme using the export tool in the menu and sending an email to me, or you can merge it here after doing the following:
-
-#### Exporting
-
-- Go to the Themes tab and export dark mode, card images, card colors, and custom font. - The only on/off toggles that need be included are `disable_color_overlay` and `gradient_cards`.
-  Any other toggles aren't necessary, so you should manually add these keys and the appropriate values in with the export code.
-- Pick a unique id for the theme, doesn't matter how long this is.
-
-#### Changes to js/popup.js
-
-- Add the export code under `getTheme()`.
-  - Make sure it follows this format: `"theme-<id>: { "exports": {"..."}, "preview": "..." }`
-- For the preivew, try to pick the smallest image size from the card images (under ~50kb is perfect), or you can find a smaller display image that isn't included in the card images.
-
-#### Changes to html/popup.html
-
-- Add the following under all the other theme buttons:
-
-```
-<button id="theme-<id>" class="theme-button customization-button"><theme name> by <you></button>
-```
-
-- The theme name should be one/two words so it doesn't take up too much space.
 
 ## File structure
 
