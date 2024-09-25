@@ -12,7 +12,7 @@ Enhancements to Canvas like dark mode, better todo list, GPA calculator, and mor
 
 ## Inquiries
 
-To contact me, please email ksucpea@gmail.com, or you can open an issue within the "Issues" tab on GitHub.
+For any questions, please refer to the FAQ page, found [here](https://diditupe.dev/bettercanvas/questions). For issues not address on the website, please email [ksucpea@gmail.com](mailto:ksucpea@gmail.com), or open an issue within the "Issues" tab on GitHub. 
 
 ## Table of Contents
 
@@ -21,15 +21,14 @@ To contact me, please email ksucpea@gmail.com, or you can open an issue within t
 - [Usage](#usage)
 - [Version Notes](#version-notes)
 - [Color Reference](#color-reference)
-- [File Structure](#file-structure)
 - [Authors](#authors)
 
 ## Features
 
 Better Canvas introduces improvements to the Canvas user interface:
 
-- Customizable color themes (including dark mode) and fonts
-- Automatic scheduling for color modes (including dark mode)
+- Customizable color themes (including [dark modes](./darkmodes.md)) and fonts
+- Automatic scheduling for dark mode
 - Customizable dashboard
   - Preview assingments and announcments
   - View grades
@@ -98,61 +97,6 @@ To use Better Canvas, select your browser below to install the extension.
 | Accent 02  | ![#ff5200](https://via.placeholder.com/10/ff5200?text=+) #ff5200 |
 | Accent 03  | ![#ff47ad](https://via.placeholder.com/10/ff47ad?text=+) #ff47ad |
 
-
-## File structure
-
-```
-.
-├── README.md
-├── \_locales
-│ ├── en
-│ │ └── messages.json
-│ └── es
-│ └── messages.json
-├── css
-│ ├── content.css
-│ ├── options.css
-│ └── popup.css
-├── html
-│ ├── options.html
-│ └── popup.html
-├── icon
-│ ├── icon-128.png
-│ ├── icon-16.png
-│ ├── icon-19.png
-│ ├── icon-32.png
-│ ├── icon-38.png
-│ ├── icon-48.png
-│ ├── icon-wide.png
-│ ├── iconwpadding.png
-│ └── oldicon-128.png
-├── js
-│ ├── background.js
-│ ├── content.js
-│ └── popup.js
-└── manifest.json
-```
-
-### Update the file structure
-
-#### Use the tree command
-
-- Linux/Unix
-  - Install [tree command line tool](https://www.geeksforgeeks.org/tree-command-unixlinux/)
-  - Use the tree command to generate file structure:
-  ```
-  tree
-  ```
-
-Learn more about tree commands for Linux/Unix [here](https://www.geeksforgeeks.org/tree-command-unixlinux/).
-
-- Windows
-  - Use the tree command to generate file structure:
-  ```
-  tree /
-  ```
-
-Learn more about tree commands for Windows [here](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tree).
 
 ## Authors
 
