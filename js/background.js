@@ -37,6 +37,7 @@ chrome.runtime.onInstalled.addListener(function () {
             "dashboard_notes_text": "",
             "better_todo": false,
             "todo_hr24": false,
+            "todo_dayOfWeek": true,
             "condensed_cards": false,
             "custom_cards": {},
             "custom_cards_2": {},

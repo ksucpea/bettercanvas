@@ -59,6 +59,9 @@
     "24hrformat": {
         "message": "Usar formato de 24 horas"
     },
+    "dayOfWeek": {
+        "message": "Mostrar día de la semana"
+    },
     "dashboard_notes": {
         "message": "Notas del tablero"
     },

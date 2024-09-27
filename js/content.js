@@ -171,6 +171,7 @@ function applyOptionsChanges(changes) {
             case ("custom_cards_3"):
                 customizeCards();
                 break;
+            case ("todo_dayOfWeek"):
             case ("todo_hr24"):
             case ("num_todo_items"):
             case ("hover_preview"):
@@ -701,6 +702,7 @@ function loadBetterTodo() {
         const maxAssignmentCount = parseInt(options.num_todo_items) + moreAssignmentCount;
         const maxAnnouncementCount = parseInt(options.num_todo_items) + moreAnnouncementCount;
         const hr24 = options.todo_hr24;
+        const dayOfWeek = options.todo_dayOfWeek;
         const now = new Date();
         //const csrfToken = CSRFtoken();
         let todoAnnouncements = document.querySelector("#bettercanvas-announcement-list");
@@ -754,7 +756,7 @@ function loadBetterTodo() {
                     let title = makeElement("a", listItem.querySelector(".bettercanvas-todo-item-header"), { "className": "bettercanvas-todoitem-title", "textContent": item.plannable.title });
                     if (options.todo_colors === true) title.style = "color:" + (options.custom_cards_3?.[item.course_id]?.color || "inherit") + "!important;";
                     makeElement("p", listItem, { "className": "bettercanvas-todoitem-course", "textContent": item.context_name });
-                    let format = formatTodoDate(date, item.submissions, hr24);
+                    let format = formatTodoDate(date, item.submissions, hr24, dayOfWeek);
                     let todoDate = makeElement("p", listItem, { "className": "bettercanvas-todoitem-date", "textContent": format.date });
                     if (format.dueSoon) todoDate.classList.add("bettercanvas-due-soon");
 
@@ -2068,14 +2070,15 @@ function getRelativeDate(date, short = false) {
 }
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-function formatTodoDate(date, submissions, hr24) {
+const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+function formatTodoDate(date, submissions, hr24, dayOfWeek) {
     let { time, ms } = getRelativeDate(date);
     let fromNow = ms < 0 ? "in " + time : time + " ago";
     let dueSoon = false;
     if (submissions && submissions.submitted === false && ms >= -21600000) {
         dueSoon = true;
     }
-    return { "dueSoon": dueSoon, "date": months[date.getMonth()] + " " + date.getDate() + " at " + (date.getHours() - (hr24 ? "" : date.getHours() > 12 ? 12 : 0)) + ":" + (date.getMinutes() < 10 ? "0" : "") + date.getMinutes() + (hr24 ? "" : date.getHours() >= 12 ? "pm" : "am") + " (" + fromNow + ")" };
+    return { "dueSoon": dueSoon, "date": (dayOfWeek ? days[date.getDay()] + ", " : "") + months[date.getMonth()] + " " + date.getDate() + " at " + (date.getHours() - (hr24 ? "" : date.getHours() > 12 ? 12 : 0)) + ":" + (date.getMinutes() < 10 ? "0" : "") + date.getMinutes() + (hr24 ? "" : date.getHours() >= 12 ? "pm" : "am") + " (" + fromNow + ")" };
 }
 
 function formatCardDue(date) {
