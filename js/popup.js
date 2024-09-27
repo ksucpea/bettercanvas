@@ -1,5 +1,5 @@
 const syncedSwitches = ['tab_icons', 'hide_feedback', 'dark_mode', 'remlogo', 'full_width', 'auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'disable_color_overlay', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
-const syncedSubOptions = ['todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'num_todo_items', 'hover_preview'];
+const syncedSubOptions = ['todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignment_date_format', 'todo_hr24', 'todo_dayOfWeek', 'grade_hover', 'hide_completed', 'num_todo_items', 'hover_preview'];
 const localSwitches = [];
 
 const defaultOptions = {
@@ -39,6 +39,7 @@ const defaultOptions = {
         "dashboard_notes_text": "",
         "better_todo": false,
         "todo_hr24": false,
+        "todo_dayOfWeek": true,
         "condensed_cards": false,
         "custom_cards": {},
         "custom_cards_2": {},
@@ -181,7 +182,7 @@ function setup() {
 
     const menu = {
         "switches": syncedSwitches,
-        "checkboxes": ['card_method_date', 'show_updates', 'todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'hover_preview'],
+        "checkboxes": ['card_method_date', 'show_updates', 'todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'assignment_date_format', 'todo_hr24', 'todo_dayOfWeek', 'grade_hover', 'hide_completed', 'hover_preview'],
         "tabs": {
             "advanced-settings": { "setup": displayAdvancedCards, "tab": ".advanced" },
             "gpa-bounds-btn": { "setup": displayGPABounds, "tab": ".gpa-bounds-container" },

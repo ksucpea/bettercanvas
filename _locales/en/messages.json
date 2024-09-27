@@ -57,7 +57,10 @@
         "message": "Hide completed"
     },
     "24hrformat": {
-        "message": "Use 24 hr format"
+        "message": "Use 24 hour format"
+    },
+    "dayOfWeek": {
+        "message": "Show day of the week"
     },
     "dashboard_notes": {
         "message": "Dashboard notes"
