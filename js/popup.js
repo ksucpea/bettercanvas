@@ -614,7 +614,7 @@ function sortThemes(method) {
     });
     current_page_num = 1;
     displayThemeList(0);
-    cache = {};
+    //cache = {};
 }
 
 // shuffle function for the score sorting so theres no order bias
@@ -761,44 +761,74 @@ function createThemeLikeBtn(location, initial, score) {
     return likeBtn;
 }
 
+let likeThemeTimeout = false;
+
 async function likeTheme(location, code, score) {
+
+    if (likeThemeTimeout === true) return;
 
     const sync = await chrome.storage.sync.get("id");
     const local = await chrome.storage.local.get("liked_themes");
 
+    const setLikeStatus = (direction) => {
+
+        let output = local;
+    
+        if (direction === -1) {
+            const index = local["liked_themes"].indexOf(code);
+            location.classList.remove("theme-liked");
+            location.querySelector(".theme-button-like-amount").textContent = shortScore(score);
+            if (index !== -1) output = local["liked_themes"].filter(x => x !== code);
+        } else if (direction === 1) {
+            location.classList += (" theme-liked animate-like");
+            location.querySelector(".theme-button-like-amount").textContent = shortScore(score + 1);
+            output = [...local["liked_themes"], code];
+        }
+    
+        return output;
+    }
+
+    // show the updated like status immediately
+    setLikeStatus(location.classList.contains("theme-liked") ? -1 : 1);
+
     const res = await fetch(`${apiurl}/api/themes/theme/${code}/like`, { 
         "method": "POST", 
-        "body": JSON.stringify({"id": "2hkJkfJhwffc7cCC4os49vGfss2"}), 
+        "body": JSON.stringify({ "id": sync["id"] }), 
         "headers": {
             "Content-Type": "application/json"
         },
     });
 
     const data = await res.json();
-    const direction = parseInt(data.message);
-    const likeBtn = location;
 
-    let output;
-
-    if (data.errors === true) {
-        
-    } else if (direction === -1) {
-        const index = local["liked_themes"].indexOf(code);
-        likeBtn.classList.remove("theme-liked");
-        likeBtn.querySelector(".theme-button-like-amount").textContent = shortScore(score);
-        if (index !== -1) output = local["liked_themes"].filter(x => x !== code);
-    } else if (direction === 1) {
-        likeBtn.classList += (" theme-liked animate-like");
-        likeBtn.querySelector(".theme-button-like-amount").textContent = shortScore(score + 1);
-        output = [...local["liked_themes"], code];
+    if (data.errors === false) {
+        const direction = parseInt(data.message);
+        // update the like status just in case there is some disagreement with the server
+        chrome.storage.local.set({ "liked_themes": setLikeStatus(direction) });
     }
-    chrome.storage.local.set({ "liked_themes": output });
+
+
+    if (likeThemeTimeout === false) {
+        likeThemeTimeout = true;
+        setTimeout(() => {
+            likeThemeTimeout = false;
+        }, 1000);
+    }
 }
 
 async function getAndLoadTheme(code) {
-    const res = await fetch(`${apiurl}/api/themes/theme/${code}`);
-    const data = await res.json();
-    importTheme(JSON.parse(data.message.exports));
+    const key = `themes/${code}`;
+    let output = {};
+    if (cache[key]) {
+        output = cache[key];
+        console.log("got this theme from the cache.");
+    } else {
+        const res = await fetch(`${apiurl}/api/themes/theme/${code}`);
+        const data = await res.json();
+        output = JSON.parse(data.message.exports);
+        cache[key] = output;
+    }
+    importTheme(output);
 }
 
 async function displayThemeListNew(direction) {
