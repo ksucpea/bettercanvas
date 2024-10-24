@@ -1,4 +1,4 @@
-const syncedSwitches = ['tab_icons', 'hide_feedback', 'dark_mode', 'remlogo', 'full_width', 'auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'disable_color_overlay', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
+const syncedSwitches = ['remind', 'tab_icons', 'hide_feedback', 'dark_mode', 'remlogo', 'full_width', 'auto_dark', 'assignments_due', 'gpa_calc', 'gradient_cards', 'disable_color_overlay', 'dashboard_grades', 'dashboard_notes', 'better_todo', 'condensed_cards'];
 const syncedSubOptions = ['todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'num_todo_items', 'hover_preview'];
 const localSwitches = [];
 
@@ -84,6 +84,8 @@ const defaultOptions = {
     }
 };
 
+//const apiurl = "http://localhost:3000";
+const apiurl = "https://bettercanvas.diditupe.dev";
 
 sendFromPopup("getCards");
 
@@ -170,8 +172,9 @@ function setupCardLimitSlider(initial) {
 }
 
 function setupDashboardMethod(initial) {
-    let el = document.querySelector("#card_method_dashboard");
-    el.checked = initial;
+    const el = document.getElementById("card_method_dashboard");
+    el.checked = initial === true ? true : false;
+
     el.addEventListener("change", (e) => {
         chrome.storage.sync.set({ "custom_cards": {}, "custom_cards_2": {}, "custom_cards_3": {}, "card_method_dashboard": e.target.checked });
     });
@@ -181,7 +184,7 @@ function setup() {
 
     const menu = {
         "switches": syncedSwitches,
-        "checkboxes": ['card_method_date', 'show_updates', 'todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'hover_preview'],
+        "checkboxes": ['gpa_calc_weighted', 'gpa_calc_cumulative', 'new_browser', /*'card_method_date',*/ 'show_updates', 'todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'hover_preview'],
         "tabs": {
             "advanced-settings": { "setup": displayAdvancedCards, "tab": ".advanced" },
             "gpa-bounds-btn": { "setup": displayGPABounds, "tab": ".gpa-bounds-container" },
@@ -331,7 +334,7 @@ function setup() {
                 clearAlert();
             } catch (e) {
                 domains[index] = val;
-                displayAlert("The URL you entered appears to be invalid, so it might not work.");
+                displayAlert(true, "The URL you entered appears to be invalid, so it might not work.");
             }
         });
         chrome.storage.sync.set({ custom_domain: domains });
@@ -465,18 +468,55 @@ function setup() {
         })
     });
 
-    // activate left/right theme page buttons
+    // theme browser controls
     document.getElementById("premade-themes-left").addEventListener("click", () => displayThemeList(-1));
     document.getElementById("premade-themes-right").addEventListener("click", () => displayThemeList(1));
+    document.getElementById("theme-sorts").addEventListener("click", () => sortThemes(current_sort));
+    document.getElementById("theme-search").addEventListener("change", async (e) => {
+        searchFor = e.target.value;
+        current_page_num = 1;
+        displayThemeList(0);
+    });
 
-    // activate theme sort buttons
-    /*
-    document.getElementById("theme-sort-score").addEventListener("click", () => sortThemes("score"));
-    document.getElementById("theme-sort-new").addEventListener("click", () => sortThemes("new"));
-    document.getElementById("theme-sort-old").addEventListener("click", () => sortThemes("old"));
-    document.getElementById("theme-sort-color").addEventListener("click", () => sortThemes("color"));
-    */
-   document.getElementById("theme-sorts").addEventListener("click", () => sortThemes(current_sort));
+    // activate theme save button
+    document.getElementById("save-theme").addEventListener("click", saveCurrentTheme);
+
+    // activate submit theme button
+    document.getElementById("submit-theme-btn").addEventListener("click", submitTheme);
+
+    // update theme button preview on input
+    document.getElementById("submit-title").addEventListener("input", (e) => {
+        document.getElementById("theme-button-title-preview").textContent = e.target.value.replaceAll(" ", "");
+    });
+
+    // update theme button preview on input
+    document.getElementById("submit-credits").addEventListener("input", (e) => {
+        document.getElementById("theme-button-creator-preview").textContent = e.target.value;
+    });
+
+    // activate the show button to open the theme submission form
+    document.getElementById("show-submit-form").addEventListener("click",  (e) => {
+        const form = document.getElementById("submit-form");
+        if (form.style.display === "none") {
+            form.style.display = "flex";
+            e.target.textContent = "Hide";
+        } else {
+            form.style.display = "none";
+            e.target.textContent = "Show";
+        }
+    });
+
+    // activate theme browser opt out
+    document.getElementById("new_browser_out").addEventListener("click", () => {
+        chrome.storage.sync.set({ "new_browser": false });
+        current_page_num = 1;
+        displayThemeList(0);
+        displayAlert(false, "Success! You are now viewing the old theme browser. This one will no longer recieve updates, but there is still plenty to choose from.");
+    });
+
+    // activate theme browser opt in
+    document.getElementById("new_browser_in").addEventListener("click", registerUser);
+
 }
 
 async function getExport(storage, options) {
@@ -555,8 +595,10 @@ function themeSortFn(method) {
     }
 }
 
+let cache = {};
+
 function sortThemes(method) {
-    const sortMethods = ["Rating", "Color", "ABC", "New", "Old"];
+    const sortMethods = ["Popular", "ABC", "New", "Old"];
     const index = sortMethods.indexOf(method);
     const next = index + 1 === sortMethods.length ? 0 : index + 1;
     current_sort = sortMethods[next];
@@ -572,6 +614,7 @@ function sortThemes(method) {
     });
     current_page_num = 1;
     displayThemeList(0);
+    cache = {};
 }
 
 // shuffle function for the score sorting so theres no order bias
@@ -587,11 +630,250 @@ function shuffle (arr) {
 }
 
 let current_page_num = 1;
-let current_sort = "";
-let allThemes;
-sortThemes(current_sort);
+let maxPage = 0;
+let searchFor = "";
+let current_sort = "Popular";
+let allThemes = themeSortFn(current_sort);
 
-function displayThemeList(pageDir = 0) {
+//sortThemes(current_sort);
+
+function shortScore(score) {
+    if (score >= 1400) {
+        return (Math.floor(score / 1000) + "." +  Math.round((score % 1000) / 100)) + "k";
+    }
+    return score;
+}
+
+let fallback = false;
+
+async function submitTheme() {
+
+    const sync = await chrome.storage.sync.get(null);
+
+    if (sync["new_browser"] !== true) {
+        displayAlert(true, "You'll need to opt in to the new browser if you want to submit your theme. If you've opted out and want to opt in, you can scroll down to the bottom of this page and opt back in.");
+        return;
+    }
+
+    const theme = await getExport(sync, ["custom_cards", "card_colors", "dark_preset", "custom_font", "gradient_cards", "disable_color_overlay"]);
+    const title = document.getElementById("submit-title");
+    const credits = document.getElementById("submit-credits");
+
+    if (title.value === "") {
+        displayAlert(true, "The title of your theme can't be empty");
+        return;
+    }
+
+    if (credits.value === "") {
+        displayAlert(true, "The credits for your theme can't be empty");
+        return;
+    }
+    const body = JSON.stringify({
+        "identity": sync["id"],
+        "title": title.value,
+        "credits": credits.value,
+        "theme": JSON.stringify(theme)
+    });
+
+    fetch(`${apiurl}/api/themes/submit`, {
+        "method": "POST",
+        "body": body,
+        "headers": {
+            "Content-Type": "application/json",
+          },
+    }).then(res => res.json())
+    .then(data => {
+        console.log(data);
+        if (data.errors === false) {
+            displayAlert(false, "Thanks for submitting your theme! I will try to approve it soon, but not every theme may be accepted.");
+        } else {
+            displayAlert(true, `There was an error submitting your theme. (${data.message}) Please send an email to ksucpea@gmail.com if this issue persists!`);
+        }
+    });
+}
+
+async function registerUser() {
+    try {
+        const res = await fetch(`${apiurl}/api/register`);
+        const data = await res.json();
+        await chrome.storage.sync.set({ "new_browser": true, "id": data.id });
+        document.getElementById("opt-in").remove();
+        current_page_num = 1;
+        displayThemeList(0);
+        displayAlert(false, "Success! You should be able to see the new themes browser now. Enjoy!");
+    } catch (e) {
+        displayAlert(true, "There was an error opting in. Please contact ksucpea@gmail.com if this error persists!");
+    }
+}
+
+function saveCurrentTheme() {
+    const allOptions = syncedSwitches.concat(syncedSubOptions).concat(["dark_preset", "custom_cards", "custom_font", "gpa_calc_bounds", "card_colors"]);
+    chrome.storage.local.get("saved_themes", local => {
+        chrome.storage.sync.get(allOptions, async sync => {
+            let current = await getExport(sync, allOptions);
+            let trimmed = { 
+                "disable_color_overlay": current["disable_color_overlay"], 
+                "gradient_cards": current["gradient_cards"],
+                "dark_mode": current["dark_mode"],
+                "dark_preset": current["dark_preset"],
+                "custom_cards": current["custom_cards"],
+                "card_colors": current["card_colors"] === null ? [current["dark_preset"]["links"]] : current["card_colors"],
+                "custom_font": current["custom_font"]
+            }
+            const now = new Date();
+            local["saved_themes"][now.getTime()] = trimmed;
+            chrome.storage.local.set({ "saved_themes": local["saved_themes"] }).then(() => {
+                displaySavedThemes();
+            });
+        });        
+    });
+}
+
+
+async function displayThemeList(direction = 0) {
+    const sync = await chrome.storage.sync.get("new_browser");
+    if (sync["new_browser"] === true && fallback === false) {
+        displayThemeListNew(direction);
+    } else {
+        displayThemeListOld(direction);
+    }
+    // remove the opt-in notice
+    if (sync["new_browser"] !== null && document.getElementById("opt-in")) document.getElementById("opt-in").style.display = "none";
+}
+
+function createThemeButton(location, theme) {
+    let themeBtn = makeElement("button", "theme-button clickable", location);
+    themeBtn.classList.add("customization-button");
+    if (!themeBtn.style.background) themeBtn.style.backgroundImage = "linear-gradient(#00000070, #00000070), url(" + theme.preview + ")";
+    if (theme.title) makeElement("p", "theme-button-title clickable", themeBtn, theme.title.replaceAll(" ", ""));
+    if (theme.credits) makeElement("p", "theme-button-creator clickable", themeBtn, theme.credits);
+    return themeBtn;
+}
+
+function createThemeLikeBtn(location, initial, score) {
+    const likeBtn = makeElement("div", "theme-button-like", location);
+    if (initial === true) {
+        likeBtn.classList.add("theme-liked");
+        score += 1;
+    }
+    makeElement("span", "theme-button-like-amount", likeBtn, shortScore(score));
+    likeBtn.innerHTML += `<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6.979 3.074a6 6 0 0 1 4.988 1.425l.037 .033l.034 -.03a6 6 0 0 1 4.733 -1.44l.246 .036a6 6 0 0 1 3.364 10.008l-.18 .185l-.048 .041l-7.45 7.379a1 1 0 0 1 -1.313 .082l-.094 -.082l-7.493 -7.422a6 6 0 0 1 3.176 -10.215z" /></svg>`;
+    return likeBtn;
+}
+
+async function likeTheme(location, code, score) {
+
+    const sync = await chrome.storage.sync.get("id");
+    const local = await chrome.storage.local.get("liked_themes");
+
+    const res = await fetch(`${apiurl}/api/themes/theme/${code}/like`, { 
+        "method": "POST", 
+        "body": JSON.stringify({"id": "2hkJkfJhwffc7cCC4os49vGfss2"}), 
+        "headers": {
+            "Content-Type": "application/json"
+        },
+    });
+
+    const data = await res.json();
+    const direction = parseInt(data.message);
+    const likeBtn = location;
+
+    let output;
+
+    if (data.errors === true) {
+        
+    } else if (direction === -1) {
+        const index = local["liked_themes"].indexOf(code);
+        likeBtn.classList.remove("theme-liked");
+        likeBtn.querySelector(".theme-button-like-amount").textContent = shortScore(score);
+        if (index !== -1) output = local["liked_themes"].filter(x => x !== code);
+    } else if (direction === 1) {
+        likeBtn.classList += (" theme-liked animate-like");
+        likeBtn.querySelector(".theme-button-like-amount").textContent = shortScore(score + 1);
+        output = [...local["liked_themes"], code];
+    }
+    chrome.storage.local.set({ "liked_themes": output });
+}
+
+async function getAndLoadTheme(code) {
+    const res = await fetch(`${apiurl}/api/themes/theme/${code}`);
+    const data = await res.json();
+    importTheme(JSON.parse(data.message.exports));
+}
+
+async function displayThemeListNew(direction) {
+    
+    document.getElementById("theme-current-sort").textContent = current_sort;
+    if (direction === -1 && current_page_num > 1) current_page_num--;
+    if (direction === 1 && current_page_num < maxPage) current_page_num++;
+
+    let themes = [];
+    const apiLink = `${current_sort.toLowerCase()}?page=${current_page_num}` + (searchFor === "" ? "" : `&searchFor=${searchFor}`);
+
+    // fetch api, fallback if necessary
+
+    if (cache[apiLink]) {
+        themes = cache[apiLink];
+    } else {
+        try {
+            const res = await fetch(`${apiurl}/api/themes/${apiLink}`, {
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json"
+               },
+            });
+            const data = await res.json();
+            if (data.errors === true) throw new Error(data.message);
+            themes = data.message.themes;
+            cache[apiLink] = themes;
+            if (data?.message?.pages) {
+                maxPage = data.message.pages;
+            }
+        } catch (e) {
+            console.log(e);
+            current_page_num = 1;
+            fallback = true;
+            displayThemeListOld(0);
+            return;
+        }
+    }
+
+    let container = document.getElementById("premade-themes");
+    container.textContent = "";
+
+    const local = await chrome.storage.local.get("liked_themes");
+
+    themes.forEach(theme => {
+
+        const themeBtn = createThemeButton(container, theme);
+        themeBtn.addEventListener("click", (e) => {
+            if (!e.target.classList.contains("clickable")) return;
+            getAndLoadTheme(theme.code)
+        }); 
+
+        const liked = local["liked_themes"].includes(theme.code);
+        const likeBtn = createThemeLikeBtn(themeBtn, liked, theme.score);
+        likeBtn.addEventListener("click" , (e) => likeTheme(likeBtn, theme.code, theme.score));
+
+    });
+
+    document.getElementById("premade-themes-pagenum").textContent = current_page_num + " of " + maxPage;
+
+    // set the submit theme button to the first custom card image
+
+    try {
+        const sync = await chrome.storage.sync.get("custom_cards");
+        const exports = await getExport(sync, ["custom_cards"]);
+        document.getElementById("theme-button-img").style.background = `linear-gradient(#00000070, #00000070), url(${exports["custom_cards"][0]}) no-repeat center center / cover`;
+    } catch (e) {
+        console.log(e);
+    }
+
+    displaySavedThemes();
+
+}
+
+function displayThemeListOld(pageDir = 0) {
     //const keys = Object.keys(themes);
     document.getElementById("theme-current-sort").textContent = current_sort;
     const perPage = 24;
@@ -624,6 +906,55 @@ function displayThemeList(pageDir = 0) {
         });
     });
     document.getElementById("premade-themes-pagenum").textContent = current_page_num + " of " + maxPage;
+    displaySavedThemes();
+}
+
+function getRelativeDate(date, short = false) {
+    let now = new Date();
+    let timeSince = (now.getTime() - date.getTime()) / 60000;
+    let time = "min";
+    timeSince = Math.abs(timeSince);
+    if (timeSince >= 60) {
+        timeSince /= 60;
+        time = short ? "h" : "hour";
+        if (timeSince >= 24) {
+            timeSince /= 24;
+            time = short ? "d" : "day";
+            if (timeSince >= 7) {
+                timeSince /= 7;
+                time = short ? "w" : "week";
+            }
+        }
+    }
+    timeSince = Math.round(timeSince);
+    let relative = timeSince + (short ? "" : " ") + time + (timeSince > 1 && !short ? "s" : "");
+    return { time: relative, ms: now.getTime() - date.getTime() };
+}
+
+function displaySavedThemes() {
+    chrome.storage.local.get("saved_themes", local => {
+        const target = document.getElementById("saved-themes");
+        target.textContent = "";
+        Object.keys(local["saved_themes"]).forEach((key, index) => {
+            const created = new Date(parseInt(key));
+            let btn = makeElement("div", "saved-theme", target);
+            let title = makeElement("p", "theme-button-title", btn, `Theme ${index + 1}`);
+            let date = makeElement("p", "theme-button-creator", btn, `${getRelativeDate(created).time} ago`);
+            let remove = makeElement("div", "theme-button-remove", btn, "x");
+            btn.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.44), rgba(0, 0, 0, 0.44)), url(${local["saved_themes"][key]["custom_cards"][0]})`;
+            btn.addEventListener("click", () => {
+                importTheme(local["saved_themes"][key]);
+            });
+            remove.addEventListener("click", () => {
+                chrome.storage.local.get("saved_themes", local => {
+                    delete local["saved_themes"][key];
+                    chrome.storage.local.set({ "saved_themes": local["saved_themes"] }).then(() => {
+                        btn.remove();
+                    })
+                })
+            });
+        });
+    });
 }
 
 function getTheme(name) {
@@ -1045,6 +1376,23 @@ function getTheme(name) {
         {"color":"beige","score":3330,"title":"Hogwarts by Skyler","exports":{"disable_color_overlay":true,"gradient_cards":true,"dark_mode":true,"dark_preset":{"background-0":"#d1c9ad","background-1":"#842e2e","background-2":"#832a2a","borders":"#8b2323","links":"#902323","sidebar":"linear-gradient(#973b3b, #ffffff)","sidebar-text":"#ffffff","text-0":"#f5f5f5","text-1":"#ffffff","text-2":"#a45151"},"custom_cards":["https://as1.ftcdn.net/v2/jpg/03/26/22/48/1000_F_326224870_vB8XRJbWr0qDG5bhAomLjVlKzcUXPdKA.jpg","https://wallpapers.com/images/high/marauders-map-front-page-ktm5p8uzrze9jf82.webp","https://t3.ftcdn.net/jpg/03/98/15/24/240_F_398152421_haFvEn6IXoOm3JpTV3qXFn6ae1O01YwZ.jpg","https://www.connormollison.co.uk/wp-content/uploads/2018/11/Loch-Shiel.jpg"],"card_colors":["#882525"],"custom_font":{"family":"'Cinzel'","link":"Cinzel:wght@400;700"}},"preview":"https://wallpapers.com/images/high/marauders-map-front-page-ktm5p8uzrze9jf82.webp"},
         {"color":"black","score":3420,"title":"RepEra by Brooke","exports":{"disable_color_overlay":true,"gradient_cards":false,"dark_mode":true,"dark_preset":{"background-0":"#000000","background-1":"#000000","background-2":"#000000","borders":"#660000","links":"#660000","sidebar":"linear-gradient(#000000c7, #000000c7), center url(\"https://i.pinimg.com/736x/19/cb/41/19cb416efe3460163bd75b9966628a88.jpg\")","sidebar-text":"#fefefe","text-0":"#fefefe","text-1":"#fefefe","text-2":"#fefefe"},"custom_cards":["https://i.pinimg.com/736x/84/84/e9/8484e992558502b9bcec0c305cea4ae5.jpg","https://i.pinimg.com/originals/94/17/49/941749d4b2ef0dc1205c50325be2592a.gif","https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8442f8d0b0a8d7b419a3ad3eb6","https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Taylor_Swift_The_Eras_Tour_Reputation_Era_Set_%2853109451846%29.jpg/411px-Taylor_Swift_The_Eras_Tour_Reputation_Era_Set_%2853109451846%29.jpg","https://64.media.tumblr.com/64dffc01e1e46bfc4a0ea43ca94717c5/tumblr_pqjwteoj1n1ufsbe8o3_400.gif"],"card_colors":["#660000"],"custom_font":{"family":"'Caveat'","link":"Caveat:wght@400;700"}},"preview":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Taylor_Swift_The_Eras_Tour_Reputation_Era_Set_%2853109451846%29.jpg/411px-Taylor_Swift_The_Eras_Tour_Reputation_Era_Set_%2853109451846%29.jpg"},
 
+        {"color":"beige","score":0,"title":"Forest Fairy by Kylie","exports":{"disable_color_overlay":true,"gradient_cards":false,"dark_mode":true,"dark_preset":{"background-0":"#d2c6b2","background-1":"#d2c6b2","background-2":"#b09e8d","borders":"#775a6b","links":"#ae8f91","sidebar":"#d2c6b2","sidebar-text":"#211c17","text-0":"#211c17","text-1":"#61694f","text-2":"#211c17"},"custom_cards":["https://i.pinimg.com/564x/ee/73/cf/ee73cff65df33b5dacfb922f669ab00a.jpg","https://i.pinimg.com/564x/3d/45/e3/3d45e3042e0e8f273cf65b2fd07f36ac.jpg","https://i.pinimg.com/564x/af/f2/0a/aff20a803d61658be15274688c96e1e2.jpg","https://i.pinimg.com/564x/6f/04/b4/6f04b4b11f12581f37f1253209ed7a9f.jpg","https://i.pinimg.com/564x/8e/41/4c/8e414c7db87e13c356d2a409c36db0ca.jpg","https://i.pinimg.com/564x/2d/82/a8/2d82a8995def9311cbeb0300379db5fb.jpg","https://i.pinimg.com/564x/2e/09/de/2e09de339b4287bab1a0a9b2c825b90e.jpg","https://i.pinimg.com/564x/43/57/44/43574408e884ea7719642e799d1d7549.jpg"],"card_colors":["#c6adc2","#a65963","#849e61","#8f707d","#666d57","#b28d4d","#708f7c","#009688"],"custom_font":{"family":"'Texturina'","link":"Texturina:wght@400;700"}},"preview":"https://i.pinimg.com/564x/2e/09/de/2e09de339b4287bab1a0a9b2c825b90e.jpg"},
+        {"color":"gray","score":0,"title":"Bucky Barnes by Desiree","exports":{"disable_color_overlay":true,"gradient_cards":false,"dark_mode":true,"dark_preset":{"background-0":"#303030","background-1":"#303030","background-2":"#141414","borders":"#1e1e1e","links":"#ae8c84","sidebar":"linear-gradient(#303030c7, #303030c7), center url(\"https://e0.pxfuel.com/wallpapers/567/145/desktop-wallpaper-the-art-of-phillip-anthony-dark-grey-black-aesthetic-grey-iphone-black-gray-aesthetic.jpg\")","sidebar-text":"#7e615b","text-0":"#7e615b","text-1":"#7e615b","text-2":"#614b48"},"custom_cards":["https://64.media.tumblr.com/d4b8ded40caf6dd56d93e1c164bb3887/00fe568e9d0796b0-28/s1280x1920/2b5ffb4a11b70f814c1ec081ad6782f437506042.jpg","https://pbs.twimg.com/media/EwONWyuWYAgxe6g.jpg","https://i.pinimg.com/474x/b1/21/c2/b121c2752f9899cd0abc4355d50b47af.jpg","https://i.pinimg.com/originals/e3/80/04/e3800498d1dbf8338d4ed9eaff948ac3.jpg","https://i.pinimg.com/750x/b4/9b/ff/b49bff69c567dd3e9a39d7db8b662f5d.jpg","https://64.media.tumblr.com/785799419418a335a8e6d97b1e141bc8/00fe568e9d0796b0-41/s1280x1920/0d66d39d23d83054cafb9ef36f0c18b0d1a83fc3.jpg"],"card_colors":["#986c16","#a5a58d","#b7b7a4","#ffe8d6","#ddbea9","#cb997e","#6b705c"],"custom_font":{"family":"'Special Elite'","link":"Special+Elite:wght@400;700"}},"preview":"https://i.pinimg.com/750x/b4/9b/ff/b49bff69c567dd3e9a39d7db8b662f5d.jpg"},
+        {"color":"orange","score":5555,"title":"Fall by Static","exports":{"disable_color_overlay":true,"gradient_cards":true,"dark_mode":true,"dark_preset":{"background-0":"#f0cfb7","background-1":"#e5833e","background-2":"#d76b1d","borders":"#B2560D","links":"#893101","sidebar":"linear-gradient(#80400B, #BE5504)","sidebar-text":"#281201","text-0":"#532a09","text-1":"#642c02","text-2":"#893101"},"custom_cards":["https://i.pinimg.com/564x/cd/1f/5d/cd1f5df992245362003001fb6f4b8168.jpg","https://i.pinimg.com/564x/bf/64/0f/bf640fdb0ee5d669e3487de514469e89.jpg","https://i.pinimg.com/originals/1d/6e/d9/1d6ed9c772cb46bfffa5f5055475e827.gif","https://i.pinimg.com/originals/3a/eb/49/3aeb495a4fdda62e53a366ec68540488.gif","https://i.pinimg.com/564x/ca/1e/0b/ca1e0b3c7e066fc3a9d3ee0c57225bde.jpg","https://i.pinimg.com/564x/5a/9e/b1/5a9eb1b7af5a7b0351b272f9c63eca66.jpg","https://i.pinimg.com/564x/53/f2/76/53f276d10d50a40246f5e877ffde6cdd.jpg"],"card_colors":["#893101"],"custom_font":{"family":"'Inria Sans'","link":"Inria+Sans:wght@400;700"}},"preview":"https://i.pinimg.com/564x/ca/1e/0b/ca1e0b3c7e066fc3a9d3ee0c57225bde.jpg"},
+        {"color":"brown","score":0,"title":"Garden wall by ghost girl","exports":{"disable_color_overlay":true,"gradient_cards":true,"dark_mode":true,"dark_preset":{"background-0":"#201109","background-1":"#8f6542","background-2":"#8d5835","borders":"#000000","links":"#bc8552","sidebar":"linear-gradient(#000000c7, #000000c7), center url(\"https://media1.tenor.com/m/lZa7QzVtaWwAAAAC/over-the-garden-wall.gif\")","sidebar-text":"#7f849c","text-0":"#beb6b6","text-1":"#bbbbbf","text-2":"#b9c1b9"},"custom_cards":["https://media1.tenor.com/m/E9NtNsnEppcAAAAC/over-the-garden-wall-garden-wall.gif","https://media1.tenor.com/m/mVoRJhr2a9kAAAAC/anime-over-the-garden-wall.gif","https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbm5qNmtweWtjZnhtN25yOHczc3QzdjI2ZXR6b3YxZ3p1cHMzejZlOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lKD3pLFTjVCxy/giphy.webp","https://media1.tenor.com/m/BNlqs1Tt6gYAAAAC/pumpkin-fall.gif","https://media1.tenor.com/m/dzIZVdIplEwAAAAC/over-the-garden-wall-otgw.gif","https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2Z3dG0xa3htYW4weDl2NzVwdXJ2amY1cjlkY2Ewa3JqNmlxaHkxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7ZenN6gENEUX317O/giphy.webp","https://media1.tenor.com/m/GOMfjC9vOxEAAAAd/wirt-over-the-garden-wall.gif"],"card_colors":["#ffc971","#ffb627","#ff9505","#e2711d","#cc5803","#ffc971","#ffb627"],"custom_font":{"family":"'Permanent Marker'","link":"Permanent+Marker:wght@400;700"}},"preview":"https://media1.tenor.com/m/BNlqs1Tt6gYAAAAC/pumpkin-fall.gif"},
+        {"color":"green","score":0,"title":"Garden Green by Hayden Lee","exports":{"disable_color_overlay":true,"gradient_cards":true,"dark_mode":true,"dark_preset":{"background-0":"#1c3520","background-1":"#141f17","background-2":"#7b9679","borders":"#84a98c","links":"#5f973f","sidebar":"linear-gradient(#094e23, #102316)","sidebar-text":"#e2e8de","text-0":"#b1e98b","text-1":"#dcf5cc","text-2":"#cfe4be"},"custom_cards":["https://i.pinimg.com/564x/75/96/30/7596305ee643c5040b69f0d99a65e0c4.jpg","https://i.pinimg.com/474x/e4/c7/db/e4c7db80b8cc0d8153da5a634e58f754.jpg","https://i.pinimg.com/474x/17/34/db/1734db37f8e995b952fbb9ebb1d817d1.jpg","https://i.pinimg.com/474x/16/5a/6c/165a6cbff2a2f015ba73333230174e28.jpg","https://i.pinimg.com/564x/a1/50/b5/a150b562e5f0b27d8c456efc33cc229b.jpg"],"card_colors":["#5f973f"],"custom_font":{"family":"'Dancing Script'","link":"Dancing+Script:wght@400;700"}},"preview":"https://i.pinimg.com/474x/17/34/db/1734db37f8e995b952fbb9ebb1d817d1.jpg"},
+        {"color":"orange","score":5555,"title":"VanGogh by Cam","exports":{"disable_color_overlay":true,"gradient_cards":false,"dark_mode":true,"dark_preset":{"background-0":"#c5733D","background-1":"#d2946b","background-2":"#774423","borders":"#774423","links":"#774423","sidebar":"#774423","sidebar-text":"#c5733D","text-0":"#774423","text-1":"#774423","text-2":"#774423"},"custom_cards":["https://www.1st-art-gallery.com/media/catalog/product/cache/3375d1f37505735cd1cd3d14291df1c6/paintingsL/414336/spectators-in-the-arena-at-arl_thumb.webp","https://collectionapi.metmuseum.org/api/collection/v1/iiif/436524/800285/main-image","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuW_bog_orRxMf1CVnLmTEjifPBJFCT_hzLg&s","https://cdn2.picryl.com/photo/1900/12/31/vincent-van-gogh-wheat-field-behind-saint-paul-hospital-with-a-reaper-google-881c86-1024.jpg","https://upload.wikimedia.org/wikipedia/commons/9/9e/WLA_metmuseum_Irises_by_Vincent_van_Gogh.jpg","https://media.tate.org.uk/art/images/work/N/N04/N04713_10.jpg","https://m.media-amazon.com/images/I/51bHeJd4-CL.jpg","https://lh3.googleusercontent.com/proxy/f-AGYas1E5VavPdH1GCh_sCCG8vlQwE3RzbmbnDcHuAvzui5m0Nf3pL19c8EAtcDGps5S97N6B6fmqCFSef2","https://www.travelfranceonline.com/wp-content/plugins/phastpress/phast.php/c2Vydm/ljZT1pbWFnZXMmc3JjPWh0dHBzJTNBJTJGJTJGd3d3LnRyYXZlbGZyYW5jZW9ubGluZS5jb20lMkZ3cC1jb250ZW50JTJGdXBsb2FkcyUyRjIwMjQlMkYwNyUyRkdvZ2hfVmluY2VudF9BdXZlcnMtc3VyLU9pc2VfQ290dGFnZXMxLmpwZyZjYWNoZU1hcmtlcj0xNzIwODc1NzAxLTQ3OTU1JnRva2VuPTM5MWYwNWVlN2I5OTUzZDA.q.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/The_Plain_of_Auvers_-_Vincent_van_Gogh_-_Google_Cultural_Institute.jpg/1024px-The_Plain_of_Auvers_-_Vincent_van_Gogh_-_Google_Cultural_Institute.jpg","https://upload.wikimedia.org/wikipedia/commons/a/ab/Vincent_van_Gogh_-_Tree_Roots_and_Trunks_%28F816%29.jpg","https://news.bbcimg.co.uk/media/images/82797000/jpg/_82797607_9340lot18vangogh.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Irises-Vincent_van_Gogh.jpg/1200px-Irises-Vincent_van_Gogh.jpg"],"card_colors":["#605b56","#605b32","#ff9999","#90a9b7","#829a99","#e3cab6","#d4aa7d","#d5c9df","#ccd7e4","#9bb0ba","#d2d8b3","#acc18a","#aea3b0","#ffa85c","#e48541","#d89d77","#626e7b","#efd09e","#837a75"],"custom_font":{"family":"'Mali'","link":"Mali:wght@400;700"}},"preview":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuW_bog_orRxMf1CVnLmTEjifPBJFCT_hzLg&s"},
+        {"color":"beige","score":5555,"title":"Beachy by Crystal","exports":{"disable_color_overlay":false,"gradient_cards":false,"dark_mode":true,"dark_preset":{"background-0":"#f2f0e4","background-1":"#f5f5f5","background-2":"#f5f5f5","borders":"#f5f5f5","links":"#a0","sidebar":"linear-gradient(#ef946cc7, #e9ba6bc7), center url(\"https://i.pinimg.com/736x/73/db/35/73db3519f3f5887e269eaa5850467a33.jpg\")","sidebar-text":"#153952","text-0":"#27282b","text-1":"#27282b","text-2":"#27282b"},"custom_cards":["https://i.pinimg.com/736x/d5/94/65/d59465ba69c89d0d2a3250f980c61b1d.jpg","https://i.pinimg.com/736x/1c/8e/d9/1c8ed985e23e5db782b888d6e38f6b02.jpg","https://i.pinimg.com/474x/35/1e/56/351e56fa3972d928f29e00e06024eb60.jpg","https://i.pinimg.com/564x/9a/93/42/9a9342d2584240498aa6b08352f6e7e6.jpg","https://i.pinimg.com/736x/6b/e7/ba/6be7ba698c41b0c8fee393e5ff37f22c.jpg"],"card_colors":["#ef946c","#1e7a8c","#b6e2de","#153952","#e9ba6b"],"custom_font":{"family":"","link":""}},"preview":"https://i.pinimg.com/736x/d5/94/65/d59465ba69c89d0d2a3250f980c61b1d.jpg"},
+        {"color":"red","score":5555,"title":"GothicGraveyard by lyramagna","exports":{"disable_color_overlay":false,"gradient_cards":false,"dark_mode":true,"dark_preset":{"background-0":"#2b0d0d","background-1":"#592727","background-2":"#592727","borders":"#592727","links":"#804747","sidebar":"linear-gradient(#000000c7, #000000c7), center url(\"https://i.pinimg.com/236x/47/b0/08/47b008d745100938d4dea59e17f70bcc.jpg\")","sidebar-text":"#a3a3a3","text-0":"#803c3c","text-1":"#6c5a5a","text-2":"#6c5a5a"},"custom_cards":["https://i.pinimg.com/236x/5e/5b/4b/5e5b4b418e56e6b4bff3f1c5413d0cae.jpg","https://i.pinimg.com/236x/6a/81/6c/6a816c04e68f55da7f6396faac980e92.jpg","https://i.pinimg.com/564x/ee/ce/39/eece39a86f39fd608c61c353580cf462.jpg","https://i.pinimg.com/236x/ac/92/60/ac926035cfbd7576a33e9304ee922529.jpg","https://i.pinimg.com/236x/a9/26/3e/a9263ec6d484b1b12139bca1aeeff410.jpg","https://i.pinimg.com/236x/22/30/17/223017f48b432887b2c63453c5ea00ee.jpg","https://i.pinimg.com/236x/70/ef/18/70ef181592956742fb693a9725db31e7.jpg","https://i.pinimg.com/236x/90/55/4e/90554ef4a466e77dee521986f26a1858.jpg"],"card_colors":["#1f1f1f"],"custom_font":{"family":"'Texturina'","link":"Texturina:wght@400;700"}},"preview":"https://i.pinimg.com/236x/90/55/4e/90554ef4a466e77dee521986f26a1858.jpg"},
+        {"color":"beige","score":5555,"title":"Pusheen by elsie","exports":{"disable_color_overlay":true,"gradient_cards":false,"dark_mode":true,"dark_preset":{"background-0":"#fffdee","background-1":"#6b4c4c","background-2":"#594646","borders":"#9a8484","links":"#7c7a7f","sidebar":"#fffdee","sidebar-text":"#31261c","text-0":"#31261c","text-1":"#31261c","text-2":"#31261c"},"custom_cards":["https://pusheen.com/wp-content/uploads/2014/07/tumblr_n8789zUHLD1qhy6c9o1_500.gif","https://pusheen.com/wp-content/uploads/2023/11/Capybar_Hot_Springs_GIF.gif","https://pusheen.com/wp-content/uploads/2023/03/Pusheen_Plop.gif","https://pusheen.com/wp-content/uploads/2018/07/tumblr_p7tdo3tjSM1qhy6c9o1_1280.gif"],"card_colors":["#fff1e6","#fde2e4","#fad2e1","#bee1e6"],"custom_font":{"family":"'Inconsolata'","link":"Inconsolata:wght@400;700"}},"preview":"https://pusheen.com/wp-content/uploads/2023/11/Capybar_Hot_Springs_GIF.gif"},
+        {"color":"white","score":5555,"title":"NationalParks by Ashlyn","exports":{"disable_color_overlay":true,"gradient_cards":false,"dark_mode":true,"dark_preset":{"background-0":"#f5f5f5","background-1":"#f6bd60","background-2":"#262626","borders":"#3c3c3c","links":"#833e16","sidebar":"#273a0d","sidebar-text":"#f5f5f5","text-0":"#2a63a1","text-1":"#889849","text-2":"#c95c16"},"custom_cards":["https://i.pinimg.com/564x/17/26/a8/1726a8071771a9f1f85db1579cb3eb47.jpg","https://i.pinimg.com/564x/41/01/7d/41017d2833ec89de2407a18411bb8343.jpg","https://i.pinimg.com/736x/7f/67/a5/7f67a5499fd552070fd59bf9721fe02b.jpg","https://i.pinimg.com/564x/72/59/76/725976bd0e48e9a9b83eb08c08ee7639.jpg","https://i.pinimg.com/564x/9d/ce/11/9dce115cfc4e7ba876f9fb73ba878a1f.jpg","https://i.pinimg.com/474x/05/63/c6/0563c6e73613ca60bffc1e63f7523d0c.jpg"],"card_colors":["#833e16"],"custom_font":{"family":"'Expletus Sans'","link":"Expletus+Sans:wght@400;700"}},"preview":"https://i.pinimg.com/564x/41/01/7d/41017d2833ec89de2407a18411bb8343.jpg"},
+        {"color":"lightgreen","score":5555,"title":"Positions by LadyGrande","exports":{"disable_color_overlay":false,"gradient_cards":false,"dark_mode":true,"dark_preset":{"background-0":"#d0e1d0","background-1":"#bdcfb5","background-2":"#a2af9d","borders":"#b0cca3","links":"#d0e7c5","sidebar":"linear-gradient(#ccdfc3c7, #5a6a53c7), center url(\"https://i.pinimg.com/564x/c5/26/52/c526524d5d992dd5f32ce56c15115fe6.jpg\")","sidebar-text":"#fffcfa","text-0":"#95a58d","text-1":"#a3bf97","text-2":"#c1eaae"},"custom_cards":["https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/372f69106764533.5f979ca916959.jpg","https://cdn.dribbble.com/users/5932911/screenshots/15115256/media/d678bfb66e5e994ccb6d63b1b979e72b.png?resize=1600x1200&vertical=center","https://akns-images.eonline.com/eol_images/Entire_Site/2020922/rs_1200x1200-201022212210-1200-araian-grande-mv-102220.jpg?fit=around%7C1080:1080&output-quality=90&crop=1080:1080;center,top","https://i.ytimg.com/vi/YOVLdU9uVvk/mqdefault.jpg","https://lastfm.freetls.fastly.net/i/u/avatar170s/6b32b8cbee6e4d151e75507b25ffb964","https://www.rollingstone.com/wp-content/uploads/2020/11/ariana-grande-AlbumPressPhoto.jpg?w=1581&h=1054&crop=1","https://mir-s3-cdn-cf.behance.net/projects/404/0c8e41118112283.6082933b5929b.png","https://cdn.dribbble.com/users/4818213/screenshots/14704759/media/4a692830e71b4c4cdfb0b007828736a1.png?resize=1600x1200&vertical=center"],"card_colors":["#62725a","#64755d","#67785f","#697b62","#5c6a54","#5e6d57","#5f6f58","#62715a"],"custom_font":{"family":"","link":""}},"preview":"https://akns-images.eonline.com/eol_images/Entire_Site/2020922/rs_1200x1200-201022212210-1200-araian-grande-mv-102220.jpg?fit=around%7C1080:1080&output-quality=90&crop=1080:1080;center,top"},
+        {"color":"gray","score":5555,"title":"Frieren by Faeriefully","exports":{"disable_color_overlay":true,"gradient_cards":false,"dark_mode":true,"dark_preset":{"background-0":"#60657b","background-1":"#353535","background-2":"#b0d4cc","borders":"#d7d6d6","links":"#5bae83","sidebar":"linear-gradient(#182152, #70be8c)","sidebar-text":"#f5f5f5","text-0":"#bec5c4","text-1":"#acc9c2","text-2":"#c2e5f5"},"custom_cards":["https://64.media.tumblr.com/3250a784972f89cdbfea253965c34cd0/f21b5a88cdd2d1f6-b0/s540x810/1ca346168391c0af6d6d036ad6ce46a1f0605511.gif","https://meguminexplosionblog.wordpress.com/wp-content/uploads/2023/10/fern-frieren-anime-fern-frieren.gif?w=498","https://64.media.tumblr.com/273e48159243483a123f127ed79656d1/88844ae8be4d1091-9c/s540x810/739d22f7e20649a0694419eaa39a0f9b4c5bac59.gifv","https://64.media.tumblr.com/339ea6d7a3c1a4402675a45f8fcfcbb0/f839a0c00f66bcd6-ec/s540x810/46054489c7d3854487488568d1484d1a5d2fdb78.gif","https://media1.tenor.com/m/h6XlgMwYBnkAAAAd/frieren-sousou-no-frieren.gif","https://giffiles.alphacoders.com/221/221795.gif","https://64.media.tumblr.com/df78e4235d1501620a45ffca3960e1f6/f839a0c00f66bcd6-b4/s540x810/a44e1892a4a4234241417e1a914ccac93d9324e4.gif","https://i.pinimg.com/originals/71/90/6c/71906c5eff4079a648c57aed47cc46fc.gif","https://64.media.tumblr.com/e6b2c483310a66447773ca70426752a8/309287d767a483c2-15/s540x810/6f1d2051b038ef3b5122b1eb03dbced434590a0a.gifv","https://64.media.tumblr.com/339ea6d7a3c1a4402675a45f8fcfcbb0/f839a0c00f66bcd6-ec/s540x810/46054489c7d3854487488568d1484d1a5d2fdb78.gifv","https://miro.medium.com/v2/resize:fit:996/0*Tcf1VOgXqrweEwzl.gif","https://media.tenor.com/VF52YCUBibQAAAAM/anime-frieren-beyond-the-journeys-end.gif"],"card_colors":["#a08a5a"],"custom_font":{"family":"'Yuji Syuku'","link":"Yuji+Syuku:wght@400;700"}},"preview":"https://media.tenor.com/VF52YCUBibQAAAAM/anime-frieren-beyond-the-journeys-end.gif"},
+        {"color":"lightblue","score":5555,"title":"Manatees by Jocie","exports":{"disable_color_overlay":false,"gradient_cards":true,"dark_mode":true,"dark_preset":{"background-0":"#6d92a2","background-1":"#475d66","background-2":"#638092","borders":"#082187","links":"#364453","sidebar":"linear-gradient(#1a4238c7, #3e4160c7), center url(\"https://i.pinimg.com/originals/da/eb/36/daeb3684ed1b4f653e7c6d99b7b1b160.jpg\")","sidebar-text":"#f5f5f5","text-0":"#f5f5f5","text-1":"#ffffff","text-2":"#ffffff"},"custom_cards":["https://www.fau.edu/newsdesk/images/news/manatee-romaine-newsdesk.jpg","https://www.nwf.org/-/media/NEW-WEBSITE/Shared-Folder/Magazines/2022/Jun-Jul/manatees-mother-and-calf-JJ22-900x591.jpg","https://i.pinimg.com/564x/3b/5f/bc/3b5fbcf6232a1af76c173f5efbfc4ae1.jpg"],"card_colors":["#1a806a","#1a7c6c","#1a796d","#19756d"],"custom_font":{"family":"'Lora'","link":"Lora:wght@400;700"}},"preview":"https://i.pinimg.com/564x/3b/5f/bc/3b5fbcf6232a1af76c173f5efbfc4ae1.jpg"},
+        {"color":"beige","score":5555,"title":"Study Girl by Luna","exports":{"disable_color_overlay":false,"gradient_cards":false,"dark_mode":true,"dark_preset":{"background-0":"#cea183","background-1":"#efcfaf","background-2":"#ffffec","borders":"#533427","links":"#ff5286","sidebar":"linear-gradient(#4b2a16c7, #4b2a16c7), center url(\"https://p16-va.lemon8cdn.com/tos-maliva-v-ac5634-us/okIenbELlO7MOWflXeEM4gArSgC8HJdAoQASQz~tplv-tej9nj120t-origin.webp\")","sidebar-text":"#ca9572","text-0":"#4b2a16","text-1":"#533427","text-2":"#4b2a16"},"custom_cards":[null,"https://files.combyne.com/571bb277a4fb87839de2a597afdf2caf_image.jpg","https://i.pinimg.com/736x/d0/75/fb/d075fb2ae9e5a18a72f10bf534127f1a.jpg","https://i.pinimg.com/736x/88/22/44/8822448a1481a11f1a53936d4373d0ff.jpg","https://i.pinimg.com/736x/d6/de/e4/d6dee4ba44b75a9bfdb5012469852fca.jpg"],"card_colors":["#673723"],"custom_font":{"family":"'Nerko One'","link":"Nerko One:wght@400;700"}},"preview":"https://files.combyne.com/571bb277a4fb87839de2a597afdf2caf_image.jpg"},
+        {"color":"beige","score":5555,"title":"CafeTime by HMR_YRK","exports":{"disable_color_overlay":false,"gradient_cards":false,"dark_mode":true,"dark_preset":{"background-0":"#fdfff5","background-1":"#ffffff","background-2":"#ffffff","borders":"#ddb57a","links":"#c09c7c","sidebar":"linear-gradient(#7e5d44, #ffd685)","sidebar-text":"#ffffff","text-0":"#76583d","text-1":"#58412c","text-2":"#58412c"},"custom_cards":["https://i.pinimg.com/564x/92/c7/2c/92c72c90aae903abd45451ca73eabfc5.jpg","https://i.pinimg.com/564x/b7/5c/ca/b75ccaf47db6238ddce7e2999ccabb26.jpg","https://i.pinimg.com/564x/6f/1a/66/6f1a663cd14c7df6eeaa12e879dce2b3.jpg","https://i.pinimg.com/564x/b0/85/3b/b0853b8afd95a536192886e3ac4137e3.jpg","https://i.pinimg.com/564x/5b/62/1d/5b621d37eba0898e17d41540a9388387.jpg","https://i.pinimg.com/564x/e0/9d/6a/e09d6a540b6f5f186b22dc9912a41ec6.jpg","https://i.pinimg.com/564x/68/d9/17/68d917e592e6609ea2915882966a1e0a.jpg","https://i.pinimg.com/564x/41/45/3e/41453eea3e262f07ecf0d9e3f9b110f4.jpg","https://i.pinimg.com/564x/61/2a/68/612a681fb0c3672a8a81e19f368cc91f.jpg","https://i.pinimg.com/564x/ef/3e/20/ef3e20016a96637003397018e7151826.jpg"],"card_colors":["#c2a48d","#bd9f88","#b89a84","#b3957f","#ae917a","#a98c76","#a48771","#9f826c","#9a7d68","#957963","#90745e","#8b6f5a","#866a55","#816550","#7d614c","#c2a48d"],"custom_font":{"family":"'Quicksand'","link":"Quicksand:wght@400;700"}},"preview":"https://i.pinimg.com/564x/6f/1a/66/6f1a663cd14c7df6eeaa12e879dce2b3.jpg"},
+        {"color":"black","score":5555,"title":"JJK by crim","exports":{"disable_color_overlay":true,"gradient_cards":false,"dark_mode":true,"dark_preset":{"background-0":"#030203","background-1":"#030203","background-2":"#262626","borders":"#030203","links":"#c6a4d6","sidebar":"linear-gradient(#000000c7, #000000c7), center url(\"https://i.pinimg.com/originals/5f/57/dd/5f57dd7333316b0c8caf1d048e75d901.gif\")","sidebar-text":"#f5f5f5","text-0":"#efddf8","text-1":"#fcfcf7","text-2":"#ababab"},"custom_cards":["https://i.pinimg.com/736x/79/47/22/794722ef99e3d46c522732af03efc13d.jpg","https://i.pinimg.com/736x/6b/6b/cc/6b6bccd3f1eb0e15b774a0d9f86d4c5d.jpg","https://i.pinimg.com/736x/64/a7/30/64a730bb21506b263cf547820deea5b5.jpg","https://i.pinimg.com/736x/aa/bc/c2/aabcc2f97744d2fac4049106a268639e.jpg"],"card_colors":["#d2f1e4","#fbcaef","#fdf4b4","#9fe8fc"],"custom_font":{"family":"'DM Sans'","link":"DM+Sans:wght@400;700"}},"preview":"https://i.pinimg.com/736x/6b/6b/cc/6b6bccd3f1eb0e15b774a0d9f86d4c5d.jpg"},
+
 
 
         /*
@@ -1125,7 +1473,7 @@ function updateCards(key, value) {
     chrome.storage.sync.get(["custom_cards"], result => {
         chrome.storage.sync.set({ "custom_cards": { ...result["custom_cards"], [key]: { ...result["custom_cards"][key], ...value } } }, () => {
             if (chrome.runtime.lastError) {
-                displayAlert("The data you're entering is exceeding the storage limit, so it won't save. Try using shorter links, and make sure to press \"copy image address\" and not \"copy image\" for links.");
+                displayAlert(true, "The data you're entering is exceeding the storage limit, so it won't save. Try using shorter links, and make sure to press \"copy image address\" and not \"copy image\" for links.");
             }
         })
     });
@@ -1201,10 +1549,11 @@ function clearAlert() {
     document.querySelector("#alert").style.bottom = "-400px";
 }
 
-function displayAlert(msg) {
+function displayAlert(bad, msg) {
     clearTimeout(removeAlert);
     document.querySelector("#alert").style.bottom = "0";
     document.querySelector("#alert").textContent = msg;
+    document.querySelector("#alert").style.background = bad ? "#e7495ed9" : "#6bbf6bd9";
     removeAlert = setTimeout(() => {
         clearAlert();
     }, 15000);
@@ -1214,7 +1563,7 @@ function setCustomImage(key, val) {
     if (val !== "" && val !== "none") {
         let test = new Image();
         test.onerror = () => {
-            displayAlert("It seems that the image link you provided isn't working. Make sure to right click on any images you want to use and select \"copy image address\" to get the correct link.");
+            displayAlert(true, "It seems that the image link you provided isn't working. Make sure to right click on any images you want to use and select \"copy image address\" to get the correct link.");
 
             // ensures storage limit error will override previous error
             updateCards(key, { "img": val });
@@ -1598,7 +1947,7 @@ function setToDefaults() {
 
 function makeElement(element, elclass, location, text) {
     let creation = document.createElement(element);
-    creation.classList.add(elclass);
+    creation.className = elclass;
     creation.textContent = text;
     location.appendChild(creation);
     return creation
