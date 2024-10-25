@@ -9,34 +9,34 @@
     "message": "Dark mode"
   },
   "automatic_dark_mode": {
-    "message": "Scheduled dark mode"
+    "message": "Scheduled Dark Mode"
   },
   "auto_start_time": {
-    "message": "Start time"
+    "message": "Start Time"
   },
   "auto_end_time": {
-    "message": "End time"
+    "message": "End Time"
   },
   "edit_dark_mode": {
-    "message": "Dark mode"
+    "message": "Dark Mode"
   },
   "enter_url": {
     "message": "Your Canvas url:"
   },
   "card_grades": {
-    "message": "Card grades"
+    "message": "Card Grades"
   },
   "gradient_cards": {
-    "message": "Gradient cards"
+    "message": "Gradient Cards"
   },
   "condensed_cards": {
-    "message": "Condensed cards"
+    "message": "Condensed Cards"
   },
   "disable_color": {
-    "message": "Disable color overlay"
+    "message": "Disable Color Overlay"
   },
   "card_assignments": {
-    "message": "Card assignments"
+    "message": "Card Assignments"
   },
   "card_customization": {
     "message": "Cards"
@@ -51,43 +51,43 @@
     "message": "Better todo list"
   },
   "max_items": {
-    "message": "Max items: "
+    "message": "Max Items: "
   },
   "hover_preview": {
-    "message": "Hover to preview details"
+    "message": "Hover To Preview Details"
   },
   "hide_completed": {
-    "message": "Hide completed"
+    "message": "Hide Completed"
   },
   "24hrformat": {
-    "message": "Use 24 hr format"
+    "message": "Use 24 hr Format"
   },
   "dashboard_notes": {
-    "message": "Dashboard notes"
+    "message": "Dashboard Notes"
   },
   "gpa_calculator": {
-    "message": "GPA calculator"
+    "message": "GPA Calculator"
   },
   "gpa_settings": {
-    "message": "GPA settings"
+    "message": "GPA Settings"
   },
   "grade_hover": {
-    "message": "Show only on hover"
+    "message": "Show Only On Hover"
   },
   "due": {
     "message": "Due"
   },
   "card_colors": {
-    "message": "Card colors"
+    "message": "Card Colors"
   },
   "back": {
     "message": "Back"
   },
   "more_options": {
-    "message": "More options"
+    "message": "More Options"
   },
   "manual_customization": {
-    "message": "Manual customization"
+    "message": "Manual Customization"
   },
   "background_colors": {
     "message": "Background"
@@ -96,49 +96,49 @@
     "message": "Text"
   },
   "full_width": {
-    "message": "Dashboard full width"
+    "message": "Dashboard Full Width"
   },
   "report_issue": {
-    "message": "Report issue"
+    "message": "Report Issue"
   },
   "themes": {
     "message": "Themes"
   },
   "move_top": {
-    "message": "Move to top"
+    "message": "Move To Top"
   },
   "show_past_due": {
-    "message": "Show past due"
+    "message": "Show Past Due"
   },
   "relative_due_dates": {
-    "message": "Relative due dates"
+    "message": "Relative Due Dates"
   },
   "enter_multiple": {
-    "message": "(Enter multiple with a comma)"
+    "message": "(Enter Multiple With A Comma)"
   },
   "todo_remind": {
     "message": "Todo Reminders"
   },
   "remlogo": {
-    "message": "Remove sidebar logo"
+    "message": "Remove Sidebar Logo"
   },
   "hide_feedback": {
-    "message": "Hide recent feedback"
+    "message": "Hide Recent Feedback"
   },
   "tab_icons": {
-    "message": "Color coded tab icons"
+    "message": "Color Coded Tab Icons"
   },
   "todo_colors": {
-    "message": "Use card colors"
+    "message": "Use Card Colors"
   },
   "gpa_calc_cumulative": {
-    "message": "Show cumulative GPA"
+    "message": "Show Cumulative GPA"
   },
   "gpa_calc_weighted": {
-    "message": "Show weighted GPA"
+    "message": "Show Weighted GPA"
   },
   "device_dark": {
-    "message": "Use device dark mode settings"
+    "message": "Use Device Dark Mode Settings"
   },
   "presets": {
     "message": "Presets"
@@ -174,16 +174,16 @@
     "message": "Lightmode"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n by Angel"
+    "message": "Catppuccin\n By Angel"
   },
   "dark_sage": {
-    "message": "Sabia\n by LivDoesDevStuf"
+    "message": "Sabia\n By LivDoesDevStuf"
   },
   "dark_pink": {
-    "message": "Pink\n by Sayde"
+    "message": "Pink\n By Sayde"
   },
   "dark_coral": {
-    "message": "Coral\n by Superchido"
+    "message": "Coral\n By Superchido"
   },
   "dp_sidebar_text": {
     "message": "Sidebar Text"
