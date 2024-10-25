@@ -99,46 +99,46 @@
     "message": "Dashboard Full Width"
   },
   "report_issue": {
-    "message": "Report issue"
+    "message": "Report Issue"
   },
   "themes": {
     "message": "Themes"
   },
   "move_top": {
-    "message": "Move to top"
+    "message": "Move To Top"
   },
   "show_past_due": {
-    "message": "Show past due"
+    "message": "Show Past Due"
   },
   "relative_due_dates": {
-    "message": "Relative due dates"
+    "message": "Relative Due Dates"
   },
   "enter_multiple": {
-    "message": "(Enter multiple with a comma)"
+    "message": "(Enter Multiple With A Comma)"
   },
   "todo_remind": {
     "message": "Todo Reminders"
   },
   "remlogo": {
-    "message": "Remove sidebar logo"
+    "message": "Remove Sidebar Logo"
   },
   "hide_feedback": {
-    "message": "Hide recent feedback"
+    "message": "Hide Recent Feedback"
   },
   "tab_icons": {
-    "message": "Color coded tab icons"
+    "message": "Color Coded Tab Icons"
   },
   "todo_colors": {
-    "message": "Use card colors"
+    "message": "Use Card Colors"
   },
   "gpa_calc_cumulative": {
-    "message": "Show cumulative GPA"
+    "message": "Show Cumulative GPA"
   },
   "gpa_calc_weighted": {
-    "message": "Show weighted GPA"
+    "message": "Show Weighted GPA"
   },
   "device_dark": {
-    "message": "Use device dark mode settings"
+    "message": "Use Device Dark Mode Settings"
   },
   "presets": {
     "message": "Presets"
@@ -174,16 +174,16 @@
     "message": "Lightmode"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n by Angel"
+    "message": "Catppuccin\n By Angel"
   },
   "dark_sage": {
-    "message": "Sabia\n by LivDoesDevStuf"
+    "message": "Sabia\n By LivDoesDevStuf"
   },
   "dark_pink": {
-    "message": "Pink\n by Sayde"
+    "message": "Pink\n By Sayde"
   },
   "dark_coral": {
-    "message": "Coral\n by Superchido"
+    "message": "Coral\n By Superchido"
   },
   "dp_sidebar_text": {
     "message": "Sidebar Text"
