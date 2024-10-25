@@ -23,7 +23,7 @@
     <div class="main">
         <div class="header">
             <img id="bclogo" src="../icon/icon-128.png">
-            <h1>Better Canvas</h1>
+            <h1 data-i18n="better_canvas">Better Canvas</h1>
         </div>
         <div class="options">
             <div class="options-left">
@@ -59,7 +59,7 @@
                         </div>
                         <div class="sub-option" style="margin-top:5px">
                             <input type="checkbox" id="device_dark" name="device_dark">
-                            <label for="device_dark" class="sub-text">Use device dark mode settings</label>
+                            <label for="device_dark" class="sub-text" data-i18n="device_dark">Use device dark mode settings</label>
                         </div>
                     </div>
                 </div>
@@ -110,11 +110,11 @@
                         </div>
                         <div class="sub-option" style="margin-top:5px">
                             <input type="checkbox" id="gpa_calc_cumulative" name="gpa_calc_cumulative">
-                            <label for="gpa_calc_cumulative" class="sub-text" /*data-i18n="move_top"*/>Show cumulative GPA</label>
+                            <label for="gpa_calc_cumulative" class="sub-text" data-i18n="gpa_calc_cumulative">Show cumulative GPA</label>
                         </div>
                         <div class="sub-option" style="margin-top:5px">
                             <input type="checkbox" id="gpa_calc_weighted" name="gpa_calc_weighted">
-                            <label for="gpa_calc_weighted" class="sub-text" /*data-i18n="move_top"*/>Show weighted GPA</label>
+                            <label for="gpa_calc_weighted" class="sub-text" data-i18n="gpa_calc_weighted">Show weighted GPA</label>
                         </div>
                     </div>
                 </div>
@@ -143,7 +143,7 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div>
-                        <span class="option-name" /*data-i18n="gpa_calculator"*/>Todo Reminders</span>
+                        <span class="option-name" data-i18n="todo_remind">Todo Reminders</span>
                     </div>
                     <!--
                     <div class="sub-options">
@@ -195,7 +195,7 @@
                         </div>
                         <div class="sub-option">
                             <input type="checkbox" id="todo_colors" name="todo_colors">
-                            <label for="todo_colors" class="sub-text">Use card colors</label>
+                            <label for="todo_colors" class="sub-text" data-i18n="todo_colors">Use card colors</label>
                         </div>
                         <div style="margin-top: 5px">
                             <span class="sub-text" data-i18n="max_items">Max items to show: </span><span
@@ -253,7 +253,7 @@
                         <div class="slider">
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
-                        </div><span class="option-name">Remove sidebar logo</span>
+                        </div><span class="option-name" data-i18n="remlogo">Remove sidebar logo</span>
                     </div>
                     <div class="option" id="hide_feedback">
                         <input type="radio" id="off" name="hide_feedback">
@@ -261,7 +261,7 @@
                         <div class="slider">
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
-                        </div><span class="option-name">Hide recent feedback</span>
+                        </div><span class="option-name" data-i18n="hide_feedback">Hide recent feedback</span>
                     </div>
                     <div class="option" id="tab_icons">
                         <input type="radio" id="off" name="tab_icons">
@@ -269,7 +269,7 @@
                         <div class="slider">
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
-                        </div><span class="option-name">Color coded tab icons</span>
+                        </div><span class="option-name" data-i18n="tab_icons">Color coded tab icons</span>
                     </div>
                 </div>
             </div>
@@ -462,22 +462,22 @@
         <div class="customization">
             <div class="container">
                 <div class="option-container">
-                    <h3 class="header-small">Presets</h3>
+                    <h3 class="header-small" data-i18n="presets">Presets</h3>
                     <div class="options-presets">
-                        <button id="dark-lighter" class="preset-button customization-button" style="background:#272727;border:1px solid #454545;color:#f5f5f5">Lighter</button>
-                        <button id="dark-light" class="preset-button customization-button" style="background:#202020;border:1px solid #404040;color:#f5f5f5">Light</button>
-                        <button id="dark-default" class="preset-button customization-button" style="background:#161616;border:1px solid #3c3c3c;color:#f5f5f5">Default</button>
-                        <button id="dark-dark" class="preset-button customization-button" style="background:#101010;border:1px solid #272727;color:#f5f5f5">Dark</button>
-                        <button id="dark-darker" class="preset-button customization-button" style="background:#000000;border:1px solid #000000;color:#c5c5c5">Darker</button>
-                        <button id="dark-mint" class="preset-button customization-button" style="background:#0f0f0f;border:1px solid #1e1e1e;color:#7CF3CB">Mint</button>
-                        <button id="dark-blue" class="preset-button customization-button" style="background:#14181d;border:1px solid #2e3943;color:#f5f5f5">Blue tint</button>
-                        <button id="dark-burn" class="preset-button customization-button" style="background:#ffffff;border:1px solid #cccccc;color:#cccccc">Eyeball burn</button>
-                        <button id="dark-unicorn" class="preset-button customization-button" style="background:#ff6090;border:1px solid #00C1FF;color:#FFFF00">Unicorn</button>
-                        <button id="dark-lightmode" class="preset-button customization-button" style="background:#fff;border:1px solid #c7cdd1;color:#2d3b45">Lightmode</button>
-                        <button id="dark-catppuccin" class="preset-button customization-button" style="background:#11111b!important;border:1px solid #4f5463;color:#f5c2e7;">Catppuccin<br />by Angel</button>
-                        <button id="dark-sage" class="preset-button customization-button" style="background:#2f3e46!important;border:1px solid #84a98c;color:#d8f5c7;">Sage<br />by LivDoesDevStuf</button>
-                        <button id="dark-pink" class="preset-button customization-button" style="background:#ffe0ed!important;border:1px solid #ff007b;color:#ff0088;">Pink<br />by Sayde</button>
-                        <button id="dark-coral" class="preset-button customization-button" style="background:#131c26!important;border:1px solid #0e1721;color:#f88379;">Coral<br />by Superchido</button>
+                        <button id="dark-lighter" class="preset-button customization-button" style="background:#272727;border:1px solid #454545;color:#f5f5f5" data-i18n="dark_lighter">Lighter</button>
+                        <button id="dark-light" class="preset-button customization-button" style="background:#202020;border:1px solid #404040;color:#f5f5f5" data-i18n="dark_light">Light</button>
+                        <button id="dark-default" class="preset-button customization-button" style="background:#161616;border:1px solid #3c3c3c;color:#f5f5f5" data-i18n="dark_default">Default</button>
+                        <button id="dark-dark" class="preset-button customization-button" style="background:#101010;border:1px solid #272727;color:#f5f5f5" data-i18n="dark_dark">Dark</button>
+                        <button id="dark-darker" class="preset-button customization-button" style="background:#000000;border:1px solid #000000;color:#c5c5c5" data-i18n="dark_darker">Darker</button>
+                        <button id="dark-mint" class="preset-button customization-button" style="background:#0f0f0f;border:1px solid #1e1e1e;color:#7CF3CB" data-i18n="dark_mint">Mint</button>
+                        <button id="dark-blue" class="preset-button customization-button" style="background:#14181d;border:1px solid #2e3943;color:#f5f5f5" data-i18n="dark_blue">Blue Tint</button>
+                        <button id="dark-burn" class="preset-button customization-button" style="background:#ffffff;border:1px solid #cccccc;color:#9d9a9a" data-i18n="dark_burn">Eyeball Burn</button>
+                        <button id="dark-unicorn" class="preset-button customization-button" style="background:#ff6090;border:1px solid #00C1FF;color:#FFFF00" data-i18n="dark_unicorn">Unicorn</button>
+                        <button id="dark-lightmode" class="preset-button customization-button" style="background:#fff;border:1px solid #c7cdd1;color:#2d3b45" data-i18n="dark_lightmode">Lightmode</button>
+                        <button id="dark-catppuccin" class="preset-button customization-button" style="background:#11111b!important;border:1px solid #4f5463;color:#f5c2e7;" data-i18n="dark_catppuccin">Catppuccin<br />by Angel</button>
+                        <button id="dark-sage" class="preset-button customization-button" style="background:#2f3e46!important;border:1px solid #84a98c;color:#d8f5c7;" data-i18n="dark_sage">Sage<br />by LivDoesDevStuf</button>
+                        <button id="dark-pink" class="preset-button customization-button" style="background:#ffe0ed!important;border:1px solid #ff007b;color:#ff0088;" data-i18n="dark_pink">Pink<br />by Sayde</button>
+                        <button id="dark-coral" class="preset-button customization-button" style="background:#131c26!important;border:1px solid #0e1721;color:#f88379;" data-i18n="dark_coral">Coral<br />by Superchido</button>
                         <button style="opacity: 0">placeholder</button>
                         <button style="opacity: 0">placeholder</button>
                         <!--
