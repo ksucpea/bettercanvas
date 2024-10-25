@@ -6,7 +6,7 @@
     "message": "Updates"
   },
   "dark_mode": {
-    "message": "Dark mode"
+    "message": "Dark Mode"
   },
   "automatic_dark_mode": {
     "message": "Scheduled Dark Mode"
@@ -48,7 +48,7 @@
     "message": "Use dd/mm"
   },
   "better_todo": {
-    "message": "Better todo list"
+    "message": "Better Todo List"
   },
   "max_items": {
     "message": "Max Items: "
