@@ -184,5 +184,8 @@
   },
   "dark_coral": {
     "message": "Coral\n by Superchido"
+  },
+  "dp_sidebar_text": {
+    "message": "Sidebar Text"
   }
 }
