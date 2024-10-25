@@ -1,116 +1,188 @@
 {
-    "updates": {
-        "message": "Actualizaciones"
-    },
-    "dark_mode": {
-        "message": "Modo oscuro"
-    },
-    "automatic_dark_mode": {
-        "message": "Modo oscuro automático"
-    },
-    "auto_start_time": {
-        "message": "Hora de inicio"
-    },
-    "auto_end_time": {
-        "message": "Hora de finalización"
-    },
-    "edit_dark_mode": {
-        "message": "Editar modo oscuro"
-    },
-    "enter_url": {
-        "message": "Su url de Canvas:"
-    },
-    "card_grades": {
-        "message": "Grados en tarjetas"
-    },
-    "gradient_cards": {
-        "message": "Tarjetas de degradado"
-    },
-    "condensed_cards": {
-        "message": "Tarjetas condensadas"
-    },
-    "disable_color": {
-        "message": "Deshabilitar la superposición de colores"
-    },
-    "card_assignments": {
-        "message": "Asignaciones de tarjetas"
-    },
-    "card_customization": {
-        "message": "Personalización de tarjetas"
-    },
-    "custom_font": {
-        "message": "Fuente personalizada"
-    },
-    "useddmm": {
-        "message": "Usar dd/mm"
-    },
-    "better_todo": {
-        "message": "Mejor lista de tareas pendientes"
-    },
-    "max_items": {
-        "message": "Artículos máximos: "
-    },
-    "hover_preview": {
-        "message": "Pasa el cursor para obtener una vista previa de los detalles"
-    },
-    "hide_completed": {
-        "message": "Ocultar completado"
-    },
-    "24hrformat": {
-        "message": "Usar formato de 24 horas"
-    },
-    "dashboard_notes": {
-        "message": "Notas del tablero"
-    },
-    "gpa_calculator": {
-        "message": "Calculadora GPA"
-    },
-    "gpa_settings": {
-        "message": "Configuración GPA"
-    },
-    "grade_hover": {
-        "message": "Mostrar sólo al pasar el mouse"
-    },
-    "due": {
-        "message": "Pendiente"
-    },
-    "card_colors": {
-        "message": "Colores de la tarjeta"
-    },
-    "back": {
-        "message": "Atrás"
-    },
-    "more_options": {
-        "message": "Mas opciones"
-    },
-    "manual_customization": {
-        "message": "Personalización manual"
-    },
-    "background_colors": {
-        "message": "Fondo"
-    },
-    "text_colors": {
-        "message": "Texto"
-    },
-    "full_width": {
-        "message": "Tablero de ancho completo"
-    },
-    "report_issue": {
-        "message": "Reportar un problema"
-    },
-    "themes": {
-        "message": "Temas"
-    },
-    "move_top": {
-        "message": "Moverse hacia arriba"
-    },
-    "show_past_due": {
-        "message": "Mostrar vencida"
-    },
-    "relative_due_dates": {
-        "message": "Fechas pendientes relativas"
-    },
-    "enter_multiple": {
-        "message": "(Ingresa multiple con una coma)"
-    }
+  "better_canvas": {
+    "message": "Better Canvas"
+  },
+  "updates": {
+    "message": "Actualizaciones"
+  },
+  "dark_mode": {
+    "message": "Modo oscuro"
+  },
+  "automatic_dark_mode": {
+    "message": "Modo oscuro automático"
+  },
+  "auto_start_time": {
+    "message": "Hora de inicio"
+  },
+  "auto_end_time": {
+    "message": "Hora de finalización"
+  },
+  "edit_dark_mode": {
+    "message": "Editar modo oscuro"
+  },
+  "enter_url": {
+    "message": "Tu URL de lienzo:"
+  },
+  "card_grades": {
+    "message": "Grados en tarjetas"
+  },
+  "gradient_cards": {
+    "message": "Tarjetas de degradado"
+  },
+  "condensed_cards": {
+    "message": "Tarjetas condensadas"
+  },
+  "disable_color": {
+    "message": "Deshabilitar la superposición de colores"
+  },
+  "card_assignments": {
+    "message": "Asignaciones de tarjetas"
+  },
+  "card_customization": {
+    "message": "Personalización de tarjetas"
+  },
+  "custom_font": {
+    "message": "Fuente personalizada"
+  },
+  "useddmm": {
+    "message": "Usar dd/mm"
+  },
+  "better_todo": {
+    "message": "Mejor lista de tareas pendientes"
+  },
+  "max_items": {
+    "message": "Artículos máximos: "
+  },
+  "hover_preview": {
+    "message": "Pasa el cursor para obtener una vista previa de los detalles"
+  },
+  "hide_completed": {
+    "message": "Ocultar completado"
+  },
+  "24hrformat": {
+    "message": "Usar formato de 24 horas"
+  },
+  "dashboard_notes": {
+    "message": "Notas del tablero"
+  },
+  "gpa_calculator": {
+    "message": "Calculadora GPA"
+  },
+  "gpa_settings": {
+    "message": "Configuración GPA"
+  },
+  "grade_hover": {
+    "message": "Mostrar solo al pasar el mouse"
+  },
+  "due": {
+    "message": "Pendiente"
+  },
+  "card_colors": {
+    "message": "Colores de la tarjeta"
+  },
+  "back": {
+    "message": "Atrás"
+  },
+  "more_options": {
+    "message": "Más opciones"
+  },
+  "manual_customization": {
+    "message": "Personalización manual"
+  },
+  "background_colors": {
+    "message": "Fondo"
+  },
+  "text_colors": {
+    "message": "Texto"
+  },
+  "full_width": {
+    "message": "Tablero de ancho completo"
+  },
+  "report_issue": {
+    "message": "Reportar un problema"
+  },
+  "themes": {
+    "message": "Temas"
+  },
+  "move_top": {
+    "message": "Moverse hacia arriba"
+  },
+  "show_past_due": {
+    "message": "Mostrar vencida"
+  },
+  "relative_due_dates": {
+    "message": "Fechas pendientes relativas"
+  },
+  "enter_multiple": {
+    "message": "(Ingrese varios con una coma)"
+  },
+  "todo_remind": {
+    "message": "Todo Reminders"
+  },
+  "remlogo": {
+    "message": "Remove sidebar logo"
+  },
+  "hide_feedback": {
+    "message": "Hide recent feedback"
+  },
+  "tab_icons": {
+    "message": "Color coded tab icons"
+  },
+  "todo_colors": {
+    "message": "Use card colors"
+  },
+  "gpa_calc_cumulative": {
+    "message": "Show cumulative GPA"
+  },
+  "gpa_calc_weighted": {
+    "message": "Show weighted GPA"
+  },
+  "device_dark": {
+    "message": "Use device dark mode settings"
+  },
+  "presets": {
+    "message": "Presets"
+  },
+  "dark_lighter": {
+    "message": "Lighter"
+  },
+  "dark_light": {
+    "message": "Light"
+  },
+  "dark_default": {
+    "message": "Default"
+  },
+  "dark_dark": {
+    "message": "Dark"
+  },
+  "dark_darker": {
+    "message": "Darker"
+  },
+  "dark_mint": {
+    "message": "Mint"
+  },
+  "dark_blue": {
+    "message": "Blue Tint"
+  },
+  "dark_burn": {
+    "message": "Eyeball Burn"
+  },
+  "dark_unicorn": {
+    "message": "Unicorn"
+  },
+  "dark_lightmode": {
+    "message": "Lightmode"
+  },
+  "dark_catppuccin": {
+    "message": "Catppuccin\n by Angel"
+  },
+  "dark_sage": {
+    "message": "Sabia\n by LivDoesDevStuf"
+  },
+  "dark_pink": {
+    "message": "Pink\n by Sayde"
+  },
+  "dark_coral": {
+    "message": "Coral\n by Superchido"
+  }
 }
