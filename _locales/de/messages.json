@@ -1,6 +1,6 @@
 {
   "better_canvas": {
-    "message": "Better Canvas"
+    "message": "Bessere Leinwand"
   },
   "updates": {
     "message": "Updates"
@@ -9,181 +9,181 @@
     "message": "Dark mode"
   },
   "automatic_dark_mode": {
-    "message": "Scheduled Dark Mode"
+    "message": "Geplanter Dunkler Modus"
   },
   "auto_start_time": {
-    "message": "Start Time"
+    "message": "Startzeit"
   },
   "auto_end_time": {
-    "message": "End Time"
+    "message": "Endzeit"
   },
   "edit_dark_mode": {
-    "message": "Dark Mode"
+    "message": "Dunkler Modus"
   },
   "enter_url": {
-    "message": "Your Canvas url:"
+    "message": "Ihre Leinen-Url:"
   },
   "card_grades": {
-    "message": "Card Grades"
+    "message": "Kartennoten"
   },
   "gradient_cards": {
-    "message": "Gradient Cards"
+    "message": "Verlaufskarten"
   },
   "condensed_cards": {
-    "message": "Condensed Cards"
+    "message": "Schmal Karten"
   },
   "disable_color": {
-    "message": "Disable Color Overlay"
+    "message": "Farb-Overlay deaktivieren"
   },
   "card_assignments": {
-    "message": "Card Assignments"
+    "message": "Kartenzuordnungen"
   },
   "card_customization": {
-    "message": "Cards"
+    "message": "Karten"
   },
   "custom_font": {
-    "message": "Fonts"
+    "message": "Schriftarten"
   },
   "useddmm": {
-    "message": "Use dd/mm"
+    "message": "dd/mm verwenden"
   },
   "better_todo": {
     "message": "Better todo list"
   },
   "max_items": {
-    "message": "Max Items: "
+    "message": "Max. Artikel: "
   },
   "hover_preview": {
-    "message": "Hover To Preview Details"
+    "message": "Hover zur Vorschau der Details"
   },
   "hide_completed": {
-    "message": "Hide Completed"
+    "message": "Abgeschlossene ausblenden"
   },
   "24hrformat": {
-    "message": "Use 24 hr Format"
+    "message": "24 Stunden Format verwenden"
   },
   "dashboard_notes": {
-    "message": "Dashboard Notes"
+    "message": "Dashboard-Notizen"
   },
   "gpa_calculator": {
-    "message": "GPA Calculator"
+    "message": "GPA-Rechner"
   },
   "gpa_settings": {
-    "message": "GPA Settings"
+    "message": "GPA-Einstellungen"
   },
   "grade_hover": {
-    "message": "Show Only On Hover"
+    "message": "Nur beim Hover anzeigen"
   },
   "due": {
-    "message": "Due"
+    "message": "Fällig"
   },
   "card_colors": {
-    "message": "Card Colors"
+    "message": "Kartenfarben"
   },
   "back": {
-    "message": "Back"
+    "message": "Zurück"
   },
   "more_options": {
-    "message": "More Options"
+    "message": "Weitere Optionen"
   },
   "manual_customization": {
-    "message": "Manual Customization"
+    "message": "Manuelle Anpassung"
   },
   "background_colors": {
-    "message": "Background"
+    "message": "Hintergrund"
   },
   "text_colors": {
     "message": "Text"
   },
   "full_width": {
-    "message": "Dashboard Full Width"
+    "message": "Dashboard volle Breite"
   },
   "report_issue": {
-    "message": "Report Issue"
+    "message": "Problem melden"
   },
   "themes": {
     "message": "Themes"
   },
   "move_top": {
-    "message": "Move To Top"
+    "message": "Nach oben"
   },
   "show_past_due": {
-    "message": "Show Past Due"
+    "message": "Zeige letzte Fälligkeit"
   },
   "relative_due_dates": {
-    "message": "Relative Due Dates"
+    "message": "Relative Fälligkeitsdaten"
   },
   "enter_multiple": {
-    "message": "(Enter Multiple With A Comma)"
+    "message": "(Mehrere mit Komma eingeben)"
   },
   "todo_remind": {
     "message": "Todo Reminders"
   },
   "remlogo": {
-    "message": "Remove Sidebar Logo"
+    "message": "Sidebar-Logo entfernen"
   },
   "hide_feedback": {
-    "message": "Hide Recent Feedback"
+    "message": "Letztes Feedback ausblenden"
   },
   "tab_icons": {
-    "message": "Color Coded Tab Icons"
+    "message": "Farbkodierte Tab-Icons"
   },
   "todo_colors": {
-    "message": "Use Card Colors"
+    "message": "Kartenfarben verwenden"
   },
   "gpa_calc_cumulative": {
-    "message": "Show Cumulative GPA"
+    "message": "Kumulative GPA anzeigen"
   },
   "gpa_calc_weighted": {
-    "message": "Show Weighted GPA"
+    "message": "Zeige gewichtete GPA"
   },
   "device_dark": {
-    "message": "Use Device Dark Mode Settings"
+    "message": "Dunkler Modus Einstellungen verwenden"
   },
   "presets": {
-    "message": "Presets"
+    "message": "Vorlagen"
   },
   "dark_lighter": {
-    "message": "Lighter"
+    "message": "Leichter"
   },
   "dark_light": {
-    "message": "Light"
+    "message": "Hell"
   },
   "dark_default": {
-    "message": "Default"
+    "message": "Standard"
   },
   "dark_dark": {
-    "message": "Dark"
+    "message": "Dunkel"
   },
   "dark_darker": {
-    "message": "Darker"
+    "message": "Dunkler"
   },
   "dark_mint": {
-    "message": "Mint"
+    "message": "Minze"
   },
   "dark_blue": {
     "message": "Blue Tint"
   },
   "dark_burn": {
-    "message": "Eyeball Burn"
+    "message": "Augenbrauenbrennen"
   },
   "dark_unicorn": {
-    "message": "Unicorn"
+    "message": "Einhorn"
   },
   "dark_lightmode": {
-    "message": "Lightmode"
+    "message": "Lichtmodus"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n By Angel"
+    "message": "Catppuccin\n von Engel"
   },
   "dark_sage": {
-    "message": "Sabia\n By LivDoesDevStuf"
+    "message": "Sabia\n von LivDoesDevStuf"
   },
   "dark_pink": {
-    "message": "Pink\n By Sayde"
+    "message": "Rosa\n von Sayde"
   },
   "dark_coral": {
-    "message": "Coral\n By Superchido"
+    "message": "Korallen\n von Superchido"
   },
   "dp_sidebar_text": {
     "message": "Sidebar Text"
@@ -195,33 +195,33 @@
     "message": "Solid"
   },
   "radio_sidebar_gradient": {
-    "message": "Gradient"
+    "message": "Farbverlauf"
   },
   "radio_sidebar_image": {
-    "message": "Image"
+    "message": "Bild"
   },
   "dp_background_0": {
-    "message": "Background Main"
+    "message": "Hintergrund Haupt"
   },
   "dp_background_1": {
-    "message": "Background Alt"
+    "message": "Hintergrund-Alt"
   },
   "dp_background_2": {
-    "message": "Background Other"
+    "message": "Anderer Hintergrund"
   },
   "dp_borders": {
-    "message": "Borders"
+    "message": "Ränder"
   },
   "dp_links": {
     "message": "Links"
   },
   "dp_text_0": {
-    "message": "Text Main"
+    "message": "Haupttext"
   },
   "dp_text_1": {
-    "message": "Text Other"
+    "message": "Anderer Text"
   },
   "dp_text_2": {
-    "message": "Text Alt"
+    "message": "Text-Alt"
   }
 }
