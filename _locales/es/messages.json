@@ -187,5 +187,41 @@
   },
   "dp_sidebar_text": {
     "message": "Texto de la barra lateral"
+  },
+  "dp_sidebar": {
+    "message": "Barra lateral"
+  },
+  "radio_sidebar_solid": {
+    "message": "Sólida"
+  },
+  "radio_sidebar_gradient": {
+    "message": "Gradiente"
+  },
+  "radio_sidebar_image": {
+    "message": "Imagen"
+  },
+  "dp_background_0": {
+    "message": "Fondo principal"
+  },
+  "dp_background_1": {
+    "message": "Fondo alternativo"
+  },
+  "dp_background_2": {
+    "message": "Fondo Otra"
+  },
+  "dp_borders": {
+    "message": "Fronteras"
+  },
+  "dp_links": {
+    "message": "Campo de golf"
+  },
+  "dp_text_0": {
+    "message": "Texto principal"
+  },
+  "dp_text_1": {
+    "message": "Texto Otra"
+  },
+  "dp_text_2": {
+    "message": "Texto alternativo"
   }
 }
