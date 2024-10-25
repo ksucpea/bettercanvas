@@ -187,5 +187,41 @@
   },
   "dp_sidebar_text": {
     "message": "Sidebar Text"
+  },
+  "dp_sidebar": {
+    "message": "Sidebar"
+  },
+  "radio_sidebar_solid": {
+    "message": "Solid"
+  },
+  "radio_sidebar_gradient": {
+    "message": "Gradient"
+  },
+  "radio_sidebar_image": {
+    "message": "Image"
+  },
+  "dp_background_0": {
+    "message": "Background Main"
+  },
+  "dp_background_1": {
+    "message": "Background Alt"
+  },
+  "dp_background_2": {
+    "message": "Background Other"
+  },
+  "dp_borders": {
+    "message": "Borders"
+  },
+  "dp_links": {
+    "message": "Links"
+  },
+  "dp_text_0": {
+    "message": "Text Main"
+  },
+  "dp_text_1": {
+    "message": "Text Other"
+  },
+  "dp_text_2": {
+    "message": "Text Alt"
   }
 }
