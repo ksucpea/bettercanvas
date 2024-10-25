@@ -1,6 +1,6 @@
 {
   "better_canvas": {
-    "message": "Better Canvas"
+    "message": "Mejor lienzo"
   },
   "updates": {
     "message": "Actualizaciones"
@@ -117,72 +117,72 @@
     "message": "(Ingrese varios con una coma)"
   },
   "todo_remind": {
-    "message": "Todo Reminders"
+    "message": "Recordatorios de tareas pendientes"
   },
   "remlogo": {
-    "message": "Remove sidebar logo"
+    "message": "Quitar el logo de la barra lateral"
   },
   "hide_feedback": {
-    "message": "Hide recent feedback"
+    "message": "Ocultar comentarios recientes"
   },
   "tab_icons": {
-    "message": "Color coded tab icons"
+    "message": "Iconos de pestañas codificados por colores"
   },
   "todo_colors": {
-    "message": "Use card colors"
+    "message": "Usa colores de tarjeta"
   },
   "gpa_calc_cumulative": {
-    "message": "Show cumulative GPA"
+    "message": "Mostrar GPA acumulado"
   },
   "gpa_calc_weighted": {
-    "message": "Show weighted GPA"
+    "message": "Mostrar GPA ponderado"
   },
   "device_dark": {
-    "message": "Use device dark mode settings"
+    "message": "Usar la configuración del modo oscuro del dispositivo"
   },
   "presets": {
-    "message": "Presets"
+    "message": "Preajustes"
   },
   "dark_lighter": {
-    "message": "Lighter"
+    "message": "Más ligera"
   },
   "dark_light": {
-    "message": "Light"
+    "message": "Ligera"
   },
   "dark_default": {
-    "message": "Default"
+    "message": "Por defecto"
   },
   "dark_dark": {
-    "message": "Dark"
+    "message": "Oscura"
   },
   "dark_darker": {
-    "message": "Darker"
+    "message": "Más oscura"
   },
   "dark_mint": {
-    "message": "Mint"
+    "message": "Menta"
   },
   "dark_blue": {
-    "message": "Blue Tint"
+    "message": "Tinte azul"
   },
   "dark_burn": {
-    "message": "Eyeball Burn"
+    "message": "Quemadura de globo ocular"
   },
   "dark_unicorn": {
-    "message": "Unicorn"
+    "message": "Unicornio"
   },
   "dark_lightmode": {
-    "message": "Lightmode"
+    "message": "Modo de luz"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n by Angel"
+    "message": "catuchino\n por Ángel"
   },
   "dark_sage": {
-    "message": "Sabia\n by LivDoesDevStuf"
+    "message": "Sage\n por LivDoesDevStuf"
   },
   "dark_pink": {
-    "message": "Pink\n by Sayde"
+    "message": "Rosa\n por Sayde"
   },
   "dark_coral": {
-    "message": "Coral\n by Superchido"
+    "message": "Coral\n por Superchido"
   }
 }
