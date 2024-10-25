@@ -184,25 +184,5 @@
   },
   "dark_coral": {
     "message": "Coral\n by Superchido"
-  },
-  "dp_sidebar_text": {
-    "message": "Sidebar Text",
-    "description": "dp_sidebar_text"
-  },
-  "dp_sidebar": {
-    "message": "Sidebar",
-    "description": "dp_sidebar"
-  },
-  "radio_sidebar_solid": {
-    "message": "Solid",
-    "description": "radio_sidebar_solid"
-  },
-  "radio_sidebar_gradient": {
-    "message": "Gradient",
-    "description": "radio_sidebar_gradient"
-  },
-  "radio_sidebar_image": {
-    "message": "Image",
-    "description": "radio_sidebar_image"
   }
 }
