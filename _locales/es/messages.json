@@ -21,7 +21,7 @@
     "message": "Editar modo oscuro"
   },
   "enter_url": {
-    "message": "Tu URL de lienzo:"
+    "message": "Tu url de lienzo:"
   },
   "card_grades": {
     "message": "Grados en tarjetas"
@@ -174,7 +174,7 @@
     "message": "Modo de luz"
   },
   "dark_catppuccin": {
-    "message": "Catuchino\n por Ángel"
+    "message": "Catppuccin\n por Ángel"
   },
   "dark_sage": {
     "message": "Sage\n por LivDoesDevStuf"
@@ -184,5 +184,8 @@
   },
   "dark_coral": {
     "message": "Coral\n por Superchido"
+  },
+  "dp_sidebar_text": {
+    "message": "Sidebar Text"
   }
 }
