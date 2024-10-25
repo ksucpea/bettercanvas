@@ -9,34 +9,34 @@
     "message": "Dark mode"
   },
   "automatic_dark_mode": {
-    "message": "Scheduled Dark Mode"
+    "message": "Scheduled dark mode"
   },
   "auto_start_time": {
-    "message": "Start Time"
+    "message": "Start time"
   },
   "auto_end_time": {
-    "message": "End Time"
+    "message": "End time"
   },
   "edit_dark_mode": {
-    "message": "Dark Mode"
+    "message": "Dark mode"
   },
   "enter_url": {
     "message": "Your Canvas url:"
   },
   "card_grades": {
-    "message": "Card Grades"
+    "message": "Card grades"
   },
   "gradient_cards": {
-    "message": "Gradient Cards"
+    "message": "Gradient cards"
   },
   "condensed_cards": {
-    "message": "Condensed Cards"
+    "message": "Condensed cards"
   },
   "disable_color": {
-    "message": "Disable Color Overlay"
+    "message": "Disable color overlay"
   },
   "card_assignments": {
-    "message": "Card Assignments"
+    "message": "Card assignments"
   },
   "card_customization": {
     "message": "Cards"
@@ -51,43 +51,43 @@
     "message": "Better todo list"
   },
   "max_items": {
-    "message": "Max Items: "
+    "message": "Max items: "
   },
   "hover_preview": {
-    "message": "Hover To Preview Details"
+    "message": "Hover to preview details"
   },
   "hide_completed": {
-    "message": "Hide Completed"
+    "message": "Hide completed"
   },
   "24hrformat": {
-    "message": "Use 24 hr Format"
+    "message": "Use 24 hr format"
   },
   "dashboard_notes": {
-    "message": "Dashboard Notes"
+    "message": "Dashboard notes"
   },
   "gpa_calculator": {
-    "message": "GPA Calculator"
+    "message": "GPA calculator"
   },
   "gpa_settings": {
-    "message": "GPA Settings"
+    "message": "GPA settings"
   },
   "grade_hover": {
-    "message": "Show Only On Hover"
+    "message": "Show only on hover"
   },
   "due": {
     "message": "Due"
   },
   "card_colors": {
-    "message": "Card Colors"
+    "message": "Card colors"
   },
   "back": {
     "message": "Back"
   },
   "more_options": {
-    "message": "More Options"
+    "message": "More options"
   },
   "manual_customization": {
-    "message": "Manual Customization"
+    "message": "Manual customization"
   },
   "background_colors": {
     "message": "Background"
@@ -96,7 +96,7 @@
     "message": "Text"
   },
   "full_width": {
-    "message": "Dashboard Full Width"
+    "message": "Dashboard full width"
   },
   "report_issue": {
     "message": "Report issue"
