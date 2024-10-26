@@ -21,7 +21,7 @@
     "message": "Mode Sombre"
   },
   "enter_url": {
-    "message": "Votre URL de toile :"
+    "message": "L'URL de votre toile :"
   },
   "card_grades": {
     "message": "Notes de la carte"
@@ -51,7 +51,7 @@
     "message": "Meilleure liste de tâches"
   },
   "max_items": {
-    "message": "Éléments maximum: "
+    "message": "Nombre maximum d'articles : "
   },
   "hover_preview": {
     "message": "Survolez pour prévisualiser les détails"
@@ -60,7 +60,7 @@
     "message": "Cacher Terminé"
   },
   "24hrformat": {
-    "message": "Utiliser le format 24h"
+    "message": "Utiliser le format 24 heures"
   },
   "dashboard_notes": {
     "message": "Notes du tableau de bord"
@@ -75,7 +75,7 @@
     "message": "Afficher uniquement au survol"
   },
   "due": {
-    "message": "Echéance"
+    "message": "Exigible"
   },
   "card_colors": {
     "message": "Couleurs de la carte"
@@ -117,7 +117,7 @@
     "message": "(Entrer plusieurs avec une virgule)"
   },
   "todo_remind": {
-    "message": "Todo Reminders"
+    "message": "Rappels de tâches"
   },
   "remlogo": {
     "message": "Supprimer le logo de la barre latérale"
@@ -132,10 +132,10 @@
     "message": "Utiliser les couleurs de la carte"
   },
   "gpa_calc_cumulative": {
-    "message": "Afficher le GPA cumulatif"
+    "message": "Afficher la moyenne cumulative"
   },
   "gpa_calc_weighted": {
-    "message": "Afficher le GPA pondéré"
+    "message": "Afficher la moyenne pondérée"
   },
   "device_dark": {
     "message": "Utiliser les paramètres du mode sombre de l'appareil"
@@ -162,10 +162,10 @@
     "message": "Médicaments"
   },
   "dark_blue": {
-    "message": "Blue Tint"
+    "message": "Teinte bleue"
   },
   "dark_burn": {
-    "message": "Brûlure de la boule d'oeil"
+    "message": "Brûlure du globe oculaire"
   },
   "dark_unicorn": {
     "message": "Licorne"
@@ -174,25 +174,25 @@
     "message": "Mode Lumière"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n par Angel"
+    "message": "Catpuccine\n Par Ange"
   },
   "dark_sage": {
-    "message": "Sabia\n par LivDoesDevStuf"
+    "message": "Sabia\n Par LivDoesDevStuf"
   },
   "dark_pink": {
-    "message": "Rose\n par Sayde"
+    "message": "Rose\n Par Sayde"
   },
   "dark_coral": {
-    "message": "Corail\n par Superchido"
+    "message": "Corail\n Par Superchido"
   },
   "dp_sidebar_text": {
     "message": "Texte de la barre latérale"
   },
   "dp_sidebar": {
-    "message": "Sidebar"
+    "message": "Barre latérale"
   },
   "radio_sidebar_solid": {
-    "message": "Solid"
+    "message": "Solide"
   },
   "radio_sidebar_gradient": {
     "message": "Dégradé"
