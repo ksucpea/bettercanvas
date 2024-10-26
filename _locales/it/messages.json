@@ -1,192 +1,192 @@
 {
   "better_canvas": {
-    "message": "Better Canvas"
+    "message": "Tela Migliore"
   },
   "updates": {
-    "message": "Updates"
+    "message": "Aggiornamenti"
   },
   "dark_mode": {
-    "message": "Dark mode"
+    "message": "Modalità scura"
   },
   "automatic_dark_mode": {
-    "message": "Scheduled Dark Mode"
+    "message": "Modalità Scura Pianificata"
   },
   "auto_start_time": {
-    "message": "Start Time"
+    "message": "Ora Di Inizio"
   },
   "auto_end_time": {
-    "message": "End Time"
+    "message": "Ora Di Fine"
   },
   "edit_dark_mode": {
-    "message": "Dark Mode"
+    "message": "Modalità Scura"
   },
   "enter_url": {
-    "message": "Your Canvas url:"
+    "message": "Il tuo url di tela:"
   },
   "card_grades": {
-    "message": "Card Grades"
+    "message": "Grado Carta"
   },
   "gradient_cards": {
-    "message": "Gradient Cards"
+    "message": "Carte Di Gradiente"
   },
   "condensed_cards": {
-    "message": "Condensed Cards"
+    "message": "Carte Condensate"
   },
   "disable_color": {
-    "message": "Disable Color Overlay"
+    "message": "Disabilita Sovrapposizione Colore"
   },
   "card_assignments": {
-    "message": "Card Assignments"
+    "message": "Assegnazione Carta"
   },
   "card_customization": {
-    "message": "Cards"
+    "message": "Carte"
   },
   "custom_font": {
-    "message": "Fonts"
+    "message": "Caratteri"
   },
   "useddmm": {
-    "message": "Use dd/mm"
+    "message": "Usa dd/mm"
   },
   "better_todo": {
-    "message": "Better todo list"
+    "message": "Migliore elenco di cose da fare"
   },
   "max_items": {
-    "message": "Max Items: "
+    "message": "Oggetti Massimi: "
   },
   "hover_preview": {
-    "message": "Hover To Preview Details"
+    "message": "Passa All'Anteprima Dettagli"
   },
   "hide_completed": {
-    "message": "Hide Completed"
+    "message": "Nascondi Completato"
   },
   "24hrformat": {
-    "message": "Use 24 hr Format"
+    "message": "Usa il formato 24 ore"
   },
   "dashboard_notes": {
-    "message": "Dashboard Notes"
+    "message": "Note Dashboard"
   },
   "gpa_calculator": {
-    "message": "GPA Calculator"
+    "message": "Calcolatore GPA"
   },
   "gpa_settings": {
-    "message": "GPA Settings"
+    "message": "Impostazioni GPA"
   },
   "grade_hover": {
-    "message": "Show Only On Hover"
+    "message": "Mostra Solo Al Hover"
   },
   "due": {
-    "message": "Due"
+    "message": "Scadenza"
   },
   "card_colors": {
-    "message": "Card Colors"
+    "message": "Colori Carta"
   },
   "back": {
-    "message": "Back"
+    "message": "Indietro"
   },
   "more_options": {
-    "message": "More Options"
+    "message": "Altre Opzioni"
   },
   "manual_customization": {
-    "message": "Manual Customization"
+    "message": "Personalizzazione Manuale"
   },
   "background_colors": {
-    "message": "Background"
+    "message": "Sfondo"
   },
   "text_colors": {
-    "message": "Text"
+    "message": "Testo"
   },
   "full_width": {
-    "message": "Dashboard Full Width"
+    "message": "Dashboard Larghezza Completa"
   },
   "report_issue": {
-    "message": "Report Issue"
+    "message": "Segnala Problema"
   },
   "themes": {
-    "message": "Themes"
+    "message": "Temi"
   },
   "move_top": {
-    "message": "Move To Top"
+    "message": "Sposta In Alto"
   },
   "show_past_due": {
-    "message": "Show Past Due"
+    "message": "Mostra Scadenza Passata"
   },
   "relative_due_dates": {
-    "message": "Relative Due Dates"
+    "message": "Date Di Scadenza Relative"
   },
   "enter_multiple": {
-    "message": "(Enter Multiple With A Comma)"
+    "message": "(Inserisci Più Con Una Comma)"
   },
   "todo_remind": {
     "message": "Todo Reminders"
   },
   "remlogo": {
-    "message": "Remove Sidebar Logo"
+    "message": "Rimuovi Logo Barra Laterale"
   },
   "hide_feedback": {
-    "message": "Hide Recent Feedback"
+    "message": "Nascondi Feedback Recenti"
   },
   "tab_icons": {
-    "message": "Color Coded Tab Icons"
+    "message": "Icone Schede Codificate Colore"
   },
   "todo_colors": {
-    "message": "Use Card Colors"
+    "message": "Usa I Colori Della Carta"
   },
   "gpa_calc_cumulative": {
-    "message": "Show Cumulative GPA"
+    "message": "Mostra GPA Cumulativo"
   },
   "gpa_calc_weighted": {
-    "message": "Show Weighted GPA"
+    "message": "Mostra Gpa Pesata"
   },
   "device_dark": {
-    "message": "Use Device Dark Mode Settings"
+    "message": "Usa Impostazioni Modalità Oscura Del Dispositivo"
   },
   "presets": {
-    "message": "Presets"
+    "message": "Predefiniti"
   },
   "dark_lighter": {
-    "message": "Lighter"
+    "message": "Accendino"
   },
   "dark_light": {
-    "message": "Light"
+    "message": "Chiaro"
   },
   "dark_default": {
-    "message": "Default"
+    "message": "Predefinito"
   },
   "dark_dark": {
-    "message": "Dark"
+    "message": "Scuro"
   },
   "dark_darker": {
-    "message": "Darker"
+    "message": "Più Scuro"
   },
   "dark_mint": {
-    "message": "Mint"
+    "message": "Menta"
   },
   "dark_blue": {
     "message": "Blue Tint"
   },
   "dark_burn": {
-    "message": "Eyeball Burn"
+    "message": "Brucia Del Sopracciglio"
   },
   "dark_unicorn": {
-    "message": "Unicorn"
+    "message": "Unicorno"
   },
   "dark_lightmode": {
-    "message": "Lightmode"
+    "message": "Modalità Luce"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n By Angel"
+    "message": "Catppuccin\n Di Angelo"
   },
   "dark_sage": {
-    "message": "Sabia\n By LivDoesDevStuf"
+    "message": "Sabia\n Di LivDoesDevStuf"
   },
   "dark_pink": {
     "message": "Pink\n By Sayde"
   },
   "dark_coral": {
-    "message": "Coral\n By Superchido"
+    "message": "Corallo\n Di Superchido"
   },
   "dp_sidebar_text": {
-    "message": "Sidebar Text"
+    "message": "Testo Barra Laterale"
   },
   "dp_sidebar": {
     "message": "Sidebar"
@@ -195,33 +195,33 @@
     "message": "Solid"
   },
   "radio_sidebar_gradient": {
-    "message": "Gradient"
+    "message": "Gradiente"
   },
   "radio_sidebar_image": {
-    "message": "Image"
+    "message": "Immagine"
   },
   "dp_background_0": {
-    "message": "Background Main"
+    "message": "Contesto Principale"
   },
   "dp_background_1": {
-    "message": "Background Alt"
+    "message": "Alt Sfondo"
   },
   "dp_background_2": {
-    "message": "Background Other"
+    "message": "Altro Sfondo"
   },
   "dp_borders": {
-    "message": "Borders"
+    "message": "Bordi"
   },
   "dp_links": {
-    "message": "Links"
+    "message": "Collegamenti"
   },
   "dp_text_0": {
-    "message": "Text Main"
+    "message": "Testo Principale"
   },
   "dp_text_1": {
-    "message": "Text Other"
+    "message": "Altro Testo"
   },
   "dp_text_2": {
-    "message": "Text Alt"
+    "message": "Alt Testo"
   }
 }

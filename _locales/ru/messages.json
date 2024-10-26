@@ -1,192 +1,192 @@
 {
   "better_canvas": {
-    "message": "Better Canvas"
+    "message": "Лучший холст"
   },
   "updates": {
-    "message": "Updates"
+    "message": "Обновления"
   },
   "dark_mode": {
-    "message": "Dark mode"
+    "message": "Темный режим"
   },
   "automatic_dark_mode": {
-    "message": "Scheduled Dark Mode"
+    "message": "Запланированный темный режим"
   },
   "auto_start_time": {
-    "message": "Start Time"
+    "message": "Время начала"
   },
   "auto_end_time": {
-    "message": "End Time"
+    "message": "Конец времени"
   },
   "edit_dark_mode": {
-    "message": "Dark Mode"
+    "message": "Темный режим"
   },
   "enter_url": {
-    "message": "Your Canvas url:"
+    "message": "Ваша ссылка на холст:"
   },
   "card_grades": {
-    "message": "Card Grades"
+    "message": "Оценки по карте"
   },
   "gradient_cards": {
-    "message": "Gradient Cards"
+    "message": "Карточки градиента"
   },
   "condensed_cards": {
-    "message": "Condensed Cards"
+    "message": "Сжатые карты"
   },
   "disable_color": {
-    "message": "Disable Color Overlay"
+    "message": "Отключить оверлей цвета"
   },
   "card_assignments": {
-    "message": "Card Assignments"
+    "message": "Назначения карт"
   },
   "card_customization": {
-    "message": "Cards"
+    "message": "Карты"
   },
   "custom_font": {
-    "message": "Fonts"
+    "message": "Шрифты"
   },
   "useddmm": {
-    "message": "Use dd/mm"
+    "message": "Использовать дд/мм"
   },
   "better_todo": {
-    "message": "Better todo list"
+    "message": "Лучший список задач"
   },
   "max_items": {
-    "message": "Max Items: "
+    "message": "Макс. записей: "
   },
   "hover_preview": {
-    "message": "Hover To Preview Details"
+    "message": "Наведите для предварительного просмотра подробности"
   },
   "hide_completed": {
-    "message": "Hide Completed"
+    "message": "Скрыть завершенные"
   },
   "24hrformat": {
-    "message": "Use 24 hr Format"
+    "message": "24-часовой формат"
   },
   "dashboard_notes": {
-    "message": "Dashboard Notes"
+    "message": "Заметки"
   },
   "gpa_calculator": {
-    "message": "GPA Calculator"
+    "message": "Калькулятор GPA"
   },
   "gpa_settings": {
-    "message": "GPA Settings"
+    "message": "Настройки GPA"
   },
   "grade_hover": {
-    "message": "Show Only On Hover"
+    "message": "Показывать только при наведении"
   },
   "due": {
-    "message": "Due"
+    "message": "Срок сдачи"
   },
   "card_colors": {
-    "message": "Card Colors"
+    "message": "Цвета карты"
   },
   "back": {
-    "message": "Back"
+    "message": "Назад"
   },
   "more_options": {
-    "message": "More Options"
+    "message": "Больше опций"
   },
   "manual_customization": {
-    "message": "Manual Customization"
+    "message": "Настройка вручную"
   },
   "background_colors": {
-    "message": "Background"
+    "message": "Справочная информация"
   },
   "text_colors": {
-    "message": "Text"
+    "message": "Текст"
   },
   "full_width": {
-    "message": "Dashboard Full Width"
+    "message": "Полная ширина панели"
   },
   "report_issue": {
-    "message": "Report Issue"
+    "message": "Сообщить о проблеме"
   },
   "themes": {
-    "message": "Themes"
+    "message": "Темы"
   },
   "move_top": {
-    "message": "Move To Top"
+    "message": "Переместить вверх"
   },
   "show_past_due": {
-    "message": "Show Past Due"
+    "message": "Показать по истечении"
   },
   "relative_due_dates": {
-    "message": "Relative Due Dates"
+    "message": "Относительные сроки сдачи"
   },
   "enter_multiple": {
-    "message": "(Enter Multiple With A Comma)"
+    "message": "(Введите несколько с запятой)"
   },
   "todo_remind": {
     "message": "Todo Reminders"
   },
   "remlogo": {
-    "message": "Remove Sidebar Logo"
+    "message": "Удалить логотип боковой панели"
   },
   "hide_feedback": {
-    "message": "Hide Recent Feedback"
+    "message": "Скрыть недавний отзыв"
   },
   "tab_icons": {
-    "message": "Color Coded Tab Icons"
+    "message": "Цветовая кодировка значков вкладок"
   },
   "todo_colors": {
-    "message": "Use Card Colors"
+    "message": "Использовать цвета карты"
   },
   "gpa_calc_cumulative": {
-    "message": "Show Cumulative GPA"
+    "message": "Показать накопительный GPA"
   },
   "gpa_calc_weighted": {
-    "message": "Show Weighted GPA"
+    "message": "Показать взвешенный GPA"
   },
   "device_dark": {
-    "message": "Use Device Dark Mode Settings"
+    "message": "Использовать тёмные настройки устройства"
   },
   "presets": {
-    "message": "Presets"
+    "message": "Пресеты"
   },
   "dark_lighter": {
-    "message": "Lighter"
+    "message": "Светильник"
   },
   "dark_light": {
-    "message": "Light"
+    "message": "Светлая"
   },
   "dark_default": {
-    "message": "Default"
+    "message": "По умолчанию"
   },
   "dark_dark": {
-    "message": "Dark"
+    "message": "Тёмная"
   },
   "dark_darker": {
-    "message": "Darker"
+    "message": "Тёмный"
   },
   "dark_mint": {
-    "message": "Mint"
+    "message": "Мята"
   },
   "dark_blue": {
     "message": "Blue Tint"
   },
   "dark_burn": {
-    "message": "Eyeball Burn"
+    "message": "Ожог дрожжей"
   },
   "dark_unicorn": {
-    "message": "Unicorn"
+    "message": "Единорог"
   },
   "dark_lightmode": {
-    "message": "Lightmode"
+    "message": "Световой режим"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n By Angel"
+    "message": "Catppuccin\n Ангелом"
   },
   "dark_sage": {
     "message": "Sabia\n By LivDoesDevStuf"
   },
   "dark_pink": {
-    "message": "Pink\n By Sayde"
+    "message": "Розовый\n от Sayde"
   },
   "dark_coral": {
     "message": "Coral\n By Superchido"
   },
   "dp_sidebar_text": {
-    "message": "Sidebar Text"
+    "message": "Текст боковой панели"
   },
   "dp_sidebar": {
     "message": "Sidebar"
@@ -195,33 +195,33 @@
     "message": "Solid"
   },
   "radio_sidebar_gradient": {
-    "message": "Gradient"
+    "message": "Градиент"
   },
   "radio_sidebar_image": {
-    "message": "Image"
+    "message": "Изображение"
   },
   "dp_background_0": {
-    "message": "Background Main"
+    "message": "Главный фон"
   },
   "dp_background_1": {
-    "message": "Background Alt"
+    "message": "Фоновый Alt"
   },
   "dp_background_2": {
-    "message": "Background Other"
+    "message": "Дополнительная информация"
   },
   "dp_borders": {
-    "message": "Borders"
+    "message": "Границы"
   },
   "dp_links": {
-    "message": "Links"
+    "message": "Ссылки"
   },
   "dp_text_0": {
-    "message": "Text Main"
+    "message": "Основной текст"
   },
   "dp_text_1": {
-    "message": "Text Other"
+    "message": "Другой текст"
   },
   "dp_text_2": {
-    "message": "Text Alt"
+    "message": "Текст Alt"
   }
 }

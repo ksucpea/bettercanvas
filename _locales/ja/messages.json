@@ -1,192 +1,192 @@
 {
   "better_canvas": {
-    "message": "Better Canvas"
+    "message": "より良いキャンバス"
   },
   "updates": {
-    "message": "Updates"
+    "message": "更新"
   },
   "dark_mode": {
-    "message": "Dark mode"
+    "message": "ダークモード"
   },
   "automatic_dark_mode": {
-    "message": "Scheduled Dark Mode"
+    "message": "スケジュールされたダークモード"
   },
   "auto_start_time": {
-    "message": "Start Time"
+    "message": "開始時刻"
   },
   "auto_end_time": {
-    "message": "End Time"
+    "message": "終了時刻"
   },
   "edit_dark_mode": {
-    "message": "Dark Mode"
+    "message": "ダークモード"
   },
   "enter_url": {
-    "message": "Your Canvas url:"
+    "message": "キャンバスのURL:"
   },
   "card_grades": {
-    "message": "Card Grades"
+    "message": "カードの成績"
   },
   "gradient_cards": {
-    "message": "Gradient Cards"
+    "message": "グラデーションカード"
   },
   "condensed_cards": {
-    "message": "Condensed Cards"
+    "message": "Condensed Card"
   },
   "disable_color": {
-    "message": "Disable Color Overlay"
+    "message": "色オーバーレイを無効にする"
   },
   "card_assignments": {
-    "message": "Card Assignments"
+    "message": "カードの割り当て"
   },
   "card_customization": {
-    "message": "Cards"
+    "message": "カード"
   },
   "custom_font": {
-    "message": "Fonts"
+    "message": "フォント"
   },
   "useddmm": {
-    "message": "Use dd/mm"
+    "message": "dd/mm を使用"
   },
   "better_todo": {
-    "message": "Better todo list"
+    "message": "より良いToDoリスト"
   },
   "max_items": {
-    "message": "Max Items: "
+    "message": "最大アイテム数: "
   },
   "hover_preview": {
-    "message": "Hover To Preview Details"
+    "message": "ホバーで詳細を表示"
   },
   "hide_completed": {
-    "message": "Hide Completed"
+    "message": "完了したものを隠す"
   },
   "24hrformat": {
-    "message": "Use 24 hr Format"
+    "message": "24 時間のフォーマットを使用"
   },
   "dashboard_notes": {
-    "message": "Dashboard Notes"
+    "message": "ダッシュボードのメモ"
   },
   "gpa_calculator": {
-    "message": "GPA Calculator"
+    "message": "GPA計算"
   },
   "gpa_settings": {
-    "message": "GPA Settings"
+    "message": "GPA設定"
   },
   "grade_hover": {
-    "message": "Show Only On Hover"
+    "message": "ホバーでのみ表示"
   },
   "due": {
-    "message": "Due"
+    "message": "期限"
   },
   "card_colors": {
-    "message": "Card Colors"
+    "message": "カードの色"
   },
   "back": {
-    "message": "Back"
+    "message": "戻る"
   },
   "more_options": {
-    "message": "More Options"
+    "message": "その他のオプション"
   },
   "manual_customization": {
-    "message": "Manual Customization"
+    "message": "手動カスタマイズ"
   },
   "background_colors": {
-    "message": "Background"
+    "message": "背景"
   },
   "text_colors": {
-    "message": "Text"
+    "message": "テキスト"
   },
   "full_width": {
-    "message": "Dashboard Full Width"
+    "message": "ダッシュボードの全幅"
   },
   "report_issue": {
-    "message": "Report Issue"
+    "message": "問題を報告"
   },
   "themes": {
-    "message": "Themes"
+    "message": "テーマ"
   },
   "move_top": {
-    "message": "Move To Top"
+    "message": "上に移動"
   },
   "show_past_due": {
-    "message": "Show Past Due"
+    "message": "過去の期限を表示"
   },
   "relative_due_dates": {
-    "message": "Relative Due Dates"
+    "message": "相対的な期限日"
   },
   "enter_multiple": {
-    "message": "(Enter Multiple With A Comma)"
+    "message": "(コンマで複数入力)"
   },
   "todo_remind": {
     "message": "Todo Reminders"
   },
   "remlogo": {
-    "message": "Remove Sidebar Logo"
+    "message": "サイドバーのロゴを削除"
   },
   "hide_feedback": {
-    "message": "Hide Recent Feedback"
+    "message": "最近のフィードバックを非表示"
   },
   "tab_icons": {
-    "message": "Color Coded Tab Icons"
+    "message": "カラーコードタブアイコン"
   },
   "todo_colors": {
-    "message": "Use Card Colors"
+    "message": "カードの色を使用"
   },
   "gpa_calc_cumulative": {
-    "message": "Show Cumulative GPA"
+    "message": "累積GPAを表示"
   },
   "gpa_calc_weighted": {
-    "message": "Show Weighted GPA"
+    "message": "重み付きGPAを表示"
   },
   "device_dark": {
-    "message": "Use Device Dark Mode Settings"
+    "message": "デバイスのダークモード設定を使用"
   },
   "presets": {
-    "message": "Presets"
+    "message": "プリセット"
   },
   "dark_lighter": {
-    "message": "Lighter"
+    "message": "ライト"
   },
   "dark_light": {
-    "message": "Light"
+    "message": "ライト"
   },
   "dark_default": {
-    "message": "Default"
+    "message": "デフォルト"
   },
   "dark_dark": {
-    "message": "Dark"
+    "message": "ダーク"
   },
   "dark_darker": {
     "message": "Darker"
   },
   "dark_mint": {
-    "message": "Mint"
+    "message": "造幣局"
   },
   "dark_blue": {
     "message": "Blue Tint"
   },
   "dark_burn": {
-    "message": "Eyeball Burn"
+    "message": "眼球が燃えた"
   },
   "dark_unicorn": {
-    "message": "Unicorn"
+    "message": "ユニコーン"
   },
   "dark_lightmode": {
-    "message": "Lightmode"
+    "message": "ライトモード"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n By Angel"
+    "message": "Catpuccin\n By Angel"
   },
   "dark_sage": {
     "message": "Sabia\n By LivDoesDevStuf"
   },
   "dark_pink": {
-    "message": "Pink\n By Sayde"
+    "message": "Saydeによるピンク\n"
   },
   "dark_coral": {
-    "message": "Coral\n By Superchido"
+    "message": "珊瑚\n by superchido"
   },
   "dp_sidebar_text": {
-    "message": "Sidebar Text"
+    "message": "サイドバーのテキスト"
   },
   "dp_sidebar": {
     "message": "Sidebar"
@@ -198,30 +198,30 @@
     "message": "Gradient"
   },
   "radio_sidebar_image": {
-    "message": "Image"
+    "message": "画像"
   },
   "dp_background_0": {
-    "message": "Background Main"
+    "message": "背景のメイン"
   },
   "dp_background_1": {
-    "message": "Background Alt"
+    "message": "背景 Alt"
   },
   "dp_background_2": {
-    "message": "Background Other"
+    "message": "背景その他"
   },
   "dp_borders": {
-    "message": "Borders"
+    "message": "外枠"
   },
   "dp_links": {
-    "message": "Links"
+    "message": "リンク"
   },
   "dp_text_0": {
-    "message": "Text Main"
+    "message": "テキストメイン"
   },
   "dp_text_1": {
-    "message": "Text Other"
+    "message": "その他"
   },
   "dp_text_2": {
-    "message": "Text Alt"
+    "message": "テキストAlt"
   }
 }

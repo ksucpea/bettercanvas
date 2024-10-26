@@ -1,192 +1,192 @@
 {
   "better_canvas": {
-    "message": "Better Canvas"
+    "message": "Bättre Canvas"
   },
   "updates": {
-    "message": "Updates"
+    "message": "Uppdateringar"
   },
   "dark_mode": {
-    "message": "Dark mode"
+    "message": "Mörkt läge"
   },
   "automatic_dark_mode": {
-    "message": "Scheduled Dark Mode"
+    "message": "Schemalagt mörkt läge"
   },
   "auto_start_time": {
-    "message": "Start Time"
+    "message": "Starttid"
   },
   "auto_end_time": {
-    "message": "End Time"
+    "message": "Sluttid"
   },
   "edit_dark_mode": {
-    "message": "Dark Mode"
+    "message": "Mörkt läge"
   },
   "enter_url": {
-    "message": "Your Canvas url:"
+    "message": "Din Canvas url:"
   },
   "card_grades": {
-    "message": "Card Grades"
+    "message": "Kortbetyg"
   },
   "gradient_cards": {
-    "message": "Gradient Cards"
+    "message": "Gradient kort"
   },
   "condensed_cards": {
-    "message": "Condensed Cards"
+    "message": "Kondenserade kort"
   },
   "disable_color": {
-    "message": "Disable Color Overlay"
+    "message": "Inaktivera färgöverlagring"
   },
   "card_assignments": {
-    "message": "Card Assignments"
+    "message": "Kort tilldelning"
   },
   "card_customization": {
-    "message": "Cards"
+    "message": "Kort"
   },
   "custom_font": {
-    "message": "Fonts"
+    "message": "Typsnitt"
   },
   "useddmm": {
-    "message": "Use dd/mm"
+    "message": "Använd dd/mm"
   },
   "better_todo": {
-    "message": "Better todo list"
+    "message": "Bättre att göra-lista"
   },
   "max_items": {
-    "message": "Max Items: "
+    "message": "Max antal objekt: "
   },
   "hover_preview": {
-    "message": "Hover To Preview Details"
+    "message": "Håll muspekaren till förhandsgranskningsdetaljer"
   },
   "hide_completed": {
-    "message": "Hide Completed"
+    "message": "Dölj slutförda"
   },
   "24hrformat": {
-    "message": "Use 24 hr Format"
+    "message": "Använd 24 timmars format"
   },
   "dashboard_notes": {
-    "message": "Dashboard Notes"
+    "message": "Anteckningar för instrumentpanelen"
   },
   "gpa_calculator": {
-    "message": "GPA Calculator"
+    "message": "GPA Kalkylator"
   },
   "gpa_settings": {
-    "message": "GPA Settings"
+    "message": "GPA inställningar"
   },
   "grade_hover": {
-    "message": "Show Only On Hover"
+    "message": "Visa endast vid Hover"
   },
   "due": {
-    "message": "Due"
+    "message": "Förfaller"
   },
   "card_colors": {
-    "message": "Card Colors"
+    "message": "Kortets färger"
   },
   "back": {
-    "message": "Back"
+    "message": "Tillbaka"
   },
   "more_options": {
-    "message": "More Options"
+    "message": "Fler alternativ"
   },
   "manual_customization": {
-    "message": "Manual Customization"
+    "message": "Manuell anpassning"
   },
   "background_colors": {
-    "message": "Background"
+    "message": "Bakgrund"
   },
   "text_colors": {
     "message": "Text"
   },
   "full_width": {
-    "message": "Dashboard Full Width"
+    "message": "Översiktspanelens hela bredd"
   },
   "report_issue": {
-    "message": "Report Issue"
+    "message": "Rapportera problem"
   },
   "themes": {
-    "message": "Themes"
+    "message": "Teman"
   },
   "move_top": {
-    "message": "Move To Top"
+    "message": "Flytta längst upp"
   },
   "show_past_due": {
-    "message": "Show Past Due"
+    "message": "Visa tidigare förfallna"
   },
   "relative_due_dates": {
-    "message": "Relative Due Dates"
+    "message": "Relativa förfallodatum"
   },
   "enter_multiple": {
-    "message": "(Enter Multiple With A Comma)"
+    "message": "(Ange flera med A komma)"
   },
   "todo_remind": {
     "message": "Todo Reminders"
   },
   "remlogo": {
-    "message": "Remove Sidebar Logo"
+    "message": "Ta bort sidofältets logotyp"
   },
   "hide_feedback": {
-    "message": "Hide Recent Feedback"
+    "message": "Dölj senaste feedback"
   },
   "tab_icons": {
-    "message": "Color Coded Tab Icons"
+    "message": "Färg kodade flik ikoner"
   },
   "todo_colors": {
-    "message": "Use Card Colors"
+    "message": "Använd kortfärger"
   },
   "gpa_calc_cumulative": {
-    "message": "Show Cumulative GPA"
+    "message": "Visa ackumulerad GPA"
   },
   "gpa_calc_weighted": {
-    "message": "Show Weighted GPA"
+    "message": "Visa viktad GPA"
   },
   "device_dark": {
-    "message": "Use Device Dark Mode Settings"
+    "message": "Använd enhetens mörka läge inställningar"
   },
   "presets": {
-    "message": "Presets"
+    "message": "Förval"
   },
   "dark_lighter": {
-    "message": "Lighter"
+    "message": "Ljusare"
   },
   "dark_light": {
-    "message": "Light"
+    "message": "Ljus"
   },
   "dark_default": {
-    "message": "Default"
+    "message": "Standard"
   },
   "dark_dark": {
-    "message": "Dark"
+    "message": "Mörk"
   },
   "dark_darker": {
-    "message": "Darker"
+    "message": "Mörkare"
   },
   "dark_mint": {
-    "message": "Mint"
+    "message": "Mynta"
   },
   "dark_blue": {
     "message": "Blue Tint"
   },
   "dark_burn": {
-    "message": "Eyeball Burn"
+    "message": "Ögonböle Bränn"
   },
   "dark_unicorn": {
-    "message": "Unicorn"
+    "message": "Enhörning"
   },
   "dark_lightmode": {
-    "message": "Lightmode"
+    "message": "Ljusläge"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n By Angel"
+    "message": "Catppuccin\n Av Angel"
   },
   "dark_sage": {
-    "message": "Sabia\n By LivDoesDevStuf"
+    "message": "Sabia\n Av LivesDevStuf"
   },
   "dark_pink": {
-    "message": "Pink\n By Sayde"
+    "message": "Rosa\n Av Sayde"
   },
   "dark_coral": {
-    "message": "Coral\n By Superchido"
+    "message": "Korall\n av Superchido"
   },
   "dp_sidebar_text": {
-    "message": "Sidebar Text"
+    "message": "Sidofältets text"
   },
   "dp_sidebar": {
     "message": "Sidebar"
@@ -198,28 +198,28 @@
     "message": "Gradient"
   },
   "radio_sidebar_image": {
-    "message": "Image"
+    "message": "Bild"
   },
   "dp_background_0": {
-    "message": "Background Main"
+    "message": "Bakgrund Huvud"
   },
   "dp_background_1": {
-    "message": "Background Alt"
+    "message": "Bakgrund Alt"
   },
   "dp_background_2": {
-    "message": "Background Other"
+    "message": "Bakgrund Annan"
   },
   "dp_borders": {
-    "message": "Borders"
+    "message": "Gränser"
   },
   "dp_links": {
-    "message": "Links"
+    "message": "Länkar"
   },
   "dp_text_0": {
-    "message": "Text Main"
+    "message": "Text Huvud"
   },
   "dp_text_1": {
-    "message": "Text Other"
+    "message": "Text annat"
   },
   "dp_text_2": {
     "message": "Text Alt"

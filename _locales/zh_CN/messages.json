@@ -3,163 +3,163 @@
     "message": "更好的画布"
   },
   "updates": {
-    "message": "Updates"
+    "message": "更新"
   },
   "dark_mode": {
-    "message": "Dark mode"
+    "message": "暗色模式"
   },
   "automatic_dark_mode": {
-    "message": "Scheduled Dark Mode"
+    "message": "预定的深色模式"
   },
   "auto_start_time": {
-    "message": "Start Time"
+    "message": "开始时间"
   },
   "auto_end_time": {
-    "message": "End Time"
+    "message": "结束时间"
   },
   "edit_dark_mode": {
-    "message": "Dark Mode"
+    "message": "深色模式"
   },
   "enter_url": {
-    "message": "Your Canvas url:"
+    "message": "您的画布网址:"
   },
   "card_grades": {
-    "message": "Card Grades"
+    "message": "卡牌等级"
   },
   "gradient_cards": {
-    "message": "Gradient Cards"
+    "message": "渐变卡"
   },
   "condensed_cards": {
-    "message": "Condensed Cards"
+    "message": "浓缩卡"
   },
   "disable_color": {
-    "message": "Disable Color Overlay"
+    "message": "禁用颜色叠加"
   },
   "card_assignments": {
-    "message": "Card Assignments"
+    "message": "卡分配"
   },
   "card_customization": {
-    "message": "Cards"
+    "message": "牌"
   },
   "custom_font": {
-    "message": "Fonts"
+    "message": "字体"
   },
   "useddmm": {
-    "message": "Use dd/mm"
+    "message": "使用日/毫米"
   },
   "better_todo": {
-    "message": "Better todo list"
+    "message": "更好的待办事项列表"
   },
   "max_items": {
-    "message": "Max Items: "
+    "message": "最大物品数: "
   },
   "hover_preview": {
-    "message": "Hover To Preview Details"
+    "message": "将鼠标悬停以预览详细信息"
   },
   "hide_completed": {
-    "message": "Hide Completed"
+    "message": "隐藏已完成"
   },
   "24hrformat": {
-    "message": "Use 24 hr Format"
+    "message": "使用 24 小时格式"
   },
   "dashboard_notes": {
-    "message": "Dashboard Notes"
+    "message": "仪表板注释"
   },
   "gpa_calculator": {
-    "message": "GPA Calculator"
+    "message": "平均绩点计算器"
   },
   "gpa_settings": {
-    "message": "GPA Settings"
+    "message": "平均绩点设置"
   },
   "grade_hover": {
-    "message": "Show Only On Hover"
+    "message": "仅在悬停时显示"
   },
   "due": {
-    "message": "Due"
+    "message": "到期的"
   },
   "card_colors": {
-    "message": "Card Colors"
+    "message": "卡片颜色"
   },
   "back": {
-    "message": "Back"
+    "message": "后退"
   },
   "more_options": {
-    "message": "More Options"
+    "message": "更多选择"
   },
   "manual_customization": {
-    "message": "Manual Customization"
+    "message": "手动定制"
   },
   "background_colors": {
-    "message": "Background"
+    "message": "背景"
   },
   "text_colors": {
-    "message": "Text"
+    "message": "文本"
   },
   "full_width": {
-    "message": "Dashboard Full Width"
+    "message": "仪表板全宽"
   },
   "report_issue": {
-    "message": "Report Issue"
+    "message": "报告问题"
   },
   "themes": {
-    "message": "Themes"
+    "message": "主题"
   },
   "move_top": {
-    "message": "Move To Top"
+    "message": "移至顶部"
   },
   "show_past_due": {
-    "message": "Show Past Due"
+    "message": "显示逾期"
   },
   "relative_due_dates": {
-    "message": "Relative Due Dates"
+    "message": "相对到期日"
   },
   "enter_multiple": {
-    "message": "(Enter Multiple With A Comma)"
+    "message": "(用逗号输入多个)"
   },
   "todo_remind": {
-    "message": "Todo Reminders"
+    "message": "待办事项提醒"
   },
   "remlogo": {
-    "message": "Remove Sidebar Logo"
+    "message": "删除侧边栏徽标"
   },
   "hide_feedback": {
-    "message": "Hide Recent Feedback"
+    "message": "隐藏最近的反馈"
   },
   "tab_icons": {
-    "message": "Color Coded Tab Icons"
+    "message": "颜色编码选项卡图标"
   },
   "todo_colors": {
-    "message": "Use Card Colors"
+    "message": "使用卡片颜色"
   },
   "gpa_calc_cumulative": {
-    "message": "Show Cumulative GPA"
+    "message": "显示累积GPA"
   },
   "gpa_calc_weighted": {
-    "message": "Show Weighted GPA"
+    "message": "显示权重GPA"
   },
   "device_dark": {
-    "message": "Use Device Dark Mode Settings"
+    "message": "使用设备暗色模式设置"
   },
   "presets": {
-    "message": "Presets"
+    "message": "预设值"
   },
   "dark_lighter": {
-    "message": "Lighter"
+    "message": "灯光"
   },
   "dark_light": {
-    "message": "Light"
+    "message": "亮色的"
   },
   "dark_default": {
-    "message": "Default"
+    "message": "默认设置"
   },
   "dark_dark": {
-    "message": "Dark"
+    "message": "深色"
   },
   "dark_darker": {
-    "message": "Darker"
+    "message": "较暗的"
   },
   "dark_mint": {
-    "message": "Mint"
+    "message": "分钟数"
   },
   "dark_blue": {
     "message": "Blue Tint"
@@ -168,25 +168,25 @@
     "message": "Eyeball Burn"
   },
   "dark_unicorn": {
-    "message": "Unicorn"
+    "message": "独角兽人"
   },
   "dark_lightmode": {
-    "message": "Lightmode"
+    "message": "浅色模式"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n By Angel"
+    "message": "天使的\n catppuccin"
   },
   "dark_sage": {
-    "message": "Sabia\n By LivDoesDevStuf"
+    "message": "Sabia\n 由 LivesDoevStuf"
   },
   "dark_pink": {
-    "message": "Pink\n By Sayde"
+    "message": "粉红色的\n 由 Sayde"
   },
   "dark_coral": {
-    "message": "Coral\n By Superchido"
+    "message": "Coral\n 由 Superchido"
   },
   "dp_sidebar_text": {
-    "message": "Sidebar Text"
+    "message": "侧边栏文本"
   },
   "dp_sidebar": {
     "message": "Sidebar"
@@ -195,33 +195,33 @@
     "message": "Solid"
   },
   "radio_sidebar_gradient": {
-    "message": "Gradient"
+    "message": "渐变"
   },
   "radio_sidebar_image": {
-    "message": "Image"
+    "message": "图片"
   },
   "dp_background_0": {
-    "message": "Background Main"
+    "message": "主要背景"
   },
   "dp_background_1": {
-    "message": "Background Alt"
+    "message": "背景Alt"
   },
   "dp_background_2": {
-    "message": "Background Other"
+    "message": "其它背景"
   },
   "dp_borders": {
-    "message": "Borders"
+    "message": "边框"
   },
   "dp_links": {
-    "message": "Links"
+    "message": "链接"
   },
   "dp_text_0": {
-    "message": "Text Main"
+    "message": "主要文本"
   },
   "dp_text_1": {
-    "message": "Text Other"
+    "message": "其它文本"
   },
   "dp_text_2": {
-    "message": "Text Alt"
+    "message": "文本Alt"
   }
 }
