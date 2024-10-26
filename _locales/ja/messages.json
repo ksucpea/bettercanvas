@@ -6,7 +6,7 @@
     "message": "更新"
   },
   "dark_mode": {
-    "message": "Dark mode"
+    "message": "ダークモード"
   },
   "automatic_dark_mode": {
     "message": "スケジュールされたダークモード"
@@ -48,7 +48,7 @@
     "message": "dd/mm を使用"
   },
   "better_todo": {
-    "message": "Better todo list"
+    "message": "より良いToDoリスト"
   },
   "max_items": {
     "message": "最大アイテム数: "
