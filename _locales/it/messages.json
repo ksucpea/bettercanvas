@@ -6,7 +6,7 @@
     "message": "Aggiornamenti"
   },
   "dark_mode": {
-    "message": "Dark mode"
+    "message": "Modalità scura"
   },
   "automatic_dark_mode": {
     "message": "Modalità Scura Pianificata"
@@ -48,7 +48,7 @@
     "message": "Usa dd/mm"
   },
   "better_todo": {
-    "message": "Better todo list"
+    "message": "Migliore elenco di cose da fare"
   },
   "max_items": {
     "message": "Oggetti Massimi: "
