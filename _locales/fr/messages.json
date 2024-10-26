@@ -6,7 +6,7 @@
     "message": "Mises à jour"
   },
   "dark_mode": {
-    "message": "Dark mode"
+    "message": "Mode sombre"
   },
   "automatic_dark_mode": {
     "message": "Mode sombre programmé"
@@ -48,7 +48,7 @@
     "message": "Utiliser jj/mm"
   },
   "better_todo": {
-    "message": "Better todo list"
+    "message": "Meilleure liste de tâches"
   },
   "max_items": {
     "message": "Éléments maximum: "
