@@ -6,7 +6,7 @@
     "message": "Обновления"
   },
   "dark_mode": {
-    "message": "Dark mode"
+    "message": "Темный режим"
   },
   "automatic_dark_mode": {
     "message": "Запланированный темный режим"
@@ -48,7 +48,7 @@
     "message": "Использовать дд/мм"
   },
   "better_todo": {
-    "message": "Better todo list"
+    "message": "Лучший список задач"
   },
   "max_items": {
     "message": "Макс. записей: "
