@@ -6,7 +6,7 @@
     "message": "更新"
   },
   "dark_mode": {
-    "message": "Dark mode"
+    "message": "暗色模式"
   },
   "automatic_dark_mode": {
     "message": "预定的深色模式"
@@ -48,7 +48,7 @@
     "message": "使用日/毫米"
   },
   "better_todo": {
-    "message": "Better todo list"
+    "message": "更好的待办事项列表"
   },
   "max_items": {
     "message": "最大物品数: "
