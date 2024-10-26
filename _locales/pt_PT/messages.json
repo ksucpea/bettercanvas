@@ -1,192 +1,192 @@
 {
   "better_canvas": {
-    "message": "Melhor tela"
+    "message": "Better Canvas"
   },
   "updates": {
-    "message": "Atualizações"
+    "message": "Updates"
   },
   "dark_mode": {
-    "message": "Modo noturno"
+    "message": "Dark mode"
   },
   "automatic_dark_mode": {
-    "message": "Modo Escuro Agendado"
+    "message": "Scheduled Dark Mode"
   },
   "auto_start_time": {
-    "message": "Horário de Início"
+    "message": "Start Time"
   },
   "auto_end_time": {
-    "message": "Hora de término"
+    "message": "End Time"
   },
   "edit_dark_mode": {
-    "message": "Modo Escuro"
+    "message": "Dark Mode"
   },
   "enter_url": {
-    "message": "Sua URL do Canvas:"
+    "message": "Your Canvas url:"
   },
   "card_grades": {
-    "message": "Notas do Cartão"
+    "message": "Card Grades"
   },
   "gradient_cards": {
-    "message": "Cartões gradientes"
+    "message": "Gradient Cards"
   },
   "condensed_cards": {
-    "message": "Cartões Condensados"
+    "message": "Condensed Cards"
   },
   "disable_color": {
-    "message": "Desativar sobreposição de cores"
+    "message": "Disable Color Overlay"
   },
   "card_assignments": {
-    "message": "Atribuições do Cartão"
+    "message": "Card Assignments"
   },
   "card_customization": {
-    "message": "Cartões"
+    "message": "Cards"
   },
   "custom_font": {
-    "message": "Fontes"
+    "message": "Fonts"
   },
   "useddmm": {
-    "message": "Usar dd/mm"
+    "message": "Use dd/mm"
   },
   "better_todo": {
-    "message": "Lista de tarefas melhor"
+    "message": "Better todo list"
   },
   "max_items": {
-    "message": "Máximo de itens: "
+    "message": "Max Items: "
   },
   "hover_preview": {
-    "message": "Passar o mouse para visualizar detalhes"
+    "message": "Hover To Preview Details"
   },
   "hide_completed": {
-    "message": "Ocultar Completados"
+    "message": "Hide Completed"
   },
   "24hrformat": {
-    "message": "Usar formato 24 horas"
+    "message": "Use 24 hr Format"
   },
   "dashboard_notes": {
-    "message": "Notas do Painel"
+    "message": "Dashboard Notes"
   },
   "gpa_calculator": {
-    "message": "Calculadora GPA"
+    "message": "GPA Calculator"
   },
   "gpa_settings": {
-    "message": "Configurações de GPA"
+    "message": "GPA Settings"
   },
   "grade_hover": {
-    "message": "Mostrar somente ao passar o mouse"
+    "message": "Show Only On Hover"
   },
   "due": {
-    "message": "Vencimento"
+    "message": "Due"
   },
   "card_colors": {
-    "message": "Cores do Cartão"
+    "message": "Card Colors"
   },
   "back": {
-    "message": "Anterior"
+    "message": "Back"
   },
   "more_options": {
-    "message": "Mais opções"
+    "message": "More Options"
   },
   "manual_customization": {
-    "message": "Personalização Manual"
+    "message": "Manual Customization"
   },
   "background_colors": {
-    "message": "Fundo"
+    "message": "Background"
   },
   "text_colors": {
-    "message": "texto"
+    "message": "Text"
   },
   "full_width": {
-    "message": "Largura total do painel"
+    "message": "Dashboard Full Width"
   },
   "report_issue": {
-    "message": "Reportar problema"
+    "message": "Report Issue"
   },
   "themes": {
-    "message": "Temas"
+    "message": "Themes"
   },
   "move_top": {
-    "message": "Mover para o topo"
+    "message": "Move To Top"
   },
   "show_past_due": {
-    "message": "Mostrar vencimento passado"
+    "message": "Show Past Due"
   },
   "relative_due_dates": {
-    "message": "Datas de vencimento relativas"
+    "message": "Relative Due Dates"
   },
   "enter_multiple": {
-    "message": "(Entre Múltiplos Com Uma Vírgula)"
+    "message": "(Enter Multiple With A Comma)"
   },
   "todo_remind": {
     "message": "Todo Reminders"
   },
   "remlogo": {
-    "message": "Remover logotipo da barra lateral"
+    "message": "Remove Sidebar Logo"
   },
   "hide_feedback": {
-    "message": "Esconder Feedback Recente"
+    "message": "Hide Recent Feedback"
   },
   "tab_icons": {
-    "message": "Ícones de Aba Codificados Coloridos"
+    "message": "Color Coded Tab Icons"
   },
   "todo_colors": {
-    "message": "Usar cores do cartão"
+    "message": "Use Card Colors"
   },
   "gpa_calc_cumulative": {
-    "message": "Mostrar GPA acumulativo"
+    "message": "Show Cumulative GPA"
   },
   "gpa_calc_weighted": {
-    "message": "Mostrar GPA ponderada"
+    "message": "Show Weighted GPA"
   },
   "device_dark": {
-    "message": "Usar Configurações do Modo Escuro"
+    "message": "Use Device Dark Mode Settings"
   },
   "presets": {
-    "message": "Predefinições"
+    "message": "Presets"
   },
   "dark_lighter": {
-    "message": "Isqueiro"
+    "message": "Lighter"
   },
   "dark_light": {
-    "message": "Fino"
+    "message": "Light"
   },
   "dark_default": {
-    "message": "Padrão"
+    "message": "Default"
   },
   "dark_dark": {
-    "message": "Escuro"
+    "message": "Dark"
   },
   "dark_darker": {
-    "message": "Escuridão"
+    "message": "Darker"
   },
   "dark_mint": {
-    "message": "Hortelã"
+    "message": "Mint"
   },
   "dark_blue": {
     "message": "Blue Tint"
   },
   "dark_burn": {
-    "message": "Queima de Eyeball"
+    "message": "Eyeball Burn"
   },
   "dark_unicorn": {
-    "message": "Unicórnio"
+    "message": "Unicorn"
   },
   "dark_lightmode": {
-    "message": "Modelagem leve"
+    "message": "Lightmode"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n por Anjo"
+    "message": "Catppuccin\n By Angel"
   },
   "dark_sage": {
-    "message": "Sabia\n Por LivDoesDevStuf"
+    "message": "Sabia\n By LivDoesDevStuf"
   },
   "dark_pink": {
-    "message": "Rosa\n por Sayde"
+    "message": "Pink\n By Sayde"
   },
   "dark_coral": {
-    "message": "Coral\n por Superchido"
+    "message": "Coral\n By Superchido"
   },
   "dp_sidebar_text": {
-    "message": "Texto da barra lateral"
+    "message": "Sidebar Text"
   },
   "dp_sidebar": {
     "message": "Sidebar"
@@ -195,33 +195,33 @@
     "message": "Solid"
   },
   "radio_sidebar_gradient": {
-    "message": "Degradê"
+    "message": "Gradient"
   },
   "radio_sidebar_image": {
-    "message": "Imagem:"
+    "message": "Image"
   },
   "dp_background_0": {
-    "message": "Fundo Principal"
+    "message": "Background Main"
   },
   "dp_background_1": {
-    "message": "Fundo Alternativo"
+    "message": "Background Alt"
   },
   "dp_background_2": {
-    "message": "Outro Fundo"
+    "message": "Background Other"
   },
   "dp_borders": {
-    "message": "Fronteiras"
+    "message": "Borders"
   },
   "dp_links": {
     "message": "Links"
   },
   "dp_text_0": {
-    "message": "Texto principal"
+    "message": "Text Main"
   },
   "dp_text_1": {
-    "message": "Outros textos"
+    "message": "Text Other"
   },
   "dp_text_2": {
-    "message": "Texto alternativo"
+    "message": "Text Alt"
   }
 }

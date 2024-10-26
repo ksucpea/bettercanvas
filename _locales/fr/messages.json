@@ -1,227 +1,227 @@
 {
   "better_canvas": {
-    "message": "Mieux Canevas"
+    "message": "Better Canvas"
   },
   "updates": {
-    "message": "Mises à jour"
+    "message": "Updates"
   },
   "dark_mode": {
-    "message": "Mode sombre"
+    "message": "Dark mode"
   },
   "automatic_dark_mode": {
-    "message": "Mode sombre programmé"
+    "message": "Scheduled Dark Mode"
   },
   "auto_start_time": {
-    "message": "Heure de début"
+    "message": "Start Time"
   },
   "auto_end_time": {
-    "message": "Heure de fin"
+    "message": "End Time"
   },
   "edit_dark_mode": {
-    "message": "Mode Sombre"
+    "message": "Dark Mode"
   },
   "enter_url": {
-    "message": "L'URL de votre toile :"
+    "message": "Your Canvas url:"
   },
   "card_grades": {
-    "message": "Notes de la carte"
+    "message": "Card Grades"
   },
   "gradient_cards": {
-    "message": "Cartes de dégradé"
+    "message": "Gradient Cards"
   },
   "condensed_cards": {
-    "message": "Cartes Condensées"
+    "message": "Condensed Cards"
   },
   "disable_color": {
-    "message": "Désactiver la superposition de couleur"
+    "message": "Disable Color Overlay"
   },
   "card_assignments": {
-    "message": "Affectations de cartes"
+    "message": "Card Assignments"
   },
   "card_customization": {
-    "message": "Cartes"
+    "message": "Cards"
   },
   "custom_font": {
-    "message": "Polices"
+    "message": "Fonts"
   },
   "useddmm": {
-    "message": "Utiliser jj/mm"
+    "message": "Use dd/mm"
   },
   "better_todo": {
-    "message": "Meilleure liste de tâches"
+    "message": "Better todo list"
   },
   "max_items": {
-    "message": "Nombre maximum d'articles : "
+    "message": "Max Items: "
   },
   "hover_preview": {
-    "message": "Survolez pour prévisualiser les détails"
+    "message": "Hover To Preview Details"
   },
   "hide_completed": {
-    "message": "Cacher Terminé"
+    "message": "Hide Completed"
   },
   "24hrformat": {
-    "message": "Utiliser le format 24 heures"
+    "message": "Use 24 hr Format"
   },
   "dashboard_notes": {
-    "message": "Notes du tableau de bord"
+    "message": "Dashboard Notes"
   },
   "gpa_calculator": {
-    "message": "Calculatrice GPA"
+    "message": "GPA Calculator"
   },
   "gpa_settings": {
-    "message": "Paramètres GPA"
+    "message": "GPA Settings"
   },
   "grade_hover": {
-    "message": "Afficher uniquement au survol"
+    "message": "Show Only On Hover"
   },
   "due": {
-    "message": "Exigible"
+    "message": "Due"
   },
   "card_colors": {
-    "message": "Couleurs de la carte"
+    "message": "Card Colors"
   },
   "back": {
-    "message": "Précédent"
+    "message": "Back"
   },
   "more_options": {
-    "message": "Plus d'options"
+    "message": "More Options"
   },
   "manual_customization": {
-    "message": "Personnalisation manuelle"
+    "message": "Manual Customization"
   },
   "background_colors": {
-    "message": "Arrière-plan"
+    "message": "Background"
   },
   "text_colors": {
-    "message": "Texte du texte"
+    "message": "Text"
   },
   "full_width": {
-    "message": "Tableau de bord en pleine largeur"
+    "message": "Dashboard Full Width"
   },
   "report_issue": {
-    "message": "Signaler un problème"
+    "message": "Report Issue"
   },
   "themes": {
-    "message": "Thèmes"
+    "message": "Themes"
   },
   "move_top": {
-    "message": "Déplacer vers le haut"
+    "message": "Move To Top"
   },
   "show_past_due": {
-    "message": "Afficher les échéances passées"
+    "message": "Show Past Due"
   },
   "relative_due_dates": {
-    "message": "Dates d'échéance relatives"
+    "message": "Relative Due Dates"
   },
   "enter_multiple": {
-    "message": "(Entrer plusieurs avec une virgule)"
+    "message": "(Enter Multiple With A Comma)"
   },
   "todo_remind": {
-    "message": "Rappels de tâches"
+    "message": "Todo Reminders"
   },
   "remlogo": {
-    "message": "Supprimer le logo de la barre latérale"
+    "message": "Remove Sidebar Logo"
   },
   "hide_feedback": {
-    "message": "Cacher les commentaires récents"
+    "message": "Hide Recent Feedback"
   },
   "tab_icons": {
-    "message": "Icônes d'onglets codés en couleur"
+    "message": "Color Coded Tab Icons"
   },
   "todo_colors": {
-    "message": "Utiliser les couleurs de la carte"
+    "message": "Use Card Colors"
   },
   "gpa_calc_cumulative": {
-    "message": "Afficher la moyenne cumulative"
+    "message": "Show Cumulative GPA"
   },
   "gpa_calc_weighted": {
-    "message": "Afficher la moyenne pondérée"
+    "message": "Show Weighted GPA"
   },
   "device_dark": {
-    "message": "Utiliser les paramètres du mode sombre de l'appareil"
+    "message": "Use Device Dark Mode Settings"
   },
   "presets": {
-    "message": "Préréglages"
+    "message": "Presets"
   },
   "dark_lighter": {
-    "message": "Briquet"
+    "message": "Lighter"
   },
   "dark_light": {
-    "message": "Lumière"
+    "message": "Light"
   },
   "dark_default": {
-    "message": "Par défaut"
+    "message": "Default"
   },
   "dark_dark": {
-    "message": "Sombre"
+    "message": "Dark"
   },
   "dark_darker": {
-    "message": "Plus sombre"
+    "message": "Darker"
   },
   "dark_mint": {
-    "message": "Médicaments"
+    "message": "Mint"
   },
   "dark_blue": {
-    "message": "Teinte bleue"
+    "message": "Blue Tint"
   },
   "dark_burn": {
-    "message": "Brûlure du globe oculaire"
+    "message": "Eyeball Burn"
   },
   "dark_unicorn": {
-    "message": "Licorne"
+    "message": "Unicorn"
   },
   "dark_lightmode": {
-    "message": "Mode Lumière"
+    "message": "Lightmode"
   },
   "dark_catppuccin": {
-    "message": "Catpuccine\n Par Ange"
+    "message": "Catppuccin\n By Angel"
   },
   "dark_sage": {
-    "message": "Sabia\n Par LivDoesDevStuf"
+    "message": "Sabia\n By LivDoesDevStuf"
   },
   "dark_pink": {
-    "message": "Rose\n Par Sayde"
+    "message": "Pink\n By Sayde"
   },
   "dark_coral": {
-    "message": "Corail\n Par Superchido"
+    "message": "Coral\n By Superchido"
   },
   "dp_sidebar_text": {
-    "message": "Texte de la barre latérale"
+    "message": "Sidebar Text"
   },
   "dp_sidebar": {
-    "message": "Barre latérale"
+    "message": "Sidebar"
   },
   "radio_sidebar_solid": {
-    "message": "Solide"
+    "message": "Solid"
   },
   "radio_sidebar_gradient": {
-    "message": "Dégradé"
+    "message": "Gradient"
   },
   "radio_sidebar_image": {
     "message": "Image"
   },
   "dp_background_0": {
-    "message": "Arrière-plan principal"
+    "message": "Background Main"
   },
   "dp_background_1": {
-    "message": "Alt d'arrière-plan"
+    "message": "Background Alt"
   },
   "dp_background_2": {
-    "message": "Autre arrière-plan"
+    "message": "Background Other"
   },
   "dp_borders": {
-    "message": "Bordures"
+    "message": "Borders"
   },
   "dp_links": {
-    "message": "Liens"
+    "message": "Links"
   },
   "dp_text_0": {
-    "message": "Texte principal"
+    "message": "Text Main"
   },
   "dp_text_1": {
-    "message": "Texte autre"
+    "message": "Text Other"
   },
   "dp_text_2": {
-    "message": "Alt du texte"
+    "message": "Text Alt"
   }
 }
