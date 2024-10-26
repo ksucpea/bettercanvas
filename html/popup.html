@@ -492,23 +492,23 @@
                 <div class="option-container">
                     <div class="changer">
                         <div class="changer-container" id="dp_sidebar-text">
-                            <h3 class="color-type-header">Sidebar Text</h3>
+                            <h3 class="color-type-header" data-i18n="dp_sidebar_text">Sidebar Text</h3>
                             <input class="card-input" type="color"></input>
                             <input class="card-input" type="text"></input>
                         </div>
                     </div>
                     <div class="changer">
-                        <h3 class="color-type-header">Sidebar</h3>
+                        <h3 class="color-type-header" data-i18n="dp_sidebar">Sidebar</h3>
                         <div class="changer-container" id="dp_sidebar" style="align-items: flex-start;">
                             <div style="width:160px;margin-top:5px;">
                                 <div>
-                                    <input type="radio" id="radio-sidebar-solid" name="sidebar-background">Solid</input>
+                                    <input type="radio" id="radio-sidebar-solid" name="sidebar-background" data-i18n="radio_sidebar_solid">Solid</input>
                                 </div>
                                 <div>
-                                    <input type="radio" id="radio-sidebar-gradient" name="sidebar-background">Gradient</input>
+                                    <input type="radio" id="radio-sidebar-gradient" name="sidebar-background" data-i18n="radio_sidebar_gradient">Gradient</input>
                                 </div>
                                 <div>
-                                    <input type="radio" id="radio-sidebar-image" name="sidebar-background">Image</input>
+                                    <input type="radio" id="radio-sidebar-image" name="sidebar-background" data-i18n="radio_sidebar_image">Image</input>
                                 </div>
                             </div>
                             <div style="flex: 1">
@@ -531,49 +531,49 @@
                         <div class="color-options">
                             <div class="changer">
                                 <div class="changer-container" id="dp_background-0">
-                                    <h3 class="color-type-header">Background Main</h3>
+                                    <h3 class="color-type-header" data-i18n="dp_background_0">Background Main</h3>
                                     <input class="card-input" type="color"></input>
                                     <input class="card-input" type="text"></input>
                                 </div>
                             </div>
                             <div class="changer">
                                 <div class="changer-container" id="dp_background-1">
-                                    <h3 class="color-type-header">Background Alt</h3>
+                                    <h3 class="color-type-header" data-i18n="dp_background_1">Background Alt</h3>
                                     <input class="card-input" type="color"></input>
                                     <input class="card-input" type="text"></input>
                                 </div>
                             </div>
                             <div class="changer">
                                 <div class="changer-container" id="dp_background-2">
-                                    <h3 class="color-type-header">Background Other</h3>
+                                    <h3 class="color-type-header" data-i18n="dp_background_2">Background Other</h3>
                                     <input class="card-input" type="color"></input>
                                     <input class="card-input" type="text"></input>
                                 </div>
                             </div>
                             <div class="changer">
                                 <div class="changer-container" id="dp_borders">
-                                    <h3 class="color-type-header">Borders</h3>
+                                    <h3 class="color-type-header" data-i18n="dp_borders">Borders</h3>
                                     <input class="card-input" type="color"></input>
                                     <input class="card-input" type="text"></input>
                                 </div>
                             </div>
                             <div class="changer">
                                 <div class="changer-container" id="dp_links">
-                                    <h3 class="color-type-header">Links</h3>
+                                    <h3 class="color-type-header" data-i18n="dp_links">Links</h3>
                                     <input class="card-input" type="color"></input>
                                     <input class="card-input" type="text"></input>
                                 </div>
                             </div>
                             <div class="changer">
                                 <div class="changer-container" id="dp_text-0">
-                                    <h3 class="color-type-header">Text Main</h3>
+                                    <h3 class="color-type-header" data-i18n="dp_text_0">Text Main</h3>
                                     <input class="card-input" type="color"></input>
                                     <input class="card-input" type="text"></input>
                                 </div>
                             </div>
                             <div class="changer">
                                 <div class="changer-container" id="dp_text-1">
-                                    <h3 class="color-type-header">Text Other</h3>
+                                    <h3 class="color-type-header" data-i18n="dp_text_1">Text Other</h3>
                                     <input class="card-input" type="color"></input>
                                     <input class="card-input" type="text"></input>
                                 </div>
@@ -581,7 +581,7 @@
                             <div class="changer">
                                 <div class="changer-container" id="dp_text-2">
 
-                                    <h3 class="color-type-header">Text Alt</h3>
+                                    <h3 class="color-type-header" data-i18n="dp_text_2">Text Alt</h3>
                                     <input class="card-input" type="color"></input>
                                     <input class="card-input" type="text"></input>
                                 </div>
@@ -590,13 +590,13 @@
                 </div>
             </div>
             <div class="option-container">
-                <h3 class="header-small">Dark mode fixer (beta)</h3>
+                <h3 class="header-small" data-i18n="dark_mode_fixer">Dark mode fixer (beta)</h3>
                 <div style="display: flex; gap: 10px;align-items: center">
-                    <button id="fix-dm-btn" class="big-button">Go</button>
-                    <span>This will try to fix any dark mode gaps on the current page.</span> 
+                    <button id="fix-dm-btn" class="big-button" data-i18n="fix_dm_btn">Go</button>
+                    <span data-i18n="dark_mode_fixer_text">This will try to fix any dark mode gaps on the current page.</span> 
                 </div>
                 <p id="fix-dm-output" style="margin-top: 10px;color:#ffee00;"></p>
-                <p style="margin: 15px 0 5px;">The fixer is automatically running on these pages:</p>
+                <p style="margin: 15px 0 5px;" data-i18n="fix_dm_text">The fixer is automatically running on these pages:</p>
                 <div id="dark-mode-fix-urls">
                 </div>
             </div>
