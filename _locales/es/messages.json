@@ -223,5 +223,17 @@
   },
   "dp_text_2": {
     "message": "Texto alternativo"
+  },
+  "dark_mode_fixer": {
+    "message": "Reparador del modo oscuro (Beta)"
+  },
+  "dark_mode_fixer_text": {
+    "message": "Esto intentará solucionar cualquier brecha del modo oscuro en la página actual."
+  },
+  "fix_dm_btn": {
+    "message": "Ir"
+  },
+  "fix_dm_text": {
+    "message": "El reparador se ejecuta automáticamente en estas páginas:"
   }
 }
