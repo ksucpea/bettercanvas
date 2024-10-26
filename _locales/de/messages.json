@@ -9,7 +9,7 @@
     "message": "Dunkler Modus"
   },
   "automatic_dark_mode": {
-    "message": "Geplanter Dunkler Modus"
+    "message": "Geplanter Dunkelmodus"
   },
   "auto_start_time": {
     "message": "Startzeit"
@@ -21,19 +21,19 @@
     "message": "Dunkler Modus"
   },
   "enter_url": {
-    "message": "Ihre Leinen-Url:"
+    "message": "Ihre Canvas-URL:"
   },
   "card_grades": {
     "message": "Kartennoten"
   },
   "gradient_cards": {
-    "message": "Verlaufskarten"
+    "message": "Farbverlaufskarten"
   },
   "condensed_cards": {
-    "message": "Schmal Karten"
+    "message": "Komprimierte Karten"
   },
   "disable_color": {
-    "message": "Farb-Overlay deaktivieren"
+    "message": "Deaktivieren Sie die Farbüberlagerung"
   },
   "card_assignments": {
     "message": "Kartenzuordnungen"
@@ -45,16 +45,16 @@
     "message": "Schriftarten"
   },
   "useddmm": {
-    "message": "dd/mm verwenden"
+    "message": "Verwenden Sie TT/MM"
   },
   "better_todo": {
-    "message": "Bessere Todo-Liste"
+    "message": "Bessere ToDo-Liste"
   },
   "max_items": {
     "message": "Max. Artikel: "
   },
   "hover_preview": {
-    "message": "Hover zur Vorschau der Details"
+    "message": "Bewegen Sie den Mauszeiger, um eine Vorschau der Details anzuzeigen"
   },
   "hide_completed": {
     "message": "Abgeschlossene ausblenden"
@@ -117,7 +117,7 @@
     "message": "(Mehrere mit Komma eingeben)"
   },
   "todo_remind": {
-    "message": "Todo Reminders"
+    "message": "Todo-Erinnerungen"
   },
   "remlogo": {
     "message": "Sidebar-Logo entfernen"
@@ -126,7 +126,7 @@
     "message": "Letztes Feedback ausblenden"
   },
   "tab_icons": {
-    "message": "Farbkodierte Tab-Icons"
+    "message": "Farbcodierte Tab-Symbole"
   },
   "todo_colors": {
     "message": "Kartenfarben verwenden"
@@ -174,16 +174,16 @@
     "message": "Lichtmodus"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n von Engel"
+    "message": "Catppuccin\n Von Angel"
   },
   "dark_sage": {
-    "message": "Sabia\n von LivDoesDevStuf"
+    "message": "Sabia\n Von LivDoesDevStuf"
   },
   "dark_pink": {
-    "message": "Rosa\n von Sayde"
+    "message": "Rosa\n Von Sayde"
   },
   "dark_coral": {
-    "message": "Korallen\n von Superchido"
+    "message": "Koralle\n Von Superchido"
   },
   "dp_sidebar_text": {
     "message": "Sidebar Text"
