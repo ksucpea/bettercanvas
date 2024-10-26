@@ -223,5 +223,17 @@
   },
   "dp_text_2": {
     "message": "Text Alt"
+  },
+  "dark_mode_fixer": {
+    "message": "Dark Mode Fixer (Beta)"
+  },
+  "dark_mode_fixer_text": {
+    "message": "This Will Try To Fix Any Dark Mode Gaps On The Current Page."
+  },
+  "fix_dm_btn": {
+    "message": "Go"
+  },
+  "fix_dm_text": {
+    "message": "The Fixer Is Automatically Running On These Pages:"
   }
 }
