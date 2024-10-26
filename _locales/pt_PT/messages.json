@@ -6,7 +6,7 @@
     "message": "Atualizações"
   },
   "dark_mode": {
-    "message": "Dark mode"
+    "message": "Modo noturno"
   },
   "automatic_dark_mode": {
     "message": "Modo Escuro Agendado"
@@ -48,7 +48,7 @@
     "message": "Usar dd/mm"
   },
   "better_todo": {
-    "message": "Better todo list"
+    "message": "Lista de tarefas melhor"
   },
   "max_items": {
     "message": "Máximo de itens: "
