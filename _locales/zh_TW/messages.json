@@ -223,5 +223,17 @@
   },
   "dp_text_2": {
     "message": "文本Alt"
+  },
+  "dark_mode_fixer": {
+    "message": "深色模式修复程序 (测试版)"
+  },
+  "dark_mode_fixer_text": {
+    "message": "这将尝试修复当前页面上的任何暗模式间隙。"
+  },
+  "fix_dm_btn": {
+    "message": "去"
+  },
+  "fix_dm_text": {
+    "message": "修复程序会自动在这些页面上运行:"
   }
 }
