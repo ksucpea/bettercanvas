@@ -6,7 +6,7 @@
     "message": "Uppdateringar"
   },
   "dark_mode": {
-    "message": "Dark mode"
+    "message": "Mörkt läge"
   },
   "automatic_dark_mode": {
     "message": "Schemalagt mörkt läge"
@@ -48,7 +48,7 @@
     "message": "Använd dd/mm"
   },
   "better_todo": {
-    "message": "Better todo list"
+    "message": "Bättre att göra-lista"
   },
   "max_items": {
     "message": "Max antal objekt: "
