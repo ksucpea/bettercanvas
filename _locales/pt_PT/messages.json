@@ -21,7 +21,7 @@
     "message": "Modo escuro"
   },
   "enter_url": {
-    "message": "url da sua tela:"
+    "message": "Url da sua tela:"
   },
   "card_grades": {
     "message": "Notas de cartão"
@@ -174,7 +174,7 @@
     "message": "Modo de luz"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n Por Angel"
+    "message": "Catpuccina\n Por anjo"
   },
   "dark_sage": {
     "message": "Sabia\n Por LivDoesDevStuf"
@@ -204,7 +204,7 @@
     "message": "Contexto principal"
   },
   "dp_background_1": {
-    "message": "Fundo Alt"
+    "message": "Alt de fundo"
   },
   "dp_background_2": {
     "message": "Antecedentes Outros"
@@ -225,7 +225,7 @@
     "message": "Texto Alt"
   },
   "dark_mode_fixer": {
-    "message": "Dark Mode Fixer (Beta)"
+    "message": "Corretor de modo escuro (Beta)"
   },
   "dark_mode_fixer_text": {
     "message": "Isso tentará corrigir quaisquer lacunas do Modo Escuro na página atual."
