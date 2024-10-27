@@ -21,7 +21,7 @@
     "message": "Темный режим"
   },
   "enter_url": {
-    "message": "URL вашего холста:"
+    "message": "Url-адрес вашего холста:"
   },
   "card_grades": {
     "message": "Оценки карт"
@@ -141,7 +141,7 @@
     "message": "Использовать настройки темного режима устройства"
   },
   "presets": {
-    "message": "Предустановки"
+    "message": "Пресеты"
   },
   "dark_lighter": {
     "message": "Зажигалка"
@@ -174,7 +174,7 @@
     "message": "Lightmode"
   },
   "dark_catppuccin": {
-    "message": "Котппучин\n Автор: Angel"
+    "message": "Catppuccin\n К Ангел"
   },
   "dark_sage": {
     "message": "Сабия\n Автор: LivDoesDevStuf"
