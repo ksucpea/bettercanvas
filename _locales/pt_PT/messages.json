@@ -1,239 +1,239 @@
 {
   "better_canvas": {
-    "message": "Better Canvas"
+    "message": "Melhor tela"
   },
   "updates": {
-    "message": "Updates"
+    "message": "Atualizações"
   },
   "dark_mode": {
-    "message": "Dark mode"
+    "message": "Modo escuro"
   },
   "automatic_dark_mode": {
-    "message": "Scheduled Dark Mode"
+    "message": "Modo escuro programado"
   },
   "auto_start_time": {
-    "message": "Start Time"
+    "message": "Hora de início"
   },
   "auto_end_time": {
-    "message": "End Time"
+    "message": "Fim dos tempos"
   },
   "edit_dark_mode": {
-    "message": "Dark Mode"
+    "message": "Modo escuro"
   },
   "enter_url": {
-    "message": "Your Canvas url:"
+    "message": "url da sua tela:"
   },
   "card_grades": {
-    "message": "Card Grades"
+    "message": "Notas de cartão"
   },
   "gradient_cards": {
-    "message": "Gradient Cards"
+    "message": "Cartões de Gradiente"
   },
   "condensed_cards": {
-    "message": "Condensed Cards"
+    "message": "Cartões condensados"
   },
   "disable_color": {
-    "message": "Disable Color Overlay"
+    "message": "Desativar sobreposição de cores"
   },
   "card_assignments": {
-    "message": "Card Assignments"
+    "message": "Atribuições de cartas"
   },
   "card_customization": {
-    "message": "Cards"
+    "message": "Cartões"
   },
   "custom_font": {
-    "message": "Fonts"
+    "message": "Fontes"
   },
   "useddmm": {
-    "message": "Use dd/mm"
+    "message": "Usar dd/mm"
   },
   "better_todo": {
-    "message": "Better todo list"
+    "message": "Melhor lista de tarefas"
   },
   "max_items": {
-    "message": "Max Items: "
+    "message": "Itens máximos: "
   },
   "hover_preview": {
-    "message": "Hover To Preview Details"
+    "message": "Passe o mouse para visualizar os detalhes"
   },
   "hide_completed": {
-    "message": "Hide Completed"
+    "message": "Ocultar Concluído"
   },
   "24hrformat": {
-    "message": "Use 24 hr Format"
+    "message": "Use o formato de 24 horas"
   },
   "dashboard_notes": {
-    "message": "Dashboard Notes"
+    "message": "Notas do painel"
   },
   "gpa_calculator": {
-    "message": "GPA Calculator"
+    "message": "Calculadora de GPA"
   },
   "gpa_settings": {
-    "message": "GPA Settings"
+    "message": "Configurações de GPA"
   },
   "grade_hover": {
-    "message": "Show Only On Hover"
+    "message": "Mostrar apenas ao passar o mouse"
   },
   "due": {
-    "message": "Due"
+    "message": "Devido"
   },
   "card_colors": {
-    "message": "Card Colors"
+    "message": "Cores do cartão"
   },
   "back": {
-    "message": "Back"
+    "message": "Voltar"
   },
   "more_options": {
-    "message": "More Options"
+    "message": "Mais opções"
   },
   "manual_customization": {
-    "message": "Manual Customization"
+    "message": "Personalização manual"
   },
   "background_colors": {
-    "message": "Background"
+    "message": "Fundo"
   },
   "text_colors": {
-    "message": "Text"
+    "message": "Texto"
   },
   "full_width": {
-    "message": "Dashboard Full Width"
+    "message": "Painel de instrumentos de largura total"
   },
   "report_issue": {
-    "message": "Report Issue"
+    "message": "Relatar problema"
   },
   "themes": {
-    "message": "Themes"
+    "message": "Temas"
   },
   "move_top": {
-    "message": "Move To Top"
+    "message": "Mover para o topo"
   },
   "show_past_due": {
-    "message": "Show Past Due"
+    "message": "Mostrar Vencido"
   },
   "relative_due_dates": {
-    "message": "Relative Due Dates"
+    "message": "Datas de vencimento relativas"
   },
   "enter_multiple": {
-    "message": "(Enter Multiple With A Comma)"
+    "message": "(Digite vários com uma vírgula)"
   },
   "todo_remind": {
-    "message": "Todo Reminders"
+    "message": "Lembretes de tarefas"
   },
   "remlogo": {
-    "message": "Remove Sidebar Logo"
+    "message": "Remover logotipo da barra lateral"
   },
   "hide_feedback": {
-    "message": "Hide Recent Feedback"
+    "message": "Ocultar comentários recentes"
   },
   "tab_icons": {
-    "message": "Color Coded Tab Icons"
+    "message": "Ícones de guia codificados por cores"
   },
   "todo_colors": {
-    "message": "Use Card Colors"
+    "message": "Use cores de cartas"
   },
   "gpa_calc_cumulative": {
-    "message": "Show Cumulative GPA"
+    "message": "Mostrar GPA cumulativo"
   },
   "gpa_calc_weighted": {
-    "message": "Show Weighted GPA"
+    "message": "Mostrar GPA ponderado"
   },
   "device_dark": {
-    "message": "Use Device Dark Mode Settings"
+    "message": "Usar as configurações do modo escuro do dispositivo"
   },
   "presets": {
-    "message": "Presets"
+    "message": "Predefinições"
   },
   "dark_lighter": {
-    "message": "Lighter"
+    "message": "Isqueiro"
   },
   "dark_light": {
-    "message": "Light"
+    "message": "Luz"
   },
   "dark_default": {
-    "message": "Default"
+    "message": "Padrão"
   },
   "dark_dark": {
-    "message": "Dark"
+    "message": "Escuro"
   },
   "dark_darker": {
-    "message": "Darker"
+    "message": "Mais escuro"
   },
   "dark_mint": {
-    "message": "Mint"
+    "message": "Hortelã"
   },
   "dark_blue": {
-    "message": "Blue Tint"
+    "message": "Matiz Azul"
   },
   "dark_burn": {
-    "message": "Eyeball Burn"
+    "message": "Queimadura no globo ocular"
   },
   "dark_unicorn": {
-    "message": "Unicorn"
+    "message": "Unicórnio"
   },
   "dark_lightmode": {
-    "message": "Lightmode"
+    "message": "Modo de luz"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n By Angel"
+    "message": "Catppuccin\n Por Angel"
   },
   "dark_sage": {
-    "message": "Sabia\n By LivDoesDevStuf"
+    "message": "Sabia\n Por LivDoesDevStuf"
   },
   "dark_pink": {
-    "message": "Pink\n By Sayde"
+    "message": "Rosa\n Por Sayde"
   },
   "dark_coral": {
-    "message": "Coral\n By Superchido"
+    "message": "Coral\n Por Superchido"
   },
   "dp_sidebar_text": {
-    "message": "Sidebar Text"
+    "message": "Texto da barra lateral"
   },
   "dp_sidebar": {
-    "message": "Sidebar"
+    "message": "Barra lateral"
   },
   "radio_sidebar_solid": {
-    "message": "Solid"
+    "message": "Sólido"
   },
   "radio_sidebar_gradient": {
-    "message": "Gradient"
+    "message": "Gradiente"
   },
   "radio_sidebar_image": {
-    "message": "Image"
+    "message": "Imagem"
   },
   "dp_background_0": {
-    "message": "Background Main"
+    "message": "Contexto principal"
   },
   "dp_background_1": {
-    "message": "Background Alt"
+    "message": "Fundo Alt"
   },
   "dp_background_2": {
-    "message": "Background Other"
+    "message": "Antecedentes Outros"
   },
   "dp_borders": {
-    "message": "Borders"
+    "message": "Fronteiras"
   },
   "dp_links": {
-    "message": "Links"
+    "message": "Ligações"
   },
   "dp_text_0": {
-    "message": "Text Main"
+    "message": "Texto principal"
   },
   "dp_text_1": {
-    "message": "Text Other"
+    "message": "Texto Outro"
   },
   "dp_text_2": {
-    "message": "Text Alt"
+    "message": "Texto Alt"
   },
   "dark_mode_fixer": {
     "message": "Dark Mode Fixer (Beta)"
   },
   "dark_mode_fixer_text": {
-    "message": "This Will Try To Fix Any Dark Mode Gaps On The Current Page."
+    "message": "Isso tentará corrigir quaisquer lacunas do Modo Escuro na página atual."
   },
   "fix_dm_btn": {
-    "message": "Go"
+    "message": "Ir"
   },
   "fix_dm_text": {
-    "message": "The Fixer Is Automatically Running On These Pages:"
+    "message": "O Fixer está sendo executado automaticamente nestas páginas:"
   }
 }
