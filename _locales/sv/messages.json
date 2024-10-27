@@ -102,7 +102,7 @@
     "message": "Rapportera problem"
   },
   "themes": {
-    "message": "teman"
+    "message": "Teman"
   },
   "move_top": {
     "message": "Flytta till toppen"
@@ -174,16 +174,16 @@
     "message": "Ljusläge"
   },
   "dark_catppuccin": {
-    "message": "Catppuccin\n av Angel"
+    "message": "Catppuccin\n Av Angel"
   },
   "dark_sage": {
     "message": "Sabia\n Av LivDoesDevStuf"
   },
   "dark_pink": {
-    "message": "Rosa\n av Sayde"
+    "message": "Rosa\n Av Sayde"
   },
   "dark_coral": {
-    "message": "Coral\n av Superchido"
+    "message": "Korall\n Av Superchido"
   },
   "dp_sidebar_text": {
     "message": "Sidofältstext"
@@ -216,7 +216,7 @@
     "message": "Länkar"
   },
   "dp_text_0": {
-    "message": "Text Main"
+    "message": "Ordalydelse huvudsaklig"
   },
   "dp_text_1": {
     "message": "Text Annat"
@@ -225,7 +225,7 @@
     "message": "Text Alt"
   },
   "dark_mode_fixer": {
-    "message": "Dark Mode Fixer (beta)"
+    "message": "Mörk Läge Fixare (Beta)"
   },
   "dark_mode_fixer_text": {
     "message": "Detta kommer att försöka fixa eventuella luckor i mörkt läge på den aktuella sidan."
