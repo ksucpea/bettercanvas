@@ -94,6 +94,77 @@
                     </div>
                 </div>
                 <div class="option-container">
+                    <div class="option" id="gpa_calc">
+                        <input type="radio" id="off" name="gpa_calc">
+                        <input type="radio" id="on" name="gpa_calc">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div>
+                        <span class="option-name" data-i18n="gpa_calculator">GPA calculator</span>
+                    </div>
+                    <div class="sub-options">
+                        <div class="sub-option" style="margin-top:5px">
+                            <input type="checkbox" id="gpa_calc_prepend" name="gpa_calc_prepend">
+                            <label for="gpa_calc_prepend" class="sub-text" data-i18n="move_top">Move to top</label>
+                        </div>
+                        <div class="sub-option" style="margin-top:5px">
+                            <input type="checkbox" id="gpa_calc_cumulative" name="gpa_calc_cumulative">
+                            <label for="gpa_calc_cumulative" class="sub-text" /*data-i18n="move_top"*/>Show cumulative GPA</label>
+                        </div>
+                        <div class="sub-option" style="margin-top:5px">
+                            <input type="checkbox" id="gpa_calc_weighted" name="gpa_calc_weighted">
+                            <label for="gpa_calc_weighted" class="sub-text" /*data-i18n="move_top"*/>Show weighted GPA</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="option" id="dashboard_grades">
+                        <input type="radio" id="off" name="dashboard_grades">
+                        <input type="radio" id="on" name="dashboard_grades">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div>
+                        <span class="option-name" data-i18n="card_grades">Card Grades</span>
+                    </div>
+                    <div class="sub-options">
+                        <div class="sub-option" style="margin-top:5px">
+                            <input type="checkbox" id="grade_hover" name="grade_hover">
+                            <label for="grade_hover" class="sub-text" data-i18n="grade_hover">Show only when hovering</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="option" id="remind">
+                        <input type="radio" id="off" name="remind">
+                        <input type="radio" id="on" name="remind">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div>
+                        <span class="option-name" /*data-i18n="gpa_calculator"*/>Todo Reminders</span>
+                    </div>
+                    <!--
+                    <div class="sub-options">
+                        <div class="sub-option" style="margin-top:5px">
+                            <input type="checkbox" id="multi_remind" name="multi_remind">
+                            <label for="multi_remind" class="sub-text" /*data-i18n="move_top"*/>Remind 2x</label>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+
+            <div class="options-right">
+                <div class="option-container">
+                    <div class="customDomain">
+                        <span data-i18n="enter_url">Your Canvas URL:</span>
+                        <p style="font-size: 11px;color:#8d8d8d" data-i18n="enter_multiple">(Enter multiple with a comma)</p>
+                        <input type="text" id="customDomain" placeholder="Or just refresh your Canvas page!"></input>
+                    </div>
+                </div>
+                <div class="option-container">
                     <div class="option" id="better_todo">
                         <input type="radio" id="off" name="better_todo">
                         <input type="radio" id="on" name="better_todo">
@@ -130,50 +201,6 @@
                             <span class="sub-text" data-i18n="max_items">Max items to show: </span><span
                                 id="numTodoItems"></span>
                             <input type="range" min="1" max="7" id="numTodoItemsSlider">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="options-right">
-                <div class="option-container">
-                    <div class="customDomain">
-                        <span data-i18n="enter_url">Your Canvas URL:</span>
-                        <p style="font-size: 11px;color:#8d8d8d" data-i18n="enter_multiple">(Enter multiple with a comma)</p>
-                        <input type="text" id="customDomain" placeholder="Or just refresh your Canvas page!"></input>
-                    </div>
-                </div>
-                <div class="option-container">
-                    <div class="option" id="gpa_calc">
-                        <input type="radio" id="off" name="gpa_calc">
-                        <input type="radio" id="on" name="gpa_calc">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div>
-                        <span class="option-name" data-i18n="gpa_calculator">GPA calculator</span>
-                    </div>
-                    <div class="sub-options">
-                        <div class="sub-option" style="margin-top:5px">
-                            <input type="checkbox" id="gpa_calc_prepend" name="gpa_calc_prepend">
-                            <label for="gpa_calc_prepend" class="sub-text" data-i18n="move_top">Move to top</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="option-container">
-                    <div class="option" id="dashboard_grades">
-                        <input type="radio" id="off" name="dashboard_grades">
-                        <input type="radio" id="on" name="dashboard_grades">
-                        <div class="slider">
-                            <div class="sliderknob"></div>
-                            <div class="sliderbg"></div>
-                        </div>
-                        <span class="option-name" data-i18n="card_grades">Card Grades</span>
-                    </div>
-                    <div class="sub-options">
-                        <div class="sub-option" style="margin-top:5px">
-                            <input type="checkbox" id="grade_hover" name="grade_hover">
-                            <label for="grade_hover" class="sub-text" data-i18n="grade_hover">Show only when hovering</label>
                         </div>
                     </div>
                 </div>
@@ -299,6 +326,88 @@
             <h2 style="margin-top: 0" data-i18n="themes">Themes</h2>
             <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
+        <div class="option-container" id="opt-in">
+            <h3 class="header-small">Theme browser opt-in</h3>
+            <p>The theme browser has been updated to allow you to like themes, see up to date submissions, and easily submit new themes!</p>
+            <p style="margin-top:10px;">Opting in will automatically register an account in order to store your likes, but is anonymized for your privacy. <a target="_blank" href="https://diditupe.dev/bettercanvas/privacy">More info here</a></p>
+            <div style="display:flex;margin-top: 10px;gap: 5px;">
+                <button class="big-button" id="new_browser_in">Use new browser</button>
+                <button class="big-button" id="new_browser_out">Continue using old</button>
+            </div>
+        </div>
+        <div class="option-container">
+            <div class="theme-header small-option">
+                <h3 class="header-small" style="margin:0">Submit your theme</h3>
+                <div class="big-button" id="show-submit-form">Show</div>
+            </div>
+            <div id="submit-form" style="display:none;justify-content: space-between;gap: 30px;margin-top:10px;">
+                <div>
+                    <div>
+                        <p style="font-weight:600;">Title</p>
+                        <input type="text" class="card-input" id="submit-title">
+                    </div>
+                    <div style="margin-top:5px;">
+                        <p style="font-weight:600;">Credits</p>
+                        <input type="text" class="card-input" id="submit-credits">
+                    </div>
+            
+                    <p style="margin-top:10px;color: #818181;">This will submit your current thematic settings, such as your card images, dark mode, and font.</p>
+                    <button id="submit-theme-btn" class="big-button" style="width: 50%;">Submit</button>
+                </div>
+                <div style="min-width: 25%;">
+                    <button id="theme-button-img" class="theme-button customization-button"
+					style="width: 100%;height:60px;background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));">
+					    <p class="theme-button-title" id="theme-button-title-preview">Title</p>
+					    <p class="theme-button-creator" id="theme-button-creator-preview">Credits</p>
+				    </button>
+                </div>
+            </div>
+        </div>
+        <div class="option-container">
+            <div class="theme-header">
+                <h3 class="header-small" style="margin:0">User made themes</h3>
+                <span id="premade-themes-pagenum"></span>
+            </div>
+            <div class="theme-controls">
+                <button id="theme-sorts">
+                    <div>
+                        <svg style="display: block" xmlns="http://www.w3.org/2000/svg"  width="14"  height="14"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrows-up-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 3l0 18" /><path d="M10 6l-3 -3l-3 3" /><path d="M20 18l-3 3l-3 -3" /><path d="M17 21l0 -18" /></svg>
+                    </div>
+                    <span id="theme-current-sort"></span>
+                    <!--
+                    <button id="theme-sort-score" class="theme-sort-btn">Rating</button>
+                    <button id="theme-sort-color" class="theme-sort-btn">Color</button>
+                    <button id="theme-sort-new" class="theme-sort-btn">New</button>
+                    <button id="theme-sort-old" class="theme-sort-btn">Old</button>
+                -->
+                </button>
+                <div class="card-input" id="theme-search-container">
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="14"  height="14"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+                    <input type="text" id="theme-search" placeholder="Search">
+                </div>
+                <div style="display:flex;gap:4px;align-items:center">
+                    <button id="premade-themes-left">Back</button>
+                    <button id="premade-themes-right">Next</button>
+                </div>
+            </div>
+            <div id="premade-themes"></div>
+        </div>
+        <div class="option-container">
+            <div>
+                <h3 class="header-small">Revert theme changes</h3>
+            </div>
+            <div style="display:flex;gap: 12px;">
+                <button id="theme-revert" class="customization-button">Revert</button>
+                <p>This will revert customizations back to when you first installed the extension.</p>
+            </div>
+        </div>
+        <div class="option-container">
+            <div class="theme-header">
+                <h3 class="header-small" style="margin:0;flex:100">My saved themes</h3>
+                <button id="save-theme" class="customization-button">+ Save current</button>
+            </div>
+            <div id="saved-themes"></div>
+        </div>
         <div class="export-details option-container">
             <h3 class="header-small">Export Settings</h3>
             <div style="display:flex;gap:30px;">
@@ -334,40 +443,6 @@
             </div>
             <p class="sub-text" style="margin-top:10px">Want to submit your theme? <a style="color:inherit" target="_blank" href="https://diditupe.dev/bettercanvas/questions/?highlight=2">Click here</a></p>
         </div>
-        <div class="option-container">
-            <div class="theme-header">
-                <h3 class="header-small" style="margin:0">User made themes</h3>
-                <span id="premade-themes-pagenum"></span>
-            </div>
-            <div class="theme-controls">
-                <button id="theme-sorts">
-                    <div>
-                        <svg style="display: block" xmlns="http://www.w3.org/2000/svg"  width="14"  height="14"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrows-up-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 3l0 18" /><path d="M10 6l-3 -3l-3 3" /><path d="M20 18l-3 3l-3 -3" /><path d="M17 21l0 -18" /></svg>
-                    </div>
-                    <span id="theme-current-sort"></span>
-                    <!--
-                    <button id="theme-sort-score" class="theme-sort-btn">Rating</button>
-                    <button id="theme-sort-color" class="theme-sort-btn">Color</button>
-                    <button id="theme-sort-new" class="theme-sort-btn">New</button>
-                    <button id="theme-sort-old" class="theme-sort-btn">Old</button>
-                -->
-                </button>
-                <div style="display:flex;gap:4px;align-items:center">
-                    <button id="premade-themes-left">Back</button>
-                    <button id="premade-themes-right">Next</button>
-                </div>
-            </div>
-            <div id="premade-themes"></div>
-        </div>
-        <div class="option-container">
-            <div>
-                <h3 class="header-small">Revert theme changes</h3>
-            </div>
-            <div style="display:flex;gap: 12px;">
-                <button id="theme-revert" class="customization-button">Revert</button>
-                <p>This will revert customizations back to when you first installed the extension.</p>
-            </div>
-        </div>
         <div class="import-export-details">
             <div class="import-details option-container">
                 <h3 class="header-small">Import</h3>
@@ -376,6 +451,14 @@
                     <textarea class="card-input" id="import-input"></textarea>
                 </div>
             </div>
+        </div>
+        <div class="option-container">
+            <div class="theme-header" style="margin-bottom: 0">
+                <h3 class="header-small" style="margin:0;flex:100">Theme browser opt-in</h3>
+                <div class="sub-option">
+                    <input type="checkbox" id="new_browser" name="new_browser">
+                </div>
+            </div>      
         </div>
     </div>
 
@@ -540,6 +623,13 @@
         <div class="advanced-cards">
             <div id="advanced-current"></div>
             <div id="advanced-past"></div>
+        </div>
+        <div class="option-container">
+            <h3 class="header-small">Missing cards?</h3>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="checkbox" id="card_method_dashboard"></input>
+                <span>Enable alternative card method</span>
+            </div>
         </div>
     </div>
 
@@ -764,6 +854,7 @@
             </div>
 
         </div>
+        <!--
         <div class="option-container">
             <h3 class="header-small">Card method</h3>
             <p><b style="font-weight:600">This is an experimental feature.</b> You shouldn't need these on.</p>
@@ -776,6 +867,7 @@
                 <span>Dashboard</span>
             </div>
         </div>
+    -->
         <div class="option-container">
             <h3 class="header-small">Error log</h3>
             <div>

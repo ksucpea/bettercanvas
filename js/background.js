@@ -5,6 +5,8 @@ chrome.runtime.onInstalled.addListener(function () {
             "previous_colors": null,
             "previous_theme": null,
             "errors": [],
+            "saved_themes": {},
+            "liked_themes": [],
         },
         "sync": {
             "dark_preset": {
@@ -79,13 +81,21 @@ chrome.runtime.onInstalled.addListener(function () {
             "card_method_date": false,
             "card_method_dashboard": false,
             "card_limit": 25,
+            "remind": false,
+            "reminders": [],
+            "reminder_count": 1,
+            "multi_remind": false,
+            "id": "",
+            "new_browser": null,
+            "gpa_calc_cumulative": false,
+            "gpa_calc_weighted": true,
         }
     };
 
     const updateMsg = "Better Canvas was just updated!\nThis version added new themes, cumulative GPA into the GPA calculator, and a new sorting function for themes.";
 
     chrome.storage.local.get(null, local => {
-        chrome.storage.sync.get(null, sync => {
+        chrome.storage.sync.get(null, async sync => {
             let newSyncOptions = {"update_msg": updateMsg};
             let newLocalOptions = {};
             Object.keys(default_options["sync"]).forEach(option => {
@@ -96,6 +106,21 @@ chrome.runtime.onInstalled.addListener(function () {
                 if (local[option] !== undefined) return;
                 newLocalOptions[option] = default_options["local"][option];
             })
+
+            /*
+            // generates a unique id for the themes backend
+            if (sync["identifier"] === undefined) {
+                try {
+                    await fetch("https://localhost:3000/api/identity")
+                    .then(res => res.json())
+                    .then(data => {
+                        newSyncOptions["identifier"] = data.message;
+                    })
+                } catch (e) {
+                    
+                }
+            }
+            */
 
             if (Object.keys(newLocalOptions).length > 0) {
                 chrome.storage.local.set(newLocalOptions);
@@ -115,148 +140,3 @@ chrome.runtime.onInstalled.addListener(function () {
 });
 
 chrome.runtime.setUninstallURL("https://diditupe.dev/bettercanvas/goodbye");
-
-
-/*
-const syncedOptions = [
-    'full_width',
-    'new_install',
-    'hover_preview',
-    'num_todo_items',
-    'assignments_due',
-    'gpa_calc',
-    'gpa_calc_bounds',
-    'gradient_cards',
-    'disable_color_overlay',
-    'auto_dark',
-    'auto_dark_start',
-    'auto_dark_end',
-    'num_assignments',
-    'assignments_done',
-    'assignment_date_format',
-    'dashboard_notes',
-    'dashboard_notes_text',
-    'better_todo',
-    'todo_hr24',
-    'condensed_cards',
-    'custom_cards',
-    'custom_cards_2',
-    'custom_assignments',
-    'custom_assignments_overflow',
-    'grade_hover',
-    'hide_completed',
-    'hide_completed_cards',
-    'custom_font',
-    'todo_overdues',
-    'card_overdues',
-    'relative_dues',
-    'remlogo',
-    'device_dark',
-    'dark_mode',
-    'dark_preset',
-    'custom_domain',
-    'hide_feedback',
-    'dark_mode_fix',
-    "assignment_states",
-];
-const localOptions = [
-    'previous_colors',
-    'previous_theme',
-    'errors',
-    /*
-    'dark_mode',
-    'dark_css',
-    'dark_preset',
-    'custom_domain
-];
-*/
-
-/*
-function moveLocalToSync() {
-    if (local[option] !== undefined) {
-        if (option === "new_install") {
-            default_options["new_install"] = false;
-        } else {
-            default_options[option] = local[option];
-        }
-        chrome.storage.local.remove(option);
-    }
-}
-*/
-
-// add custom grade
-            /*
-            let old_cc = sync["custom_cards"] ? Object.keys(sync["custom_cards_2"]) : [] 
-            if (old_cc.length > 0) {
-                newSyncOptions["custom_cards"] = sync["custom_cards"];
-                old_cc.forEach(id => {
-                    if (newSyncOptions["custom_cards"][id]["gr"] === undefined) newSyncOptions["custom_cards"][id]["gr"] = null;
-                });
-            }
-            */
-
-            // converting old links to new system REMOVE IN > 5.8.0
-            /*
-            try {
-                let old_cc2 = sync["custom_cards_2"] ? Object.keys(sync["custom_cards_2"]) : [];
-                if (old_cc2.length > 0) {
-                    newSyncOptions["custom_cards_2"] = sync["custom_cards_2"];
-                    // CHECK IF THE 5.7.3 SYSTEM STILL EXISTS
-                    old_cc2.forEach(id => {
-                        if (sync["custom_cards_2"][id] && sync["custom_cards_2"][id]["links"] && sync["custom_cards_2"][id]["links"]["custom"]) {
-                            let links = [
-                                { "is_default": true, "path": "default" },
-                                { "is_default": true, "path": "default" },
-                                { "is_default": true, "path": "default" },
-                                { "is_default": true, "path": "default" }
-                            ];
-                            for (let i = 0; i < sync["custom_cards_2"][id]["links"]["custom"].length; i++) {
-                                if (sync["custom_cards_2"][id]["links"]["custom"][i].default === false) {
-                                    links[i].is_default = false;
-                                    links[i].path = sync["custom_cards_2"][id]["links"]["custom"][i].path;
-                                }
-                            }
-                            newSyncOptions["custom_cards_2"][id]["links"] = links;
-                            // REMAP THE 5.7.6 SYSTEM TO REMOVE UNNECCESARY STUFF
-                        } else if (sync["custom_cards_2"][id] && sync["custom_cards_2"][id]["links"]) {
-                            newSyncOptions["custom_cards_2"][id]["links"] = sync["custom_cards_2"][id]["links"].map(link => { return { "is_default": link.is_default, "path": link.path } });
-                        }
-                    });
-                }
-            } catch (e) {
-                console.log("ERROR CONVERTING OLD LINKS...");
-            }
-            /// end conversion
-            */
-
-            /*
-            let preset = local["dark_preset"] || default_options["dark_preset"];
-
-            // converting dark mode to new system REMOVE IN > 5.8.0 
-            if (local["dark_css"]) {
-                try {
-                    const colors = local["dark_css"].split(":root{")[1].split("--bcstop:#000}")[0];
-                    colors.split(";").forEach(color => {
-                        const [key, code] = color.split(":");
-                        console.log(key, code, preset);
-                        switch (key) {
-                            case "--bcbackgrounddark0": preset["background-0"] = code; break;
-                            case "--bcbackgrounddark1": preset["background-1"] = code; preset["sidebar"] = code; break;
-                            case "--bcbackgrounddark2": preset["background-2"] = code; break;
-                            case "--bcbackgrounddark3": preset["borders"] = code; break;
-                            case "--bctextlight0": preset["text-0"] = code; preset["sidebar-text"] = code; break;
-                            case "--bctextlight1": preset["text-1"] = code; break;
-                            case "--bctextlight2": preset["text-2"] = code; break;
-                            case "--bctextlink": preset["links"] = code; break;
-                        }
-                    });
-                } catch (e) {
-                    preset = default_options["dark_preset"];
-                }
-                local["dark_preset"] = preset;
-                
-            } else {
-                console.log("no darkcss detected...");
-            }
-            */
-            // end conversion
