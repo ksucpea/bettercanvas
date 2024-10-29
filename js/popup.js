@@ -469,9 +469,19 @@ function setup() {
     });
 
     // theme browser controls
-    document.getElementById("premade-themes-left").addEventListener("click", () => displayThemeList(-1));
-    document.getElementById("premade-themes-right").addEventListener("click", () => displayThemeList(1));
-    document.getElementById("theme-sorts").addEventListener("click", () => sortThemes(current_sort));
+    document.getElementById("premade-themes-left").addEventListener("click", () => changePage(-1));
+    document.getElementById("premade-themes-right").addEventListener("click", () => changePage(1));
+    document.getElementById("theme-sorts").addEventListener("click", () => {
+        const el = document.getElementById("theme-sort-selector");
+        if (el.classList.contains("open")) {
+            clickout();
+        } else {
+            el.classList.add("open");
+            setTimeout(() => {
+                document.addEventListener("click", clickout);
+        }, 10);
+        }
+    });
     document.getElementById("theme-search").addEventListener("change", async (e) => {
         searchFor = e.target.value;
         current_page_num = 1;
@@ -483,6 +493,14 @@ function setup() {
 
     // activate submit theme button
     document.getElementById("submit-theme-btn").addEventListener("click", submitTheme);
+
+    document.getElementById("submit-theme-btn-1").addEventListener("click", () => {
+        document.getElementById("submit-popup").classList.add("open");
+    });
+
+    document.getElementById("cancel-theme-btn").addEventListener("click", () => {
+        document.getElementById("submit-popup").classList.remove("open");
+    })
 
     // update theme button preview on input
     document.getElementById("submit-title").addEventListener("input", (e) => {
@@ -517,6 +535,12 @@ function setup() {
     // activate theme browser opt in
     document.getElementById("new_browser_in").addEventListener("click", registerUser);
 
+    document.querySelectorAll(".theme-sort-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            themeSort(e.target.textContent);
+        });
+    });
+
 }
 
 async function getExport(storage, options) {
@@ -546,6 +570,17 @@ async function getExport(storage, options) {
         }
     }
     return final;
+}
+
+let pageTimeout = false;
+
+function changePage(direction) {
+    if (pageTimeout) return;
+    pageTimeout = true;
+    displayThemeList(direction);
+    setTimeout(() => {
+        pageTimeout = false;
+    }, 500);
 }
 
 const colorValues = {
@@ -597,6 +632,22 @@ function themeSortFn(method) {
 
 let cache = {};
 
+// new theme sort button
+function themeSort(sort) {
+    current_sort = sort;
+    current_page_num = 1;
+    allThemes = themeSortFn(current_sort);
+    displayThemeList(0);
+}
+
+function clickout() {
+    setTimeout(() => {
+        document.getElementById("theme-sort-selector").classList.remove("open");
+        document.removeEventListener("click", clickout);
+    }, 10);
+}
+
+/*
 function sortThemes(method) {
     const sortMethods = ["Popular", "ABC", "New", "Old"];
     const index = sortMethods.indexOf(method);
@@ -616,6 +667,7 @@ function sortThemes(method) {
     displayThemeList(0);
     //cache = {};
 }
+    */
 
 // shuffle function for the score sorting so theres no order bias
 function shuffle (arr) {
@@ -686,6 +738,7 @@ async function submitTheme() {
         console.log(data);
         if (data.errors === false) {
             displayAlert(false, "Thanks for submitting your theme! I will try to approve it soon, but not every theme may be accepted.");
+            document.getElementById("submit-popup").classList.remove("open");
         } else {
             displayAlert(true, `There was an error submitting your theme. (${data.message}) Please send an email to ksucpea@gmail.com if this issue persists!`);
         }
@@ -696,11 +749,25 @@ async function registerUser() {
     try {
         const res = await fetch(`${apiurl}/api/register`);
         const data = await res.json();
-        await chrome.storage.sync.set({ "new_browser": true, "id": data.id });
-        document.getElementById("opt-in").remove();
-        current_page_num = 1;
-        displayThemeList(0);
-        displayAlert(false, "Success! You should be able to see the new themes browser now. Enjoy!");
+
+        chrome.storage.sync.set({ "id": data.id }).then(async () => {
+            // test to see if the id was set correctly
+            // don't know why this is happening ??
+            const test = await chrome.storage.sync.get("id");
+            if (test["id"] === undefined || test["id"] === "") throw new Error();
+
+            // show the new browser
+            chrome.storage.sync.set({ "new_browser": true }).then(() => {
+                document.getElementById("opt-in").remove();
+                current_page_num = 1;
+                displayThemeList(0);
+                displayAlert(false, "Success! You should be able to see the new themes browser now. Enjoy!");
+            });
+
+        }).catch(e => {
+            displayAlert(true, "There was an error connecting an ID to your account. Please try again, and if this error persists, contact ksucpea@gmail.com!");
+        });
+
     } catch (e) {
         displayAlert(true, "There was an error opting in. Please contact ksucpea@gmail.com if this error persists!");
     }
@@ -838,12 +905,23 @@ async function displayThemeListNew(direction) {
     if (direction === 1 && current_page_num < maxPage) current_page_num++;
 
     let themes = [];
-    const apiLink = `${current_sort.toLowerCase()}?page=${current_page_num}` + (searchFor === "" ? "" : `&searchFor=${searchFor}`);
+    let apiLink = `${current_sort.toLowerCase()}?page=${current_page_num}` + (searchFor === "" ? "" : `&searchFor=${searchFor}`);
+    if (current_sort === "Liked") {
+        const sync = await chrome.storage.sync.get("id");
+        const local = await chrome.storage.local.get("liked_themes");
+        if (sync["id"] && sync["id"] !== "") {
+            apiLink += `&id=${sync["id"]}`;
+            maxPage = Math.ceil(local["liked_themes"].length / 28);
+        } else { // fallback if there is no id
+            current_page_num = 1;
+            apiLink = `popular?page=${current_page_num}` + (searchFor === "" ? "" : `&searchFor=${searchFor}`);
+        }
+    }
 
     // fetch api, fallback if necessary
-
     if (cache[apiLink]) {
-        themes = cache[apiLink];
+        themes = cache[apiLink]["themes"];
+        maxPage = cache[apiLink]["pages"] || maxPage;
     } else {
         try {
             const res = await fetch(`${apiurl}/api/themes/${apiLink}`, {
@@ -855,7 +933,7 @@ async function displayThemeListNew(direction) {
             const data = await res.json();
             if (data.errors === true) throw new Error(data.message);
             themes = data.message.themes;
-            cache[apiLink] = themes;
+            cache[apiLink] = data.message;
             if (data?.message?.pages) {
                 maxPage = data.message.pages;
             }
@@ -886,6 +964,10 @@ async function displayThemeListNew(direction) {
         likeBtn.addEventListener("click" , (e) => likeTheme(likeBtn, theme.code, theme.score));
 
     });
+
+    if (themes.length === 0) {
+        container.innerHTML = `<div id="themes-empty">Nothing here</div>`;
+    }
 
     document.getElementById("premade-themes-pagenum").textContent = current_page_num + " of " + maxPage;
 

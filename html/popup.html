@@ -314,6 +314,19 @@
     </div>
 
     <div class="import-export tab" style="display: none">
+        <div id="submit-popup">
+            <div style="max-width: 75%;">
+                <h3 class="header-small">Submission confirmation</h3>
+                <div class="color-line"></div>
+                <p style="margin-top: 10px;color: #a7a7a7">Make sure everything is correct before submitting! You won't be able to edit it later unless you contact me.</p>
+                <p style="margin-top: 10px;color: #a7a7a7">Your submission will include your current thematic settings, such as your card images, dark mode, and font.</p>
+                <a style="color: #fff;display:block;margin-top:10px;" target="_blank" href="https://diditupe.dev/bettercanvas/questions/?highlight=2">Find theme guidelines here</a>
+                <div style="display: flex; gap: 5px;margin-top:10px;">
+                    <button id="submit-theme-btn" class="big-button" style="width: 50%;">Submit</button>
+                    <button id="cancel-theme-btn" class="big-button" style="width: 50%;">Cancel</button>
+                </div>
+            </div>
+        </div>
         <div class="tab-header">
             <h2 style="margin-top: 0" data-i18n="themes">Themes</h2>
             <button class="big-button back-btn" data-i18n="back">Back</button>
@@ -343,8 +356,7 @@
                         <input type="text" class="card-input" id="submit-credits">
                     </div>
             
-                    <p style="margin-top:10px;color: #818181;">This will submit your current thematic settings, such as your card images, dark mode, and font.</p>
-                    <button id="submit-theme-btn" class="big-button" style="width: 50%;">Submit</button>
+                    <button id="submit-theme-btn-1" class="big-button">Submit</button>
                 </div>
                 <div style="min-width: 25%;">
                     <button id="theme-button-img" class="theme-button customization-button"
@@ -361,18 +373,21 @@
                 <span id="premade-themes-pagenum"></span>
             </div>
             <div class="theme-controls">
-                <button id="theme-sorts">
-                    <div>
-                        <svg style="display: block" xmlns="http://www.w3.org/2000/svg"  width="14"  height="14"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrows-up-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 3l0 18" /><path d="M10 6l-3 -3l-3 3" /><path d="M20 18l-3 3l-3 -3" /><path d="M17 21l0 -18" /></svg>
+                <div id="theme-sorts-container">
+                    <button id="theme-sorts">
+                        <div>
+                            <svg style="display: block" xmlns="http://www.w3.org/2000/svg"  width="14"  height="14"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrows-up-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 3l0 18" /><path d="M10 6l-3 -3l-3 3" /><path d="M20 18l-3 3l-3 -3" /><path d="M17 21l0 -18" /></svg>
+                        </div>
+                        <span id="theme-current-sort"></span>
+                    </button>
+                    <div id="theme-sort-selector">
+                        <div id="theme-sort-score" class="theme-sort-btn">Popular</div>
+                        <div id="theme-sort-liked" class="theme-sort-btn">Liked</div>
+                        <div id="theme-sort-new" class="theme-sort-btn">New</div>
+                        <div id="theme-sort-old" class="theme-sort-btn">Old</div>
+                        <div id="theme-sort-abc" class="theme-sort-btn">ABC</div>
                     </div>
-                    <span id="theme-current-sort"></span>
-                    <!--
-                    <button id="theme-sort-score" class="theme-sort-btn">Rating</button>
-                    <button id="theme-sort-color" class="theme-sort-btn">Color</button>
-                    <button id="theme-sort-new" class="theme-sort-btn">New</button>
-                    <button id="theme-sort-old" class="theme-sort-btn">Old</button>
-                -->
-                </button>
+                </div>
                 <div class="card-input" id="theme-search-container">
                     <svg  xmlns="http://www.w3.org/2000/svg"  width="14"  height="14"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
                     <input type="text" id="theme-search" placeholder="Search">

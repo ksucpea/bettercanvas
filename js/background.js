@@ -107,21 +107,6 @@ chrome.runtime.onInstalled.addListener(function () {
                 newLocalOptions[option] = default_options["local"][option];
             })
 
-            /*
-            // generates a unique id for the themes backend
-            if (sync["identifier"] === undefined) {
-                try {
-                    await fetch("https://localhost:3000/api/identity")
-                    .then(res => res.json())
-                    .then(data => {
-                        newSyncOptions["identifier"] = data.message;
-                    })
-                } catch (e) {
-                    
-                }
-            }
-            */
-
             if (Object.keys(newLocalOptions).length > 0) {
                 chrome.storage.local.set(newLocalOptions);
             }
