@@ -236,8 +236,8 @@ You can export a theme using the export tool in the menu and sending an email to
 | | └── messages.json
 | ├── zh_CN
 | | └── messages.json
-| ├── zh_TW
-| | └── messages.json
+| └── zh_TW
+|   └── messages.json
 ├── css
 │ ├── content.css
 │ ├── options.css
