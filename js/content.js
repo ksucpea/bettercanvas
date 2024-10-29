@@ -224,7 +224,7 @@ function startExtension() {
         loadCustomFont();
         applyAestheticChanges();
         changeFavicon();
-        if (options.quiz_strikethrough) initQuizStrikethrough();
+        initQuizStrikethrough();
         updateReminders();
         //getClassAverages();
         setTimeout(() => runDarkModeFixer(false), 800);
@@ -1856,6 +1856,8 @@ const strikeStyle =
   "background-color: transparent; right: 10px; font-size: 30px; position: absolute; text-decoration: none !important; color: red; border: none; z-index: 2";
 
 function initQuizStrikethrough() {
+
+    if (options.quiz_strikethrough !== true || !current_page.includes("quizzes")) return;
     // Listen for any answer choices being added after runtime
     const bodyElement = document.body;
     const config = { childList: true, subtree: true };
