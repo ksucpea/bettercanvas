@@ -1,0 +1,239 @@
+{
+  "better_canvas": {
+    "message": "より良いキャンバス"
+  },
+  "updates": {
+    "message": "アップデート"
+  },
+  "dark_mode": {
+    "message": "ダークモード"
+  },
+  "automatic_dark_mode": {
+    "message": "スケジュールされたダークモード"
+  },
+  "auto_start_time": {
+    "message": "開始時間"
+  },
+  "auto_end_time": {
+    "message": "終了時間"
+  },
+  "edit_dark_mode": {
+    "message": "ダークモード"
+  },
+  "enter_url": {
+    "message": "あなたのキャンバスURL:"
+  },
+  "card_grades": {
+    "message": "カードのグレード"
+  },
+  "gradient_cards": {
+    "message": "グラデーションカード"
+  },
+  "condensed_cards": {
+    "message": "凝縮カード"
+  },
+  "disable_color": {
+    "message": "カラーオーバーレイを無効にする"
+  },
+  "card_assignments": {
+    "message": "カードの割り当て"
+  },
+  "card_customization": {
+    "message": "カード"
+  },
+  "custom_font": {
+    "message": "フォント"
+  },
+  "useddmm": {
+    "message": "を使用 dd/mm"
+  },
+  "better_todo": {
+    "message": "より良いToDoリスト"
+  },
+  "max_items": {
+    "message": "最大アイテム数: "
+  },
+  "hover_preview": {
+    "message": "詳細をプレビューするにはマウスを移動します"
+  },
+  "hide_completed": {
+    "message": "完了を非表示"
+  },
+  "24hrformat": {
+    "message": "24時間形式を使用する"
+  },
+  "dashboard_notes": {
+    "message": "ダッシュボードノート"
+  },
+  "gpa_calculator": {
+    "message": "GPA計算機"
+  },
+  "gpa_settings": {
+    "message": "GPA設定"
+  },
+  "grade_hover": {
+    "message": "ホバー時のみ表示"
+  },
+  "due": {
+    "message": "期限"
+  },
+  "card_colors": {
+    "message": "カードの色"
+  },
+  "back": {
+    "message": "戻る"
+  },
+  "more_options": {
+    "message": "その他のオプション"
+  },
+  "manual_customization": {
+    "message": "手動カスタマイズ"
+  },
+  "background_colors": {
+    "message": "背景"
+  },
+  "text_colors": {
+    "message": "文章"
+  },
+  "full_width": {
+    "message": "ダッシュボード全幅"
+  },
+  "report_issue": {
+    "message": "問題を報告"
+  },
+  "themes": {
+    "message": "テーマ"
+  },
+  "move_top": {
+    "message": "トップへ移動"
+  },
+  "show_past_due": {
+    "message": "期限超過を表示"
+  },
+  "relative_due_dates": {
+    "message": "相対的な期日"
+  },
+  "enter_multiple": {
+    "message": "(カンマで複数入力)"
+  },
+  "todo_remind": {
+    "message": "ToDoリマインダー"
+  },
+  "remlogo": {
+    "message": "サイドバーのロゴを削除"
+  },
+  "hide_feedback": {
+    "message": "最近のフィードバックを非表示"
+  },
+  "tab_icons": {
+    "message": "色分けされたタブアイコン"
+  },
+  "todo_colors": {
+    "message": "カードの色を使用する"
+  },
+  "gpa_calc_cumulative": {
+    "message": "累積GPAを表示"
+  },
+  "gpa_calc_weighted": {
+    "message": "加重GPAを表示"
+  },
+  "device_dark": {
+    "message": "デバイスのダークモード設定を使用する"
+  },
+  "presets": {
+    "message": "プリセット"
+  },
+  "dark_lighter": {
+    "message": "ライター"
+  },
+  "dark_light": {
+    "message": "ライト"
+  },
+  "dark_default": {
+    "message": "デフォルト"
+  },
+  "dark_dark": {
+    "message": "暗い"
+  },
+  "dark_darker": {
+    "message": "暗い"
+  },
+  "dark_mint": {
+    "message": "ミント"
+  },
+  "dark_blue": {
+    "message": "青みがかった"
+  },
+  "dark_burn": {
+    "message": "眼球の火傷"
+  },
+  "dark_unicorn": {
+    "message": "ユニコーン"
+  },
+  "dark_lightmode": {
+    "message": "ライトモード"
+  },
+  "dark_catppuccin": {
+    "message": "Catppuccin\n 作者: Angel"
+  },
+  "dark_sage": {
+    "message": "Sabia\n By LivDoesDevStuf"
+  },
+  "dark_pink": {
+    "message": "ピンク\n By Sayde"
+  },
+  "dark_coral": {
+    "message": "コーラル\n スーパーチド作"
+  },
+  "dp_sidebar_text": {
+    "message": "サイドバーテキスト"
+  },
+  "dp_sidebar": {
+    "message": "サイドバー"
+  },
+  "radio_sidebar_solid": {
+    "message": "固体"
+  },
+  "radio_sidebar_gradient": {
+    "message": "勾配"
+  },
+  "radio_sidebar_image": {
+    "message": "画像"
+  },
+  "dp_background_0": {
+    "message": "背景メイン"
+  },
+  "dp_background_1": {
+    "message": "背景の代替"
+  },
+  "dp_background_2": {
+    "message": "背景 その他"
+  },
+  "dp_borders": {
+    "message": "国境"
+  },
+  "dp_links": {
+    "message": "リンク"
+  },
+  "dp_text_0": {
+    "message": "テキストメイン"
+  },
+  "dp_text_1": {
+    "message": "テキストその他"
+  },
+  "dp_text_2": {
+    "message": "テキスト代替"
+  },
+  "dark_mode_fixer": {
+    "message": "ダークモード修正プログラム (ベータ版)"
+  },
+  "dark_mode_fixer_text": {
+    "message": "これにより、現在のページ上のダーク モードのギャップが修正されます。"
+  },
+  "fix_dm_btn": {
+    "message": "行く"
+  },
+  "fix_dm_text": {
+    "message": "Fixer はこれらのページで自動的に実行されます:"
+  }
+}

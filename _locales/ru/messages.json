@@ -1,0 +1,239 @@
+{
+  "better_canvas": {
+    "message": "Лучший холст"
+  },
+  "updates": {
+    "message": "Обновления"
+  },
+  "dark_mode": {
+    "message": "Темный режим"
+  },
+  "automatic_dark_mode": {
+    "message": "Запланированный темный режим"
+  },
+  "auto_start_time": {
+    "message": "Время начала"
+  },
+  "auto_end_time": {
+    "message": "Время окончания"
+  },
+  "edit_dark_mode": {
+    "message": "Темный режим"
+  },
+  "enter_url": {
+    "message": "Url-адрес вашего холста:"
+  },
+  "card_grades": {
+    "message": "Оценки карт"
+  },
+  "gradient_cards": {
+    "message": "Градиентные карты"
+  },
+  "condensed_cards": {
+    "message": "Сжатые карты"
+  },
+  "disable_color": {
+    "message": "Отключить наложение цвета"
+  },
+  "card_assignments": {
+    "message": "Задания карт"
+  },
+  "card_customization": {
+    "message": "Карты"
+  },
+  "custom_font": {
+    "message": "Шрифты"
+  },
+  "useddmm": {
+    "message": "Используйте дд/мм"
+  },
+  "better_todo": {
+    "message": "Лучший список дел"
+  },
+  "max_items": {
+    "message": "Максимальное количество предметов: "
+  },
+  "hover_preview": {
+    "message": "Наведите курсор, чтобы просмотреть детали"
+  },
+  "hide_completed": {
+    "message": "Скрыть Завершено"
+  },
+  "24hrformat": {
+    "message": "Использовать 24-часовой формат"
+  },
+  "dashboard_notes": {
+    "message": "Заметки на панели инструментов"
+  },
+  "gpa_calculator": {
+    "message": "Калькулятор среднего балла"
+  },
+  "gpa_settings": {
+    "message": "Настройки среднего балла"
+  },
+  "grade_hover": {
+    "message": "Показывать только при наведении"
+  },
+  "due": {
+    "message": "Должный"
+  },
+  "card_colors": {
+    "message": "Цвета карт"
+  },
+  "back": {
+    "message": "Назад"
+  },
+  "more_options": {
+    "message": "Больше вариантов"
+  },
+  "manual_customization": {
+    "message": "Ручная настройка"
+  },
+  "background_colors": {
+    "message": "Фон"
+  },
+  "text_colors": {
+    "message": "Текст"
+  },
+  "full_width": {
+    "message": "Приборная панель на всю ширину"
+  },
+  "report_issue": {
+    "message": "Сообщить о проблеме"
+  },
+  "themes": {
+    "message": "Темы"
+  },
+  "move_top": {
+    "message": "Переместить наверх"
+  },
+  "show_past_due": {
+    "message": "Показать просроченные"
+  },
+  "relative_due_dates": {
+    "message": "Относительные сроки выполнения"
+  },
+  "enter_multiple": {
+    "message": "(Введите несколько через запятую)"
+  },
+  "todo_remind": {
+    "message": "Напоминания о задачах"
+  },
+  "remlogo": {
+    "message": "Удалить логотип боковой панели"
+  },
+  "hide_feedback": {
+    "message": "Скрыть последние отзывы"
+  },
+  "tab_icons": {
+    "message": "Цветные значки вкладок"
+  },
+  "todo_colors": {
+    "message": "Используйте цвета карт"
+  },
+  "gpa_calc_cumulative": {
+    "message": "Показать накопленный средний балл"
+  },
+  "gpa_calc_weighted": {
+    "message": "Показать взвешенный средний балл"
+  },
+  "device_dark": {
+    "message": "Использовать настройки темного режима устройства"
+  },
+  "presets": {
+    "message": "Пресеты"
+  },
+  "dark_lighter": {
+    "message": "Зажигалка"
+  },
+  "dark_light": {
+    "message": "Свет"
+  },
+  "dark_default": {
+    "message": "По умолчанию"
+  },
+  "dark_dark": {
+    "message": "Темный"
+  },
+  "dark_darker": {
+    "message": "Темнее"
+  },
+  "dark_mint": {
+    "message": "Мята"
+  },
+  "dark_blue": {
+    "message": "Синий оттенок"
+  },
+  "dark_burn": {
+    "message": "Ожог глазного яблока"
+  },
+  "dark_unicorn": {
+    "message": "Единорог"
+  },
+  "dark_lightmode": {
+    "message": "Lightmode"
+  },
+  "dark_catppuccin": {
+    "message": "Catppuccin\n К Ангел"
+  },
+  "dark_sage": {
+    "message": "Сабия\n Автор: LivDoesDevStuf"
+  },
+  "dark_pink": {
+    "message": "Розовый\n Автор Sayde"
+  },
+  "dark_coral": {
+    "message": "Коралл\n Автор: Superchido"
+  },
+  "dp_sidebar_text": {
+    "message": "Текст боковой панели"
+  },
+  "dp_sidebar": {
+    "message": "Боковая панель"
+  },
+  "radio_sidebar_solid": {
+    "message": "Твердый"
+  },
+  "radio_sidebar_gradient": {
+    "message": "Градиент"
+  },
+  "radio_sidebar_image": {
+    "message": "Изображение"
+  },
+  "dp_background_0": {
+    "message": "Фон Основной"
+  },
+  "dp_background_1": {
+    "message": "Фон альт"
+  },
+  "dp_background_2": {
+    "message": "Фон Другое"
+  },
+  "dp_borders": {
+    "message": "Границы"
+  },
+  "dp_links": {
+    "message": "Ссылки"
+  },
+  "dp_text_0": {
+    "message": "Текст Основной"
+  },
+  "dp_text_1": {
+    "message": "Текст Другое"
+  },
+  "dp_text_2": {
+    "message": "Текст Альтернативный"
+  },
+  "dark_mode_fixer": {
+    "message": "Dark Mode Fixer (бета-версия)"
+  },
+  "dark_mode_fixer_text": {
+    "message": "Это позволит исправить любые пробелы темного режима на текущей странице."
+  },
+  "fix_dm_btn": {
+    "message": "Идти"
+  },
+  "fix_dm_text": {
+    "message": "Fixer автоматически запускается на этих страницах:"
+  }
+}

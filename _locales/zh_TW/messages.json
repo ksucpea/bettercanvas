@@ -1,0 +1,239 @@
+{
+  "better_canvas": {
+    "message": "更好的画布"
+  },
+  "updates": {
+    "message": "更新"
+  },
+  "dark_mode": {
+    "message": "暗色模式"
+  },
+  "automatic_dark_mode": {
+    "message": "预定的深色模式"
+  },
+  "auto_start_time": {
+    "message": "开始时间"
+  },
+  "auto_end_time": {
+    "message": "结束时间"
+  },
+  "edit_dark_mode": {
+    "message": "深色模式"
+  },
+  "enter_url": {
+    "message": "您的画布网址:"
+  },
+  "card_grades": {
+    "message": "卡牌等级"
+  },
+  "gradient_cards": {
+    "message": "渐变卡"
+  },
+  "condensed_cards": {
+    "message": "浓缩卡"
+  },
+  "disable_color": {
+    "message": "禁用颜色叠加"
+  },
+  "card_assignments": {
+    "message": "卡分配"
+  },
+  "card_customization": {
+    "message": "牌"
+  },
+  "custom_font": {
+    "message": "字体"
+  },
+  "useddmm": {
+    "message": "使用日/毫米"
+  },
+  "better_todo": {
+    "message": "更好的待办事项列表"
+  },
+  "max_items": {
+    "message": "最大物品数: "
+  },
+  "hover_preview": {
+    "message": "将鼠标悬停以预览详细信息"
+  },
+  "hide_completed": {
+    "message": "隐藏已完成"
+  },
+  "24hrformat": {
+    "message": "使用 24 小时格式"
+  },
+  "dashboard_notes": {
+    "message": "仪表板注释"
+  },
+  "gpa_calculator": {
+    "message": "平均绩点计算器"
+  },
+  "gpa_settings": {
+    "message": "平均绩点设置"
+  },
+  "grade_hover": {
+    "message": "仅在悬停时显示"
+  },
+  "due": {
+    "message": "到期的"
+  },
+  "card_colors": {
+    "message": "卡片颜色"
+  },
+  "back": {
+    "message": "后退"
+  },
+  "more_options": {
+    "message": "更多选择"
+  },
+  "manual_customization": {
+    "message": "手动定制"
+  },
+  "background_colors": {
+    "message": "背景"
+  },
+  "text_colors": {
+    "message": "文本"
+  },
+  "full_width": {
+    "message": "仪表板全宽"
+  },
+  "report_issue": {
+    "message": "报告问题"
+  },
+  "themes": {
+    "message": "主题"
+  },
+  "move_top": {
+    "message": "移至顶部"
+  },
+  "show_past_due": {
+    "message": "显示逾期"
+  },
+  "relative_due_dates": {
+    "message": "相对到期日"
+  },
+  "enter_multiple": {
+    "message": "(用逗号输入多个)"
+  },
+  "todo_remind": {
+    "message": "待办事项提醒"
+  },
+  "remlogo": {
+    "message": "删除侧边栏徽标"
+  },
+  "hide_feedback": {
+    "message": "隐藏最近的反馈"
+  },
+  "tab_icons": {
+    "message": "颜色编码选项卡图标"
+  },
+  "todo_colors": {
+    "message": "使用卡片颜色"
+  },
+  "gpa_calc_cumulative": {
+    "message": "显示累积GPA"
+  },
+  "gpa_calc_weighted": {
+    "message": "显示权重GPA"
+  },
+  "device_dark": {
+    "message": "使用设备暗色模式设置"
+  },
+  "presets": {
+    "message": "预设值"
+  },
+  "dark_lighter": {
+    "message": "灯光"
+  },
+  "dark_light": {
+    "message": "亮色的"
+  },
+  "dark_default": {
+    "message": "默认设置"
+  },
+  "dark_dark": {
+    "message": "深色"
+  },
+  "dark_darker": {
+    "message": "较暗的"
+  },
+  "dark_mint": {
+    "message": "分钟数"
+  },
+  "dark_blue": {
+    "message": "蓝色调"
+  },
+  "dark_burn": {
+    "message": "眼球烧伤"
+  },
+  "dark_unicorn": {
+    "message": "独角兽人"
+  },
+  "dark_lightmode": {
+    "message": "浅色模式"
+  },
+  "dark_catppuccin": {
+    "message": "卡普布辛\n 由天使"
+  },
+  "dark_sage": {
+    "message": "萨比亚\n 通过 LivDoesDevStuf"
+  },
+  "dark_pink": {
+    "message": "粉色的\n 通过赛德"
+  },
+  "dark_coral": {
+    "message": "珊瑚\n 通过 超级奇多"
+  },
+  "dp_sidebar_text": {
+    "message": "侧边栏文本"
+  },
+  "dp_sidebar": {
+    "message": "侧边栏"
+  },
+  "radio_sidebar_solid": {
+    "message": "坚硬的"
+  },
+  "radio_sidebar_gradient": {
+    "message": "渐变"
+  },
+  "radio_sidebar_image": {
+    "message": "图片"
+  },
+  "dp_background_0": {
+    "message": "主要背景"
+  },
+  "dp_background_1": {
+    "message": "背景Alt"
+  },
+  "dp_background_2": {
+    "message": "其它背景"
+  },
+  "dp_borders": {
+    "message": "边框"
+  },
+  "dp_links": {
+    "message": "链接"
+  },
+  "dp_text_0": {
+    "message": "主要文本"
+  },
+  "dp_text_1": {
+    "message": "其它文本"
+  },
+  "dp_text_2": {
+    "message": "文本Alt"
+  },
+  "dark_mode_fixer": {
+    "message": "深色模式修复程序 (测试版)"
+  },
+  "dark_mode_fixer_text": {
+    "message": "这将尝试修复当前页面上的任何暗模式间隙。"
+  },
+  "fix_dm_btn": {
+    "message": "去"
+  },
+  "fix_dm_text": {
+    "message": "修复程序会自动在这些页面上运行:"
+  }
+}

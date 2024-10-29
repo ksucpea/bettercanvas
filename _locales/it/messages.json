@@ -1,0 +1,239 @@
+{
+  "better_canvas": {
+    "message": "Tela migliore"
+  },
+  "updates": {
+    "message": "Aggiornamenti"
+  },
+  "dark_mode": {
+    "message": "Modalità scura"
+  },
+  "automatic_dark_mode": {
+    "message": "Modalità scura programmata"
+  },
+  "auto_start_time": {
+    "message": "Ora di inizio"
+  },
+  "auto_end_time": {
+    "message": "Ora di fine"
+  },
+  "edit_dark_mode": {
+    "message": "Modalità scura"
+  },
+  "enter_url": {
+    "message": "L'url della tua tela:"
+  },
+  "card_grades": {
+    "message": "Gradi delle carte"
+  },
+  "gradient_cards": {
+    "message": "Carte sfumate"
+  },
+  "condensed_cards": {
+    "message": "Carte condensate"
+  },
+  "disable_color": {
+    "message": "Disabilita sovrapposizione colore"
+  },
+  "card_assignments": {
+    "message": "Assegnazioni delle carte"
+  },
+  "card_customization": {
+    "message": "Carte"
+  },
+  "custom_font": {
+    "message": "Caratteri"
+  },
+  "useddmm": {
+    "message": "Usa gg/mm"
+  },
+  "better_todo": {
+    "message": "Migliore lista delle cose da fare"
+  },
+  "max_items": {
+    "message": "Numero massimo di articoli: "
+  },
+  "hover_preview": {
+    "message": "Passa il mouse per visualizzare l'anteprima dei dettagli"
+  },
+  "hide_completed": {
+    "message": "Nascondi Completato"
+  },
+  "24hrformat": {
+    "message": "Usa il formato 24 ore"
+  },
+  "dashboard_notes": {
+    "message": "Note del cruscotto"
+  },
+  "gpa_calculator": {
+    "message": "Calcolatrice GPA"
+  },
+  "gpa_settings": {
+    "message": "Impostazioni GPA"
+  },
+  "grade_hover": {
+    "message": "Mostra solo al passaggio del mouse"
+  },
+  "due": {
+    "message": "Dovuto"
+  },
+  "card_colors": {
+    "message": "Colori delle carte"
+  },
+  "back": {
+    "message": "Indietro"
+  },
+  "more_options": {
+    "message": "Altre opzioni"
+  },
+  "manual_customization": {
+    "message": "Personalizzazione manuale"
+  },
+  "background_colors": {
+    "message": "Sfondo"
+  },
+  "text_colors": {
+    "message": "Testo"
+  },
+  "full_width": {
+    "message": "Dashboard a tutta larghezza"
+  },
+  "report_issue": {
+    "message": "Segnala un problema"
+  },
+  "themes": {
+    "message": "Temi"
+  },
+  "move_top": {
+    "message": "Sposta in alto"
+  },
+  "show_past_due": {
+    "message": "Mostra scaduto"
+  },
+  "relative_due_dates": {
+    "message": "Date di scadenza relative"
+  },
+  "enter_multiple": {
+    "message": "(Inserisci più numeri con una virgola)"
+  },
+  "todo_remind": {
+    "message": "Promemoria delle cose da fare"
+  },
+  "remlogo": {
+    "message": "Rimuovi il logo della barra laterale"
+  },
+  "hide_feedback": {
+    "message": "Nascondi feedback recenti"
+  },
+  "tab_icons": {
+    "message": "Icone delle schede codificate a colori"
+  },
+  "todo_colors": {
+    "message": "Usa i colori delle carte"
+  },
+  "gpa_calc_cumulative": {
+    "message": "Mostra GPA cumulativo"
+  },
+  "gpa_calc_weighted": {
+    "message": "Mostra GPA ponderato"
+  },
+  "device_dark": {
+    "message": "Utilizzare le impostazioni della modalità scura del dispositivo"
+  },
+  "presets": {
+    "message": "Preimpostazioni"
+  },
+  "dark_lighter": {
+    "message": "Più leggero"
+  },
+  "dark_light": {
+    "message": "Leggero"
+  },
+  "dark_default": {
+    "message": "Predefinito"
+  },
+  "dark_dark": {
+    "message": "Buio"
+  },
+  "dark_darker": {
+    "message": "Più scuro"
+  },
+  "dark_mint": {
+    "message": "Menta"
+  },
+  "dark_blue": {
+    "message": "Tinta blu"
+  },
+  "dark_burn": {
+    "message": "Bruciore del bulbo oculare"
+  },
+  "dark_unicorn": {
+    "message": "Unicorno"
+  },
+  "dark_lightmode": {
+    "message": "Modalità luce"
+  },
+  "dark_catppuccin": {
+    "message": "Catppuccino\n Per Angelo"
+  },
+  "dark_sage": {
+    "message": "Sabia\n Di LivDoesDevStuf"
+  },
+  "dark_pink": {
+    "message": "Rosa\n Di Sayde"
+  },
+  "dark_coral": {
+    "message": "Corallo\n Di Superchido"
+  },
+  "dp_sidebar_text": {
+    "message": "Testo della barra laterale"
+  },
+  "dp_sidebar": {
+    "message": "Barra laterale"
+  },
+  "radio_sidebar_solid": {
+    "message": "Solido"
+  },
+  "radio_sidebar_gradient": {
+    "message": "Pendenza"
+  },
+  "radio_sidebar_image": {
+    "message": "Immagine"
+  },
+  "dp_background_0": {
+    "message": "Contesto Principale"
+  },
+  "dp_background_1": {
+    "message": "Sfondo Alt"
+  },
+  "dp_background_2": {
+    "message": "Contesto Altro"
+  },
+  "dp_borders": {
+    "message": "Confini"
+  },
+  "dp_links": {
+    "message": "Collegamenti"
+  },
+  "dp_text_0": {
+    "message": "Testo principale"
+  },
+  "dp_text_1": {
+    "message": "Testo Altro"
+  },
+  "dp_text_2": {
+    "message": "Testo Alt"
+  },
+  "dark_mode_fixer": {
+    "message": "Correzione modalità scura (Beta)"
+  },
+  "dark_mode_fixer_text": {
+    "message": "Questo cercherà di correggere eventuali lacune della modalità scura nella pagina corrente."
+  },
+  "fix_dm_btn": {
+    "message": "Andare"
+  },
+  "fix_dm_text": {
+    "message": "Il fissatore viene eseguito automaticamente su queste pagine:"
+  }
+}

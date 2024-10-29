@@ -1,0 +1,239 @@
+{
+  "better_canvas": {
+    "message": "Bessere Leinwand"
+  },
+  "updates": {
+    "message": "Aktualisierungen"
+  },
+  "dark_mode": {
+    "message": "Dunkler Modus"
+  },
+  "automatic_dark_mode": {
+    "message": "Geplanter Dunkelmodus"
+  },
+  "auto_start_time": {
+    "message": "Startzeit"
+  },
+  "auto_end_time": {
+    "message": "Endzeit"
+  },
+  "edit_dark_mode": {
+    "message": "Dunkler Modus"
+  },
+  "enter_url": {
+    "message": "Ihre Canvas-url:"
+  },
+  "card_grades": {
+    "message": "Kartenqualitäten"
+  },
+  "gradient_cards": {
+    "message": "Farbverlaufskarten"
+  },
+  "condensed_cards": {
+    "message": "Verdichtete Karten"
+  },
+  "disable_color": {
+    "message": "Farbüberlagerung deaktivieren"
+  },
+  "card_assignments": {
+    "message": "Kartenzuweisungen"
+  },
+  "card_customization": {
+    "message": "Karten"
+  },
+  "custom_font": {
+    "message": "Schriftarten"
+  },
+  "useddmm": {
+    "message": "Verwenden Sie tt/mm"
+  },
+  "better_todo": {
+    "message": "Bessere ToDo-Liste"
+  },
+  "max_items": {
+    "message": "Max. Anzahl Elemente: "
+  },
+  "hover_preview": {
+    "message": "Bewegen Sie den Mauszeiger, um Details in der Vorschau anzuzeigen"
+  },
+  "hide_completed": {
+    "message": "Abgeschlossene ausblenden"
+  },
+  "24hrformat": {
+    "message": "24-Stunden-Format verwenden"
+  },
+  "dashboard_notes": {
+    "message": "Dashboard-Notizen"
+  },
+  "gpa_calculator": {
+    "message": "GPA-Rechner"
+  },
+  "gpa_settings": {
+    "message": "GPA-Einstellungen"
+  },
+  "grade_hover": {
+    "message": "Nur beim Hover anzeigen"
+  },
+  "due": {
+    "message": "Fällig"
+  },
+  "card_colors": {
+    "message": "Kartenfarben"
+  },
+  "back": {
+    "message": "Zurück"
+  },
+  "more_options": {
+    "message": "Weitere Optionen"
+  },
+  "manual_customization": {
+    "message": "Manuelle Anpassung"
+  },
+  "background_colors": {
+    "message": "Hintergrund"
+  },
+  "text_colors": {
+    "message": "Text"
+  },
+  "full_width": {
+    "message": "Dashboard in voller Breite"
+  },
+  "report_issue": {
+    "message": "Problem melden"
+  },
+  "themes": {
+    "message": "Themen"
+  },
+  "move_top": {
+    "message": "Nach oben verschieben"
+  },
+  "show_past_due": {
+    "message": "Überfällige anzeigen"
+  },
+  "relative_due_dates": {
+    "message": "Relative Fälligkeitsdaten"
+  },
+  "enter_multiple": {
+    "message": "(Mehrere mit Komma eingeben)"
+  },
+  "todo_remind": {
+    "message": "To-do-Erinnerungen"
+  },
+  "remlogo": {
+    "message": "Sidebar-Logo entfernen"
+  },
+  "hide_feedback": {
+    "message": "Aktuelles Feedback ausblenden"
+  },
+  "tab_icons": {
+    "message": "Farbcodierte Registerkartensymbole"
+  },
+  "todo_colors": {
+    "message": "Kartenfarben verwenden"
+  },
+  "gpa_calc_cumulative": {
+    "message": "Kumulativen GPA anzeigen"
+  },
+  "gpa_calc_weighted": {
+    "message": "Gewichteten GPA anzeigen"
+  },
+  "device_dark": {
+    "message": "Dunkelmodus-Einstellungen des Geräts verwenden"
+  },
+  "presets": {
+    "message": "Voreinstellungen"
+  },
+  "dark_lighter": {
+    "message": "Feuerzeug"
+  },
+  "dark_light": {
+    "message": "Licht"
+  },
+  "dark_default": {
+    "message": "Standard"
+  },
+  "dark_dark": {
+    "message": "Dunkel"
+  },
+  "dark_darker": {
+    "message": "Dunkler"
+  },
+  "dark_mint": {
+    "message": "Minze"
+  },
+  "dark_blue": {
+    "message": "Blauer Farbton"
+  },
+  "dark_burn": {
+    "message": "Brennen im Augapfel"
+  },
+  "dark_unicorn": {
+    "message": "Einhorn"
+  },
+  "dark_lightmode": {
+    "message": "Lichtmodus"
+  },
+  "dark_catppuccin": {
+    "message": "Catppuccin\n Von Angel"
+  },
+  "dark_sage": {
+    "message": "Sabia\n Von LivDoesDevStuf"
+  },
+  "dark_pink": {
+    "message": "Pink\n Von Sayde"
+  },
+  "dark_coral": {
+    "message": "Koralle\n Von Superchido"
+  },
+  "dp_sidebar_text": {
+    "message": "Seitenleistentext"
+  },
+  "dp_sidebar": {
+    "message": "Seitenleiste"
+  },
+  "radio_sidebar_solid": {
+    "message": "Solide"
+  },
+  "radio_sidebar_gradient": {
+    "message": "Gradient"
+  },
+  "radio_sidebar_image": {
+    "message": "Bild"
+  },
+  "dp_background_0": {
+    "message": "Hintergrund Main"
+  },
+  "dp_background_1": {
+    "message": "Hintergrund Alt"
+  },
+  "dp_background_2": {
+    "message": "Hintergrund Sonstiges"
+  },
+  "dp_borders": {
+    "message": "Grenzen"
+  },
+  "dp_links": {
+    "message": "Links"
+  },
+  "dp_text_0": {
+    "message": "Text Haupt"
+  },
+  "dp_text_1": {
+    "message": "Text Andere"
+  },
+  "dp_text_2": {
+    "message": "Text Alt"
+  },
+  "dark_mode_fixer": {
+    "message": "Dunkelmodus-Fixer (Beta)"
+  },
+  "dark_mode_fixer_text": {
+    "message": "Dadurch wird versucht, alle Lücken im Dunkelmodus auf der aktuellen Seite zu schließen."
+  },
+  "fix_dm_btn": {
+    "message": "Gehen"
+  },
+  "fix_dm_text": {
+    "message": "Der Fixer wird automatisch auf diesen Seiten ausgeführt:"
+  }
+}

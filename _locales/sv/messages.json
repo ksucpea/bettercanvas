@@ -1,0 +1,239 @@
+{
+  "better_canvas": {
+    "message": "Bättre Canvas"
+  },
+  "updates": {
+    "message": "Uppdateringar"
+  },
+  "dark_mode": {
+    "message": "Mörkt läge"
+  },
+  "automatic_dark_mode": {
+    "message": "Schemalagt mörkt läge"
+  },
+  "auto_start_time": {
+    "message": "Starttid"
+  },
+  "auto_end_time": {
+    "message": "Sluttid"
+  },
+  "edit_dark_mode": {
+    "message": "Mörkt läge"
+  },
+  "enter_url": {
+    "message": "Din canvas-url:"
+  },
+  "card_grades": {
+    "message": "Kortbetyg"
+  },
+  "gradient_cards": {
+    "message": "Gradientkort"
+  },
+  "condensed_cards": {
+    "message": "Kondenserade kort"
+  },
+  "disable_color": {
+    "message": "Inaktivera färgöverlägg"
+  },
+  "card_assignments": {
+    "message": "Kortuppdrag"
+  },
+  "card_customization": {
+    "message": "Kort"
+  },
+  "custom_font": {
+    "message": "Teckensnitt"
+  },
+  "useddmm": {
+    "message": "Använd dd/mm"
+  },
+  "better_todo": {
+    "message": "Bättre att göra-lista"
+  },
+  "max_items": {
+    "message": "Max artiklar: "
+  },
+  "hover_preview": {
+    "message": "Håll muspekaren för att förhandsgranska detaljer"
+  },
+  "hide_completed": {
+    "message": "Göm slutförd"
+  },
+  "24hrformat": {
+    "message": "Använd 24 timmars format"
+  },
+  "dashboard_notes": {
+    "message": "Anteckningar på instrumentpanelen"
+  },
+  "gpa_calculator": {
+    "message": "GPA-kalkylator"
+  },
+  "gpa_settings": {
+    "message": "GPA-inställningar"
+  },
+  "grade_hover": {
+    "message": "Visa endast vid svävning"
+  },
+  "due": {
+    "message": "Förfaller"
+  },
+  "card_colors": {
+    "message": "Kort färger"
+  },
+  "back": {
+    "message": "Tillbaka"
+  },
+  "more_options": {
+    "message": "Fler alternativ"
+  },
+  "manual_customization": {
+    "message": "Manuell anpassning"
+  },
+  "background_colors": {
+    "message": "Bakgrund"
+  },
+  "text_colors": {
+    "message": "Text"
+  },
+  "full_width": {
+    "message": "Instrumentpanel i full bredd"
+  },
+  "report_issue": {
+    "message": "Rapportera problem"
+  },
+  "themes": {
+    "message": "Teman"
+  },
+  "move_top": {
+    "message": "Flytta till toppen"
+  },
+  "show_past_due": {
+    "message": "Visa förfallna"
+  },
+  "relative_due_dates": {
+    "message": "Relativa förfallodatum"
+  },
+  "enter_multiple": {
+    "message": "(Ange flera med komma)"
+  },
+  "todo_remind": {
+    "message": "Påminnelser om att göra"
+  },
+  "remlogo": {
+    "message": "Ta bort Sidebar-logotypen"
+  },
+  "hide_feedback": {
+    "message": "Dölj senaste feedback"
+  },
+  "tab_icons": {
+    "message": "Färgkodade flikikoner"
+  },
+  "todo_colors": {
+    "message": "Använd kortfärger"
+  },
+  "gpa_calc_cumulative": {
+    "message": "Visa kumulativ GPA"
+  },
+  "gpa_calc_weighted": {
+    "message": "Visa viktad GPA"
+  },
+  "device_dark": {
+    "message": "Använd inställningarna för enhetens mörka läge"
+  },
+  "presets": {
+    "message": "Förinställningar"
+  },
+  "dark_lighter": {
+    "message": "Tändare"
+  },
+  "dark_light": {
+    "message": "Ljus"
+  },
+  "dark_default": {
+    "message": "Standard"
+  },
+  "dark_dark": {
+    "message": "Mörk"
+  },
+  "dark_darker": {
+    "message": "Mörkare"
+  },
+  "dark_mint": {
+    "message": "Mynta"
+  },
+  "dark_blue": {
+    "message": "Blå nyans"
+  },
+  "dark_burn": {
+    "message": "Bränna ögongloben"
+  },
+  "dark_unicorn": {
+    "message": "Enhörning"
+  },
+  "dark_lightmode": {
+    "message": "Ljusläge"
+  },
+  "dark_catppuccin": {
+    "message": "Catppuccin\n Av Angel"
+  },
+  "dark_sage": {
+    "message": "Sabia\n Av LivDoesDevStuf"
+  },
+  "dark_pink": {
+    "message": "Rosa\n Av Sayde"
+  },
+  "dark_coral": {
+    "message": "Korall\n Av Superchido"
+  },
+  "dp_sidebar_text": {
+    "message": "Sidofältstext"
+  },
+  "dp_sidebar": {
+    "message": "Sidofält"
+  },
+  "radio_sidebar_solid": {
+    "message": "Fast"
+  },
+  "radio_sidebar_gradient": {
+    "message": "Lutning"
+  },
+  "radio_sidebar_image": {
+    "message": "Bild"
+  },
+  "dp_background_0": {
+    "message": "Bakgrund Huvud"
+  },
+  "dp_background_1": {
+    "message": "Bakgrund Alt"
+  },
+  "dp_background_2": {
+    "message": "Bakgrund Annat"
+  },
+  "dp_borders": {
+    "message": "Gränser"
+  },
+  "dp_links": {
+    "message": "Länkar"
+  },
+  "dp_text_0": {
+    "message": "Ordalydelse huvudsaklig"
+  },
+  "dp_text_1": {
+    "message": "Text Annat"
+  },
+  "dp_text_2": {
+    "message": "Text Alt"
+  },
+  "dark_mode_fixer": {
+    "message": "Mörk Läge Fixare (Beta)"
+  },
+  "dark_mode_fixer_text": {
+    "message": "Detta kommer att försöka fixa eventuella luckor i mörkt läge på den aktuella sidan."
+  },
+  "fix_dm_btn": {
+    "message": "Gå"
+  },
+  "fix_dm_text": {
+    "message": "Fixern körs automatiskt på dessa sidor:"
+  }
+}
