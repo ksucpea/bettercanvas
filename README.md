@@ -215,11 +215,29 @@ You can export a theme using the export tool in the menu and sending an email to
 ```
 .
 ├── README.md
-├── \_locales
+├── _locales
 │ ├── en
 │ │ └── messages.json
-│ └── es
-│ └── messages.json
+│ ├── es
+│ │ └── messages.json
+| ├── de
+| | └── messages.json
+| ├── fr
+| | └── messages.json
+| ├── it
+| | └── messages.json
+| ├── ja
+| | └── messages.json
+| ├── pt_PT
+| | └── messages.json
+| ├── ru
+| | └── messages.json
+| ├── sv
+| | └── messages.json
+| ├── zh_CN
+| | └── messages.json
+| ├── zh_TW
+| | └── messages.json
 ├── css
 │ ├── content.css
 │ ├── options.css
