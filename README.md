@@ -295,6 +295,7 @@ Learn more about tree commands for Windows [here](https://learn.microsoft.com/en
 - [Tibo Geeraerts](https://github.com/tibogeeraerts)
 - [Jacob Mungle](https://github.com/Jelgnum)
 - [FireIsGood](https://github.com/FireIsGood)
+- [Globalfun32y439y54](https://github.com/Globalfun32y439y54)
 
 ## License
 
