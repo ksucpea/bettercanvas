@@ -89,6 +89,7 @@ chrome.runtime.onInstalled.addListener(function () {
             "new_browser": null,
             "gpa_calc_cumulative": false,
             "gpa_calc_weighted": true,
+            "quiz_strikethrough": false,
         }
     };
 
