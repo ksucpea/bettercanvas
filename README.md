@@ -43,6 +43,7 @@ Better Canvas introduces improvements to the Canvas user interface:
 - Gradient dashboard cards
 - Advanced card customization
 - GPA calculator (college and highschool)
+- Browser wide popup assignment reminder
 - Preview assignments and announcements from the dashboard
 
 ## Installation
