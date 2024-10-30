@@ -122,7 +122,7 @@ function createReminder(reminder, location) {
     const wrapper = makeElement("div", location, { "className": "bettercanvas-reminder-wrapper" });
     const container = makeElement("div", wrapper, { "className": "bettercanvas-reminder-container" });
     const svg = makeElement("div", container, { "innerHTML": canvas_svg });
-    const content = makeElement("a", container, { "className": "bettercanvas-reminder-content", "href": reminder.h });
+    const content = makeElement("a", container, { "className": "bettercanvas-reminder-content", "href": reminder.h, "target": "_blank" });
     const title = makeElement("h2", content, { "className": "bettercanvas-reminder-title", "textContent": reminder.t });
     const due = makeElement("p", content, { "className": "bettercanvas-reminder-due", "textContent": `Assignment due in ${remaining.time}` });
     const hidebtn = makeElement("btn", wrapper, { "className": "bettercanvas-reminder-hide", "textContent": "x" });
