@@ -315,16 +315,31 @@
 
     <div class="import-export tab" style="display: none">
         <div id="submit-popup">
-            <div style="max-width: 75%;">
-                <h3 class="header-small">Submission confirmation</h3>
-                <div class="color-line"></div>
-                <p style="margin-top: 10px;color: #a7a7a7">Make sure everything is correct before submitting! You won't be able to edit it later unless you contact me.</p>
-                <p style="margin-top: 10px;color: #a7a7a7">Your submission will include your current thematic settings, such as your card images, dark mode, and font.</p>
-                <a style="color: #fff;display:block;margin-top:10px;" target="_blank" href="https://diditupe.dev/bettercanvas/questions/?highlight=2">Find theme guidelines here</a>
-                <div style="display: flex; gap: 5px;margin-top:10px;">
+            <div style="max-width: 75%;color:#a7a7a7">
+                <h3 class="header-small" style="font-size:18px;color:#fff">Submission confirmation</h3>
+                <p style="font-size:12px;margin-top: 10px;font-weight:600;">This is <span style="text-decoration: underline;">not</span> to request a theme. I don't create themes by request.</p>
+                <p style="margin-top: 10px;">Your submission will include your current thematic settings, such as your card images, dark mode, and font.</p>
+                <p style="margin-top: 10px;">Make sure your theme follows these guidelines:</p>
+                <ul>
+                    <li>Appropriate images/title</li>
+                    <li>Does not heavily use components from other themes</li>
+                    <li>Uses a custom dark mode (but not one of the presets from the menu)</li>
+                    <li>Custom images cannot be from Discord or Gmail. These images are not public</li>
+                </ul>
+                <div style="display: flex; gap: 5px;margin-top:14px;">
                     <button id="submit-theme-btn" class="big-button" style="width: 50%;">Submit</button>
                     <button id="cancel-theme-btn" class="big-button" style="width: 50%;">Cancel</button>
                 </div>
+            </div>
+        </div>
+        <div id="browser-settings-popup">
+            <div style="width: 50%;">
+                <h3 class="header-small" style="margin-bottom:14px;font-size:18px;">Theme browser settings</h3>
+                <div style="display:flex;gap:8px;align-items: center;color:#a7a7a7">
+                    <input type="checkbox" id="browser_show_likes">
+                    <span>Always show like count</span>
+                </div>
+                <button id="close-settings-btn" class="big-button" style="width: 50%;margin-top:14px;">Close</button>
             </div>
         </div>
         <div class="tab-header">
@@ -345,20 +360,25 @@
                 <h3 class="header-small" style="margin:0">Submit your theme</h3>
                 <div class="big-button" id="show-submit-form">Show</div>
             </div>
-            <div id="submit-form" style="display:none;justify-content: space-between;gap: 30px;margin-top:10px;">
+            <p style="color:#a7a7a7">Do you want to submit your theme for others to use?</p>
+
+            <div id="submit-form" style="display:none;justify-content: space-between;gap: 30px;margin-top:20px;">
                 <div>
                     <div>
                         <p style="font-weight:600;">Title</p>
+                        <p style="color:#a7a7a7;font-size:12px;margin-top:2px;">Try to keep this short and relevant so people can search for it.</p>
                         <input type="text" class="card-input" id="submit-title">
                     </div>
-                    <div style="margin-top:5px;">
-                        <p style="font-weight:600;">Credits</p>
+                    <div style="margin-top:10px;">
+                        <p style="font-weight:600;">Created by</p>
+                        <p style="color:#a7a7a7;font-size:12px;margin-top:2px;">This can be anything including your name, social media handle, anonymous etc.</p>
                         <input type="text" class="card-input" id="submit-credits">
                     </div>
             
                     <button id="submit-theme-btn-1" class="big-button">Submit</button>
                 </div>
                 <div style="min-width: 25%;">
+                    <p style="color:#a7a7a7;font-size:12px;margin-bottom:5px;">Preview</p>
                     <button id="theme-button-img" class="theme-button customization-button"
 					style="width: 100%;height:60px;background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));">
 					    <p class="theme-button-title" id="theme-button-title-preview">Title</p>
@@ -369,7 +389,10 @@
         </div>
         <div class="option-container">
             <div class="theme-header">
-                <h3 class="header-small" style="margin:0">User made themes</h3>
+                <div style="display:flex;gap:6px;align-items:center">
+                    <h3 class="header-small" style="margin:0">User made themes</h3>
+                    <svg id="browser-settings-btn" xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-settings"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14.647 4.081a.724 .724 0 0 0 1.08 .448c2.439 -1.485 5.23 1.305 3.745 3.744a.724 .724 0 0 0 .447 1.08c2.775 .673 2.775 4.62 0 5.294a.724 .724 0 0 0 -.448 1.08c1.485 2.439 -1.305 5.23 -3.744 3.745a.724 .724 0 0 0 -1.08 .447c-.673 2.775 -4.62 2.775 -5.294 0a.724 .724 0 0 0 -1.08 -.448c-2.439 1.485 -5.23 -1.305 -3.745 -3.744a.724 .724 0 0 0 -.447 -1.08c-2.775 -.673 -2.775 -4.62 0 -5.294a.724 .724 0 0 0 .448 -1.08c-1.485 -2.439 1.305 -5.23 3.744 -3.745a.722 .722 0 0 0 1.08 -.447c.673 -2.775 4.62 -2.775 5.294 0zm-2.647 4.919a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" /></svg>
+                </div>
                 <span id="premade-themes-pagenum"></span>
             </div>
             <div class="theme-controls">
@@ -448,7 +471,6 @@
                     <textarea class="card-input" id="export-output" placeholder="Output"></textarea>
                 </div>
             </div>
-            <p class="sub-text" style="margin-top:10px">Want to submit your theme? <a style="color:inherit" target="_blank" href="https://diditupe.dev/bettercanvas/questions/?highlight=2">Click here</a></p>
         </div>
         <div class="import-export-details">
             <div class="import-details option-container">
@@ -460,12 +482,13 @@
             </div>
         </div>
         <div class="option-container">
-            <div class="theme-header" style="margin-bottom: 0">
-                <h3 class="header-small" style="margin:0;flex:100">Theme browser opt-in</h3>
-                <div class="sub-option">
-                    <input type="checkbox" id="new_browser" name="new_browser">
-                </div>
-            </div>      
+            <div class="theme-header">
+                <h3 class="header-small" style="margin:0;flex:100">Theme browser opt-in reset</h3>
+            </div>
+            <div style="display:flex;gap:12px;">
+                <button id="reset-optin" class="customization-button">Reset opt-in status</button>
+                <p style="color:#a7a7a7">This will bring back the opt-in message so you can select an option.</p>
+            </div>
         </div>
     </div>
 

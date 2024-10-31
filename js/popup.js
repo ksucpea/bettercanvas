@@ -155,7 +155,7 @@ function setupAutoDarkInput(initial, time) {
     el.value = initial.hour + ":" + initial.minute;
     el.addEventListener('change', function () {
         let timeinput = { "hour": this.value.split(':')[0], "minute": this.value.split(':')[1] };
-        time === "autodark_start" ? chrome.storage.sync.set({ auto_dark_start: timeinput }) : chrome.storage.sync.set({ auto_dark_end: timeinput });
+        time === "auto_dark_start" ? chrome.storage.sync.set({ auto_dark_start: timeinput }) : chrome.storage.sync.set({ auto_dark_end: timeinput });
     });
 }
 
@@ -184,7 +184,7 @@ function setup() {
 
     const menu = {
         "switches": syncedSwitches,
-        "checkboxes": ['gpa_calc_weighted', 'gpa_calc_cumulative', 'new_browser', /*'card_method_date',*/ 'show_updates', 'todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'hover_preview'],
+        "checkboxes": ['browser_show_likes', 'gpa_calc_weighted', 'gpa_calc_cumulative', /*'card_method_date',*/ 'show_updates', 'todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'hover_preview'],
         "tabs": {
             "advanced-settings": { "setup": displayAdvancedCards, "tab": ".advanced" },
             "gpa-bounds-btn": { "setup": displayGPABounds, "tab": ".gpa-bounds-container" },
@@ -541,6 +541,21 @@ function setup() {
         });
     });
 
+    // browser settings buttons
+    document.getElementById("browser-settings-btn").addEventListener("click", () => {
+        document.getElementById("browser-settings-popup").classList.add("open");
+    });
+
+    document.getElementById("close-settings-btn").addEventListener("click", () => {
+        displayThemeList(0);
+        document.getElementById("browser-settings-popup").classList.remove("open");
+    });
+
+    document.getElementById("reset-optin").addEventListener("click", () => {
+        chrome.storage.sync.set({ "new_browser": null });
+        document.getElementById("opt-in").style.display = "block";
+    });
+
 }
 
 async function getExport(storage, options) {
@@ -747,10 +762,19 @@ async function submitTheme() {
 
 async function registerUser() {
     try {
-        const res = await fetch(`${apiurl}/api/register`);
-        const data = await res.json();
+        let id;
 
-        chrome.storage.sync.set({ "id": data.id }).then(async () => {
+        const sync = await chrome.storage.sync.get("id");
+
+        if (sync["id"] && sync["id"] !== "") {
+            id = sync["id"]
+        } else {
+            const res = await fetch(`${apiurl}/api/register`);
+            const data = await res.json();
+            id = data.id;
+        }
+
+        chrome.storage.sync.set({ "id": id }).then(async () => {
             // test to see if the id was set correctly
             // don't know why this is happening ??
             const test = await chrome.storage.sync.get("id");
@@ -758,7 +782,7 @@ async function registerUser() {
 
             // show the new browser
             chrome.storage.sync.set({ "new_browser": true }).then(() => {
-                document.getElementById("opt-in").remove();
+                document.getElementById("opt-in").style.display = "none";
                 current_page_num = 1;
                 displayThemeList(0);
                 displayAlert(false, "Success! You should be able to see the new themes browser now. Enjoy!");
@@ -769,6 +793,7 @@ async function registerUser() {
         });
 
     } catch (e) {
+        console.log(e);
         displayAlert(true, "There was an error opting in. Please contact ksucpea@gmail.com if this error persists!");
     }
 }
@@ -817,13 +842,14 @@ function createThemeButton(location, theme) {
     return themeBtn;
 }
 
-function createThemeLikeBtn(location, initial, score) {
+function createThemeLikeBtn(location, initial, score, show) {
     const likeBtn = makeElement("div", "theme-button-like", location);
     if (initial === true) {
         likeBtn.classList.add("theme-liked");
         score += 1;
     }
-    makeElement("span", "theme-button-like-amount", likeBtn, shortScore(score));
+    const amount = makeElement("span", "theme-button-like-amount", likeBtn, shortScore(score));
+    if (show === true) amount.classList.add("showalways");
     likeBtn.innerHTML += `<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6.979 3.074a6 6 0 0 1 4.988 1.425l.037 .033l.034 -.03a6 6 0 0 1 4.733 -1.44l.246 .036a6 6 0 0 1 3.364 10.008l-.18 .185l-.048 .041l-7.45 7.379a1 1 0 0 1 -1.313 .082l-.094 -.082l-7.493 -7.422a6 6 0 0 1 3.176 -10.215z" /></svg>`;
     return likeBtn;
 }
@@ -950,6 +976,7 @@ async function displayThemeListNew(direction) {
     container.textContent = "";
 
     const local = await chrome.storage.local.get("liked_themes");
+    const sync = await chrome.storage.sync.get("browser_show_likes");
 
     themes.forEach(theme => {
 
@@ -960,7 +987,7 @@ async function displayThemeListNew(direction) {
         }); 
 
         const liked = local["liked_themes"].includes(theme.code);
-        const likeBtn = createThemeLikeBtn(themeBtn, liked, theme.score);
+        const likeBtn = createThemeLikeBtn(themeBtn, liked, theme.score, sync["browser_show_likes"]);
         likeBtn.addEventListener("click" , (e) => likeTheme(likeBtn, theme.code, theme.score));
 
     });
