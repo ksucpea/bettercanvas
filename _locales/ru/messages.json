@@ -244,5 +244,8 @@
   },
   "card_alt_method": {
     "message": "Enable Alternative Card Method"
+  },
+  "card_not_found": {
+    "message": "Couldn't Find Your Cards!\nYou May Need To Refresh Your Canvas Page And/Or This Menu Page.\n\nIf You're Having Issues Please Contact Me - \nksucpea@gmail.com"
   }
 }
