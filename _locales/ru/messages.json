@@ -235,5 +235,14 @@
   },
   "fix_dm_text": {
     "message": "Fixer автоматически запускается на этих страницах:"
+  },
+  "card_notes": {
+    "message": "Enter \"none\" to hide images and links.\r\nYou may need to refresh the page to see some changes."
+  },
+  "card_missing": {
+    "message": "Missing Cards?"
+  },
+  "card_alt_method": {
+    "message": "Enable Alternative Card Method"
   }
 }
