@@ -31,5 +31,4 @@
   ],
   "permissions": ["storage"],
   "default_locale": "en"
-  "i18n_messages": ["en", "es", "de", "fr", "it", "ja", "pt_PT", "tu", "sv", "zh_CN", "zh_TW"]
 }
