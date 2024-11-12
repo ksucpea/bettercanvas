@@ -237,7 +237,7 @@
     "message": "The Fixer Is Automatically Running On These Pages:"
   },
   "card_notes": {
-    "message": "Enter \"none\" to hide images and links.\r\nYou may need to refresh the page to see some changes."
+    "message": "Enter \"none\" to hide images and links.\nYou may need to refresh the page to see some changes."
   },
   "card_missing": {
     "message": "Missing Cards?"
