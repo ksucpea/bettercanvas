@@ -237,7 +237,7 @@
     "message": "Fixern körs automatiskt på dessa sidor:"
   },
   "card_notes": {
-    "message": "Enter \"none\" to hide images and links.\nYou may need to refresh the page to see some changes."
+    "message": "Enter <b>\"none\"</b> to hide images and links.\nYou may need to refresh the page to see some changes."
   },
   "card_missing": {
     "message": "Missing Cards?"
