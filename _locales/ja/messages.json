@@ -237,7 +237,7 @@
     "message": "Fixer はこれらのページで自動的に実行されます:"
   },
   "card_notes": {
-    "message": "Enter \"none\" to hide images and links.\nYou may need to refresh the page to see some changes."
+    "message": "Enter <b>\"none\"</b> to hide images and links.\nYou may need to refresh the page to see some changes."
   },
   "card_missing": {
     "message": "Missing Cards?"
