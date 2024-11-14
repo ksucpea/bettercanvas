@@ -243,15 +243,21 @@
     "message": "Habilitar método de tarjeta alternativo"
   },
   "enter_sub_text": {
-    "message": "Enter"
+    "message": "Ingresar"
   },
   "none_sub_text": {
-    "message": " \"none\" "
+    "message": " \"ninguna\" "
   },
   "hide_images_sub_text": {
-    "message": "to hide images and links."
+    "message": "para ocultar imágenes y enlaces."
   },
   "refresh_need_sub_text": {
-    "message": "You may need to refresh the page to see some changes."
+    "message": "Es posible que necesites actualizar la página para ver algunos cambios."
+  },
+  "disable_high_contrast_ui": {
+    "message": "Deshabilitar la interfaz de usuario de alto contraste "
+  },
+  "more_card_color_text": {
+    "message": "¡Si tus colores se vuelven más opacos después de refrescarte! En la barra lateral, si haces clic en el ícono de tu perfil, puedes desactivarlo allí."
   }
 }
