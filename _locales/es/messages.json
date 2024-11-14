@@ -237,12 +237,21 @@
     "message": "El reparador se ejecuta automáticamente en estas páginas:"
   },
   "card_notes": {
-    "message": "Enter <b>\"none\"</b> to hide images and links.\nYou may need to refresh the page to see some changes."
+    "message": "Ingrese \"ninguno\" para ocultar imágenes y enlaces.\nEs posible que necesites actualizar la página para ver algunos cambios."
   },
   "card_missing": {
-    "message": "Missing Cards?"
+    "message": "¿Tarjetas perdidas?"
   },
   "card_alt_method": {
-    "message": "Enable Alternative Card Method"
+    "message": "Habilitar método de tarjeta alternativo"
+  },
+  "enter_sub_text": {
+    "message": "Enter "
+  },
+  "none_sub_text": {
+    "message": "\"none\" "
+  },
+  "hide_images_sub_text": {
+    "message": "to hide images and links."
   }
 }

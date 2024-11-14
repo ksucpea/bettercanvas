@@ -237,12 +237,21 @@
     "message": "O Fixer está sendo executado automaticamente nestas páginas:"
   },
   "card_notes": {
-    "message": "Enter <b>\"none\"</b> to hide images and links.\nYou may need to refresh the page to see some changes."
+    "message": "Digite “nenhum” para ocultar imagens e ligações.\nPode ser necessário atualizar a página para ver algumas alterações."
   },
   "card_missing": {
-    "message": "Missing Cards?"
+    "message": "Cartas faltando?"
   },
   "card_alt_method": {
-    "message": "Enable Alternative Card Method"
+    "message": "Habilitar método de cartão alternativo"
+  },
+  "enter_sub_text": {
+    "message": "Enter "
+  },
+  "none_sub_text": {
+    "message": "\"none\" "
+  },
+  "hide_images_sub_text": {
+    "message": "to hide images and links."
   }
 }

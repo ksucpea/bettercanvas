@@ -237,12 +237,21 @@
     "message": "Fixer はこれらのページで自動的に実行されます:"
   },
   "card_notes": {
-    "message": "Enter <b>\"none\"</b> to hide images and links.\nYou may need to refresh the page to see some changes."
+    "message": "画像とリンクを非表示にするには、「なし」を入力します。\n一部の変更を確認するには、ページを更新する必要がある場合があります。"
   },
   "card_missing": {
-    "message": "Missing Cards?"
+    "message": "カードが見つかりませんか?"
   },
   "card_alt_method": {
-    "message": "Enable Alternative Card Method"
+    "message": "代替カード方式を有効にする"
+  },
+  "enter_sub_text": {
+    "message": "Enter "
+  },
+  "none_sub_text": {
+    "message": "\"none\" "
+  },
+  "hide_images_sub_text": {
+    "message": "to hide images and links."
   }
 }

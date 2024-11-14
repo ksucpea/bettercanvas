@@ -237,12 +237,21 @@
     "message": "修复程序会自动在这些页面上运行:"
   },
   "card_notes": {
-    "message": "Enter <b>\"none\"</b> to hide images and links.\nYou may need to refresh the page to see some changes."
+    "message": "输入 \"没有任何\" 可隐藏图像和链接。\n您可能需要刷新页面才能看到一些更改。"
   },
   "card_missing": {
-    "message": "Missing Cards?"
+    "message": "缺少卡片？"
   },
   "card_alt_method": {
-    "message": "Enable Alternative Card Method"
+    "message": "启用替代卡方法"
+  },
+  "enter_sub_text": {
+    "message": "Enter "
+  },
+  "none_sub_text": {
+    "message": "\"none\" "
+  },
+  "hide_images_sub_text": {
+    "message": "to hide images and links."
   }
 }

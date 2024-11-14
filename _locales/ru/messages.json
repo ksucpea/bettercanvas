@@ -237,12 +237,21 @@
     "message": "Fixer автоматически запускается на этих страницах:"
   },
   "card_notes": {
-    "message": "Enter <b>\"none\"</b> to hide images and links.\nYou may need to refresh the page to see some changes."
+    "message": "Введите \"нет\", чтобы скрыть изображения и ссылки.\nВозможно, вам придется обновить страницу, чтобы увидеть некоторые изменения."
   },
   "card_missing": {
-    "message": "Missing Cards?"
+    "message": "Не хватает карт?"
   },
   "card_alt_method": {
-    "message": "Enable Alternative Card Method"
+    "message": "Включить альтернативный метод карты"
+  },
+  "enter_sub_text": {
+    "message": "Enter "
+  },
+  "none_sub_text": {
+    "message": "\"none\" "
+  },
+  "hide_images_sub_text": {
+    "message": "to hide images and links."
   }
 }

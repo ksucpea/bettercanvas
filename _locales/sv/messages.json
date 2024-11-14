@@ -237,12 +237,21 @@
     "message": "Fixern körs automatiskt på dessa sidor:"
   },
   "card_notes": {
-    "message": "Enter <b>\"none\"</b> to hide images and links.\nYou may need to refresh the page to see some changes."
+    "message": "Ange \"ingen\" för att dölja bilder och länkar.\nDu kan behöva uppdatera sidan för att se några ändringar."
   },
   "card_missing": {
-    "message": "Missing Cards?"
+    "message": "Saknar du kort?"
   },
   "card_alt_method": {
-    "message": "Enable Alternative Card Method"
+    "message": "Aktivera alternativ kortmetod"
+  },
+  "enter_sub_text": {
+    "message": "Enter "
+  },
+  "none_sub_text": {
+    "message": "\"none\" "
+  },
+  "hide_images_sub_text": {
+    "message": "to hide images and links."
   }
 }
