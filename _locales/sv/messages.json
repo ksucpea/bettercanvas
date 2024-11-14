@@ -236,9 +236,6 @@
   "fix_dm_text": {
     "message": "Fixern körs automatiskt på dessa sidor:"
   },
-  "card_notes": {
-    "message": "Ange \"ingen\" för att dölja bilder och länkar.\nDu kan behöva uppdatera sidan för att se några ändringar."
-  },
   "card_missing": {
     "message": "Saknar du kort?"
   },
@@ -246,12 +243,15 @@
     "message": "Aktivera alternativ kortmetod"
   },
   "enter_sub_text": {
-    "message": "Enter "
+    "message": "Enter"
   },
   "none_sub_text": {
-    "message": "\"none\" "
+    "message": " \"none\" "
   },
   "hide_images_sub_text": {
     "message": "to hide images and links."
+  },
+  "refresh_need_sub_text": {
+    "message": "You may need to refresh the page to see some changes."
   }
 }
