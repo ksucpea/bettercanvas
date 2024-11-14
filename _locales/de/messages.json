@@ -236,9 +236,6 @@
   "fix_dm_text": {
     "message": "Der Fixer wird automatisch auf diesen Seiten ausgeführt:"
   },
-  "card_notes": {
-    "message": "Geben Sie \"keiner\" ein, um Bilder und Links auszublenden.\nMöglicherweise müssen Sie die Seite aktualisieren, um einige Änderungen zu sehen."
-  },
   "card_missing": {
     "message": "Fehlende Karten?"
   },
@@ -246,12 +243,15 @@
     "message": "Alternative Kartenmethode aktivieren"
   },
   "enter_sub_text": {
-    "message": "Enter "
+    "message": "Enter"
   },
   "none_sub_text": {
-    "message": "\"none\" "
+    "message": " \"none\" "
   },
   "hide_images_sub_text": {
     "message": "to hide images and links."
+  },
+  "refresh_need_sub_text": {
+    "message": "You may need to refresh the page to see some changes."
   }
 }
