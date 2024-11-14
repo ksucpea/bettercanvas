@@ -253,5 +253,11 @@
   },
   "refresh_need_sub_text": {
     "message": "You may need to refresh the page to see some changes."
+  },
+  "disable_high_contrast_ui": {
+    "message": "Disable High Contrast UI "
+  },
+  "more_card_color_text": {
+    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
   }
 }
