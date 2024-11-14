@@ -237,7 +237,7 @@
     "message": "Fixer автоматически запускается на этих страницах:"
   },
   "card_notes": {
-    "message": "Enter \"none\" to hide images and links.\nYou may need to refresh the page to see some changes."
+    "message": "Введите \"нет\", чтобы скрыть изображения и ссылки.\nВозможно, вам придется обновить страницу, чтобы увидеть некоторые изменения."
   },
   "card_missing": {
     "message": "Не хватает карт?"
