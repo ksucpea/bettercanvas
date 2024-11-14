@@ -243,15 +243,15 @@
     "message": "Enable Alternative Card Method"
   },
   "enter_sub_text": {
-    "message": "Enter "
+    "message": "Enter"
   },
   "none_sub_text": {
-    "message": "\"none\" "
+    "message": " \"none\" "
   },
   "hide_images_sub_text": {
     "message": "to hide images and links."
   },
-  "refresh_need_sub_tex": {
+  "refresh_need_sub_text": {
     "message": "You may need to refresh the page to see some changes."
   }
 }
