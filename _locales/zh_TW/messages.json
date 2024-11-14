@@ -243,15 +243,21 @@
     "message": "启用替代卡方法"
   },
   "enter_sub_text": {
-    "message": "Enter"
+    "message": "进入"
   },
   "none_sub_text": {
-    "message": " \"none\" "
+    "message": " \"没有任何\" "
   },
   "hide_images_sub_text": {
-    "message": "to hide images and links."
+    "message": "隐藏图像和链接。"
   },
   "refresh_need_sub_text": {
-    "message": "You may need to refresh the page to see some changes."
+    "message": "您可能需要刷新页面才能看到一些更改。"
+  },
+  "disable_high_contrast_ui": {
+    "message": "禁用高对比度 UI "
+  },
+  "more_card_color_text": {
+    "message": "如果你的颜色在刷新后变得暗淡！在侧边栏上，如果您单击个人资料图标，则可以将其关闭。"
   }
 }
