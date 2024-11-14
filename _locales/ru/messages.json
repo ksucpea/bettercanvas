@@ -240,9 +240,9 @@
     "message": "Enter \"none\" to hide images and links.\nYou may need to refresh the page to see some changes."
   },
   "card_missing": {
-    "message": "Missing Cards?"
+    "message": "Не хватает карт?"
   },
   "card_alt_method": {
-    "message": "Enable Alternative Card Method"
+    "message": "Включить альтернативный метод карты"
   }
 }
