@@ -236,9 +236,6 @@
   "fix_dm_text": {
     "message": "修复程序会自动在这些页面上运行:"
   },
-  "card_notes": {
-    "message": "输入 \"没有任何\" 可隐藏图像和链接。\n您可能需要刷新页面才能看到一些更改。"
-  },
   "card_missing": {
     "message": "缺少卡片？"
   },
@@ -246,12 +243,15 @@
     "message": "启用替代卡方法"
   },
   "enter_sub_text": {
-    "message": "Enter "
+    "message": "Enter"
   },
   "none_sub_text": {
-    "message": "\"none\" "
+    "message": " \"none\" "
   },
   "hide_images_sub_text": {
     "message": "to hide images and links."
+  },
+  "refresh_need_sub_text": {
+    "message": "You may need to refresh the page to see some changes."
   }
 }
