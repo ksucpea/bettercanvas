@@ -236,9 +236,6 @@
   "fix_dm_text": {
     "message": "The Fixer Is Automatically Running On These Pages:"
   },
-  "card_notes": {
-    "message": "Enter \"none\" to hide images and links.\nYou may need to refresh the page to see some changes."
-  },
   "card_missing": {
     "message": "Missing Cards?"
   },
@@ -253,5 +250,8 @@
   },
   "hide_images_sub_text": {
     "message": "to hide images and links."
+  },
+  "refresh_need_sub_tex": {
+    "message": "You may need to refresh the page to see some changes."
   }
 }
