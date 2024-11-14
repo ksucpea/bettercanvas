@@ -236,9 +236,6 @@
   "fix_dm_text": {
     "message": "Fixer автоматически запускается на этих страницах:"
   },
-  "card_notes": {
-    "message": "Введите \"нет\", чтобы скрыть изображения и ссылки.\nВозможно, вам придется обновить страницу, чтобы увидеть некоторые изменения."
-  },
   "card_missing": {
     "message": "Не хватает карт?"
   },
@@ -246,12 +243,15 @@
     "message": "Включить альтернативный метод карты"
   },
   "enter_sub_text": {
-    "message": "Enter "
+    "message": "Enter"
   },
   "none_sub_text": {
-    "message": "\"none\" "
+    "message": " \"none\" "
   },
   "hide_images_sub_text": {
     "message": "to hide images and links."
+  },
+  "refresh_need_sub_text": {
+    "message": "You may need to refresh the page to see some changes."
   }
 }
