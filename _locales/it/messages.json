@@ -237,12 +237,12 @@
     "message": "Il fissatore viene eseguito automaticamente su queste pagine:"
   },
   "card_notes": {
-    "message": "Enter \"none\" to hide images and links.\nYou may need to refresh the page to see some changes."
+    "message": "Inserisci \"nessuno\" per nascondere immagini e collegamenti.\nPotrebbe essere necessario aggiornare la pagina per vedere alcune modifiche."
   },
   "card_missing": {
-    "message": "Missing Cards?"
+    "message": "Carte mancanti?"
   },
   "card_alt_method": {
-    "message": "Enable Alternative Card Method"
+    "message": "Abilita metodo carta alternativo"
   }
 }
