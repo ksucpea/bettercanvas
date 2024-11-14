@@ -244,5 +244,14 @@
   },
   "card_alt_method": {
     "message": "Aktivera alternativ kortmetod"
+  },
+  "enter_sub_text": {
+    "message": "Enter "
+  },
+  "none_sub_text": {
+    "message": "\"none\" "
+  },
+  "hide_images_sub_text": {
+    "message": "to hide images and links."
   }
 }
