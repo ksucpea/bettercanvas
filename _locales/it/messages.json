@@ -236,9 +236,6 @@
   "fix_dm_text": {
     "message": "Il fissatore viene eseguito automaticamente su queste pagine:"
   },
-  "card_notes": {
-    "message": "Inserisci \"nessuno\" per nascondere immagini e collegamenti.\nPotrebbe essere necessario aggiornare la pagina per vedere alcune modifiche."
-  },
   "card_missing": {
     "message": "Carte mancanti?"
   },
@@ -246,12 +243,15 @@
     "message": "Abilita metodo carta alternativo"
   },
   "enter_sub_text": {
-    "message": "Enter "
+    "message": "Enter"
   },
   "none_sub_text": {
-    "message": "\"none\" "
+    "message": " \"none\" "
   },
   "hide_images_sub_text": {
     "message": "to hide images and links."
+  },
+  "refresh_need_sub_text": {
+    "message": "You may need to refresh the page to see some changes."
   }
 }
