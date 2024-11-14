@@ -236,9 +236,6 @@
   "fix_dm_text": {
     "message": "O Fixer está sendo executado automaticamente nestas páginas:"
   },
-  "card_notes": {
-    "message": "Digite “nenhum” para ocultar imagens e ligações.\nPode ser necessário atualizar a página para ver algumas alterações."
-  },
   "card_missing": {
     "message": "Cartas faltando?"
   },
@@ -246,12 +243,15 @@
     "message": "Habilitar método de cartão alternativo"
   },
   "enter_sub_text": {
-    "message": "Enter "
+    "message": "Enter"
   },
   "none_sub_text": {
-    "message": "\"none\" "
+    "message": " \"none\" "
   },
   "hide_images_sub_text": {
     "message": "to hide images and links."
+  },
+  "refresh_need_sub_text": {
+    "message": "You may need to refresh the page to see some changes."
   }
 }
