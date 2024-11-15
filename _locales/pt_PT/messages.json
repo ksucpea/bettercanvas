@@ -246,19 +246,19 @@
     "message": "Digitar"
   },
   "none_sub_text": {
-    "message": " \"nenhum\" "
+    "message": " \"none\" "
   },
   "hide_images_sub_text": {
-    "message": "para ocultar imagens e ligações."
+    "message": "to hide images and links."
   },
   "refresh_need_sub_text": {
-    "message": "Talvez seja necessário atualizar a página para ver algumas alterações."
+    "message": "You may need to refresh the page to see some changes."
   },
   "disable_high_contrast_ui": {
     "message": "Desativar ‘interface’ de utilizador de alto contraste "
   },
   "more_card_color_text": {
-    "message": "se as suas cores ficarem mais opacas após a atualização! Na barra lateral, se você clicar no ícone do seu perfil, pode desligá-lo lá."
+    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
   },
   "popular_palettes": {
     "message": "Popular Palettes"
