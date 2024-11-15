@@ -243,21 +243,21 @@
     "message": "Aktivera alternativ kortmetod"
   },
   "enter_sub_text": {
-    "message": "Enter"
+    "message": "Skriva in"
   },
   "none_sub_text": {
-    "message": " \"none\" "
+    "message": " \"ingen\" "
   },
   "hide_images_sub_text": {
-    "message": "to hide images and links."
+    "message": "för att dölja bilder och länkar."
   },
   "refresh_need_sub_text": {
-    "message": "You may need to refresh the page to see some changes."
+    "message": "Du kan behöva uppdatera sidan för att se några ändringar."
   },
   "disable_high_contrast_ui": {
-    "message": "Disable High Contrast UI "
+    "message": "Inaktivera High Contrast UI "
   },
   "more_card_color_text": {
-    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
+    "message": "om dina färger blir mattare efter uppfräschning! På sidofältet, om du klickar på din profilikon kan du stänga av den där."
   }
 }
