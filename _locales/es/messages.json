@@ -246,13 +246,13 @@
     "message": "Ingresar"
   },
   "none_sub_text": {
-    "message": " \"ninguna\" "
+    "message": " \"none\" "
   },
   "hide_images_sub_text": {
-    "message": "para ocultar imágenes y enlaces."
+    "message": "to hide images and links."
   },
   "refresh_need_sub_text": {
-    "message": "Es posible que necesites actualizar la página para ver algunos cambios."
+    "message": "You may need to refresh the page to see some changes."
   },
   "disable_high_contrast_ui": {
     "message": "Deshabilitar la interfaz de usuario de alto contraste "
