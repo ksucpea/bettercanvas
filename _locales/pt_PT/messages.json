@@ -243,21 +243,21 @@
     "message": "Habilitar método de cartão alternativo"
   },
   "enter_sub_text": {
-    "message": "Enter"
+    "message": "Digitar"
   },
   "none_sub_text": {
-    "message": " \"none\" "
+    "message": " \"nenhum\" "
   },
   "hide_images_sub_text": {
-    "message": "to hide images and links."
+    "message": "para ocultar imagens e links."
   },
   "refresh_need_sub_text": {
-    "message": "You may need to refresh the page to see some changes."
+    "message": "Talvez seja necessário atualizar a página para ver algumas alterações."
   },
   "disable_high_contrast_ui": {
-    "message": "Disable High Contrast UI "
+    "message": "Desativar interface de usuário de alto contraste "
   },
   "more_card_color_text": {
-    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
+    "message": "se suas cores ficarem mais opacas após a atualização! Na barra lateral, se você clicar no ícone do seu perfil, você pode desligá-lo lá."
   }
 }
