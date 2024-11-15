@@ -236,9 +236,6 @@
   "fix_dm_text": {
     "message": "Fixern körs automatiskt på dessa sidor:"
   },
-  "card_notes": {
-    "message": "Ange \"ingen\" för att dölja bilder och länkar.\nDu kan behöva uppdatera sidan för att se några ändringar."
-  },
   "card_missing": {
     "message": "Saknar du kort?"
   },
@@ -246,12 +243,30 @@
     "message": "Aktivera alternativ kortmetod"
   },
   "enter_sub_text": {
-    "message": "Enter "
+    "message": "Skriva in"
   },
   "none_sub_text": {
-    "message": "\"none\" "
+    "message": " \"ingen\" "
   },
   "hide_images_sub_text": {
-    "message": "to hide images and links."
+    "message": "för att dölja bilder och länkar."
+  },
+  "refresh_need_sub_text": {
+    "message": "Du kan behöva uppdatera sidan för att se några ändringar."
+  },
+  "disable_high_contrast_ui": {
+    "message": "Inaktivera Hugh Kontrast UI "
+  },
+  "more_card_color_text": {
+    "message": "om dina färger blir mattare efter uppfräschning! På sidofältet, om du klickar på din profilikon kan du stänga av den där."
+  },
+  "popular_palettes": {
+    "message": "Popular Palettes"
+  },
+  "revert_card_colors": {
+    "message": "Revert To Original"
+  },
+  "red_card_color": {
+    "message": "Reds"
   }
 }

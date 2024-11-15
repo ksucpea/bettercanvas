@@ -236,9 +236,6 @@
   "fix_dm_text": {
     "message": "El reparador se ejecuta automáticamente en estas páginas:"
   },
-  "card_notes": {
-    "message": "Ingrese \"ninguno\" para ocultar imágenes y enlaces.\nEs posible que necesites actualizar la página para ver algunos cambios."
-  },
   "card_missing": {
     "message": "¿Tarjetas perdidas?"
   },
@@ -246,12 +243,30 @@
     "message": "Habilitar método de tarjeta alternativo"
   },
   "enter_sub_text": {
-    "message": "Enter "
+    "message": "Ingresar"
   },
   "none_sub_text": {
-    "message": "\"none\" "
+    "message": " \"ninguna\" "
   },
   "hide_images_sub_text": {
-    "message": "to hide images and links."
+    "message": "para ocultar imágenes y enlaces."
+  },
+  "refresh_need_sub_text": {
+    "message": "Es posible que necesites actualizar la página para ver algunos cambios."
+  },
+  "disable_high_contrast_ui": {
+    "message": "Deshabilitar la interfaz de usuario de alto contraste "
+  },
+  "more_card_color_text": {
+    "message": "¡Si tus colores se vuelven más opacos después de refrescarte! En la barra lateral, si haces clic en el ícono de tu perfil, puedes desactivarlo allí."
+  },
+  "popular_palettes": {
+    "message": "Popular Palettes"
+  },
+  "revert_card_colors": {
+    "message": "Revert To Original"
+  },
+  "red_card_color": {
+    "message": "Reds"
   }
 }

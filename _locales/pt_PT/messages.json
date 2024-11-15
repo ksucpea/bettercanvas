@@ -236,9 +236,6 @@
   "fix_dm_text": {
     "message": "O Fixer está sendo executado automaticamente nestas páginas:"
   },
-  "card_notes": {
-    "message": "Digite “nenhum” para ocultar imagens e ligações.\nPode ser necessário atualizar a página para ver algumas alterações."
-  },
   "card_missing": {
     "message": "Cartas faltando?"
   },
@@ -246,12 +243,30 @@
     "message": "Habilitar método de cartão alternativo"
   },
   "enter_sub_text": {
-    "message": "Enter "
+    "message": "Digitar"
   },
   "none_sub_text": {
-    "message": "\"none\" "
+    "message": " \"nenhum\" "
   },
   "hide_images_sub_text": {
-    "message": "to hide images and links."
+    "message": "para ocultar imagens e ligações."
+  },
+  "refresh_need_sub_text": {
+    "message": "Talvez seja necessário atualizar a página para ver algumas alterações."
+  },
+  "disable_high_contrast_ui": {
+    "message": "Desativar ‘interface’ de utilizador de alto contraste "
+  },
+  "more_card_color_text": {
+    "message": "se as suas cores ficarem mais opacas após a atualização! Na barra lateral, se você clicar no ícone do seu perfil, pode desligá-lo lá."
+  },
+  "popular_palettes": {
+    "message": "Popular Palettes"
+  },
+  "revert_card_colors": {
+    "message": "Revert To Original"
+  },
+  "red_card_color": {
+    "message": "Reds"
   }
 }

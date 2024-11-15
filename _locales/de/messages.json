@@ -236,9 +236,6 @@
   "fix_dm_text": {
     "message": "Der Fixer wird automatisch auf diesen Seiten ausgeführt:"
   },
-  "card_notes": {
-    "message": "Geben Sie \"keiner\" ein, um Bilder und Links auszublenden.\nMöglicherweise müssen Sie die Seite aktualisieren, um einige Änderungen zu sehen."
-  },
   "card_missing": {
     "message": "Fehlende Karten?"
   },
@@ -246,12 +243,30 @@
     "message": "Alternative Kartenmethode aktivieren"
   },
   "enter_sub_text": {
-    "message": "Enter "
+    "message": "Eingeben"
   },
   "none_sub_text": {
-    "message": "\"none\" "
+    "message": " \"keiner\" "
   },
   "hide_images_sub_text": {
-    "message": "to hide images and links."
+    "message": "um Bilder und Links auszublenden."
+  },
+  "refresh_need_sub_text": {
+    "message": "Möglicherweise müssen Sie die Seite aktualisieren, um einige Änderungen anzuzeigen."
+  },
+  "disable_high_contrast_ui": {
+    "message": "Deaktivieren Sie die kontrastreiche Benutzeroberfläche "
+  },
+  "more_card_color_text": {
+    "message": "wenn Ihre Farben nach dem Aktualisieren blasser werden! Wenn Sie in der Seitenleiste auf Ihr Profilsymbol klicken, können Sie es dort ausschalten."
+  },
+  "popular_palettes": {
+    "message": "Popular Palettes"
+  },
+  "revert_card_colors": {
+    "message": "Revert To Original"
+  },
+  "red_card_color": {
+    "message": "Reds"
   }
 }
