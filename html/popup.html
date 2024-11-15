@@ -649,16 +649,18 @@
             </div>
             <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
-        <p class="option-container sub-text" style="margin: 5px 0">Enter <b>"none"</b> to hide images and links.<br>You may need to refresh the page to see some changes.</p>
+        <div class="option-container sub-text" style="margin: 5px 0">
+            <span data-i18n="enter_sub_text">Enter</span><b data-i18n="none_sub_text"> "none" </b><span data-i18n="hide_images_sub_text">to hide images and links.</span><br><span data-i18n="refresh_need_sub_text">You may need to refresh the page to see some changes.</span>
+        </div>
         <div class="advanced-cards">
             <div id="advanced-current"></div>
             <div id="advanced-past"></div>
         </div>
         <div class="option-container">
-            <h3 class="header-small">Missing cards?</h3>
+            <h3 class="header-small" data-i18n="card_missing">Missing cards?</h3>
             <div style="display: flex; gap: 10px; align-items: center;">
                 <input type="checkbox" id="card_method_dashboard"></input>
-                <span>Enable alternative card method</span>
+                <span data-i18n="card_alt_method">Enable alternative card method</span>
             </div>
         </div>
     </div>
@@ -708,7 +710,7 @@
             <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
         <div class="option-container">
-            <p class="sub-text"><b>Disable High Contrast UI</b> if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there.</p>
+            <b class="sub-text" data-i18n="disable_high_contrast_ui">Disable High Contrast UI </b><span class="sub-text" data-i18n="more_card_color_text">if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there.</span>
         </div>
         <div class="option-container">
             <h3 class="header-small">Popular Palettes</h3>
@@ -904,7 +906,12 @@
                 <textarea id="error_log_output" class="card-input"></textarea>
             </div>
         </div>
-        <p>5.11.2</p>
+        <div class="option-container">
+            <h3 class="header-small">Version</h3>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <span>5.12.5</span>
+            </div>
+        </div>
     </div>
 
     <div class="updates-container tab">
@@ -1023,38 +1030,6 @@
                 <li>Dashboard grades moved to the card header</li>
             </ul>
         </div>
-        <div class="option-container">
-            <h3 class="header-small">Update 5.0.6</h3>
-            <h4 class="update-date">Oct. 21, 2022</h4>
-            <ul>
-                <li>Dark mode improvements</li>
-                <li>Can now enter multiple urls for the custom url</li>
-                <li>Quizzes link correctly in the assignments list</li>
-                <li>"Better todo list" feature</li>
-                <li>"Dashboard notes" feature</li>
-                <li>Optional dd/mm format for dashboard assignments</li>
-                <li>View dark mode changes in real time</li>
-            </ul>
-        </div>
-        <div class="option-container">
-            <h3 class="header-small">Update 4.2.1</h3>
-            <h4 class="update-date">Mar. 2, 2022</h4>
-            <ul>
-                <li>Removed assignment potentials and link preview features</li>
-                <li>Dark mode can now target iframes (better coverage)</li>
-                <li>Added dark mode presets</li>
-                <li>"Dashboard grades" feature</li>
-                <li>New welcome message</li>
-            </ul>
-        </div>
-        <div class="option-container">
-            <h3 class="header-small">Update 1.0.0</h3>
-            <h4 class="update-date">Oct. 17, 2021</h4>
-            <ul>
-                <li>First release :)</li>
-            </ul>
-        </div>
-        
     </div>
 
     <script type="text/javascript" src="../js/popup.js"></script>
