@@ -249,15 +249,15 @@
     "message": " \"nenhum\" "
   },
   "hide_images_sub_text": {
-    "message": "para ocultar imagens e links."
+    "message": "para ocultar imagens e ligações."
   },
   "refresh_need_sub_text": {
     "message": "Talvez seja necessário atualizar a página para ver algumas alterações."
   },
   "disable_high_contrast_ui": {
-    "message": "Desativar interface de usuário de alto contraste "
+    "message": "Desativar ‘interface’ de utilizador de alto contraste "
   },
   "more_card_color_text": {
-    "message": "se suas cores ficarem mais opacas após a atualização! Na barra lateral, se você clicar no ícone do seu perfil, você pode desligá-lo lá."
+    "message": "se as suas cores ficarem mais opacas após a atualização! Na barra lateral, se você clicar no ícone do seu perfil, pode desligá-lo lá."
   }
 }
