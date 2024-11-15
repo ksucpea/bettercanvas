@@ -246,19 +246,19 @@
     "message": "入力"
   },
   "none_sub_text": {
-    "message": " \"なし\" "
+    "message": " \"none\" "
   },
   "hide_images_sub_text": {
-    "message": "画像やリンクを非表示にします。"
+    "message": "to hide images and links."
   },
   "refresh_need_sub_text": {
-    "message": "変更を確認するにはページを更新する必要がある場合があります。"
+    "message": "You may need to refresh the page to see some changes."
   },
   "disable_high_contrast_ui": {
     "message": "ハイコントラストUIを無効にする "
   },
   "more_card_color_text": {
-    "message": "更新後に色がくすんでしまう場合は、サイドバーでプロフィールアイコンをクリックすると、そこでオフにできます。"
+    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
   },
   "popular_palettes": {
     "message": "Popular Palettes"
