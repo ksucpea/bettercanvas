@@ -246,19 +246,19 @@
     "message": "Skriva in"
   },
   "none_sub_text": {
-    "message": " \"ingen\" "
+    "message": " \"none\" "
   },
   "hide_images_sub_text": {
-    "message": "för att dölja bilder och länkar."
+    "message": "to hide images and links."
   },
   "refresh_need_sub_text": {
-    "message": "Du kan behöva uppdatera sidan för att se några ändringar."
+    "message": "You may need to refresh the page to see some changes."
   },
   "disable_high_contrast_ui": {
     "message": "Inaktivera Hugh Kontrast UI "
   },
   "more_card_color_text": {
-    "message": "om dina färger blir mattare efter uppfräschning! På sidofältet, om du klickar på din profilikon kan du stänga av den där."
+    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
   },
   "popular_palettes": {
     "message": "Popular Palettes"
