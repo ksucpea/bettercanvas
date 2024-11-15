@@ -243,21 +243,21 @@
     "message": "代替カード方式を有効にする"
   },
   "enter_sub_text": {
-    "message": "Enter"
+    "message": "入力"
   },
   "none_sub_text": {
-    "message": " \"none\" "
+    "message": " \"なし\" "
   },
   "hide_images_sub_text": {
-    "message": "to hide images and links."
+    "message": "画像やリンクを非表示にします。"
   },
   "refresh_need_sub_text": {
-    "message": "You may need to refresh the page to see some changes."
+    "message": "変更を確認するにはページを更新する必要がある場合があります。"
   },
   "disable_high_contrast_ui": {
-    "message": "Disable High Contrast UI "
+    "message": "ハイコントラストUIを無効にする "
   },
   "more_card_color_text": {
-    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
+    "message": "更新後に色がくすんでしまう場合は、サイドバーでプロフィールアイコンをクリックすると、そこでオフにできます。"
   }
 }
