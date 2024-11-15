@@ -246,19 +246,19 @@
     "message": "Entrer"
   },
   "none_sub_text": {
-    "message": " \"aucun\" "
+    "message": " \"none\" "
   },
   "hide_images_sub_text": {
-    "message": "Pour masquer les images et les liens."
+    "message": "to hide images and links."
   },
   "refresh_need_sub_text": {
-    "message": "Vous devrez peut-être actualiser la page pour voir certains changements."
+    "message": "You may need to refresh the page to see some changes."
   },
   "disable_high_contrast_ui": {
     "message": "Désactiver l'interface utilisateur à contraste élevé "
   },
   "more_card_color_text": {
-    "message": "Si vos couleurs deviennent plus ternes après rafraîchissement ! Dans la barre latérale, si vous cliquez sur votre icône de profil, vous pouvez la désactiver."
+    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
   },
   "popular_palettes": {
     "message": "Popular Palettes"
