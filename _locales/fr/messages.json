@@ -243,21 +243,21 @@
     "message": "Activer la méthode de carte alternative"
   },
   "enter_sub_text": {
-    "message": "Enter"
+    "message": "Entrer"
   },
   "none_sub_text": {
-    "message": " \"none\" "
+    "message": " \"aucun\" "
   },
   "hide_images_sub_text": {
-    "message": "to hide images and links."
+    "message": "pour masquer les images et les liens."
   },
   "refresh_need_sub_text": {
-    "message": "You may need to refresh the page to see some changes."
+    "message": "Vous devrez peut-être actualiser la page pour voir certains changements."
   },
   "disable_high_contrast_ui": {
-    "message": "Disable High Contrast UI "
+    "message": "Désactiver l'interface utilisateur à contraste élevé "
   },
   "more_card_color_text": {
-    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
+    "message": "si vos couleurs deviennent plus ternes après rafraîchissement ! Dans la barre latérale, si vous cliquez sur votre icône de profil, vous pouvez la désactiver."
   }
 }
