@@ -259,5 +259,14 @@
   },
   "more_card_color_text": {
     "message": "更新後に色がくすんでしまう場合は、サイドバーでプロフィールアイコンをクリックすると、そこでオフにできます。"
+  },
+  "popular_palettes": {
+    "message": "Popular Palettes"
+  },
+  "revert_card_colors": {
+    "message": "Revert To Original"
+  },
+  "red_card_color": {
+    "message": "Reds"
   }
 }
