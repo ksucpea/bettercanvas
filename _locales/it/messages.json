@@ -246,19 +246,19 @@
     "message": "Entrare"
   },
   "none_sub_text": {
-    "message": " \"nessuno\" "
+    "message": " \"none\" "
   },
   "hide_images_sub_text": {
-    "message": "per nascondere immagini e link."
+    "message": "to hide images and links."
   },
   "refresh_need_sub_text": {
-    "message": "Potrebbe essere necessario aggiornare la pagina per vedere alcune modifiche."
+    "message": "You may need to refresh the page to see some changes."
   },
   "disable_high_contrast_ui": {
     "message": "Disabilita l'interfaccia utente ad alto contrasto "
   },
   "more_card_color_text": {
-    "message": "se i tuoi colori diventano più spenti dopo l'aggiornamento! Nella barra laterale, se clicchi sull'icona del tuo profilo puoi disattivarla lì."
+    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
   },
   "popular_palettes": {
     "message": "Popular Palettes"
