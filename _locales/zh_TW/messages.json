@@ -246,13 +246,13 @@
     "message": "进入"
   },
   "none_sub_text": {
-    "message": " \"没有任何\" "
+    "message": " \"none\" "
   },
   "hide_images_sub_text": {
-    "message": "隐藏图像和链接。"
+    "message": "to hide images and links."
   },
   "refresh_need_sub_text": {
-    "message": "您可能需要刷新页面才能看到一些更改。"
+    "message": "You may need to refresh the page to see some changes."
   },
   "disable_high_contrast_ui": {
     "message": "禁用高对比度 UI "
