@@ -243,21 +243,21 @@
     "message": "Abilita metodo carta alternativo"
   },
   "enter_sub_text": {
-    "message": "Enter"
+    "message": "Entrare"
   },
   "none_sub_text": {
-    "message": " \"none\" "
+    "message": " \"nessuno\" "
   },
   "hide_images_sub_text": {
-    "message": "to hide images and links."
+    "message": "per nascondere immagini e link."
   },
   "refresh_need_sub_text": {
-    "message": "You may need to refresh the page to see some changes."
+    "message": "Potrebbe essere necessario aggiornare la pagina per vedere alcune modifiche."
   },
   "disable_high_contrast_ui": {
-    "message": "Disable High Contrast UI "
+    "message": "Disabilita l'interfaccia utente ad alto contrasto "
   },
   "more_card_color_text": {
-    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
+    "message": "se i tuoi colori diventano più spenti dopo l'aggiornamento! Nella barra laterale, se clicchi sull'icona del tuo profilo puoi disattivarla lì."
   }
 }
