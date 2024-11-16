@@ -230,9 +230,6 @@
   "dark_mode_fixer_text": {
     "message": "Questo cercherà di correggere eventuali lacune della modalità scura nella pagina corrente."
   },
-  "fix_dm_btn": {
-    "message": "Andare"
-  },
   "fix_dm_text": {
     "message": "Il fissatore viene eseguito automaticamente su queste pagine:"
   },
@@ -249,16 +246,16 @@
     "message": " \"none\" "
   },
   "hide_images_sub_text": {
-    "message": "to hide images and links."
+    "message": "Per nascondere immagini e collegamenti."
   },
   "refresh_need_sub_text": {
-    "message": "You may need to refresh the page to see some changes."
+    "message": "Potrebbe essere necessario aggiornare la pagina per vedere alcune modifiche."
   },
   "disable_high_contrast_ui": {
     "message": "Disabilita l'interfaccia utente ad alto contrasto "
   },
   "more_card_color_text": {
-    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
+    "message": "Se i tuoi colori diventano più opachi dopo il rinfresco! Nella barra laterale, se fai clic sull'icona del tuo profilo puoi disattivarlo da lì."
   },
   "popular_palettes": {
     "message": "Popular Palettes"
@@ -268,5 +265,9 @@
   },
   "red_card_color": {
     "message": "Reds"
+  },
+  "go": {
+    "message": "Andare",
+    "description": "go"
   }
 }
