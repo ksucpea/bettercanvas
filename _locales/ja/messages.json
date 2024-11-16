@@ -230,9 +230,6 @@
   "dark_mode_fixer_text": {
     "message": "これにより、現在のページ上のダーク モードのギャップが修正されます。"
   },
-  "fix_dm_btn": {
-    "message": "行く"
-  },
   "fix_dm_text": {
     "message": "Fixer はこれらのページで自動的に実行されます:"
   },
@@ -268,5 +265,9 @@
   },
   "red_card_color": {
     "message": "Reds"
+  },
+  "go": {
+    "message": "Go",
+    "description": "go"
   }
 }
