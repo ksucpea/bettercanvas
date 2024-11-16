@@ -230,9 +230,6 @@
   "dark_mode_fixer_text": {
     "message": "Это позволит исправить любые пробелы темного режима на текущей странице."
   },
-  "fix_dm_btn": {
-    "message": "Идти"
-  },
   "fix_dm_text": {
     "message": "Fixer автоматически запускается на этих страницах:"
   },
@@ -268,5 +265,9 @@
   },
   "red_card_color": {
     "message": "Reds"
+  },
+  "go": {
+    "message": "Go",
+    "description": "go"
   }
 }
