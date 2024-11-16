@@ -230,9 +230,6 @@
   "dark_mode_fixer_text": {
     "message": "Isso tentará corrigir quaisquer lacunas do Modo Escuro na página atual."
   },
-  "fix_dm_btn": {
-    "message": "Ir"
-  },
   "fix_dm_text": {
     "message": "O Fixer está sendo executado automaticamente nestas páginas:"
   },
@@ -268,5 +265,9 @@
   },
   "red_card_color": {
     "message": "Reds"
+  },
+  "go": {
+    "message": "Go",
+    "description": "go"
   }
 }
