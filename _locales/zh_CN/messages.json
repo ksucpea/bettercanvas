@@ -230,9 +230,6 @@
   "dark_mode_fixer_text": {
     "message": "这将尝试修复当前页面上的任何暗模式间隙。"
   },
-  "fix_dm_btn": {
-    "message": "去"
-  },
   "fix_dm_text": {
     "message": "修复程序会自动在这些页面上运行:"
   },
@@ -268,5 +265,9 @@
   },
   "red_card_color": {
     "message": "Reds"
+  },
+  "go": {
+    "message": "去",
+    "description": "go"
   }
 }

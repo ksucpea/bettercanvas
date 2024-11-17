@@ -230,9 +230,6 @@
   "dark_mode_fixer_text": {
     "message": "これにより、現在のページ上のダーク モードのギャップが修正されます。"
   },
-  "fix_dm_btn": {
-    "message": "行く"
-  },
   "fix_dm_text": {
     "message": "Fixer はこれらのページで自動的に実行されます:"
   },
@@ -249,16 +246,16 @@
     "message": " \"なし\" "
   },
   "hide_images_sub_text": {
-    "message": "画像やリンクを非表示にします。"
+    "message": "画像とリンクを非表示にします。"
   },
   "refresh_need_sub_text": {
-    "message": "変更を確認するにはページを更新する必要がある場合があります。"
+    "message": "一部の変更を確認するには、ページを更新する必要がある場合があります。"
   },
   "disable_high_contrast_ui": {
     "message": "ハイコントラストUIを無効にする "
   },
   "more_card_color_text": {
-    "message": "更新後に色がくすんでしまう場合は、サイドバーでプロフィールアイコンをクリックすると、そこでオフにできます。"
+    "message": "リフレッシュ後に色がくすんでしまったら！サイドバーでプロフィール アイコンをクリックすると、そこでオフにできます。"
   },
   "popular_palettes": {
     "message": "Popular Palettes"
@@ -268,5 +265,9 @@
   },
   "red_card_color": {
     "message": "Reds"
+  },
+  "go": {
+    "message": "行く",
+    "description": "go"
   }
 }

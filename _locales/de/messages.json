@@ -230,9 +230,6 @@
   "dark_mode_fixer_text": {
     "message": "Dadurch wird versucht, alle Lücken im Dunkelmodus auf der aktuellen Seite zu schließen."
   },
-  "fix_dm_btn": {
-    "message": "Gehen"
-  },
   "fix_dm_text": {
     "message": "Der Fixer wird automatisch auf diesen Seiten ausgeführt:"
   },
@@ -246,19 +243,19 @@
     "message": "Eingeben"
   },
   "none_sub_text": {
-    "message": " \"keiner\" "
+    "message": " \"Keiner\" "
   },
   "hide_images_sub_text": {
-    "message": "um Bilder und Links auszublenden."
+    "message": "Um Bilder und Links auszublenden."
   },
   "refresh_need_sub_text": {
-    "message": "Möglicherweise müssen Sie die Seite aktualisieren, um einige Änderungen anzuzeigen."
+    "message": "Möglicherweise müssen Sie die Seite aktualisieren, um einige Änderungen zu sehen."
   },
   "disable_high_contrast_ui": {
     "message": "Deaktivieren Sie die kontrastreiche Benutzeroberfläche "
   },
   "more_card_color_text": {
-    "message": "wenn Ihre Farben nach dem Aktualisieren blasser werden! Wenn Sie in der Seitenleiste auf Ihr Profilsymbol klicken, können Sie es dort ausschalten."
+    "message": "Wenn Ihre Farben nach dem Auffrischen stumpfer werden! Wenn Sie in der Seitenleiste auf Ihr Profilsymbol klicken, können Sie es dort deaktivieren."
   },
   "popular_palettes": {
     "message": "Popular Palettes"
@@ -268,5 +265,9 @@
   },
   "red_card_color": {
     "message": "Reds"
+  },
+  "go": {
+    "message": "Gehen",
+    "description": "go"
   }
 }

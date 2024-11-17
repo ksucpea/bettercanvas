@@ -230,9 +230,6 @@
   "dark_mode_fixer_text": {
     "message": "Esto intentará solucionar cualquier brecha del modo oscuro en la página actual."
   },
-  "fix_dm_btn": {
-    "message": "Ir"
-  },
   "fix_dm_text": {
     "message": "El reparador se ejecuta automáticamente en estas páginas:"
   },
@@ -246,13 +243,13 @@
     "message": "Ingresar"
   },
   "none_sub_text": {
-    "message": " \"ninguna\" "
+    "message": " \"Ninguna\" "
   },
   "hide_images_sub_text": {
-    "message": "para ocultar imágenes y enlaces."
+    "message": "Para ocultar imágenes y enlaces."
   },
   "refresh_need_sub_text": {
-    "message": "Es posible que necesites actualizar la página para ver algunos cambios."
+    "message": "Es posible que deba actualizar la página para ver algunos cambios."
   },
   "disable_high_contrast_ui": {
     "message": "Deshabilitar la interfaz de usuario de alto contraste "
@@ -268,5 +265,9 @@
   },
   "red_card_color": {
     "message": "Reds"
+  },
+  "go": {
+    "message": "Go",
+    "description": "go"
   }
 }
