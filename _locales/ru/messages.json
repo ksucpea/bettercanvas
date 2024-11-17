@@ -243,19 +243,19 @@
     "message": "Входить"
   },
   "none_sub_text": {
-    "message": " \"none\" "
+    "message": " \"Никто\" "
   },
   "hide_images_sub_text": {
-    "message": "to hide images and links."
+    "message": "Чтобы скрыть изображения и ссылки."
   },
   "refresh_need_sub_text": {
-    "message": "You may need to refresh the page to see some changes."
+    "message": "Возможно, вам придется обновить страницу, чтобы увидеть некоторые изменения."
   },
   "disable_high_contrast_ui": {
     "message": "Отключить высококонтрастный интерфейс "
   },
   "more_card_color_text": {
-    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
+    "message": "Если ваши цвета стали тусклее после обновления! На боковой панели, если вы нажмете на значок своего профиля, вы можете отключить его там."
   },
   "popular_palettes": {
     "message": "Popular Palettes"
@@ -267,7 +267,7 @@
     "message": "Reds"
   },
   "go": {
-    "message": "Go",
+    "message": "Идти",
     "description": "go"
   }
 }
