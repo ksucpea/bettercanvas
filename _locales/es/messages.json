@@ -258,15 +258,15 @@
     "message": "¡Si tus colores se vuelven más opacos después de refrescarte! En la barra lateral, si haces clic en el ícono de tu perfil, puedes desactivarlo allí."
   },
   "popular_palettes": {
-    "message": "Popular Palettes"
+    "message": "Paletas populares"
   },
   "revert_card_colors": {
-    "message": "Revert To Original"
+    "message": "Volver a la original"
   },
   "red_card_color": {
-    "message": "Reds"
+    "message": "Rojas"
   },
   "go": {
-    "message": "Go"
+    "message": "Ir"
   }
 }
