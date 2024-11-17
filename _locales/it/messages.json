@@ -243,7 +243,7 @@
     "message": "Entrare"
   },
   "none_sub_text": {
-    "message": " \"none\" "
+    "message": " \"Nessuno\" "
   },
   "hide_images_sub_text": {
     "message": "Per nascondere immagini e collegamenti."
@@ -267,7 +267,6 @@
     "message": "Reds"
   },
   "go": {
-    "message": "Andare",
-    "description": "go"
+    "message": "Andare"
   }
 }
