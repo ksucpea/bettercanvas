@@ -258,13 +258,13 @@
     "message": "リフレッシュ後に色がくすんでしまったら！サイドバーでプロフィール アイコンをクリックすると、そこでオフにできます。"
   },
   "popular_palettes": {
-    "message": "Popular Palettes"
+    "message": "人気のパレット"
   },
   "revert_card_colors": {
-    "message": "Revert To Original"
+    "message": "オリジナルに戻す"
   },
   "red_card_color": {
-    "message": "Reds"
+    "message": "レッズ"
   },
   "go": {
     "message": "行く"
