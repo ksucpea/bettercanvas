@@ -267,7 +267,6 @@
     "message": "Reds"
   },
   "go": {
-    "message": "Идти",
-    "description": "go"
+    "message": "Идти"
   }
 }
