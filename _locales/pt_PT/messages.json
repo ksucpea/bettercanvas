@@ -243,19 +243,19 @@
     "message": "Digitar"
   },
   "none_sub_text": {
-    "message": " \"none\" "
+    "message": " \"Nenhum\" "
   },
   "hide_images_sub_text": {
-    "message": "to hide images and links."
+    "message": "Para ocultar imagens e ligações."
   },
   "refresh_need_sub_text": {
-    "message": "You may need to refresh the page to see some changes."
+    "message": "Pode ser necessário atualizar a página para ver algumas alterações."
   },
   "disable_high_contrast_ui": {
     "message": "Desativar ‘interface’ de utilizador de alto contraste "
   },
   "more_card_color_text": {
-    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
+    "message": "Se as suas cores ficarem mais opacas após a atualização! Na barra lateral, se você clicar no ícone do seu perfil, poderá desligá-lo."
   },
   "popular_palettes": {
     "message": "Popular Palettes"
@@ -267,7 +267,7 @@
     "message": "Reds"
   },
   "go": {
-    "message": "Go",
+    "message": "Ir",
     "description": "go"
   }
 }
