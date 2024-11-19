@@ -230,10 +230,118 @@
   "dark_mode_fixer_text": {
     "message": "Detta kommer att försöka fixa eventuella luckor i mörkt läge på den aktuella sidan."
   },
-  "fix_dm_btn": {
-    "message": "Gå"
-  },
   "fix_dm_text": {
     "message": "Fixern körs automatiskt på dessa sidor:"
+  },
+  "card_missing": {
+    "message": "Saknar du kort?"
+  },
+  "card_alt_method": {
+    "message": "Aktivera alternativ kortmetod"
+  },
+  "enter_sub_text": {
+    "message": "Skriva in"
+  },
+  "none_sub_text": {
+    "message": " \"Ingen\" "
+  },
+  "hide_images_sub_text": {
+    "message": "to hide images and links."
+  },
+  "refresh_need_sub_text": {
+    "message": "You may need to refresh the page to see some changes."
+  },
+  "disable_high_contrast_ui": {
+    "message": "Inaktivera Hugh Kontrast UI "
+  },
+  "more_card_color_text": {
+    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
+  },
+  "popular_palettes": {
+    "message": "Populära paletter"
+  },
+  "revert_card_colors": {
+    "message": "Återgå till originalet"
+  },
+  "red_card_color": {
+    "message": "Röda"
+  },
+  "go": {
+    "message": "Gå"
+  },
+  "greens_card_color": {
+    "message": "Greens"
+  },
+  "blues_card_color": {
+    "message": "Blues"
+  },
+  "pinks_card_color": {
+    "message": "Pinks"
+  },
+  "purples_card_color": {
+    "message": "Purples"
+  },
+  "pastels_card_color": {
+    "message": "Pastels"
+  },
+  "mesa_card_color": {
+    "message": "Mesa"
+  },
+  "fade_card_color": {
+    "message": "Fade"
+  },
+  "fade2_card_color": {
+    "message": "Fade 2"
+  },
+  "ocean_card_color": {
+    "message": "Ocean"
+  },
+  "watermelon_card_color": {
+    "message": "Watermelon"
+  },
+  "army_card_color": {
+    "message": "Army"
+  },
+  "rainbow_card_color": {
+    "message": "Rainbow"
+  },
+  "sunset_card_color": {
+    "message": "Sunset"
+  },
+  "popsicle_card_color": {
+    "message": "Popsicle"
+  },
+  "berries_card_color": {
+    "message": "Berries"
+  },
+  "fruit_card_color": {
+    "message": "Fruit"
+  },
+  "night_card_color": {
+    "message": "Night"
+  },
+  "base_card_color": {
+    "message": "Base"
+  },
+  "muted_card_color": {
+    "message": "Muted"
+  },
+  "candy_card_color": {
+    "message": "Candy"
+  },
+  "chess_card_color": {
+    "message": "Chess"
+  },
+  "single_card_color": {
+    "message": "Single Color"
+  },
+  "single_card_color_text": {
+    "message": "Choose A Color To Set All Cards To That Color:"
+  },
+  "gradient_card_color": {
+    "message": "Gradient"
+  },
+  "gradient_card_color_text": {
+    "message": "Choose 2 Colors To Create A Gradient Between Them:"
   }
 }

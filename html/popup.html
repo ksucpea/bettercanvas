@@ -630,7 +630,7 @@
             <div class="option-container">
                 <h3 class="header-small" data-i18n="dark_mode_fixer">Dark mode fixer (beta)</h3>
                 <div style="display: flex; gap: 10px;align-items: center">
-                    <button id="fix-dm-btn" class="big-button" data-i18n="fix_dm_btn">Go</button>
+                    <button id="fix-dm-btn" class="big-button" data-i18n="go">Go</button>
                     <span data-i18n="dark_mode_fixer_text">This will try to fix any dark mode gaps on the current page.</span> 
                 </div>
                 <p id="fix-dm-output" style="margin-top: 10px;color:#ffee00;"></p>
@@ -649,16 +649,18 @@
             </div>
             <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
-        <p class="option-container sub-text" style="margin: 5px 0">Enter <b>"none"</b> to hide images and links.<br>You may need to refresh the page to see some changes.</p>
+        <div class="option-container sub-text" style="margin: 5px 0">
+            <span data-i18n="enter_sub_text">Enter</span><b data-i18n="none_sub_text"> "none" </b><span data-i18n="hide_images_sub_text">to hide images and links.</span><br><span data-i18n="refresh_need_sub_text">You may need to refresh the page to see some changes.</span>
+        </div>
         <div class="advanced-cards">
             <div id="advanced-current"></div>
             <div id="advanced-past"></div>
         </div>
         <div class="option-container">
-            <h3 class="header-small">Missing cards?</h3>
+            <h3 class="header-small" data-i18n="card_missing">Missing cards?</h3>
             <div style="display: flex; gap: 10px; align-items: center;">
                 <input type="checkbox" id="card_method_dashboard"></input>
-                <span>Enable alternative card method</span>
+                <span data-i18n="card_alt_method">Enable alternative card method</span>
             </div>
         </div>
     </div>
@@ -708,120 +710,120 @@
             <button class="big-button back-btn" data-i18n="back">Back</button>
         </div>
         <div class="option-container">
-            <p class="sub-text"><b>Disable High Contrast UI</b> if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there.</p>
+            <b class="sub-text" data-i18n="disable_high_contrast_ui">Disable High Contrast UI </b><span class="sub-text" data-i18n="more_card_color_text">if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there.</span>
         </div>
         <div class="option-container">
-            <h3 class="header-small">Popular Palettes</h3>
+            <h3 class="header-small" data-i18n="popular_palettes">Popular Palettes</h3>
             <div class="options-presets">
-                <button id="revert-colors" class="colors-button">Revert to original</button>
+                <button id="revert-colors" class="colors-button" data-i18n="revert_card_colors">Revert to original</button>
                 <button class="preset-button colors-button">
-                    <p>Reds</p>
+                    <p data-i18n="red_card_color">Reds</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Oranges</p>
+                    <p data-i18n="red_card_color">Oranges</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Greens</p>
+                    <p data-i18n="greens_card_color">Greens</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Blues</p>
+                    <p data-i18n="blues_card_color">Blues</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Pinks</p>
+                    <p data-i18n="pinks_card_color">Pinks</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Purples</p>
+                    <p data-i18n="purples_card_color">Purples</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Pastels</p>
+                    <p data-i18n="pastels_card_color">Pastels</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Mesa</p>
+                    <p data-i18n="mesa_card_color">Mesa</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Fade</p>
+                    <p data-i18n="fade_card_color">Fade</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Fade2</p>
+                    <p data-i18n="fade2_card_color">Fade2</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Ocean</p>
+                    <p data-i18n="ocean_card_color">Ocean</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Watermelon</p>
+                    <p data-i18n="watermelon_card_color">Watermelon</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Army</p>
+                    <p data-i18n="army_card_color">Army</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Rainbow</p>
+                    <p data-i18n="rainbow_card_color">Rainbow</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Sunset</p>
+                    <p data-i18n="sunset_card_color">Sunset</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Popsicle</p>
+                    <p data-i18n="popsicle_card_color">Popsicle</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Berries</p>
+                    <p data-i18n="berries_card_color">Berries</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Fruit</p>
+                    <p data-i18n="fruit_card_color">Fruit</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Night</p>
+                    <p data-i18n="night_card_color">Night</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Base</p>
+                    <p data-i18n="base_card_color">Base</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Muted</p>
+                    <p data-i18n="muted_card_color">Muted</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Candy</p>
+                    <p data-i18n="candy_card_color">Candy</p>
                     <div class="colors-preview"></div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p>Chess</p>
+                    <p data-i18n="chess_card_color">Chess</p>
                     <div class="colors-preview"></div>
                 </button>
             </div>
         </div>
         <div class="option-container">
-            <h3 class="header-small">Single color</h3>
-            <p>Choose a color to set all cards to that color:</p>
+            <h3 class="header-small" data-i18n="single_card_color">Single color</h3>
+            <p data-i18n="single_card_color_text">Choose a color to set all cards to that color:</p>
             <div>
                 <div class="palette-selection">
                     <input type="color" value="#34FECB" id="singleColorInput" class="color-picker-small"></input>
                     <input type="text" class="card-input" value="#34FECB" id="singleColorText" />
-                    <button id="setSingleColor" class="big-button">Go</button>
+                    <button id="setSingleColor" class="big-button" data-i18n="go">Go</button>
                 </div>
             </div>
         </div>
         <div class="option-container">
-            <h3 class="header-small">Gradient</h3>
-            <p>Choose 2 colors to create a gradient between them:</p>
+            <h3 class="header-small" data-i18n="gradient_card_color">Gradient</h3>
+            <p data-i18n="gradient_card_color_text">Choose 2 colors to create a gradient between them:</p>
             <div>
                 <div class="palette-selection">
                     <input type="color" value="#EA76DA" id="gradientColorFrom" class="color-picker-small" />
@@ -830,7 +832,7 @@
                 <div class="palette-selection">
                     <input type="color" value="#7B61FF" id="gradientColorTo" class="color-picker-small" />
                     <input type="text" class="card-input" value="#7B61FF" id="gradientColorToText" />
-                    <button id="setGradientColor" class="big-button">Go</button>
+                    <button id="setGradientColor" class="big-button" data-i18n="go">Go</button>
                 </div>
             </div>
         </div>
@@ -904,7 +906,12 @@
                 <textarea id="error_log_output" class="card-input"></textarea>
             </div>
         </div>
-        <p>5.11.2</p>
+        <div class="option-container">
+            <h3 class="header-small">Version</h3>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <span>5.12.5</span>
+            </div>
+        </div>
     </div>
 
     <div class="updates-container tab">
@@ -917,6 +924,59 @@
         <div class="option-container" style="display:flex;gap:8px;">
             <input type="checkbox" id="show_updates"></input>
             <span>Show update messages on dashboard</span>
+        </div>
+        <div class="option-container">
+            <h3 class="header-small">Update 5.12.5</h3>
+            <h4 class="update-date">Oct. 30, 2024</h4>
+            <ul>
+                <li>New User Made Themes</li>
+                <li>Updded Themes Submission</li>
+            </ul>
+        </div>
+        <div class="option-container">
+            <h3 class="header-small">Update 5.12.4</h3>
+            <h4 class="update-date">Oct. 29, 2024</h4>
+            <ul>
+                <li>New themes</li>
+                <li>Added Themes Submission Confirmation Section</li>
+                <li>Troubleshooting</li>
+		<li>Added More Languages:</br>
+                    - Spanish</br>
+                    - Chinese (China)</br>
+                    - Chinese (Taiwan)</br>	
+                    - French</br>	
+                    - German</br>	
+                    - Italian</br>	
+                    - Japanese</br>	
+                    - Portuguese</br>		
+                    - Russian</br>			
+                    - Swedish
+                </li>
+            </ul>
+        </div>
+        <div class="option-container">
+            <h3 class="header-small">Update 5.12.1</h3>
+            <h4 class="update-date">Oct. 24, 2024</h4>
+            <ul>
+                <li>Js Script Troubleshooting</li>
+            </ul>
+        </div>
+        <div class="option-container">
+            <h3 class="header-small">Update 5.12.0</h3>
+            <h4 class="update-date">Oct. 23, 2024</h4>
+            <ul>
+                <li>Added GPA calculator Container</li>
+                <li>Updated Menu</li>
+                <li>More Troubleshooting</li>
+            </ul>
+        </div>
+        <div class="option-container">
+            <h3 class="header-small">Update 5.11.3</h3>
+            <h4 class="update-date">Sep. 3, 2024</h4>
+            <ul>
+                <li>Fixed Menu Input Option</li>
+                <li>More Troubleshooting</li>
+            </ul>
         </div>
         <div class="option-container">
             <h3 class="header-small">Update 5.11.2</h3>
@@ -1004,57 +1064,6 @@
                 <li>Menu redesign</li>
             </ul>
         </div>
-        <div class="option-container">
-            <h3 class="header-small">Update 5.2.1</h3>
-            <h4 class="update-date">Feb. 2, 2023</h4>
-            <ul>
-                <li>Condensed cards feature</li>
-                <li>Fixed gradient cards</li>
-                <li>Fixed GPA calculator</li>
-            </ul>
-        </div>
-        <div class="option-container">
-            <h3 class="header-small">Update 5.1.4</h3>
-            <h4 class="update-date">Jan. 5, 2023</h4>
-            <ul>
-                <li>Improved URL setup</li>
-                <li>Added 24hr format option</li>
-                <li>GPA calculator moved to dashboard page</li>
-                <li>Dashboard grades moved to the card header</li>
-            </ul>
-        </div>
-        <div class="option-container">
-            <h3 class="header-small">Update 5.0.6</h3>
-            <h4 class="update-date">Oct. 21, 2022</h4>
-            <ul>
-                <li>Dark mode improvements</li>
-                <li>Can now enter multiple urls for the custom url</li>
-                <li>Quizzes link correctly in the assignments list</li>
-                <li>"Better todo list" feature</li>
-                <li>"Dashboard notes" feature</li>
-                <li>Optional dd/mm format for dashboard assignments</li>
-                <li>View dark mode changes in real time</li>
-            </ul>
-        </div>
-        <div class="option-container">
-            <h3 class="header-small">Update 4.2.1</h3>
-            <h4 class="update-date">Mar. 2, 2022</h4>
-            <ul>
-                <li>Removed assignment potentials and link preview features</li>
-                <li>Dark mode can now target iframes (better coverage)</li>
-                <li>Added dark mode presets</li>
-                <li>"Dashboard grades" feature</li>
-                <li>New welcome message</li>
-            </ul>
-        </div>
-        <div class="option-container">
-            <h3 class="header-small">Update 1.0.0</h3>
-            <h4 class="update-date">Oct. 17, 2021</h4>
-            <ul>
-                <li>First release :)</li>
-            </ul>
-        </div>
-        
     </div>
 
     <script type="text/javascript" src="../js/popup.js"></script>
