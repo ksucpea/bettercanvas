@@ -7,7 +7,7 @@
 
 files: [
   {
-    "source": "/_locales/en/*.json",
+    "source": "/_locales/en/messages.json",
     "translation": "/_locales/%locale%/%original_file_name%",
   }
 ]
