@@ -23,7 +23,7 @@ jobs:
           push_translations: true
           crowdin_branch_name: 'main'
           #download_translations_args: -b main
-          #localization_branch_name: 'main'
+          localization_branch_name: 'l10n_main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
