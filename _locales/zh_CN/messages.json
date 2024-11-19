@@ -83,9 +83,6 @@
   "back": {
     "message": "后退"
   },
-  "more_options": {
-    "message": "更多选择"
-  },
   "manual_customization": {
     "message": "手动定制"
   },
@@ -270,10 +267,10 @@
     "message": "去"
   },
   "greens_card_color": {
-    "message": "Greens"
+    "message": "绿色的"
   },
   "blues_card_color": {
-    "message": "Blues"
+    "message": "蓝色的"
   },
   "pinks_card_color": {
     "message": "Pinks"
