@@ -1,4 +1,4 @@
-name: Crowdin Download
+name: Crowdin Upload
 
 on:
   push:
