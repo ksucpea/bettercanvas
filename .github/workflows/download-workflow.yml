@@ -2,7 +2,7 @@ name: Crowdin Download
 
 on:
   schedule:
-    - cron: '0 */12 * * *' # Every 12 hours - https://crontab.guru/#0_*/12_*_*_*
+    - cron: '0 */23 * * 0,3,6' # At the 23 hour on Sunday, Wednesday, and Saturday- https://crontab.guru/#0_*/23_*_*_0,3,6
   workflow_dispatch:
 
 jobs:
@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: Crowdin pull
-        uses: crowdin/github-action@v2
+        uses: crowdin/github-action@v2.3.0
         with:
           upload_sources: false
           upload_translations: false
