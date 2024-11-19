@@ -2,6 +2,9 @@ const syncedSwitches = ['remind', 'tab_icons', 'hide_feedback', 'dark_mode', 're
 const syncedSubOptions = ['todo_colors', 'device_dark', 'relative_dues', 'card_overdues', 'todo_overdues', 'gpa_calc_prepend', 'auto_dark', 'auto_dark_start', 'auto_dark_end', 'num_assignments', 'assignment_date_format', 'todo_hr24', 'grade_hover', 'hide_completed', 'num_todo_items', 'hover_preview'];
 const localSwitches = [];
 
+//const apiurl = "http://localhost:3000";
+const apiurl = "https://bettercanvas.diditupe.dev";
+
 const defaultOptions = {
     "local": {
         "previous_colors": null,
@@ -84,8 +87,6 @@ const defaultOptions = {
     }
 };
 
-//const apiurl = "http://localhost:3000";
-const apiurl = "https://bettercanvas.diditupe.dev";
 
 sendFromPopup("getCards");
 
@@ -111,9 +112,10 @@ function displayDarkModeFixUrls() {
     output.textContent = "";
     chrome.storage.sync.get("dark_mode_fix", sync => {
         sync["dark_mode_fix"].forEach(url => {
-            let div = makeElement("div", "customization-button", output, url);
+            //let div = makeElement("div", "customization-button", output, url);
+            let div = makeElement("div", output, { "className": "customization-button", "textContent": url });
             div.classList.add("fixed-url");
-            let btn = makeElement("button", "dd", div, "x");
+            let btn = makeElement("button", div, { "className": "dd", "textContent": "x" });
             btn.addEventListener("click", () => {
                 chrome.storage.sync.get("dark_mode_fix", sync => {
                     for (let i = 0; i < sync["dark_mode_fix"].length; i++) {
@@ -201,7 +203,8 @@ function setup() {
             { "identifier": "num_assignments", "setup": (initial) => setupAssignmentsSlider(initial) },
             { "identifier": "num_todo_items", "setup": (initial) => setupTodoSlider(initial) },
             { "identifier": "card_limit", "setup": (initial) => setupCardLimitSlider(initial) },
-            { "identifier": "card_method_dashboard", "setup": (initial) => setupDashboardMethod(initial) }
+            { "identifier": "card_method_dashboard", "setup": (initial) => setupDashboardMethod(initial) },
+            { "identifier": "custom_styles", "setup": (initial) => setupCustomStyle(initial) }
         ],
     }
 
@@ -244,6 +247,7 @@ function setup() {
 
     const specialOptions = menu.special.map(obj => obj.identifier);
     chrome.storage.sync.get(specialOptions, sync => {
+        console.log(sync);
         menu.special.forEach(option => {
             if (option.setup !== null) option.setup(sync[option.identifier]);
         });
@@ -441,7 +445,7 @@ function setup() {
         const colors = getPalette(btn.querySelector("p").textContent);
         let preview = btn.querySelector(".colors-preview");
         colors.forEach(color => {
-            let div = makeElement("div", "color-preview", preview);
+            let div = makeElement("div", preview, { "className": "color-preview"});
             div.style.background = color;
         });
         btn.addEventListener("click", () => {
@@ -512,14 +516,14 @@ function setup() {
         document.getElementById("theme-button-creator-preview").textContent = e.target.value;
     });
 
-    // activate the show button to open the theme submission form
+    // activate the show button to open the theme submission drawer
     document.getElementById("show-submit-form").addEventListener("click",  (e) => {
-        const form = document.getElementById("submit-form");
-        if (form.style.display === "none") {
-            form.style.display = "flex";
+        const drawer = document.getElementById("submit-drawer");
+        if (drawer.style.display === "none") {
+            drawer.style.display = "block";
             e.target.textContent = "Hide";
         } else {
-            form.style.display = "none";
+            drawer.style.display = "none";
             e.target.textContent = "Show";
         }
     });
@@ -556,6 +560,57 @@ function setup() {
         document.getElementById("opt-in").style.display = "block";
     });
 
+    document.getElementById("view-submissions-btn").addEventListener("click", displayMySubmissions);
+    document.getElementById("submit-form-btn").addEventListener("click", displayThemeSubmissionForm);
+
+}
+
+function setupCustomStyle(initial) {
+    const el = document.getElementById("custom-styles");
+    el.value = initial;
+    el.addEventListener("change", (e) => {
+        chrome.storage.sync.set({ "custom_styles": e.target.value });
+    });
+}
+
+
+function displayThemeSubmissionForm() {
+    document.getElementById("submit-form").style.display = "block";
+    document.getElementById("view-submissions").style.display = "none";
+    document.getElementById("submit-form-btn").classList.add("active");
+    document.getElementById("view-submissions-btn").classList.remove("active");
+}
+
+async function displayMySubmissions() {
+    const sync = await chrome.storage.sync.get("id");
+    const res = await fetch(`${apiurl}/api/themes/submissions?id=${sync["id"]}`);
+    const data = await res.json();
+
+    //if (data?.errors !== false) return;
+
+    document.getElementById("submit-form").style.display = "none";
+    document.getElementById("view-submissions").style.display = "block";
+    document.getElementById("submit-form-btn").classList.remove("active");
+    document.getElementById("view-submissions-btn").classList.add("active");
+
+    const el = document.getElementById("latest-submissions");
+    el.textContent = "";
+
+    if (data.message.length === 0) {
+        el.textContent = "You haven't submitted any themes yet.";
+    }
+
+    data.message.forEach(theme => {
+        const container = makeElement("div", el, {"className": "submitted-theme" });
+        const btn = makeElement("button", container, { "className": "theme-button clickable customization-button", "style": `min-width:105px;max-width:105px;background-image:linear-gradient(rgba(0, 0, 0, 0.44), rgba(0, 0, 0, 0.44)), url(${theme.preview})` });
+        const title = makeElement("p", btn, { "className": "theme-button-title clickable", "textContent": theme.title });
+        const credits = makeElement("p", btn, { "className": "theme-button-creator clickable", "textContent": theme.credits });
+        const details = makeElement("div", container, { "className": "submitted-theme-details" });
+        const top = makeElement("div", details, { "style": "display:flex;justify-content:space-between;align-items:center" });
+        const tag = makeElement("span", top, { "className": "submitted-theme-tag", "textContent": theme.approved === 1 ? "Approved" : theme.approved === 0 ? "Pending" : "Rejected", "style": `background: ${theme.approved === 1 ? "#ad3a74" : theme.approved === 0 ? "#514e4e": "#000"}` });
+        const msg = makeElement("p", details, { "textContent": theme.approved === 1 ? "Looks great! Thanks for submitting" : theme.approved === 0 ? "Your theme is still awaiting approval." : `Your theme was rejected${theme.reason ? (": " + theme.reason) : " because it did not meet the theme guidelines."}`});
+        const ago = makeElement("span", top, { "className": "submitted-theme-time", "textContent": `${getRelativeDate(new Date(parseInt(theme.time))).time} ago` });
+    });
 }
 
 async function getExport(storage, options) {
@@ -755,7 +810,7 @@ async function submitTheme() {
             displayAlert(false, "Thanks for submitting your theme! I will try to approve it soon, but not every theme may be accepted.");
             document.getElementById("submit-popup").classList.remove("open");
         } else {
-            displayAlert(true, `There was an error submitting your theme. (${data.message}) Please send an email to ksucpea@gmail.com if this issue persists!`);
+            displayAlert(true, `Submission error: ${data.message} Please contact ksucpea@gmail.com if you believe this is incorrect.`);
         }
     });
 }
@@ -834,27 +889,35 @@ async function displayThemeList(direction = 0) {
 }
 
 function createThemeButton(location, theme) {
-    let themeBtn = makeElement("button", "theme-button clickable", location);
+    let themeBtn = makeElement("button", location, { "className": "theme-button clickable" });
     themeBtn.classList.add("customization-button");
     if (!themeBtn.style.background) themeBtn.style.backgroundImage = "linear-gradient(#00000070, #00000070), url(" + theme.preview + ")";
-    if (theme.title) makeElement("p", "theme-button-title clickable", themeBtn, theme.title.replaceAll(" ", ""));
-    if (theme.credits) makeElement("p", "theme-button-creator clickable", themeBtn, theme.credits);
+    if (theme.title) makeElement("p", themeBtn, { "className": "theme-button-title clickable", "textContent": theme.title.replaceAll(" ", "") });
+    if (theme.credits) makeElement("p", themeBtn, { "className": "theme-button-creator clickable", "textContent": theme.credits });
     return themeBtn;
 }
 
 function createThemeLikeBtn(location, initial, score, show) {
-    const likeBtn = makeElement("div", "theme-button-like", location);
+    const likeBtn = makeElement("div", location, {"className": "theme-button-like"});
     if (initial === true) {
         likeBtn.classList.add("theme-liked");
         score += 1;
     }
-    const amount = makeElement("span", "theme-button-like-amount", likeBtn, shortScore(score));
+    const amount = makeElement("span", likeBtn, { "className": "theme-button-like-amount", "textContent": shortScore(score) });
     if (show === true) amount.classList.add("showalways");
     likeBtn.innerHTML += `<svg  xmlns="http://www.w3.org/2000/svg"  width="12"  height="12"  viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6.979 3.074a6 6 0 0 1 4.988 1.425l.037 .033l.034 -.03a6 6 0 0 1 4.733 -1.44l.246 .036a6 6 0 0 1 3.364 10.008l-.18 .185l-.048 .041l-7.45 7.379a1 1 0 0 1 -1.313 .082l-.094 -.082l-7.493 -7.422a6 6 0 0 1 3.176 -10.215z" /></svg>`;
     return likeBtn;
 }
 
 let likeThemeTimeout = false;
+
+function setLikeTimeout() {
+    if (likeThemeTimeout === true) return;
+    likeThemeTimeout = true;
+    setTimeout(() => {
+        likeThemeTimeout = false;
+    }, 1000);
+}
 
 async function likeTheme(location, code, score) {
 
@@ -868,10 +931,9 @@ async function likeTheme(location, code, score) {
         let output = local;
     
         if (direction === -1) {
-            const index = local["liked_themes"].indexOf(code);
             location.classList.remove("theme-liked");
             location.querySelector(".theme-button-like-amount").textContent = shortScore(score);
-            if (index !== -1) output = local["liked_themes"].filter(x => x !== code);
+            output = local["liked_themes"].filter(x => x !== code);
         } else if (direction === 1) {
             location.classList += (" theme-liked animate-like");
             location.querySelector(".theme-button-like-amount").textContent = shortScore(score + 1);
@@ -896,16 +958,11 @@ async function likeTheme(location, code, score) {
 
     if (data.errors === false) {
         const direction = parseInt(data.message);
-        // update the like status just in case there is some disagreement with the server
-        chrome.storage.local.set({ "liked_themes": setLikeStatus(direction) });
-    }
-
-
-    if (likeThemeTimeout === false) {
-        likeThemeTimeout = true;
-        setTimeout(() => {
-            likeThemeTimeout = false;
-        }, 1000);
+        // update the like status if there is some disagreement with the server
+        const update = setLikeStatus(direction);
+        chrome.storage.local.set({ "liked_themes": update }).then(setLikeTimeout);
+    } else {
+        setLikeTimeout();
     }
 }
 
@@ -967,6 +1024,7 @@ async function displayThemeListNew(direction) {
             console.log(e);
             current_page_num = 1;
             fallback = true;
+            displayAlert(true, "There was a problem getting themes from the Better Canvas server, so the old themes browser is being displayed for now.");
             displayThemeListOld(0);
             return;
         }
@@ -1024,12 +1082,12 @@ function displayThemeListOld(pageDir = 0) {
     let start = (current_page_num - 1) * perPage, end = start + perPage;
     allThemes.forEach((theme, index) => {
         if (index < start || index >= end) return;
-        let themeBtn = makeElement("button", "theme-button", container);
+        let themeBtn = makeElement("button", container, { "className": "theme-button" });
         themeBtn.classList.add("customization-button");
         if (!themeBtn.style.background) themeBtn.style.backgroundImage = "linear-gradient(#00000070, #00000070), url(" + theme.preview + ")";
         let split = theme.title.split(" by ");
-        makeElement("p", "theme-button-title", themeBtn, split[0]);
-        makeElement("p", "theme-button-creator", themeBtn, split[1]);
+        makeElement("p", themeBtn, {"className": "theme-button-title", "textContent":  split[0] });
+        makeElement("p", themeBtn, {"className": "theme-button-creator", "textContent": split[1] });
         themeBtn.addEventListener("click", () => {
 
             const allOptions = syncedSwitches.concat(syncedSubOptions).concat(["dark_preset", "custom_cards", "custom_font", "gpa_calc_bounds", "card_colors"]);
@@ -1076,10 +1134,10 @@ function displaySavedThemes() {
         target.textContent = "";
         Object.keys(local["saved_themes"]).forEach((key, index) => {
             const created = new Date(parseInt(key));
-            let btn = makeElement("div", "saved-theme", target);
-            let title = makeElement("p", "theme-button-title", btn, `Theme ${index + 1}`);
-            let date = makeElement("p", "theme-button-creator", btn, `${getRelativeDate(created).time} ago`);
-            let remove = makeElement("div", "theme-button-remove", btn, "x");
+            let btn = makeElement("div", target, { "className": "saved-theme" });
+            let title = makeElement("p", btn, { "className": "theme-button-title", "textContent": `Theme ${index + 1}`});
+            let date = makeElement("p", btn, { "className": "theme-button-creator", "textContent": `${getRelativeDate(created).time} ago` });
+            let remove = makeElement("div", btn, { "className": "theme-button-remove", "textContent": "x" });
             btn.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.44), rgba(0, 0, 0, 0.44)), url(${local["saved_themes"][key]["custom_cards"][0]})`;
             btn.addEventListener("click", () => {
                 importTheme(local["saved_themes"][key]);
@@ -1621,7 +1679,7 @@ function updateCards(key, value) {
 function displayCustomFont() {
     chrome.storage.sync.get(["custom_font"], storage => {
         let el = document.querySelector(".custom-font");
-        let linkContainer = document.querySelector(".custom-font-flex") || makeElement("div", "custom-font-flex", el);
+        let linkContainer = document.querySelector(".custom-font-flex") || makeElement("div", el, {"className": "custom-font-flex" });
         linkContainer.innerHTML = '<span>https://fonts.googleapis.com/css2?family=</span><input class="card-input" id="custom-font-link"></input>';
         let link = linkContainer.querySelector("#custom-font-link");
         link.value = storage.custom_font.link;
@@ -1638,13 +1696,13 @@ function displayCustomFont() {
         const popularFonts = ["Arimo", "Barriecito", "Barlow", "Caveat", "Cinzel", "Comfortaa", "Corben", "DM Sans", "Expletus Sans", "Gluten", "Happy Monkey", "Inconsolata", "Inria Sans", "Jost", "Kanit", "Karla", "Kode Mono", "Lobster", "Lora", "Madimi One", "Mali", "Montserrat", "Nanum Myeongjo", "Open Sans", "Oswald", "Permanent Marker", "Playfair Display", "Poetsen One", "Poppins", "Quicksand", "Rakkas", "Redacted Script", "Roboto Mono", "Rubik", "Silkscreen", "Sixtyfour", "Syne Mono", "Tektur", "Texturina", "Ysabeau Infant", "Yuji Syuku"];
         let quickFonts = document.querySelector("#quick-fonts");
         quickFonts.textContent = "";
-        let noFont = makeElement("button", "customization-button", quickFonts, "None");
+        let noFont = makeElement("button", quickFonts, { "className": "customization-button", "textContent": "None" });
         noFont.addEventListener("click", () => {
             chrome.storage.sync.set({ "custom_font": { "link": "", "family": "" } });
             link.value = "";
         })
         popularFonts.forEach(font => {
-            let btn = makeElement("button", "customization-button", quickFonts, font);
+            let btn = makeElement("button", quickFonts, { "className":"customization-button", "textContent": font });
             btn.addEventListener("click", () => {
                 let linkVal = font.replace(" ", "+") + ":wght@400;700";
                 chrome.storage.sync.set({ "custom_font": { "link": linkVal, "family": "'" + font + "'" } });
@@ -1660,7 +1718,7 @@ function displayGPABounds() {
         const el = document.querySelector(".gpa-bounds");
         el.textContent = "";
         order.forEach(key => {
-            let inputs = makeElement("div", "gpa-bounds-item", el);
+            let inputs = makeElement("div", el, { "className": "gpa-bounds-item" });
             inputs.innerHTML += '<div><span class="gpa-bounds-grade"></span><input class="gpa-bounds-input gpa-bounds-cutoff" type="text"></input><span style="margin-left:6px;margin-right:6px;">%</span><input class="gpa-bounds-input gpa-bounds-gpa" type="text" value=></input><span style="margin-left:6px">GPA</span></div>';
             inputs.querySelector(".gpa-bounds-grade").textContent = key;
             inputs.querySelector(".gpa-bounds-cutoff").value = storage["gpa_calc_bounds"][key].cutoff;
@@ -1692,7 +1750,7 @@ function displayAlert(bad, msg) {
     clearTimeout(removeAlert);
     document.querySelector("#alert").style.bottom = "0";
     document.querySelector("#alert").textContent = msg;
-    document.querySelector("#alert").style.background = bad ? "#e7495ed9" : "#6bbf6bd9";
+    document.querySelector("#alert").style.background = bad ? "#e7495ed9" : "#468b46d9";
     removeAlert = setTimeout(() => {
         clearAlert();
     }, 15000);
@@ -1731,13 +1789,13 @@ function displayAdvancedCards() {
                     console.log(key + " error...");
                     console.log("card = ", card, "card_2", card_2, "links", card_2["links"]);
                 } else {
-                    let container = makeElement("div", "custom-card", term);
+                    let container = makeElement("div", term, { "className": "custom-card" });
                     container.classList.add("option-container");
                     container.innerHTML = '<div class="custom-card-header"><p class="custom-card-title"></p><div class="custom-card-hide"><p class="custom-key">Hide</p></div></div><div class="custom-card-inputs"><div class="custom-card-left"><div class="custom-card-image"><span class="custom-key">Image</span></div><div class="custom-card-name"><span class="custom-key">Name</span></div><div class="custom-card-code"><span class="custom-key">Code</span></div></div><div class="custom-links-container"><p class="custom-key">Links</p><div class="custom-links"></div></div></div>';
-                    let imgInput = makeElement("input", "card-input", container.querySelector(".custom-card-image"));
-                    let nameInput = makeElement("input", "card-input", container.querySelector(".custom-card-name"));
-                    let codeInput = makeElement("input", "card-input", container.querySelector(".custom-card-code"));
-                    let hideInput = makeElement("input", "card-input-checkbox", container.querySelector(".custom-card-hide"));
+                    let imgInput = makeElement("input", container.querySelector(".custom-card-image"), { "className": "card-input" });
+                    let nameInput = makeElement("input",  container.querySelector(".custom-card-name"), { "className": "card-input" });
+                    let codeInput = makeElement("input", container.querySelector(".custom-card-code"), { "className": "card-input" });
+                    let hideInput = makeElement("input", container.querySelector(".custom-card-hide"), { "className": "card-input-checkbox" });
                     imgInput.placeholder = "Image url";
                     nameInput.placeholder = "Custom name";
                     codeInput.placeholder = "Custom code";
@@ -1757,7 +1815,7 @@ function displayAdvancedCards() {
                     container.querySelector(".custom-card-title").textContent = card.default;
 
                     for (let i = 0; i < 4; i++) {
-                        let customLink = makeElement("input", "card-input", container.querySelector(".custom-links"));
+                        let customLink = makeElement("input", container.querySelector(".custom-links"), { "className": "card-input" });
                         customLink.value = card_2.links[i].is_default ? "default" : card_2.links[i].path;
                         customLink.addEventListener("change", function (e) {
                             chrome.storage.sync.get("custom_cards_2", storage => {
@@ -2083,11 +2141,20 @@ function setToDefaults() {
         });
 }
 */
-
+/*
 function makeElement(element, elclass, location, text) {
     let creation = document.createElement(element);
     creation.className = elclass;
     creation.textContent = text;
+    location.appendChild(creation);
+    return creation
+}*/
+
+function makeElement(element, location, options) {
+    let creation = document.createElement(element);
+    Object.keys(options).forEach(key => {
+        creation[key] = options[key];
+    });
     location.appendChild(creation);
     return creation
 }
