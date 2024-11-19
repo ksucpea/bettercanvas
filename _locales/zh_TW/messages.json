@@ -150,7 +150,7 @@
     "message": "亮色的"
   },
   "dark_default": {
-    "message": "默认设置"
+    "message": "默认"
   },
   "dark_dark": {
     "message": "深色"
@@ -230,10 +230,118 @@
   "dark_mode_fixer_text": {
     "message": "这将尝试修复当前页面上的任何暗模式间隙。"
   },
-  "fix_dm_btn": {
-    "message": "去"
-  },
   "fix_dm_text": {
     "message": "修复程序会自动在这些页面上运行:"
+  },
+  "card_missing": {
+    "message": "缺少卡片？"
+  },
+  "card_alt_method": {
+    "message": "启用替代卡方法"
+  },
+  "enter_sub_text": {
+    "message": "进入"
+  },
+  "none_sub_text": {
+    "message": " \"没有任何\" "
+  },
+  "hide_images_sub_text": {
+    "message": "隐藏图像和链接。"
+  },
+  "refresh_need_sub_text": {
+    "message": "您可能需要刷新页面才能看到一些更改。"
+  },
+  "disable_high_contrast_ui": {
+    "message": "禁用高对比度 UI "
+  },
+  "more_card_color_text": {
+    "message": "如果你的颜色在刷新后变得暗淡！在侧边栏上，如果您单击个人资料图标，则可以将其关闭。"
+  },
+  "popular_palettes": {
+    "message": "流行调色板"
+  },
+  "revert_card_colors": {
+    "message": "恢复至原始状态"
+  },
+  "red_card_color": {
+    "message": "红色的"
+  },
+  "go": {
+    "message": "去"
+  },
+  "greens_card_color": {
+    "message": "Greens"
+  },
+  "blues_card_color": {
+    "message": "Blues"
+  },
+  "pinks_card_color": {
+    "message": "Pinks"
+  },
+  "purples_card_color": {
+    "message": "Purples"
+  },
+  "pastels_card_color": {
+    "message": "Pastels"
+  },
+  "mesa_card_color": {
+    "message": "Mesa"
+  },
+  "fade_card_color": {
+    "message": "Fade"
+  },
+  "fade2_card_color": {
+    "message": "Fade 2"
+  },
+  "ocean_card_color": {
+    "message": "Ocean"
+  },
+  "watermelon_card_color": {
+    "message": "Watermelon"
+  },
+  "army_card_color": {
+    "message": "Army"
+  },
+  "rainbow_card_color": {
+    "message": "Rainbow"
+  },
+  "sunset_card_color": {
+    "message": "Sunset"
+  },
+  "popsicle_card_color": {
+    "message": "Popsicle"
+  },
+  "berries_card_color": {
+    "message": "Berries"
+  },
+  "fruit_card_color": {
+    "message": "Fruit"
+  },
+  "night_card_color": {
+    "message": "Night"
+  },
+  "base_card_color": {
+    "message": "Base"
+  },
+  "muted_card_color": {
+    "message": "Muted"
+  },
+  "candy_card_color": {
+    "message": "Candy"
+  },
+  "chess_card_color": {
+    "message": "Chess"
+  },
+  "single_card_color": {
+    "message": "Single Color"
+  },
+  "single_card_color_text": {
+    "message": "Choose A Color To Set All Cards To That Color:"
+  },
+  "gradient_card_color": {
+    "message": "Gradient"
+  },
+  "gradient_card_color_text": {
+    "message": "Choose 2 Colors To Create A Gradient Between Them:"
   }
 }
