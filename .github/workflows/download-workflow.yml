@@ -21,7 +21,7 @@ jobs:
           download_translations: true
           create_pull_request: false
           push_translations: true
-          crowdin-branch: 'main'
+          crowdin_branch_name: 'main'
           #download_translations_args: -b main
           #localization_branch_name: main
         env:
