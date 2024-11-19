@@ -1,3 +1,17 @@
-files:
-  - source: /_locales/en/*.json
-    translation: /_locales/%locale%/%original_file_name%
+"project_id": "731247"
+"api_token": "81c5b6afa61220dccb59275e6ebf915c731cb01db30a676a81cb6d991ea6bf7b528cba8ee368179a"
+"base_path": "."
+"base_url": "https://api.crowdin.com"
+
+"preserve_hierarchy": true
+
+files: [
+  {
+    "source": "/_locales/en/*.json",
+    "translation": "/_locales/%locale%/%original_file_name%",
+  }
+]
+
+#files:
+  #- source: /_locales/en/*.json
+    #translation: /_locales/%locale%/%original_file_name%
