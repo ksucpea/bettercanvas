@@ -17,9 +17,11 @@ jobs:
         with:
           upload_sources: false
           upload_translations: false
+          download_sources: true
           download_translations: true
           create_pull_request: false
           push_translations: false
+          download_translations_args: -b main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
