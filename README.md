@@ -195,6 +195,24 @@ You can export a theme using the export tool in the menu and sending an email to
 
 - The theme name should be one/two words so it doesn't take up too much space.
 
+### Localization
+
+This extension is using [chrome.i18n](https://developer.chrome.com/docs/extensions/reference/api/i18n) for localization.
+
+#### Add a new language
+
+- Request a new language here: [Crowdin BetterCanvas](https://crowdin.com/project/bettercanvas)
+> [!IMPORTANT]
+> The language must be one of the [locale codes](https://developer.chrome.com/docs/extensions/reference/api/i18n#locales) uesed by chrome.
+- Then wait for the language to be added.
+- Then translate all strings to the new language.
+
+#### Update an existing language
+
+- [Click Me](https://crowdin.com/project/bettercanvas) to translate a existing language.
+- Update the strings.
+- Then wait for the changes to be merged into bettercanvas
+
 ## File structure
 
 ```
