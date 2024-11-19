@@ -1,9 +1,9 @@
 name: Crowdin Download
 
 on:
+  schedule:
+    - cron: '0 */12 * * *' # Every 12 hours - https://crontab.guru/#0_*/12_*_*_*
   workflow_dispatch:
-  #schedule:
-    #- cron: '0 */12 * * *' # Every 12 hours
 
 jobs:
   crowdin:
