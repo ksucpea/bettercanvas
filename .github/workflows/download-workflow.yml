@@ -11,8 +11,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Crowdin pull
-        uses: crowdin/github-action@v2
+      - name: crowdin-action
+        uses: crowdin/github-action@v2.3.0
         with:
           upload_sources: false
           upload_translations: false

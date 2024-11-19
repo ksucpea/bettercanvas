@@ -4,7 +4,9 @@
 "base_url": "https://api.crowdin.com"
 "preserve_hierarchy": true
 
-
-files:
-  - source: /_locales/en/*.json
-    translation: /_locales/%locale%/%original_file_name%
+"files": [
+  {
+    "source": "/_locales/en/*.json",
+    "translation": "/_locales/%locale%/%original_file_name%"
+  }
+]
