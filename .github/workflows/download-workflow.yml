@@ -26,7 +26,7 @@ jobs:
           localization_branch_name: 'main'
 
           # GitHub Commits Advanced Settings
-          pull_request_title: 'New Language Translations'
+          commit_message: 'New Language Translations'
           pull_request_assignees: 'Crowdin Bot'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
