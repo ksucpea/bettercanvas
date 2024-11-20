@@ -346,5 +346,8 @@
   },
   "submit_theme": {
     "message": "Submit Your Theme"
+  },
+  "show": {
+    "message": "Show"
   }
 }
