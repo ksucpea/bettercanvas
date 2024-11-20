@@ -352,5 +352,8 @@
   },
   "submit": {
     "message": "Submit"
+  },
+  "submissions": {
+    "message": "My Submissions"
   }
 }
