@@ -291,7 +291,7 @@
     "message": "Fade"
   },
   "fade2_card_color": {
-    "message": "Fade 2"
+    "message": "Fade2"
   },
   "ocean_card_color": {
     "message": "Ocean"
@@ -343,5 +343,8 @@
   },
   "gradient_card_color_text": {
     "message": "Choose 2 Colors To Create A Gradient Between Them:"
+  },
+  "submit_theme": {
+    "message": "Submit Your Theme"
   }
 }
