@@ -343,5 +343,26 @@
   },
   "gradient_card_color_text": {
     "message": "选择 2 种颜色以在它们之间创建渐变:"
+  },
+  "submit_theme": {
+    "message": "Submit Your Theme"
+  },
+  "show": {
+    "message": "Show "
+  },
+  "submit": {
+    "message": "Submit"
+  },
+  "submissions": {
+    "message": "My Submissions"
+  },
+  "title": {
+    "message": "Title"
+  },
+  "submit_question": {
+    "message": "Do you want to submit your theme for others to use?"
+  },
+  "preview": {
+    "message": "Preview"
   }
 }

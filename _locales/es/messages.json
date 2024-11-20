@@ -267,81 +267,102 @@
     "message": "Ir"
   },
   "oranges_card_color": {
-    "message": "Oranges"
+    "message": "Naranja"
   },
   "greens_card_color": {
-    "message": "Greens"
+    "message": "Verde"
   },
   "blues_card_color": {
-    "message": "Blues"
+    "message": "Azul"
   },
   "pinks_card_color": {
-    "message": "Pinks"
+    "message": "Rosa"
   },
   "purples_card_color": {
-    "message": "Purples"
+    "message": "Púrpura"
   },
   "pastels_card_color": {
-    "message": "Pastels"
+    "message": "Pastel"
   },
   "mesa_card_color": {
-    "message": "Mesa"
+    "message": "Colina baja"
   },
   "fade_card_color": {
-    "message": "Fade"
+    "message": "Desteñir"
   },
   "fade2_card_color": {
-    "message": "Fade 2"
+    "message": "Desvanecimiento 2"
   },
   "ocean_card_color": {
-    "message": "Ocean"
+    "message": "Océano"
   },
   "watermelon_card_color": {
-    "message": "Watermelon"
+    "message": "Sandía"
   },
   "army_card_color": {
-    "message": "Army"
+    "message": "Ejército"
   },
   "rainbow_card_color": {
-    "message": "Rainbow"
+    "message": "Arcoíris"
   },
   "sunset_card_color": {
-    "message": "Sunset"
+    "message": "Atardecer"
   },
   "popsicle_card_color": {
-    "message": "Popsicle"
+    "message": "Paleta"
   },
   "berries_card_color": {
-    "message": "Berries"
+    "message": "Bayas"
   },
   "fruit_card_color": {
-    "message": "Fruit"
+    "message": "Fruta"
   },
   "night_card_color": {
-    "message": "Night"
+    "message": "Noche"
   },
   "base_card_color": {
     "message": "Base"
   },
   "muted_card_color": {
-    "message": "Muted"
+    "message": "Apagada"
   },
   "candy_card_color": {
-    "message": "Candy"
+    "message": "Dulce"
   },
   "chess_card_color": {
-    "message": "Chess"
+    "message": "Ajedrez"
   },
   "single_card_color": {
-    "message": "Single Color"
+    "message": "Color único"
   },
   "single_card_color_text": {
-    "message": "Choose A Color To Set All Cards To That Color:"
+    "message": "Elija un color para configurar todas las tarjetas en ese color:"
   },
   "gradient_card_color": {
-    "message": "Gradient"
+    "message": "Gradiente"
   },
   "gradient_card_color_text": {
-    "message": "Choose 2 Colors To Create A Gradient Between Them:"
+    "message": "Elija 2 colores para crear un degradado entre ellas:"
+  },
+  "submit_theme": {
+    "message": "Envía tu tema"
+  },
+  "show": {
+    "message": "Espectáculo "
+  },
+  "submit": {
+    "message": "Entregar"
+  },
+  "submissions": {
+    "message": "Mis envíos"
+  },
+  "title": {
+    "message": "Título"
+  },
+  "submit_question": {
+    "message": "¿Quieres enviar tu tema para que otros lo utilicen?"
+  },
+  "preview": {
+    "message": "Avance"
   }
 }

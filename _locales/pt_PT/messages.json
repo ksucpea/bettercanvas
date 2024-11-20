@@ -343,5 +343,26 @@
   },
   "gradient_card_color_text": {
     "message": "Choose 2 Colors To Create A Gradient Between Them:"
+  },
+  "submit_theme": {
+    "message": "Submit Your Theme"
+  },
+  "show": {
+    "message": "Show "
+  },
+  "submit": {
+    "message": "Submit"
+  },
+  "submissions": {
+    "message": "My Submissions"
+  },
+  "title": {
+    "message": "Title"
+  },
+  "submit_question": {
+    "message": "Do you want to submit your theme for others to use?"
+  },
+  "preview": {
+    "message": "Preview"
   }
 }
