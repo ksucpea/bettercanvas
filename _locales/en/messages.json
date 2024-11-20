@@ -355,5 +355,8 @@
   },
   "submissions": {
     "message": "My Submissions"
+  },
+  "title": {
+    "message": "Title"
   }
 }
