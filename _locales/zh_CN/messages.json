@@ -266,6 +266,9 @@
   "go": {
     "message": "去"
   },
+  "oranges_card_color": {
+    "message": "Oranges"
+  },
   "greens_card_color": {
     "message": "绿色的"
   },

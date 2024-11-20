@@ -266,6 +266,9 @@
   "go": {
     "message": "Gehen"
   },
+  "oranges_card_color": {
+    "message": "Oranges"
+  },
   "greens_card_color": {
     "message": "Greens"
   },
