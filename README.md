@@ -10,6 +10,9 @@ Enhancements to Canvas like dark mode, better todo list, GPA calculator, and mor
 
 ![Firefox](https://img.shields.io/badge/Firefox-FF7139?style=for-the-badge&logo=Firefox-Browser&logoColor=white)
 
+### Downloads
+![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/cndibmoanboadcifjkjbdpjgfedanolh?style=flat&logo=google&label=Chrome%20Users)
+
 ## Inquiries
 
 To contact me, please email ksucpea@gmail.com, or you can open an issue within the "Issues" tab on GitHub.
