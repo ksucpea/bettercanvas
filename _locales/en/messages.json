@@ -361,5 +361,8 @@
   },
   "submit_question": {
     "message": "Do you want to submit your theme for others to use?"
+  },
+  "preview": {
+    "message": "Preview"
   }
 }
