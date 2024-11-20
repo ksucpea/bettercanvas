@@ -3,7 +3,6 @@ name: Crowdin Download
 on:
   schedule:
     - cron: '0 */23 * * *' # Every 23 hours - https://crontab.guru/#0_*/23_*_*_*
-  workflow_dispatch:
 
 jobs:
   Download:
