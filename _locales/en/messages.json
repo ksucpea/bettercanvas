@@ -349,5 +349,8 @@
   },
   "show": {
     "message": "Show "
+  },
+  "submit": {
+    "message": "Submit"
   }
 }
