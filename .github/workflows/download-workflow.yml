@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  crowdin:
+  Crowdin Download:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
