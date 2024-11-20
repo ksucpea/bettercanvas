@@ -2,7 +2,7 @@ name: Crowdin Download
 
 on:
   schedule:
-    - cron: '0 */23 * * *' # Every 23 hours - https://crontab.guru/#0_*/23_*_*_*
+    - cron:  "0 12 * * *" # At 12 o'clock - https://crontab.guru/#0_12_*_*_*
 
 jobs:
   Download:
