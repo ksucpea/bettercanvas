@@ -21,6 +21,7 @@ jobs:
           download_translations: true
           create_pull_request: false
           push_translations: true
+          crowdin_branch_name: 'main'
           localization_branch_name: 'main'
 
           # GitHub Commits Advanced Settings
