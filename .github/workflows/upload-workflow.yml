@@ -1,11 +1,11 @@
 name: Crowdin Upload
 
-on:
-  push:
-    branches:
-    - main
-    paths:
-    - 'src/_locales/en/message.json'
+on: 
+  push: 
+    branches: 
+      - main 
+    paths: 
+      - 'src/_locales/en/message.json'
 
 jobs:
   Upload:
