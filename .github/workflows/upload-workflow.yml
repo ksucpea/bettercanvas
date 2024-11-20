@@ -1,8 +1,8 @@
 name: Crowdin Upload
 
-on: 
+on:
   push:
-    branches: [ main ] 
+    branches: main
 
 jobs:
   Upload:
