@@ -358,5 +358,8 @@
   },
   "title": {
     "message": "Title"
+  },
+  "submit_question": {
+    "message": "Do you want to submit your theme for others to use?"
   }
 }
