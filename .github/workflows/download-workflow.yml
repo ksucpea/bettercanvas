@@ -2,7 +2,7 @@ name: Crowdin Download
 
 on:
   schedule:
-    - cron: "29 17 * * *" # At 12 o'clock EST
+    - cron: "0 18 * * *" # At 12 o'clock EST
   workflow_dispatch:
 
 jobs:
