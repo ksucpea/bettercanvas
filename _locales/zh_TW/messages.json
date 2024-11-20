@@ -147,7 +147,7 @@
     "message": "亮色的"
   },
   "dark_default": {
-    "message": "默认"
+    "message": "默认设置"
   },
   "dark_dark": {
     "message": "深色"
@@ -273,72 +273,72 @@
     "message": "蓝色的"
   },
   "pinks_card_color": {
-    "message": "Pinks"
+    "message": "粉色的"
   },
   "purples_card_color": {
-    "message": "Purples"
+    "message": "紫色的"
   },
   "pastels_card_color": {
-    "message": "Pastels"
+    "message": "粉彩"
   },
   "mesa_card_color": {
-    "message": "Mesa"
+    "message": "台面"
   },
   "fade_card_color": {
-    "message": "Fade"
+    "message": "褪色"
   },
   "fade2_card_color": {
-    "message": "Fade 2"
+    "message": "淡出 2"
   },
   "ocean_card_color": {
-    "message": "Ocean"
+    "message": "海洋"
   },
   "watermelon_card_color": {
-    "message": "Watermelon"
+    "message": "西瓜"
   },
   "army_card_color": {
-    "message": "Army"
+    "message": "军队"
   },
   "rainbow_card_color": {
-    "message": "Rainbow"
+    "message": "彩虹"
   },
   "sunset_card_color": {
-    "message": "Sunset"
+    "message": "日落"
   },
   "popsicle_card_color": {
-    "message": "Popsicle"
+    "message": "棒冰"
   },
   "berries_card_color": {
-    "message": "Berries"
+    "message": "浆果"
   },
   "fruit_card_color": {
-    "message": "Fruit"
+    "message": "水果"
   },
   "night_card_color": {
-    "message": "Night"
+    "message": "夜晚"
   },
   "base_card_color": {
-    "message": "Base"
+    "message": "根据"
   },
   "muted_card_color": {
-    "message": "Muted"
+    "message": "静音"
   },
   "candy_card_color": {
-    "message": "Candy"
+    "message": "糖果"
   },
   "chess_card_color": {
-    "message": "Chess"
+    "message": "棋"
   },
   "single_card_color": {
-    "message": "Single Color"
+    "message": "单色"
   },
   "single_card_color_text": {
-    "message": "Choose A Color To Set All Cards To That Color:"
+    "message": "选择一种颜色将所有卡片设置为该颜色:"
   },
   "gradient_card_color": {
-    "message": "Gradient"
+    "message": "坡度"
   },
   "gradient_card_color_text": {
-    "message": "Choose 2 Colors To Create A Gradient Between Them:"
+    "message": "选择 2 种颜色以在它们之间创建渐变:"
   }
 }
