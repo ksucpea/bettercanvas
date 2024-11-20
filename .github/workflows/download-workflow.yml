@@ -2,15 +2,15 @@ name: Crowdin Download
 
 on:
   schedule:
-    - cron:  "14 12 * * *" # At 12 o'clock - https://crontab.guru/#0_12_*_*_*
+    - cron: "29 17 * * *" # At 12 o'clock EST
   workflow_dispatch:
 
 jobs:
   Download:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4.2.2
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.2 # Make sure you are using the latest version of checkout action
 
       - name: Crowdin pull
         uses: crowdin/github-action@v2.3.0
@@ -24,7 +24,7 @@ jobs:
           crowdin_branch_name: 'main'
           localization_branch_name: 'main'
 
-          # GitHub Commits Advanced Settings
+          # GitHub Commit Advanced Settings
           commit_message: 'New Language Translations'
           pull_request_assignees: 'Crowdin Bot'
         env:
