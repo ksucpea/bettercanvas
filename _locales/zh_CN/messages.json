@@ -267,7 +267,7 @@
     "message": "去"
   },
   "oranges_card_color": {
-    "message": "Oranges"
+    "message": "橘子"
   },
   "greens_card_color": {
     "message": "绿色的"
@@ -345,24 +345,24 @@
     "message": "选择 2 种颜色以在它们之间创建渐变:"
   },
   "submit_theme": {
-    "message": "Submit Your Theme"
+    "message": "提交您的主題"
   },
   "show": {
-    "message": "Show"
+    "message": "展示"
   },
   "submit": {
-    "message": "Submit"
+    "message": "提交"
   },
   "submissions": {
-    "message": "My Submissions"
+    "message": "我的意見"
   },
   "title": {
-    "message": "Title"
+    "message": "標題"
   },
   "submit_question": {
-    "message": "Do you want to submit your theme for others to use?"
+    "message": "您想提交您的主題供其他人使用嗎？"
   },
   "preview": {
-    "message": "Preview"
+    "message": "預覽"
   }
 }
