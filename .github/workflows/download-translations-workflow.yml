@@ -1,4 +1,4 @@
-name: Crowdin Download
+name: Crowdin Download Translations
 
 on:
   schedule:
@@ -17,7 +17,7 @@ jobs:
         with:
           upload_sources: false
           upload_translations: false
-          download_sources: true
+          download_sources: false
           download_translations: true
           create_pull_request: false
           push_translations: true
