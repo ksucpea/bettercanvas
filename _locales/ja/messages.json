@@ -267,102 +267,102 @@
     "message": "行く"
   },
   "oranges_card_color": {
-    "message": "Oranges"
+    "message": "オレンジ"
   },
   "greens_card_color": {
-    "message": "Greens"
+    "message": "緑の党"
   },
   "blues_card_color": {
-    "message": "Blues"
+    "message": "ブルース"
   },
   "pinks_card_color": {
-    "message": "Pinks"
+    "message": "ピンク"
   },
   "purples_card_color": {
-    "message": "Purples"
+    "message": "パープル"
   },
   "pastels_card_color": {
-    "message": "Pastels"
+    "message": "パステル"
   },
   "mesa_card_color": {
-    "message": "Mesa"
+    "message": "メサ"
   },
   "fade_card_color": {
-    "message": "Fade"
+    "message": "フェード"
   },
   "fade2_card_color": {
-    "message": "Fade 2"
+    "message": "フェード2"
   },
   "ocean_card_color": {
-    "message": "Ocean"
+    "message": "海"
   },
   "watermelon_card_color": {
-    "message": "Watermelon"
+    "message": "スイカ"
   },
   "army_card_color": {
-    "message": "Army"
+    "message": "軍"
   },
   "rainbow_card_color": {
-    "message": "Rainbow"
+    "message": "虹"
   },
   "sunset_card_color": {
-    "message": "Sunset"
+    "message": "日没"
   },
   "popsicle_card_color": {
-    "message": "Popsicle"
+    "message": "アイスキャンディー"
   },
   "berries_card_color": {
-    "message": "Berries"
+    "message": "ベリー"
   },
   "fruit_card_color": {
-    "message": "Fruit"
+    "message": "フルーツ"
   },
   "night_card_color": {
-    "message": "Night"
+    "message": "夜"
   },
   "base_card_color": {
-    "message": "Base"
+    "message": "ベース"
   },
   "muted_card_color": {
-    "message": "Muted"
+    "message": "ミュート"
   },
   "candy_card_color": {
-    "message": "Candy"
+    "message": "あめ"
   },
   "chess_card_color": {
-    "message": "Chess"
+    "message": "チェス"
   },
   "single_card_color": {
-    "message": "Single Color"
+    "message": "単色"
   },
   "single_card_color_text": {
-    "message": "Choose A Color To Set All Cards To That Color:"
+    "message": "色を選択すると、すべてのカードがその色に設定されます。"
   },
   "gradient_card_color": {
-    "message": "Gradient"
+    "message": "勾配"
   },
   "gradient_card_color_text": {
-    "message": "Choose 2 Colors To Create A Gradient Between Them:"
+    "message": "2 つの色を選択して、その間にグラデーションを作成します。"
   },
   "submit_theme": {
-    "message": "Submit Your Theme"
+    "message": "テーマを提出する"
   },
   "show": {
-    "message": "Show"
+    "message": "見せる"
   },
   "submit": {
-    "message": "Submit"
+    "message": "提出する"
   },
   "submissions": {
-    "message": "My Submissions"
+    "message": "私の投稿"
   },
   "title": {
-    "message": "Title"
+    "message": "タイトル"
   },
   "submit_question": {
-    "message": "Do You Want To Submit Your Theme For Others To Use?"
+    "message": "他の人が使用できるようにテーマを送信しますか?"
   },
   "preview": {
-    "message": "Preview"
+    "message": "プレビュー"
   }
 }

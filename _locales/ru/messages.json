@@ -267,102 +267,102 @@
     "message": "Идти"
   },
   "oranges_card_color": {
-    "message": "Oranges"
+    "message": "Апельсины"
   },
   "greens_card_color": {
-    "message": "Greens"
+    "message": "Зелень"
   },
   "blues_card_color": {
-    "message": "Blues"
+    "message": "Блюз"
   },
   "pinks_card_color": {
-    "message": "Pinks"
+    "message": "Розовые"
   },
   "purples_card_color": {
-    "message": "Purples"
+    "message": "Пурпурные"
   },
   "pastels_card_color": {
-    "message": "Pastels"
+    "message": "Пастель"
   },
   "mesa_card_color": {
-    "message": "Mesa"
+    "message": "Меса"
   },
   "fade_card_color": {
-    "message": "Fade"
+    "message": "Тускнеть"
   },
   "fade2_card_color": {
-    "message": "Fade 2"
+    "message": "Исчезновение 2"
   },
   "ocean_card_color": {
-    "message": "Ocean"
+    "message": "Океан"
   },
   "watermelon_card_color": {
-    "message": "Watermelon"
+    "message": "Арбуз"
   },
   "army_card_color": {
-    "message": "Army"
+    "message": "Армия"
   },
   "rainbow_card_color": {
-    "message": "Rainbow"
+    "message": "Радуга"
   },
   "sunset_card_color": {
-    "message": "Sunset"
+    "message": "Закат"
   },
   "popsicle_card_color": {
-    "message": "Popsicle"
+    "message": "Эскимо"
   },
   "berries_card_color": {
-    "message": "Berries"
+    "message": "Ягоды"
   },
   "fruit_card_color": {
-    "message": "Fruit"
+    "message": "Фрукты"
   },
   "night_card_color": {
-    "message": "Night"
+    "message": "Ночь"
   },
   "base_card_color": {
-    "message": "Base"
+    "message": "База"
   },
   "muted_card_color": {
-    "message": "Muted"
+    "message": "Приглушенный"
   },
   "candy_card_color": {
-    "message": "Candy"
+    "message": "Конфеты"
   },
   "chess_card_color": {
-    "message": "Chess"
+    "message": "Шахматы"
   },
   "single_card_color": {
-    "message": "Single Color"
+    "message": "Один цвет"
   },
   "single_card_color_text": {
-    "message": "Choose A Color To Set All Cards To That Color:"
+    "message": "Выберите цвет, чтобы установить этот цвет для всех карт:"
   },
   "gradient_card_color": {
-    "message": "Gradient"
+    "message": "Градиент"
   },
   "gradient_card_color_text": {
-    "message": "Choose 2 Colors To Create A Gradient Between Them:"
+    "message": "Выберите 2 цвета, чтобы создать градиент между ними:"
   },
   "submit_theme": {
-    "message": "Submit Your Theme"
+    "message": "Предложите свою тему"
   },
   "show": {
-    "message": "Show"
+    "message": "Показывать"
   },
   "submit": {
-    "message": "Submit"
+    "message": "Представлять на рассмотрение"
   },
   "submissions": {
-    "message": "My Submissions"
+    "message": "Мои заявки"
   },
   "title": {
-    "message": "Title"
+    "message": "Заголовок"
   },
   "submit_question": {
-    "message": "Do You Want To Submit Your Theme For Others To Use?"
+    "message": "Хотите ли вы предоставить свою тему для использования другими?"
   },
   "preview": {
-    "message": "Preview"
+    "message": "Предварительный просмотр"
   }
 }

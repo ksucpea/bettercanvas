@@ -267,102 +267,102 @@
     "message": "Gå"
   },
   "oranges_card_color": {
-    "message": "Oranges"
+    "message": "Apelsiner"
   },
   "greens_card_color": {
-    "message": "Greens"
+    "message": "Gröna"
   },
   "blues_card_color": {
     "message": "Blues"
   },
   "pinks_card_color": {
-    "message": "Pinks"
+    "message": "Rosa"
   },
   "purples_card_color": {
-    "message": "Purples"
+    "message": "Lila"
   },
   "pastels_card_color": {
-    "message": "Pastels"
+    "message": "Pasteller"
   },
   "mesa_card_color": {
     "message": "Mesa"
   },
   "fade_card_color": {
-    "message": "Fade"
+    "message": "Blekna"
   },
   "fade2_card_color": {
-    "message": "Fade 2"
+    "message": "Tona 2"
   },
   "ocean_card_color": {
-    "message": "Ocean"
+    "message": "Hav"
   },
   "watermelon_card_color": {
-    "message": "Watermelon"
+    "message": "Vattenmelon"
   },
   "army_card_color": {
-    "message": "Army"
+    "message": "Armé"
   },
   "rainbow_card_color": {
-    "message": "Rainbow"
+    "message": "Regnbåge"
   },
   "sunset_card_color": {
-    "message": "Sunset"
+    "message": "Solnedgång"
   },
   "popsicle_card_color": {
-    "message": "Popsicle"
+    "message": "Isglass"
   },
   "berries_card_color": {
-    "message": "Berries"
+    "message": "Bär"
   },
   "fruit_card_color": {
-    "message": "Fruit"
+    "message": "Frukt"
   },
   "night_card_color": {
-    "message": "Night"
+    "message": "Natt"
   },
   "base_card_color": {
-    "message": "Base"
+    "message": "Bas"
   },
   "muted_card_color": {
-    "message": "Muted"
+    "message": "Dämpad"
   },
   "candy_card_color": {
-    "message": "Candy"
+    "message": "Godis"
   },
   "chess_card_color": {
-    "message": "Chess"
+    "message": "Schack"
   },
   "single_card_color": {
-    "message": "Single Color"
+    "message": "Enfärgad"
   },
   "single_card_color_text": {
-    "message": "Choose A Color To Set All Cards To That Color:"
+    "message": "Välj en färg för att ställa in alla kort till den färgen:"
   },
   "gradient_card_color": {
-    "message": "Gradient"
+    "message": "Lutning"
   },
   "gradient_card_color_text": {
-    "message": "Choose 2 Colors To Create A Gradient Between Them:"
+    "message": "Välj två färger för att skapa en gradient mellan dem:"
   },
   "submit_theme": {
-    "message": "Submit Your Theme"
+    "message": "Skicka in ditt tema"
   },
   "show": {
-    "message": "Show"
+    "message": "Visa"
   },
   "submit": {
-    "message": "Submit"
+    "message": "Överlämna"
   },
   "submissions": {
-    "message": "My Submissions"
+    "message": "Mina bidrag"
   },
   "title": {
-    "message": "Title"
+    "message": "Titel"
   },
   "submit_question": {
-    "message": "Do You Want To Submit Your Theme For Others To Use?"
+    "message": "Vill du skicka in ditt tema för andra att använda?"
   },
   "preview": {
-    "message": "Preview"
+    "message": "Förhandsvisning"
   }
 }

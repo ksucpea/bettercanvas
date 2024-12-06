@@ -267,102 +267,102 @@
     "message": "Gehen"
   },
   "oranges_card_color": {
-    "message": "Oranges"
+    "message": "Orangen"
   },
   "greens_card_color": {
-    "message": "Greens"
+    "message": "Grüne"
   },
   "blues_card_color": {
     "message": "Blues"
   },
   "pinks_card_color": {
-    "message": "Pinks"
+    "message": "Nelken"
   },
   "purples_card_color": {
-    "message": "Purples"
+    "message": "Purpur"
   },
   "pastels_card_color": {
-    "message": "Pastels"
+    "message": "Pastelle"
   },
   "mesa_card_color": {
-    "message": "Mesa"
+    "message": "Tafelberg"
   },
   "fade_card_color": {
-    "message": "Fade"
+    "message": "Verblassen"
   },
   "fade2_card_color": {
-    "message": "Fade 2"
+    "message": "Verblassen 2"
   },
   "ocean_card_color": {
-    "message": "Ocean"
+    "message": "Ozean"
   },
   "watermelon_card_color": {
-    "message": "Watermelon"
+    "message": "Wassermelone"
   },
   "army_card_color": {
-    "message": "Army"
+    "message": "Armee"
   },
   "rainbow_card_color": {
-    "message": "Rainbow"
+    "message": "Regenbogen"
   },
   "sunset_card_color": {
-    "message": "Sunset"
+    "message": "Sonnenuntergang"
   },
   "popsicle_card_color": {
-    "message": "Popsicle"
+    "message": "Eis am Stiel"
   },
   "berries_card_color": {
-    "message": "Berries"
+    "message": "Beeren"
   },
   "fruit_card_color": {
-    "message": "Fruit"
+    "message": "Obst"
   },
   "night_card_color": {
-    "message": "Night"
+    "message": "Nacht"
   },
   "base_card_color": {
     "message": "Base"
   },
   "muted_card_color": {
-    "message": "Muted"
+    "message": "Stummgeschaltet"
   },
   "candy_card_color": {
-    "message": "Candy"
+    "message": "Süßigkeiten"
   },
   "chess_card_color": {
-    "message": "Chess"
+    "message": "Schach"
   },
   "single_card_color": {
-    "message": "Single Color"
+    "message": "Einzelfarbe"
   },
   "single_card_color_text": {
-    "message": "Choose A Color To Set All Cards To That Color:"
+    "message": "Wählen Sie eine Farbe, um alle Karten auf diese Farbe einzustellen:"
   },
   "gradient_card_color": {
     "message": "Gradient"
   },
   "gradient_card_color_text": {
-    "message": "Choose 2 Colors To Create A Gradient Between Them:"
+    "message": "Wählen Sie 2 Farben aus, um einen Farbverlauf zwischen ihnen zu erstellen:"
   },
   "submit_theme": {
-    "message": "Submit Your Theme"
+    "message": "Senden Sie Ihr Thema"
   },
   "show": {
-    "message": "Show"
+    "message": "Zeigen"
   },
   "submit": {
-    "message": "Submit"
+    "message": "Einreichen"
   },
   "submissions": {
-    "message": "My Submissions"
+    "message": "Meine Einsendungen"
   },
   "title": {
-    "message": "Title"
+    "message": "Titel"
   },
   "submit_question": {
-    "message": "Do You Want To Submit Your Theme For Others To Use?"
+    "message": "Möchten Sie Ihr Design zur Verwendung durch andere einreichen?"
   },
   "preview": {
-    "message": "Preview"
+    "message": "Vorschau"
   }
 }
