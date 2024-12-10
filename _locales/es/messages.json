@@ -279,7 +279,7 @@
     "message": "Rosa"
   },
   "purples_card_color": {
-    "message": "Púrpura"
+    "message": "Morados"
   },
   "pastels_card_color": {
     "message": "Pastel"
@@ -288,22 +288,22 @@
     "message": "Colina baja"
   },
   "fade_card_color": {
-    "message": "Desteñir"
+    "message": "Destenirse"
   },
   "fade2_card_color": {
-    "message": "Desvanecimiento 2"
+    "message": "Destenirse 2"
   },
   "ocean_card_color": {
-    "message": "Océano"
+    "message": "Oceano"
   },
   "watermelon_card_color": {
-    "message": "Sandía"
+    "message": "Sandia"
   },
   "army_card_color": {
-    "message": "Ejército"
+    "message": "Ejercito"
   },
   "rainbow_card_color": {
-    "message": "Arcoíris"
+    "message": "Arcoiris"
   },
   "sunset_card_color": {
     "message": "Atardecer"
