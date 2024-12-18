@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="448" height="220" xml:lang="en">
+<defs>
+<style type="text/css">@import url(https://translate.jellyfin.org/static/vendor/font-source/source-sans-3.css);</style>
+</defs>
+<g id="layer1">
+
+<a xlink:href="https://crowdin.com/project/731247/56/de" xlink:title="German">
+  <text xml:space="preserve" x="238" y="20" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080;text-anchor:end;">German</text>
+  <text xml:space="preserve" x="408" y="20" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">78%</text>
+  <rect x="248" y="14" width="117" height="6" rx="2" style="fill:#38f;fill-opacity:1;stroke:none"></rect>
+</a>
+
+<a xlink:href="https://crowdin.com/project/731247/56/es-ES" xlink:title="Spanish">
+  <text xml:space="preserve" x="238" y="35" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080;text-anchor:end;">Spanish</text>
+  <text xml:space="preserve" x="408" y="35" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">100%</text>
+  <rect x="248" y="29" width="150" height="6" rx="2" style="fill:#2eccaa;fill-opacity:1;stroke:none"></rect>
+</a>
+
+<a xlink:href="https://crowdin.com/project/731247/56/fr" xlink:title="French">
+  <text xml:space="preserve" x="238" y="50" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080;text-anchor:end;">French</text>
+  <text xml:space="preserve" x="408" y="50" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">78%</text>
+  <rect x="248" y="44" width="117" height="6" rx="2" style="fill:#38f;fill-opacity:1;stroke:none"></rect>
+</a>
+
+<a xlink:href="https://crowdin.com/project/731247/56/it" xlink:title="Italian">
+  <text xml:space="preserve" x="238" y="65" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080;text-anchor:end;">Italian</text>
+  <text xml:space="preserve" x="408" y="65" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">78%</text>
+  <rect x="248" y="59" width="117" height="6" rx="2" style="fill:#38f;fill-opacity:1;stroke:none"></rect>
+</a>
+
+<a xlink:href="https://crowdin.com/project/731247/56/ja" xlink:title="Japanese">
+  <text xml:space="preserve" x="238" y="80" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080;text-anchor:end;">Japanese</text>
+  <text xml:space="preserve" x="408" y="80" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">78%</text>
+  <rect x="248" y="74" width="117" height="6" rx="2" style="fill:#38f;fill-opacity:1;stroke:none"></rect>
+</a>
+
+<a xlink:href="https://crowdin.com/project/731247/56/pt-PT" xlink:title="Portuguese">
+  <text xml:space="preserve" x="238" y="95" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080;text-anchor:end;">Portuguese</text>
+  <text xml:space="preserve" x="408" y="95" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">78%</text>
+  <rect x="248" y="89" width="117" height="6" rx="2" style="fill:#38f;fill-opacity:1;stroke:none"></rect>
+</a>
+
+<a xlink:href="https://crowdin.com/project/731247/56/ru" xlink:title="Russian">
+  <text xml:space="preserve" x="238" y="110" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080;text-anchor:end;">Russian</text>
+  <text xml:space="preserve" x="408" y="110" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">78%</text>
+  <rect x="248" y="104" width="117" height="6" rx="2" style="fill:#38f;fill-opacity:1;stroke:none"></rect>
+</a>
+
+<a xlink:href="https://crowdin.com/project/731247/56/sv-SE" xlink:title="Swedish">
+  <text xml:space="preserve" x="238" y="125" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080;text-anchor:end;">Swedish</text>
+  <text xml:space="preserve" x="408" y="125" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">78%</text>
+  <rect x="248" y="119" width="117" height="6" rx="2" style="fill:#38f;fill-opacity:1;stroke:none"></rect>
+</a>
+
+<a xlink:href="https://crowdin.com/project/731247/56/zh-CN" xlink:title="Chinese Simplified">
+  <text xml:space="preserve" x="238" y="140" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080;text-anchor:end;">Chinese Simplified</text>
+  <text xml:space="preserve" x="408" y="140" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">100%</text>
+  <rect x="248" y="134" width="150" height="6" rx="2" style="fill:#2eccaa;fill-opacity:1;stroke:none"></rect>
+</a>
+
+<a xlink:href="https://crowdin.com/project/731247/56/zh-TW" xlink:title="Chinese Traditional">
+  <text xml:space="preserve" x="238" y="155" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080;text-anchor:end;">Chinese Traditional</text>
+  <text xml:space="preserve" x="408" y="155" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">100%</text>
+  <rect x="248" y="149" width="150" height="6" rx="2" style="fill:#2eccaa;fill-opacity:1;stroke:none"></rect>
+</a>
+
+</g>
+</svg>
