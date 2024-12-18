@@ -13,11 +13,14 @@ jobs:
         uses: actions/checkout@v4.2.2
 
       - name: badge-creator
-        uses: Globalfun32y439y54/github-action@V1.0.10
+        uses: Globalfun32y439y54/github-action@V1.0.11
         with:
             token: ${{ secrets.TOKEN }}
             project_id: ${{ secrets.PROJECT_ID }}
             output_path: ./icon
+            language_rename_map: '{"Chinese Simplified": "Chinese (Simplified, China)", "Chinese Traditional": "Chinese (Simplified, Taiwan)"}'
+            toggledefault: true
+            defaultlanguage: '{"name": "English", "progress": 100, "url": "https://crowdin.com/project/bettercanvas", "color": "#2eccaa"}'
 
       - name: Commit and Push Outputs
         run: |
