@@ -1,4 +1,4 @@
-name: Language Progress
+name: Badge Creator
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  language-progress:
+  badge:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
