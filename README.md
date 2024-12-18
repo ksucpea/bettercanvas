@@ -53,7 +53,7 @@ Better Canvas introduces improvements to the Canvas user interface:
 ## Localization
 
 <strong>Don't see Better Canvas in your language?</strong><br/>
-Check out our <a href="https://translate.jellyfin.org">Crowdin instance</a> to help translate Better Canvas<br/>
+Check out our <a href="https://crowdin.com/project/bettercanvas">Crowdin instance</a> to help translate Better Canvas<br/>
 
 <a href="https://crowdin.com/project/bettercanvas">
 <img src="/icon/badge.svg" alt="Detailed Translation Status"/>
