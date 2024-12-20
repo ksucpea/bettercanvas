@@ -12,8 +12,8 @@
 
 <a xlink:href="https://crowdin.com/project/731247/56/de" xlink:title="German">
   <text xml:space="preserve" x="238" y="35" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080;text-anchor:end;">German</text>
-  <text xml:space="preserve" x="408" y="35" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">78%</text>
-  <rect x="248" y="29" width="117" height="6" rx="2" style="fill:#38f;fill-opacity:1;stroke:none"></rect>
+  <text xml:space="preserve" x="408" y="35" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">92%</text>
+  <rect x="248" y="29" width="138" height="6" rx="2" style="fill:#2eccaa;fill-opacity:1;stroke:none"></rect>
 </a>
 
 <a xlink:href="https://crowdin.com/project/731247/56/es-ES" xlink:title="Spanish">
@@ -24,8 +24,8 @@
 
 <a xlink:href="https://crowdin.com/project/731247/56/fr" xlink:title="French">
   <text xml:space="preserve" x="238" y="65" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080;text-anchor:end;">French</text>
-  <text xml:space="preserve" x="408" y="65" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">78%</text>
-  <rect x="248" y="59" width="117" height="6" rx="2" style="fill:#38f;fill-opacity:1;stroke:none"></rect>
+  <text xml:space="preserve" x="408" y="65" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">92%</text>
+  <rect x="248" y="59" width="138" height="6" rx="2" style="fill:#2eccaa;fill-opacity:1;stroke:none"></rect>
 </a>
 
 <a xlink:href="https://crowdin.com/project/731247/56/it" xlink:title="Italian">
@@ -54,8 +54,8 @@
 
 <a xlink:href="https://crowdin.com/project/731247/56/sv-SE" xlink:title="Swedish">
   <text xml:space="preserve" x="238" y="140" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080;text-anchor:end;">Swedish</text>
-  <text xml:space="preserve" x="408" y="140" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">78%</text>
-  <rect x="248" y="134" width="117" height="6" rx="2" style="fill:#38f;fill-opacity:1;stroke:none"></rect>
+  <text xml:space="preserve" x="408" y="140" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">92%</text>
+  <rect x="248" y="134" width="138" height="6" rx="2" style="fill:#2eccaa;fill-opacity:1;stroke:none"></rect>
 </a>
 
 <a xlink:href="https://crowdin.com/project/731247/56/zh-CN" xlink:title="Chinese (Simplified, China)">
