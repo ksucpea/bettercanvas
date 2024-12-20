@@ -10,6 +10,10 @@ Enhancements to Canvas like dark mode, better todo list, GPA calculator, and mor
 
 ![Firefox](https://img.shields.io/badge/Firefox-FF7139?style=for-the-badge&logo=Firefox-Browser&logoColor=white)
 
+### Downloads
+[![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/cndibmoanboadcifjkjbdpjgfedanolh?style=flat&logo=google&label=Chrome%20Users)](https://chromewebstore.google.com/detail/better-canvas/cndibmoanboadcifjkjbdpjgfedanolh)
+[![Mozilla downloads](https://img.shields.io/amo/users/better-canvas?label=Firefox%20Users&style=flat&logo=firefox)](https://addons.mozilla.org/en-US/firefox/addon/return-youtube-dislikes/)
+
 ## Inquiries
 
 To contact me, please email ksucpea@gmail.com, or you can open an issue within the "Issues" tab on GitHub.
@@ -46,6 +50,33 @@ Better Canvas introduces improvements to the Canvas user interface:
 - Browser wide popup assignment reminder
 - Preview assignments and announcements from the dashboard
 
+## Localization
+
+<strong>Don't see Better Canvas in your language?</strong><br/>
+Check out our <a href="https://crowdin.com/project/bettercanvas">Crowdin instance</a> to help translate Better Canvas<br/>
+
+<a href="https://crowdin.com/project/bettercanvas">
+<img src="/icon/badge.svg" alt="Detailed Translation Status"/>
+</a>
+
+### Language Codes
+
+This extension is using [chrome.i18n](https://developer.chrome.com/docs/extensions/reference/api/i18n) for localization.
+
+### Add a new language
+
+- Request a new language here: [Crowdin BetterCanvas](https://crowdin.com/project/bettercanvas)
+> [!IMPORTANT]
+> The language must be one of the [locale codes](https://developer.chrome.com/docs/extensions/reference/api/i18n#locales) uesed by chrome.
+- Then wait for the language to be added.
+- Then translate all strings to the new language.
+
+### Update an existing language
+
+- [Click Me](https://crowdin.com/project/bettercanvas) to translate a existing language.
+- Update the strings.
+- Then wait for the changes to be merged into bettercanvas
+
 ## Installation
 
 To install, run, and build with this repository,
@@ -78,26 +109,10 @@ To use Better Canvas, select your browser below to install the extension.
 
 ## Version Notes
 
-#### Update 5.10
+#### Update 5.12.4
 
-- Fixed dark mode bug in discussion text boxes
-- Added new themes + fonts
-- Card colors now change instantly
-- Dark mode fixer feature
-- Card customization now shows preview of image
-- New sidebar options
-- Dark mode buttons preview their appearance
-- "Remove sidebar logo" feature
-- "Hide recent feedback" feature
-- Menu redesign
-- Fixed card assignment bug
-- Card assignment efficiency improvements
-- Dark mode rework
-- Dark mode now syncs
-- Option to use device dark mode settings
-- Improved todo list
-- "Color coded tab icons" feature
-- "Use card colors" option for todo list
+- New User Made Themes
+- Updded Themes Submission
 
 ## Color Reference
 
@@ -216,11 +231,29 @@ You can export a theme using the export tool in the menu and sending an email to
 ```
 .
 ├── README.md
-├── \_locales
+├── _locales
 │ ├── en
 │ │ └── messages.json
-│ └── es
-│ └── messages.json
+│ ├── es
+│ │ └── messages.json
+| ├── de
+| | └── messages.json
+| ├── fr
+| | └── messages.json
+| ├── it
+| | └── messages.json
+| ├── ja
+| | └── messages.json
+| ├── pt_PT
+| | └── messages.json
+| ├── ru
+| | └── messages.json
+| ├── sv
+| | └── messages.json
+| ├── zh_CN
+| | └── messages.json
+| └── zh_TW
+|   └── messages.json
 ├── css
 │ ├── content.css
 │ ├── options.css
@@ -278,6 +311,7 @@ Learn more about tree commands for Windows [here](https://learn.microsoft.com/en
 - [Tibo Geeraerts](https://github.com/tibogeeraerts)
 - [Jacob Mungle](https://github.com/Jelgnum)
 - [FireIsGood](https://github.com/FireIsGood)
+- [Globalfun32y439y54](https://github.com/Globalfun32y439y54)
 
 ## License
 
