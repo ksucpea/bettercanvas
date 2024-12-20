@@ -309,7 +309,7 @@
     "message": "Pôr do sol"
   },
   "popsicle_card_color": {
-    "message": "picolé"
+    "message": "Picolé"
   },
   "berries_card_color": {
     "message": "Bagas"
@@ -345,7 +345,7 @@
     "message": "Escolha 2 cores para criar um gradiente entre elas:"
   },
   "submit_theme": {
-    "message": "Envie seu tema"
+    "message": "Envie o seu tema"
   },
   "show": {
     "message": "Mostrar"
@@ -354,13 +354,13 @@
     "message": "Enviar"
   },
   "submissions": {
-    "message": "Minhas Submissões"
+    "message": "As minhas Submissões"
   },
   "title": {
     "message": "Título"
   },
   "submit_question": {
-    "message": "Você quer enviar seu tema para outros usarem?"
+    "message": "Quer enviar o seu tema para outros usarem?"
   },
   "preview": {
     "message": "Pré-visualização"
