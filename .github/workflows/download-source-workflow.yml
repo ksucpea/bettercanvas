@@ -1,0 +1,33 @@
+name: Crowdin Source Download
+
+on:
+  schedule:
+    - cron: "0 17 * * *" # At 12 o'clock EST
+  workflow_dispatch:
+
+jobs:
+  Download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.2 # Make sure you are using the latest version of checkout action
+
+      - name: Crowdin pull
+        uses: crowdin/github-action@v2.5.0
+        with:
+          upload_sources: false
+          upload_translations: false
+          download_sources: true
+          download_translations: false
+          create_pull_request: false
+          push_translations: true
+          crowdin_branch_name: 'main'
+          localization_branch_name: 'main'
+
+          # GitHub Commit Advanced Settings
+          commit_message: 'Source Updated'
+          pull_request_assignees: 'Crowdin Bot'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.TOKEN }}
