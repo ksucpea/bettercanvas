@@ -2,7 +2,10 @@ name: Crowdin Upload
 
 on:
   push:
-    branches: main
+    branches: ["main"]
+    paths:
+     - /_locales/
+  workflow_dispatch:
 
 jobs:
   Upload:
