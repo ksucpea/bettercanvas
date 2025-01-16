@@ -5,6 +5,10 @@ on:
     branches: ["main"]
     paths:
      - /_locales/
+  pull_request:
+    branches: ["main"]
+    paths:
+     - /_locales/
   workflow_dispatch:
 
 jobs:
