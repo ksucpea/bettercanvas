@@ -1,0 +1,32 @@
+name: Crowdin Upload
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+     - /_locales/
+  pull_request:
+    branches: ["main"]
+    paths:
+     - /_locales/
+  workflow_dispatch:
+
+jobs:
+  Upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Crowdin pull
+        uses: crowdin/github-action@v2.5.0
+        with:
+          upload_sources: True
+          upload_translations: false
+          download_sources: false
+          download_translations: false
+          crowdin_branch_name: 'main'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.TOKEN }}
