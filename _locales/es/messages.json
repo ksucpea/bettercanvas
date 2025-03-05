@@ -294,7 +294,7 @@
     "message": "Destenirse 2"
   },
   "ocean_card_color": {
-    "message": "Oceano"
+    "message": "Océano"
   },
   "watermelon_card_color": {
     "message": "Sandia"
@@ -303,7 +303,7 @@
     "message": "Ejercito"
   },
   "rainbow_card_color": {
-    "message": "Arcoiris"
+    "message": "Arcoíris"
   },
   "sunset_card_color": {
     "message": "Atardecer"
@@ -364,5 +364,8 @@
   },
   "preview": {
     "message": "Avance"
+  },
+  "grade_letter": {
+    "message": "Show Garde Letter"
   }
 }

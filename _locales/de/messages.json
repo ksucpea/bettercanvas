@@ -364,5 +364,8 @@
   },
   "preview": {
     "message": "Vorschau"
+  },
+  "grade_letter": {
+    "message": "Show Garde Letter"
   }
 }

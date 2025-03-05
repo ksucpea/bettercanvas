@@ -364,5 +364,8 @@
   },
   "preview": {
     "message": "預覽"
+  },
+  "grade_letter": {
+    "message": "Show Garde Letter"
   }
 }
