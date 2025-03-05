@@ -267,7 +267,7 @@
     "message": "Ir"
   },
   "oranges_card_color": {
-    "message": "Naranja"
+    "message": "Naranjas"
   },
   "greens_card_color": {
     "message": "Verde"
@@ -288,19 +288,19 @@
     "message": "Colina baja"
   },
   "fade_card_color": {
-    "message": "Destenirse"
+    "message": "Desteñir"
   },
   "fade2_card_color": {
-    "message": "Destenirse 2"
+    "message": "Desteñir 2"
   },
   "ocean_card_color": {
     "message": "Océano"
   },
   "watermelon_card_color": {
-    "message": "Sandia"
+    "message": "Sandía"
   },
   "army_card_color": {
-    "message": "Ejercito"
+    "message": "Ejército"
   },
   "rainbow_card_color": {
     "message": "Arcoíris"
@@ -321,7 +321,7 @@
     "message": "Noche"
   },
   "base_card_color": {
-    "message": "La Base"
+    "message": "Base"
   },
   "muted_card_color": {
     "message": "Apagada"
@@ -366,6 +366,6 @@
     "message": "Avance"
   },
   "grade_letter": {
-    "message": "Show Garde Letter"
+    "message": "Mostrar carta de guardia"
   }
 }
