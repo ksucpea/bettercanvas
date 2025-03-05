@@ -18,8 +18,8 @@
 
 <a xlink:href="https://crowdin.com/project/731247/56/es-ES" xlink:title="Spanish">
   <text xml:space="preserve" x="238" y="50" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080;text-anchor:end;">Spanish</text>
-  <text xml:space="preserve" x="408" y="50" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">99%</text>
-  <rect x="248" y="44" width="148.5" height="6" rx="2" style="fill:#2eccaa;fill-opacity:1;stroke:none"></rect>
+  <text xml:space="preserve" x="408" y="50" style="font-style:normal;font-weight:normal;font-size:11px;font-family:'Source Sans 3',sans-serif;fill:#808080">100%</text>
+  <rect x="248" y="44" width="150" height="6" rx="2" style="fill:#2eccaa;fill-opacity:1;stroke:none"></rect>
 </a>
 
 <a xlink:href="https://crowdin.com/project/731247/56/fr" xlink:title="French">
