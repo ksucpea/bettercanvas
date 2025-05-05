@@ -83,9 +83,6 @@
   "back": {
     "message": "Indietro"
   },
-  "more_options": {
-    "message": "Altre opzioni"
-  },
   "manual_customization": {
     "message": "Personalizzazione manuale"
   },
@@ -230,10 +227,145 @@
   "dark_mode_fixer_text": {
     "message": "Questo cercherà di correggere eventuali lacune della modalità scura nella pagina corrente."
   },
-  "fix_dm_btn": {
-    "message": "Andare"
-  },
   "fix_dm_text": {
     "message": "Il fissatore viene eseguito automaticamente su queste pagine:"
+  },
+  "card_missing": {
+    "message": "Carte mancanti?"
+  },
+  "card_alt_method": {
+    "message": "Abilita metodo carta alternativo"
+  },
+  "enter_sub_text": {
+    "message": "Entrare"
+  },
+  "none_sub_text": {
+    "message": " \"Nessuno\" "
+  },
+  "hide_images_sub_text": {
+    "message": "Per nascondere immagini e collegamenti."
+  },
+  "refresh_need_sub_text": {
+    "message": "Potrebbe essere necessario aggiornare la pagina per vedere alcune modifiche."
+  },
+  "disable_high_contrast_ui": {
+    "message": "Disabilita l'interfaccia utente ad alto contrasto "
+  },
+  "more_card_color_text": {
+    "message": "Se i tuoi colori diventano più opachi dopo il rinfresco! Nella barra laterale, se fai clic sull'icona del tuo profilo puoi disattivarlo da lì."
+  },
+  "popular_palettes": {
+    "message": "Tavolozze popolari"
+  },
+  "revert_card_colors": {
+    "message": "Ripristina originale"
+  },
+  "red_card_color": {
+    "message": "Rosse"
+  },
+  "go": {
+    "message": "Andare"
+  },
+  "oranges_card_color": {
+    "message": "Arance"
+  },
+  "greens_card_color": {
+    "message": "Verdi"
+  },
+  "blues_card_color": {
+    "message": "Blues"
+  },
+  "pinks_card_color": {
+    "message": "Rosa"
+  },
+  "purples_card_color": {
+    "message": "Viola"
+  },
+  "pastels_card_color": {
+    "message": "Pastelli"
+  },
+  "mesa_card_color": {
+    "message": "Tavolo"
+  },
+  "fade_card_color": {
+    "message": "Dissolvenza"
+  },
+  "fade2_card_color": {
+    "message": "Dissolvenza 2"
+  },
+  "ocean_card_color": {
+    "message": "Oceano"
+  },
+  "watermelon_card_color": {
+    "message": "Anguria"
+  },
+  "army_card_color": {
+    "message": "Esercito"
+  },
+  "rainbow_card_color": {
+    "message": "Arcobaleno"
+  },
+  "sunset_card_color": {
+    "message": "Tramonto"
+  },
+  "popsicle_card_color": {
+    "message": "Ghiacciolo"
+  },
+  "berries_card_color": {
+    "message": "Frutti di bosco"
+  },
+  "fruit_card_color": {
+    "message": "Frutta"
+  },
+  "night_card_color": {
+    "message": "Notte"
+  },
+  "base_card_color": {
+    "message": "Base"
+  },
+  "muted_card_color": {
+    "message": "Disattivato"
+  },
+  "candy_card_color": {
+    "message": "Caramella"
+  },
+  "chess_card_color": {
+    "message": "Scacchi"
+  },
+  "single_card_color": {
+    "message": "Colore singolo"
+  },
+  "single_card_color_text": {
+    "message": "Scegli un colore per impostare tutte le carte su quel colore:"
+  },
+  "gradient_card_color": {
+    "message": "Pendenza"
+  },
+  "gradient_card_color_text": {
+    "message": "Scegli 2 colori per creare una sfumatura tra di loro:"
+  },
+  "submit_theme": {
+    "message": "Invia il tuo tema"
+  },
+  "show": {
+    "message": "Spettacolo"
+  },
+  "submit": {
+    "message": "Invia"
+  },
+  "submissions": {
+    "message": "I miei invii"
+  },
+  "title": {
+    "message": "Titolo"
+  },
+  "submit_question": {
+    "message": "Vuoi inviare il tuo tema affinché altri possano utilizzarlo?"
+  },
+  "preview": {
+    "message": "Anteprima"
+  },
+  "grade_letter": {
+    "message": "Show Garde Letter"
   }
 }

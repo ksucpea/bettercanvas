@@ -83,9 +83,6 @@
   "back": {
     "message": "后退"
   },
-  "more_options": {
-    "message": "更多选择"
-  },
   "manual_customization": {
     "message": "手动定制"
   },
@@ -150,7 +147,7 @@
     "message": "亮色的"
   },
   "dark_default": {
-    "message": "默认设置"
+    "message": "默认"
   },
   "dark_dark": {
     "message": "深色"
@@ -230,10 +227,145 @@
   "dark_mode_fixer_text": {
     "message": "这将尝试修复当前页面上的任何暗模式间隙。"
   },
-  "fix_dm_btn": {
-    "message": "去"
-  },
   "fix_dm_text": {
     "message": "修复程序会自动在这些页面上运行:"
+  },
+  "card_missing": {
+    "message": "缺少卡片？"
+  },
+  "card_alt_method": {
+    "message": "启用替代卡方法"
+  },
+  "enter_sub_text": {
+    "message": "进入"
+  },
+  "none_sub_text": {
+    "message": " \"没有任何\" "
+  },
+  "hide_images_sub_text": {
+    "message": "隐藏图像和链接。"
+  },
+  "refresh_need_sub_text": {
+    "message": "您可能需要刷新页面才能看到一些更改。"
+  },
+  "disable_high_contrast_ui": {
+    "message": "禁用高对比度 UI "
+  },
+  "more_card_color_text": {
+    "message": "如果你的颜色在刷新后变得暗淡！在侧边栏上，如果您单击个人资料图标，则可以将其关闭。"
+  },
+  "popular_palettes": {
+    "message": "流行调色板"
+  },
+  "revert_card_colors": {
+    "message": "恢复至原始状态"
+  },
+  "red_card_color": {
+    "message": "红色的"
+  },
+  "go": {
+    "message": "去"
+  },
+  "oranges_card_color": {
+    "message": "橘子"
+  },
+  "greens_card_color": {
+    "message": "绿色的"
+  },
+  "blues_card_color": {
+    "message": "蓝色的"
+  },
+  "pinks_card_color": {
+    "message": "粉色的"
+  },
+  "purples_card_color": {
+    "message": "紫色的"
+  },
+  "pastels_card_color": {
+    "message": "粉彩"
+  },
+  "mesa_card_color": {
+    "message": "台面"
+  },
+  "fade_card_color": {
+    "message": "褪色"
+  },
+  "fade2_card_color": {
+    "message": "淡出 2"
+  },
+  "ocean_card_color": {
+    "message": "海洋"
+  },
+  "watermelon_card_color": {
+    "message": "西瓜"
+  },
+  "army_card_color": {
+    "message": "军队"
+  },
+  "rainbow_card_color": {
+    "message": "彩虹"
+  },
+  "sunset_card_color": {
+    "message": "日落"
+  },
+  "popsicle_card_color": {
+    "message": "棒冰"
+  },
+  "berries_card_color": {
+    "message": "浆果"
+  },
+  "fruit_card_color": {
+    "message": "水果"
+  },
+  "night_card_color": {
+    "message": "夜晚"
+  },
+  "base_card_color": {
+    "message": "根据"
+  },
+  "muted_card_color": {
+    "message": "静音"
+  },
+  "candy_card_color": {
+    "message": "糖果"
+  },
+  "chess_card_color": {
+    "message": "棋"
+  },
+  "single_card_color": {
+    "message": "单色"
+  },
+  "single_card_color_text": {
+    "message": "选择一种颜色将所有卡片设置为该颜色:"
+  },
+  "gradient_card_color": {
+    "message": "坡度"
+  },
+  "gradient_card_color_text": {
+    "message": "选择 2 种颜色以在它们之间创建渐变:"
+  },
+  "submit_theme": {
+    "message": "提交您的主題"
+  },
+  "show": {
+    "message": "展示"
+  },
+  "submit": {
+    "message": "提交"
+  },
+  "submissions": {
+    "message": "我的意見"
+  },
+  "title": {
+    "message": "標題"
+  },
+  "submit_question": {
+    "message": "您想提交您的主題供其他人使用嗎？"
+  },
+  "preview": {
+    "message": "預覽"
+  },
+  "grade_letter": {
+    "message": "Show Garde Letter"
   }
 }

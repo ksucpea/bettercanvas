@@ -83,9 +83,6 @@
   "back": {
     "message": "Atrás"
   },
-  "more_options": {
-    "message": "Más opciones"
-  },
   "manual_customization": {
     "message": "Personalización manual"
   },
@@ -230,10 +227,145 @@
   "dark_mode_fixer_text": {
     "message": "Esto intentará solucionar cualquier brecha del modo oscuro en la página actual."
   },
-  "fix_dm_btn": {
-    "message": "Ir"
-  },
   "fix_dm_text": {
     "message": "El reparador se ejecuta automáticamente en estas páginas:"
+  },
+  "card_missing": {
+    "message": "¿Tarjetas perdidas?"
+  },
+  "card_alt_method": {
+    "message": "Habilitar método de tarjeta alternativo"
+  },
+  "enter_sub_text": {
+    "message": "Ingresar"
+  },
+  "none_sub_text": {
+    "message": " \"Ninguna\" "
+  },
+  "hide_images_sub_text": {
+    "message": "Para ocultar imágenes y enlaces."
+  },
+  "refresh_need_sub_text": {
+    "message": "Es posible que deba actualizar la página para ver algunos cambios."
+  },
+  "disable_high_contrast_ui": {
+    "message": "Deshabilitar la interfaz de usuario de alto contraste "
+  },
+  "more_card_color_text": {
+    "message": "¡Si tus colores se vuelven más opacos después de refrescarte! En la barra lateral, si haces clic en el ícono de tu perfil, puedes desactivarlo allí."
+  },
+  "popular_palettes": {
+    "message": "Paletas populares"
+  },
+  "revert_card_colors": {
+    "message": "Volver a la original"
+  },
+  "red_card_color": {
+    "message": "Rojas"
+  },
+  "go": {
+    "message": "Ir"
+  },
+  "oranges_card_color": {
+    "message": "Naranjas"
+  },
+  "greens_card_color": {
+    "message": "Verde"
+  },
+  "blues_card_color": {
+    "message": "Azul"
+  },
+  "pinks_card_color": {
+    "message": "Rosa"
+  },
+  "purples_card_color": {
+    "message": "Morados"
+  },
+  "pastels_card_color": {
+    "message": "Pastel"
+  },
+  "mesa_card_color": {
+    "message": "Colina baja"
+  },
+  "fade_card_color": {
+    "message": "Desteñir"
+  },
+  "fade2_card_color": {
+    "message": "Desteñir 2"
+  },
+  "ocean_card_color": {
+    "message": "Océano"
+  },
+  "watermelon_card_color": {
+    "message": "Sandía"
+  },
+  "army_card_color": {
+    "message": "Ejército"
+  },
+  "rainbow_card_color": {
+    "message": "Arcoíris"
+  },
+  "sunset_card_color": {
+    "message": "Atardecer"
+  },
+  "popsicle_card_color": {
+    "message": "Paleta"
+  },
+  "berries_card_color": {
+    "message": "Bayas"
+  },
+  "fruit_card_color": {
+    "message": "Fruta"
+  },
+  "night_card_color": {
+    "message": "Noche"
+  },
+  "base_card_color": {
+    "message": "Base"
+  },
+  "muted_card_color": {
+    "message": "Apagada"
+  },
+  "candy_card_color": {
+    "message": "Dulce"
+  },
+  "chess_card_color": {
+    "message": "Ajedrez"
+  },
+  "single_card_color": {
+    "message": "Color único"
+  },
+  "single_card_color_text": {
+    "message": "Elija un color para configurar todas las tarjetas en ese color:"
+  },
+  "gradient_card_color": {
+    "message": "Gradiente"
+  },
+  "gradient_card_color_text": {
+    "message": "Elija 2 colores para crear un degradado entre ellas:"
+  },
+  "submit_theme": {
+    "message": "Envía tu tema"
+  },
+  "show": {
+    "message": "Espectáculo"
+  },
+  "submit": {
+    "message": "Entregar"
+  },
+  "submissions": {
+    "message": "Mis envíos"
+  },
+  "title": {
+    "message": "Título"
+  },
+  "submit_question": {
+    "message": "¿Quieres enviar tu tema para que otros lo utilicen?"
+  },
+  "preview": {
+    "message": "Avance"
+  },
+  "grade_letter": {
+    "message": "Mostrar carta de guardia"
   }
 }

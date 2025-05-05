@@ -83,9 +83,6 @@
   "back": {
     "message": "Dos"
   },
-  "more_options": {
-    "message": "Plus d'options"
-  },
   "manual_customization": {
     "message": "Personnalisation manuelle"
   },
@@ -230,10 +227,145 @@
   "dark_mode_fixer_text": {
     "message": "Cela tentera de corriger les éventuels écarts du mode sombre sur la page actuelle."
   },
-  "fix_dm_btn": {
-    "message": "Aller"
-  },
   "fix_dm_text": {
     "message": "Le fixateur s'exécute automatiquement sur ces pages :"
+  },
+  "card_missing": {
+    "message": "Cartes manquantes ?"
+  },
+  "card_alt_method": {
+    "message": "Activer la méthode de carte alternative"
+  },
+  "enter_sub_text": {
+    "message": "Entrer"
+  },
+  "none_sub_text": {
+    "message": " \"Aucune\" "
+  },
+  "hide_images_sub_text": {
+    "message": "Pour masquer les images et les liens."
+  },
+  "refresh_need_sub_text": {
+    "message": "Vous devrez peut-être actualiser la page pour voir certaines modifications."
+  },
+  "disable_high_contrast_ui": {
+    "message": "Désactiver l'interface utilisateur à contraste élevé "
+  },
+  "more_card_color_text": {
+    "message": "Si vos couleurs deviennent plus ternes après le rafraîchissement ! Dans la barre latérale, si vous cliquez sur l'icône de votre profil, vous pouvez la désactiver."
+  },
+  "popular_palettes": {
+    "message": "Palettes populaires"
+  },
+  "revert_card_colors": {
+    "message": "Revenir à l'original"
+  },
+  "red_card_color": {
+    "message": "Rouges"
+  },
+  "go": {
+    "message": "Aller"
+  },
+  "oranges_card_color": {
+    "message": "Oranges"
+  },
+  "greens_card_color": {
+    "message": "Légumes verts"
+  },
+  "blues_card_color": {
+    "message": "Bleus"
+  },
+  "pinks_card_color": {
+    "message": "Roses"
+  },
+  "purples_card_color": {
+    "message": "Les violets"
+  },
+  "pastels_card_color": {
+    "message": "Pastels"
+  },
+  "mesa_card_color": {
+    "message": "Mesa"
+  },
+  "fade_card_color": {
+    "message": "Disparaître"
+  },
+  "fade2_card_color": {
+    "message": "Fondu 2"
+  },
+  "ocean_card_color": {
+    "message": "Océan"
+  },
+  "watermelon_card_color": {
+    "message": "Pastèque"
+  },
+  "army_card_color": {
+    "message": "Armée"
+  },
+  "rainbow_card_color": {
+    "message": "Arc-en-ciel"
+  },
+  "sunset_card_color": {
+    "message": "Coucher de soleil"
+  },
+  "popsicle_card_color": {
+    "message": "Glace glacée"
+  },
+  "berries_card_color": {
+    "message": "Baies"
+  },
+  "fruit_card_color": {
+    "message": "Fruit"
+  },
+  "night_card_color": {
+    "message": "Nuit"
+  },
+  "base_card_color": {
+    "message": "Base"
+  },
+  "muted_card_color": {
+    "message": "En sourdine"
+  },
+  "candy_card_color": {
+    "message": "Bonbons"
+  },
+  "chess_card_color": {
+    "message": "Échecs"
+  },
+  "single_card_color": {
+    "message": "Couleur unique"
+  },
+  "single_card_color_text": {
+    "message": "Choisissez une couleur pour définir toutes les cartes sur cette couleur :"
+  },
+  "gradient_card_color": {
+    "message": "Pente"
+  },
+  "gradient_card_color_text": {
+    "message": "Choisissez 2 couleurs pour créer un dégradé entre elles :"
+  },
+  "submit_theme": {
+    "message": "Soumettez votre thème"
+  },
+  "show": {
+    "message": "Montrer"
+  },
+  "submit": {
+    "message": "Soumettre"
+  },
+  "submissions": {
+    "message": "Mes soumissions"
+  },
+  "title": {
+    "message": "Titre"
+  },
+  "submit_question": {
+    "message": "Voulez-vous soumettre votre thème pour que d’autres puissent l’utiliser ?"
+  },
+  "preview": {
+    "message": "Aperçu"
+  },
+  "grade_letter": {
+    "message": "Show Garde Letter"
   }
 }

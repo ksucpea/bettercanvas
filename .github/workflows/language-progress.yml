@@ -1,0 +1,31 @@
+name: Badge Creator
+
+on:
+  schedule:
+    - cron: "5 17 * * *"
+  workflow_dispatch:
+
+jobs:
+  badge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: badge-creator
+        uses: Globalfun32y439y54/github-action@V1.0.11
+        with:
+            token: ${{ secrets.TOKEN }}
+            project_id: ${{ secrets.PROJECT_ID }}
+            output_path: ./icon
+            language_rename_map: '{"Chinese Simplified": "Chinese (Simplified, China)", "Chinese Traditional": "Chinese (Simplified, Taiwan)"}'
+            toggledefault: true
+            defaultlanguage: '{"name": "English", "progress": 100, "url": "https://crowdin.com/project/bettercanvas", "color": "#2eccaa"}'
+
+      - name: Commit and Push Outputs
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add **/badge.svg
+          git commit -m "Updaed Your Badge" || echo "No changes to commit"
+          git push

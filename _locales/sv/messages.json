@@ -83,9 +83,6 @@
   "back": {
     "message": "Tillbaka"
   },
-  "more_options": {
-    "message": "Fler alternativ"
-  },
   "manual_customization": {
     "message": "Manuell anpassning"
   },
@@ -230,10 +227,145 @@
   "dark_mode_fixer_text": {
     "message": "Detta kommer att försöka fixa eventuella luckor i mörkt läge på den aktuella sidan."
   },
-  "fix_dm_btn": {
-    "message": "Gå"
-  },
   "fix_dm_text": {
     "message": "Fixern körs automatiskt på dessa sidor:"
+  },
+  "card_missing": {
+    "message": "Saknar du kort?"
+  },
+  "card_alt_method": {
+    "message": "Aktivera alternativ kortmetod"
+  },
+  "enter_sub_text": {
+    "message": "Skriva in"
+  },
+  "none_sub_text": {
+    "message": " \"Ingen\" "
+  },
+  "hide_images_sub_text": {
+    "message": "to hide images and links."
+  },
+  "refresh_need_sub_text": {
+    "message": "You may need to refresh the page to see some changes."
+  },
+  "disable_high_contrast_ui": {
+    "message": "Inaktivera Hugh Kontrast UI "
+  },
+  "more_card_color_text": {
+    "message": "if your colors become duller after refreshing! On the sidebar, if you click on your profile icon you can turn it off there."
+  },
+  "popular_palettes": {
+    "message": "Populära paletter"
+  },
+  "revert_card_colors": {
+    "message": "Återgå till originalet"
+  },
+  "red_card_color": {
+    "message": "Röda"
+  },
+  "go": {
+    "message": "Gå"
+  },
+  "oranges_card_color": {
+    "message": "Apelsiner"
+  },
+  "greens_card_color": {
+    "message": "Gröna"
+  },
+  "blues_card_color": {
+    "message": "Blues"
+  },
+  "pinks_card_color": {
+    "message": "Rosa"
+  },
+  "purples_card_color": {
+    "message": "Lila"
+  },
+  "pastels_card_color": {
+    "message": "Pasteller"
+  },
+  "mesa_card_color": {
+    "message": "Mesa"
+  },
+  "fade_card_color": {
+    "message": "Blekna"
+  },
+  "fade2_card_color": {
+    "message": "Tona 2"
+  },
+  "ocean_card_color": {
+    "message": "Hav"
+  },
+  "watermelon_card_color": {
+    "message": "Vattenmelon"
+  },
+  "army_card_color": {
+    "message": "Armé"
+  },
+  "rainbow_card_color": {
+    "message": "Regnbåge"
+  },
+  "sunset_card_color": {
+    "message": "Solnedgång"
+  },
+  "popsicle_card_color": {
+    "message": "Isglass"
+  },
+  "berries_card_color": {
+    "message": "Bär"
+  },
+  "fruit_card_color": {
+    "message": "Frukt"
+  },
+  "night_card_color": {
+    "message": "Natt"
+  },
+  "base_card_color": {
+    "message": "Bas"
+  },
+  "muted_card_color": {
+    "message": "Dämpad"
+  },
+  "candy_card_color": {
+    "message": "Godis"
+  },
+  "chess_card_color": {
+    "message": "Schack"
+  },
+  "single_card_color": {
+    "message": "Enfärgad"
+  },
+  "single_card_color_text": {
+    "message": "Välj en färg för att ställa in alla kort till den färgen:"
+  },
+  "gradient_card_color": {
+    "message": "Lutning"
+  },
+  "gradient_card_color_text": {
+    "message": "Välj två färger för att skapa en gradient mellan dem:"
+  },
+  "submit_theme": {
+    "message": "Skicka in ditt tema"
+  },
+  "show": {
+    "message": "Visa"
+  },
+  "submit": {
+    "message": "Överlämna"
+  },
+  "submissions": {
+    "message": "Mina bidrag"
+  },
+  "title": {
+    "message": "Titel"
+  },
+  "submit_question": {
+    "message": "Vill du skicka in ditt tema för andra att använda?"
+  },
+  "preview": {
+    "message": "Förhandsvisning"
+  },
+  "grade_letter": {
+    "message": "Show Garde Letter"
   }
 }

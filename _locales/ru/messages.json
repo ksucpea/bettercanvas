@@ -83,9 +83,6 @@
   "back": {
     "message": "Назад"
   },
-  "more_options": {
-    "message": "Больше вариантов"
-  },
   "manual_customization": {
     "message": "Ручная настройка"
   },
@@ -230,10 +227,145 @@
   "dark_mode_fixer_text": {
     "message": "Это позволит исправить любые пробелы темного режима на текущей странице."
   },
-  "fix_dm_btn": {
-    "message": "Идти"
-  },
   "fix_dm_text": {
     "message": "Fixer автоматически запускается на этих страницах:"
+  },
+  "card_missing": {
+    "message": "Не хватает карт?"
+  },
+  "card_alt_method": {
+    "message": "Включить альтернативный метод карты"
+  },
+  "enter_sub_text": {
+    "message": "Входить"
+  },
+  "none_sub_text": {
+    "message": " \"Никто\" "
+  },
+  "hide_images_sub_text": {
+    "message": "Чтобы скрыть изображения и ссылки."
+  },
+  "refresh_need_sub_text": {
+    "message": "Возможно, вам придется обновить страницу, чтобы увидеть некоторые изменения."
+  },
+  "disable_high_contrast_ui": {
+    "message": "Отключить высококонтрастный интерфейс "
+  },
+  "more_card_color_text": {
+    "message": "Если ваши цвета стали тусклее после обновления! На боковой панели, если вы нажмете на значок своего профиля, вы можете отключить его там."
+  },
+  "popular_palettes": {
+    "message": "Популярные палитры"
+  },
+  "revert_card_colors": {
+    "message": "Вернуться к оригиналу"
+  },
+  "red_card_color": {
+    "message": "Красные"
+  },
+  "go": {
+    "message": "Идти"
+  },
+  "oranges_card_color": {
+    "message": "Апельсины"
+  },
+  "greens_card_color": {
+    "message": "Зелень"
+  },
+  "blues_card_color": {
+    "message": "Блюз"
+  },
+  "pinks_card_color": {
+    "message": "Розовые"
+  },
+  "purples_card_color": {
+    "message": "Пурпурные"
+  },
+  "pastels_card_color": {
+    "message": "Пастель"
+  },
+  "mesa_card_color": {
+    "message": "Меса"
+  },
+  "fade_card_color": {
+    "message": "Тускнеть"
+  },
+  "fade2_card_color": {
+    "message": "Исчезновение 2"
+  },
+  "ocean_card_color": {
+    "message": "Океан"
+  },
+  "watermelon_card_color": {
+    "message": "Арбуз"
+  },
+  "army_card_color": {
+    "message": "Армия"
+  },
+  "rainbow_card_color": {
+    "message": "Радуга"
+  },
+  "sunset_card_color": {
+    "message": "Закат"
+  },
+  "popsicle_card_color": {
+    "message": "Эскимо"
+  },
+  "berries_card_color": {
+    "message": "Ягоды"
+  },
+  "fruit_card_color": {
+    "message": "Фрукты"
+  },
+  "night_card_color": {
+    "message": "Ночь"
+  },
+  "base_card_color": {
+    "message": "База"
+  },
+  "muted_card_color": {
+    "message": "Приглушенный"
+  },
+  "candy_card_color": {
+    "message": "Конфеты"
+  },
+  "chess_card_color": {
+    "message": "Шахматы"
+  },
+  "single_card_color": {
+    "message": "Один цвет"
+  },
+  "single_card_color_text": {
+    "message": "Выберите цвет, чтобы установить этот цвет для всех карт:"
+  },
+  "gradient_card_color": {
+    "message": "Градиент"
+  },
+  "gradient_card_color_text": {
+    "message": "Выберите 2 цвета, чтобы создать градиент между ними:"
+  },
+  "submit_theme": {
+    "message": "Предложите свою тему"
+  },
+  "show": {
+    "message": "Показывать"
+  },
+  "submit": {
+    "message": "Представлять на рассмотрение"
+  },
+  "submissions": {
+    "message": "Мои заявки"
+  },
+  "title": {
+    "message": "Заголовок"
+  },
+  "submit_question": {
+    "message": "Хотите ли вы предоставить свою тему для использования другими?"
+  },
+  "preview": {
+    "message": "Предварительный просмотр"
+  },
+  "grade_letter": {
+    "message": "Show Garde Letter"
   }
 }
