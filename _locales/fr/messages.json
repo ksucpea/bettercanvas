@@ -1,6 +1,6 @@
 {
   "better_canvas": {
-    "message": "Une meilleure toile"
+    "message": "Meilleur canevas"
   },
   "updates": {
     "message": "Mises à jour"
@@ -15,13 +15,13 @@
     "message": "Heure de début"
   },
   "auto_end_time": {
-    "message": "Fin des temps"
+    "message": "L'heure de fin"
   },
   "edit_dark_mode": {
     "message": "Mode sombre"
   },
   "enter_url": {
-    "message": "Votre url Toile:"
+    "message": "Votre url de canvas"
   },
   "card_grades": {
     "message": "Notes des cartes"
@@ -36,7 +36,7 @@
     "message": "Désactiver la superposition de couleurs"
   },
   "card_assignments": {
-    "message": "Affectations des cartes"
+    "message": "Devoirs des cartes"
   },
   "card_customization": {
     "message": "Cartes"
@@ -57,7 +57,7 @@
     "message": "Survolez pour prévisualiser les détails"
   },
   "hide_completed": {
-    "message": "Masquer terminé"
+    "message": "Cacher terminé"
   },
   "24hrformat": {
     "message": "Utiliser le format 24 heures"
@@ -69,13 +69,13 @@
     "message": "Calculateur de GPA"
   },
   "gpa_settings": {
-    "message": "Paramètres GPA"
+    "message": "Paramètres de la moyenne générale des notes"
   },
   "grade_hover": {
     "message": "Afficher uniquement au survol"
   },
   "due": {
-    "message": "Exigible"
+    "message": "Dû"
   },
   "card_colors": {
     "message": "Couleurs des cartes"
@@ -108,7 +108,7 @@
     "message": "Déplacer vers le haut"
   },
   "show_past_due": {
-    "message": "Afficher les arriérés"
+    "message": "Afficher les devoirs en retard"
   },
   "relative_due_dates": {
     "message": "Dates d'échéance relatives"
@@ -129,7 +129,7 @@
     "message": "Icônes d'onglets à code couleur"
   },
   "todo_colors": {
-    "message": "Utiliser les couleurs des cartes"
+    "message": "Couleurs des tâches à faire"
   },
   "gpa_calc_cumulative": {
     "message": "Afficher la moyenne cumulative"
@@ -213,7 +213,7 @@
     "message": "Frontières"
   },
   "dp_links": {
-    "message": "Links"
+    "message": "Liens"
   },
   "dp_text_0": {
     "message": "Texte principal"
