@@ -164,6 +164,10 @@
                     </div>
                     <div class="sub-options">
                         <div class="sub-option" style="margin-top:5px">
+                            <input type="checkbox" id="grade_letter" name="grade_letter">
+                            <label for="grade_letter" class="sub-text">Show Garde Letter</label>
+                        </div>
+                        <div class="sub-option" style="margin-top:5px">
                             <input type="checkbox" id="grade_hover" name="grade_hover">
                             <label for="grade_hover" class="sub-text" data-i18n="grade_hover">Show only when hovering</label>
                         </div>
@@ -178,6 +182,21 @@
                             <div class="sliderbg"></div>
                         </div>
                         <span class="option-name" data-i18n="todo_remind">Todo Reminders</span>
+                    </div>
+                    <div class="sub-options">
+                        <div class="sub-option" style="margin-top:5px">
+                            <span>ToDo Reminders Time<br>
+                            (Each Number Is 1 Hour):</span>
+                            <!--<p style="font-size: 11px;color:#8d8d8d">(Each Number Is 1 Hour)</p>-->
+                        </div>
+                        <div style="margin-top:5px">
+                            <span class="sub-text">First Alert Time: </span><span id="todotimeone"></span>
+                            <input type="range" min="1" max="24" id="todotimesliderone">
+                        </div>
+                        <div style="margin-top:5px">
+                            <span class="sub-text">Second Alert Time: </span><span id="todotimetwo"></span>
+                            <input type="range" min="1" max="24" id="todotimeslidertwo">
+                        </div>
                     </div>
                     <!--
                     <div class="sub-options">
