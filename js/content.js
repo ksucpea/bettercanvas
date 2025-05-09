@@ -288,6 +288,7 @@ function applyOptionsChanges(changes) {
             case ("custom_cards_2"):
             case ("custom_cards_3"):
                 customizeCards();
+                customizeGroupingCards();
                 break;
             case ("todo_hr24"):
             case ("num_todo_items"):
@@ -362,6 +363,27 @@ function checkDashboardReady() {
                     if (!mutation.target.querySelector(".bettercanvas-todosidebar")) {
                         setupBetterTodo();
                         loadBetterTodo();
+                    }
+                } else if (mutation.target == document.querySelector('#dashboard-planner')) {
+                    // listen to dom node add when scrolling up and down
+                    const observer1 = new MutationObserver(mutations => {
+                        mutations.forEach(mutation => {
+                            if (mutation.addedNodes.length > 0) {
+                                mutation.addedNodes.forEach(addedNode => {
+                                    if (addedNode.querySelectorAll) {
+                                        let newGroupings = addedNode.querySelectorAll('.planner-grouping');
+                                        if (newGroupings.length > 0) {
+                                            customizeGroupingCards(newGroupings);
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    });
+                    // listen to dom changes
+                    const targetNode = document.querySelector('#dashboard-planner');
+                    if (targetNode) {
+                        observer1.observe(targetNode, { childList: true, subtree: true });
                     }
                 }
             }
@@ -1545,6 +1567,28 @@ function getCardId(card) {
     return -1;
 }
 
+// Get course id in list view for custom settings
+function getGroupingCardId(card) {
+    let hrefElement = card.querySelector(".Grouping-styles__heroHover");
+    if (!hrefElement || !hrefElement.href) return -1;
+
+    let id = hrefElement.href.split("courses/")[1];
+
+    // no ~
+    if (!id.includes("~")) return id;
+    // has ~ but dashboard card method is used
+    if (options["custom_cards"][id]) return id;
+
+    // weird case, some canvases replace consecutive 0s with a ~ in the id
+    // but the number of 0s isn't consistent between schools
+    id = id.split("~");
+    let re = new RegExp(`${id[0]}0+${id[1]}`);
+    for (const c of Object.keys(options["custom_cards"])) {
+        if (c.match(re)) return c;
+    }
+    return -1;
+}
+
 function customizeCards(c = null) {
     if (!options.custom_cards) return;
     try {
@@ -1611,6 +1655,37 @@ function customizeCards(c = null) {
 
         });
 
+    } catch (e) {
+        logError(e);
+    }
+}
+
+// Custom the card in list view
+function customizeGroupingCards(c = null) {
+    if (!options.custom_cards) return;
+    try {
+        let cards = c ? c : document.querySelectorAll('.Grouping-styles__heroHover');
+        if (cards.length === 0 || cards[0].querySelectorAll(".Grouping-styles__heroHover").length === 0) return;
+
+        cards.forEach(card => {
+            const id = getGroupingCardId(card);
+            let cardOptions = options["custom_cards"][id] || null;
+            if (!cardOptions) return;
+
+            if (cardOptions.img === "none") {
+                let currentImg = card.querySelector(".Grouping-styles__heroHover");
+                if (currentImg) {
+                    card.querySelector(".Grouping-styles__overlay").style.opacity = 1;
+                }
+            } else if (cardOptions.img !== "") {
+                let topColor = card.querySelector(".Grouping-styles__overlay");
+                let container = card.querySelector(".Grouping-styles__heroHover");
+                if (container) {
+                    container.style.backgroundImage = "url(\"" + cardOptions.img + "\")";
+                    topColor.style.opacity = 0.5;
+                }
+            }
+        });
     } catch (e) {
         logError(e);
     }
@@ -1928,7 +2003,7 @@ function applyAestheticChanges() {
     style.textContent = "";
     if (options.condensed_cards === true) style.textContent += ".ic-DashboardCard__header_hero {height:60px!important}.ic-DashboardCard__header-subtitle, .ic-DashboardCard__header-term{display:none}";
     if (options.remlogo === true) style.textContent += ".ic-app-header__logomark-container{display:none}";
-    if (options.disable_color_overlay === true) style.textContent += ".ic-DashboardCard__header_hero{opacity: 0!important} .ic-DashboardCard__header-button-bg{opacity: 1!important}";
+    if (options.disable_color_overlay === true) style.textContent += ".ic-DashboardCard__header_hero{opacity: 0!important} .ic-DashboardCard__header-button-bg{opacity: 1!important} .Grouping-styles__overlay{opacity: 0!important;}";
     if (options.hide_feedback === true) style.textContent += ".recent_feedback {display: none}";
     if (options.full_width === true) style.textContent += ".ic-Layout-wrapper{max-width:100%!important}";
     if (options.custom_styles !== "") style.textContent += options.custom_styles;
