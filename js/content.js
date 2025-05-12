@@ -168,7 +168,7 @@ function updateReminders() {
             if (due > now + fiveDays * 2) return;
             // { due, title, href, hide count }
             // hide count of -1 indicates the item has a submission
-            list.push({ "d": due, "t": item.plannable.title, "h": domain + item.html_url, "c": item?.submissions?.submitted || false ? -1 : 0 });
+            list.push({ "d": due, "t": item.plannable.title, "h": item.html_url.startsWith("http") ? item.html_url : domain + item.html_url, "c": item?.submissions?.submitted || false ? -1 : 0 });
         });
         insertReminders(list);
     });
