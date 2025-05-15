@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: none;
+            font-family: 'Wix Madefor Text';
+            color: var(--text-0, #fff);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            font-size: 20px;
+        }
+
+        #deals-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .deal {
+            border-radius: 10px;
+            border: 1px solid var(--borders, #c7cdd1);
+            color: var(--text-0, #000);
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+            z-index: 10;
+        }
+
+        .deal::after {
+            content: "";
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 10px var(--borders, #141414);
+            opacity: 0;
+            z-index: -1;
+            background: var(--background-0, #fff);
+            border-radius: 10px;
+            transition: .2s opacity;
+        }
+        
+        .deal:hover::after {
+            opacity: .75;
+        }
+
+        .deal-title {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .deal-description {
+            font-size: 14px;
+            margin-top: 4px;
+            color: var(--text-1, #000);
+        }
+
+        .deal-img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            padding: 40px;
+        }
+
+        .deal-img-container {
+            height: 140px;
+            width: 100%;
+            background: none;
+        }
+
+        #deal-modal {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            display: none;
+            background: #000000d4;
+            z-index: 10000000;
+        }
+
+        #deal-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn .6s cubic-bezier(0.075, 0.82, 0.165, 1)
+        }
+
+        #deal-modal-content {
+            border-radius: 10px;
+            width: 360px;
+            background: var(--background-0, #fff);
+            color: var(--text-0, #000);
+        }
+
+        #deal-modal-img-container {
+            width: 100%;
+            height: 100px;
+        }
+
+        #deal-modal-img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            padding: 40px 40px 20px 40px;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+
+        #deal-modal-title {
+            padding: 20px;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-0, #000);
+            padding-right:10px;
+        }
+
+        #deal-modal-header {
+            border-bottom: 1px solid var(--borders, #c7cdd1);
+            display:flex;
+            gap:10px;
+            align-items:center;
+        }
+
+        #deal-modal-text {
+            padding: 20px;
+            font-size: 16px;
+        }
+
+        .deal-modal-text-title {
+            margin: 16px 0 4px 0;
+            font-weight: 600;
+            color: var(--text-0, #000);
+        }
+
+        #deal-modal-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--text-0, #0070ff);
+            border-radius: 10px;
+            padding: 14px;
+            color: var(--background-0, #fff);
+            text-decoration: none;
+            font-size:16px;
+            font-weight:bold;
+            transform: scale(1);
+            transition: .15s transform;
+        }
+
+        #deal-modal-link:hover {
+            transform: scale(1.02);
+        }
+
+        #deal-modal-link svg {
+            height: 20px;
+            width: 20px;
+        }
+
+        #deal-modal-description {
+            padding: 16px;
+            border-radius: 10px;
+            background: var(--background-1, #f5f5f5);
+            font-weight: 500;
+        }
+
+        #main {
+            padding: 40px;
+            width: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            background: var(--background-0, #fff);
+        }
+
+        #deals-header {
+            margin-bottom: 20px;
+        }
+
+        #deal-modal-link-container {
+            padding: 20px;
+            border-top: 1px solid var(--borders, #c7cdd1);
+        }
+
+        #deals-header h1 {
+            font-size: 32px;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            color: var(--text-0, #000);
+        }
+
+        #deals-filter-container {
+            display: flex;
+            gap: 10px;
+        }
+
+
+        .filter-option label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-0, #000);
+            cursor: pointer;
+            border: 1px solid var(--borders, #c7cdd1);
+            border-radius: 100px;
+            padding: 7px 12px;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .filter-option input[type="checkbox"] {
+            display: none;
+        }
+
+        .filter-option label:hover {
+            background: var(--background-1, #f5f5f5)
+        }
+
+        .filter-option input:checked + label {
+            background: var(--links, #0070ff);
+        }
+
+        #deal-modal-description-container {
+            background: linear-gradient(90deg, #e87bf9, #50a1fe);
+            padding: 1px;
+            border-radius: 10px;
+        }
+
+        .deal-tag {
+            margin-top: 6px;
+            margin-right: 6px;
+            font-size: 14px;
+            background: var(--background-1, #f5f5f5);
+            color: var(--text-0, #000);
+            border: 1px solid var(--borders, #c7cdd1);
+            border-radius: 8px;
+            display: inline-block;
+            padding: 4px 8px;
+            display:flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .deal-tag svg {height:16px;width:16px;}
+
+        #deals-header p {color:var(--text-1, #000);}
+        
+        p#deals-header-text {font-weight:bold;color:var(--text-0, #fff);font-size:14px;}
+        .deal-text {font-size:15px;color:var(--text-1, #000);font-weight: 600;margin: 10px 0 6px 0;}
+        #deals-more {display:flex;justify-content: center;margin-top:20px;}
+        #load-more-deals {font-family:inherit;font-weight:600;cursor: pointer;background: var(--background-1, #f5f5f5);padding: 10px 30px;color:var(--text-0, #000);border: 1px solid var(--borders, #282828);border-radius:10px;}
+        .deal-tags {display: flex;flex-wrap: wrap;align-items:center;}
+        #deals-spark svg {height:18px;width:18px;}
+        #deal-modal-tags {display: flex;gap:4px;}
+        #deal-modal-exit { margin-left: auto;margin-right:10px;display:flex;cursor:pointer}
+        #bettercanvas-tooltip {transform: translate(16px, 16px);position:fixed;background:var(--text-0, #000);color:var(--background-0, #fff);padding:10px;border-radius:10px;z-index:100000;display:none;font-size:14px;min-width:max-content;}
+        #deals-header-border {border-bottom: 1px solid var(--borders, #c7cdd1);display:flex;gap:4px;}
+        #clear-filters {display: none;text-decoration:underline;font-weight:bold;margin:0;font-size:14px;cursor:pointer}
+        #deal-modal-tags .deal-tag span {font-size:12px;}
+        #deal-modal-tags .deal-tag svg {height:12px;width:12px;}
+        #perks-popup-container {backdrop-filter:blur(5px);display:none;z-index:10000;position:fixed;top:0;left:0;height:100vh;width:100vw;align-items:center;justify-content: center;}
+        #perks-popup {width:400px;font-size:14px;background:var(--background-0, #000);border:1px solid var(--bcborders,#c7cdd1);padding:30px;border-radius: 10px;}
+        #perks-popup-container::before {z-index:-1;content:"";background: var(--background0, #fff);top:0;left:0;position:absolute;height:100%;width:100%;opacity:.5}
+        #perks-popup-exit {font-family:inherit;width:100%;border:1px solid var(--borders, #c7cdd1);color:var(--background-0);background:var(--text-0);font-weight:bold;padding:10px 0;cursor:pointer;border-radius:10px;}
+        #perks-popup h1 {font-size:20px;margin-bottom:10px;}
+        #perks-popup li {margin: 14px 0;}
+        #perks-popup ul {margin-left:20px;}
+    </style>
+</head>
+
+<body>
+    <div id="perks-popup-container">
+        <div id="perks-popup">
+            <h1>🎁 Welcome to the perks page!</h1>
+            <p>We pulled together exclusive deals just for BetterCanvas users - here's the rundown:</p>
+            <ul>
+                <li>
+                    <p><strong>Real discounts on stuff you'll actually use</strong></p>
+                    <p>No sketchy codes - these are legit and made for y'all.</p>
+                </li>
+                <li>
+                    <p><strong>Some tools you know, other's we think you'll love</strong></p>
+                    <p>We tested everything and only included the good stuff.</p>
+                </li>
+                <li>
+                    <p><strong>This page is free, the deals may not be though</strong></p>
+                    <p>Some are paid, but the discounts make it more affordable.</p>
+                </li>
+            </ul>
+            <div>
+                <button id="perks-popup-exit">Let's Explore</button>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div id="deals-header">
+            <div id="deals-header-border">
+                <h1>My Perks</h1>
+                <span id="deals-spark">
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-flare"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11.106 2.553a1 1 0 0 1 1.788 0l2.851 5.701l5.702 2.852a1 1 0 0 1 .11 1.725l-.11 .063l-5.702 2.851l-2.85 5.702a1 1 0 0 1 -1.726 .11l-.063 -.11l-2.852 -5.702l-5.701 -2.85a1 1 0 0 1 -.11 -1.726l.11 -.063l5.701 -2.852z" /></svg>
+                </span>
+            </div>
+            <p style="font-size:16px;margin-top:10px;">We hit up tools we actually like using to <strong>score you exclusive deals</strong> — some you know, others you’re about to love.</p>
+            <div style="display:flex;align-items:center;gap:14px;margin: 18px 0 10px 0;">
+                <p id="deals-header-text">Filter</p>
+                <p id="clear-filters">Reset filters</p>
+            </div>
+            <div id="deals-filter-container">
+                <div class="filter-option">
+                    <input type="checkbox" id="filter-featured" name="categories" value="Featured">
+                    <label for="filter-featured">
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="18"  height="18"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-star"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" /></svg>
+                        <span>Featured</span>
+                    </label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="filter-shopping" name="categories" value="Shopping">
+                    <label for="filter-shopping">Shopping</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="filter-transport" name="categories" value="Transport">
+                    <label for="filter-transport">Transport</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="filter-writing" name="categories" value="Writing">
+                    <label for="filter-writing">Writing</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="filter-design" name="categories" value="Design">
+                    <label for="filter-design">Design</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="filter-wellness" name="categories" value="Wellness">
+                    <label for="filter-wellness">Wellness</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="filter-career" name="categories" value="Career">
+                    <label for="filter-career">Career</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="filter-focus" name="categories" value="Focus">
+                    <label for="filter-focus">Focus</label>
+                </div>
+            </div>
+        </div>
+
+        <div id="deals-container">
+
+        </div>
+
+        <div id="deals-more">
+            <button id="load-more-deals">Load more</button>
+        </div>
+
+        <div id="deal-modal">
+            <div id="deal-modal-content">
+                <div id="deal-modal-header">
+                    <h1 id="deal-modal-title"></h1>
+                    <div id="deal-modal-tags"></div>  
+                    <div id="deal-modal-exit">
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                    </div>
+                </div>
+                <div id="deal-modal-img-container">
+                    <img src="" id="deal-modal-img">
+                </div>
+                <div id="deal-modal-text">
+                    <div id="deal-modal-description-container">
+                        <p id="deal-modal-description"></p>
+                    </div>
+                    <p class="deal-modal-text-title">How to redeem:</p>
+                    <p id="deal-modal-instructions"></p>
+                    <p class="deal-modal-text-title">Terms and conditions:</p>
+                    <p id="deal-modal-terms"></p>
+                </div>
+                <div id="deal-modal-link-container">
+                    <a href="" id="deal-modal-link" target="_blank">
+                        <span>Get Perk</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-external-link">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
+                            <path d="M11 13l9 -9" />
+                            <path d="M15 4h5v5" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="module" src="../build/deals.js"></script>
+
+</html>

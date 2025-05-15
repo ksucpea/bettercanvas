@@ -2,7 +2,7 @@
 <html lang="en" style="/*background:linear-gradient(115deg, rgb(255, 53, 88), rgb(255, 131, 73), rgb(255, 103, 187))*/">
 
 <head>
-    <title>Better Canvas</title>
+    <title>BetterCanvas</title>
     <link href="../css/popup.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,10 +20,12 @@
 <body style="background: #1a1a1ad6; background: #232323">
     <div id="gradientbg"></div>
     <div id="alert"></div>
+    <div id="loader"></div>
+
     <div class="main">
         <div class="header">
             <img id="bclogo" src="../icon/icon-128.png">
-            <h1 data-i18n="better_canvas">Better Canvas</h1>
+            <h1 data-i18n="better_canvas">BetterCanvas</h1>
         </div>
             <div class="more-options-container">
                 <button id="customize-dark-btn" class="big-button tab-btn">
@@ -95,6 +97,20 @@
                             <input type="checkbox" id="device_dark" name="device_dark">
                             <label for="device_dark" class="sub-text" data-i18n="device_dark">Use device dark mode settings</label>
                         </div>
+                    </div>
+                </div>
+                <div class="option-container new-option-label">
+                    <div class="option" id="clean_sidebar">
+                        <input type="radio" id="off" name="clean_sidebar">
+                        <input type="radio" id="on" name="clean_sidebar">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div>
+                        <span class="option-name">Clean Sidebar</span>
+                    </div>
+                    <div class="sub-options">
+                        <button id="sidebar-pages-btn" class="tab-btn">Adjust pages</button>
                     </div>
                 </div>
                 <div class="option-container">
@@ -206,7 +222,7 @@
             </div>
 
             <div class="options-right">
-                <div class="option-container">
+                <div class="option-container new-option-label">
                     <div class="option" id="better_todo">
                         <input type="radio" id="off" name="better_todo">
                         <input type="radio" id="on" name="better_todo">
@@ -216,13 +232,39 @@
                         </div>
                         <span class="option-name" data-i18n="better_todo">Better Todo List</span>
                     </div>
-                    <div class="sub-options">
-                        <div class="sub-option">
+                    <div class="sub-options" style="margin-bottom:6px;">
+                        <div>
+                            <div style="display:flex;gap:3px;" id="todo_style_general">
+                                <button id="todo_style_general_minimal" class="todo-bar-style-btn">Minimal</button>
+                                <button id="todo_style_general_modern" class="todo-bar-style-btn">Modern</button>
+                            </div>
+                        </div>
+                        <div>
+                            <p style="font-weight:600;font-size:13px;margin:10px 0 4px;">Progress bar (modern only)</p>
+                            <div style="display:flex;gap:3px;" id="todo_bar_style">
+                                <button id="todo_bar_circle" class="todo-bar-style-btn">Circle</button>
+                                <button id="todo_bar_rainbow" class="todo-bar-style-btn">Rainbow</button>
+                                <button id="todo_bar_none" class="todo-bar-style-btn">None</button>
+                            </div>
+                        </div>
+                        <div>
+                            <p style="font-weight:600;font-size:13px;margin:10px 0 4px;">Confetti (modern only)</p>
+                            <div style="display:flex;gap:3px;" id="todo_confetti_amount">
+                                <button id="todo_confetti_normal" class="todo-bar-style-btn">Normal</button>
+                                <button id="todo_confetti_extra" class="todo-bar-style-btn">Extra</button>
+                                <button id="todo_confetti_none" class="todo-bar-style-btn">None</button>
+                            </div>
+                        </div>
+                        <div class="sub-option" style="margin-top:6px;">
                             <input type="checkbox" id="hover_preview" name="hover_preview">
                             <label for="hover_preview" class="sub-text" data-i18n="hover_preview">Hover to preview
                                 details</label>
                         </div>
                         <div class="sub-option">
+                            <input type="checkbox" id="todo_openall" name="todo_openall">
+                            <label for="todo_openall" class="sub-text" /*data-i18n="hover_preview"*/>Open all subsections</label>
+                        </div>
+                        <div class="sub-option" style="display:none">
                             <input type="checkbox" id="hide_completed" name="hide_completed">
                             <label for="hide_completed" class="sub-text" data-i18n="hide_completed">Hide
                                 completed</label>
@@ -230,20 +272,34 @@
                         <div class="sub-option">
                             <input type="checkbox" id="todo_hr24" name="todo_hr24">
                             <label for="todo_hr24" class="sub-text" data-i18n="24hrformat">Use 24hr format</label>
-                        </div>
-                        <div class="sub-option">
-                            <input type="checkbox" id="todo_overdues" name="todo_overdues">
-                            <label for="todo_overdues" class="sub-text" data-i18n="show_past_due">Show past due</label>
-                        </div>
+                        </div>           
                         <div class="sub-option">
                             <input type="checkbox" id="todo_colors" name="todo_colors">
                             <label for="todo_colors" class="sub-text" data-i18n="todo_colors">Use card colors</label>
                         </div>
-                        <div style="margin-top: 5px">
-                            <span class="sub-text" data-i18n="max_items">Max items to show: </span><span
-                                id="numTodoItems"></span>
-                            <input type="range" min="1" max="7" id="numTodoItemsSlider">
+
+                        <div class="sub-option todo-minimal-only">
+                            <input type="checkbox" id="todo_overdues" name="todo_overdues">
+                            <label for="todo_overdues" class="sub-text" data-i18n="show_past_due">Show past due</label>
                         </div>
+                        <div style="margin-top: 5px;" class="todo-minimal-only">
+                            <div>
+                                <span class="sub-text" data-i18n="max_items">Max items to show: </span><span
+                                    id="numTodoItems"></span>
+                                <input type="range" min="1" max="7" id="numTodoItemsSlider">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="option-container new-option-label">
+                    <div class="option" id="global_search">
+                        <input type="radio" id="off" name="global_search">
+                        <input type="radio" id="on" name="global_search">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div>
+                        <span class="option-name">Universal search bar</span>
                     </div>
                 </div>
                 <div class="option-container" style="display:flex;flex-direction:column;gap:6px;">
@@ -312,6 +368,15 @@
                             <div class="sliderknob"></div>
                             <div class="sliderbg"></div>
                         </div><span class="option-name" data-i18n="tab_icons">Color coded tab icons</span>
+                    </div>
+                    <div class="option" id="rounder_cards">
+                        <input type="radio" id="off" name="rounder_cards">
+                        <input type="radio" id="on" name="rounder_cards">
+                        <div class="slider">
+                            <div class="sliderknob"></div>
+                            <div class="sliderbg"></div>
+                        </div>
+                        <span class="option-name" /*data-i18n="full_width"*/>Rounder cards</span>
                     </div>
                 </div>
                 <div class="option-container">
@@ -572,16 +637,13 @@
                         <div class="changer-container" id="dp_sidebar" style="align-items: flex-start;">
                             <div style="width:160px;margin-top:5px;">
                                 <div>
-                                    <input type="radio" id="radio-sidebar-solid" name="sidebar-background">
-                                    <label for="radio-sidebar-solid" data-i18n="radio_sidebar_solid"></label>
+                                    <input type="radio" id="radio-sidebar-solid" name="sidebar-background" data-i18n="radio_sidebar_solid">Solid</input>
                                 </div>
                                 <div>
-                                    <input type="radio" id="radio-sidebar-gradient" name="sidebar-background">
-                                    <label for="radio-sidebar-gradient" data-i18n="radio_sidebar_gradient"></label>
+                                    <input type="radio" id="radio-sidebar-gradient" name="sidebar-background" data-i18n="radio_sidebar_gradient">Gradient</input>
                                 </div>
                                 <div>
-                                    <input type="radio" id="radio-sidebar-image" name="sidebar-background">
-                                    <label for="radio-sidebar-image" data-i18n="radio_sidebar_image"></label>
+                                    <input type="radio" id="radio-sidebar-image" name="sidebar-background" data-i18n="radio_sidebar_image">Image</input>
                                 </div>
                             </div>
                             <div style="flex: 1">
@@ -717,6 +779,20 @@
                 If your school doesn't use the +/- system, you can enter 101 for those grades to remove them from the
                 calculation. (for example A+ = 101, A = 90, A- = 101)
             </div>
+        </div>
+    </div>
+
+    <div class="sidebar-pages-container tab" style="display:none">
+        <div class="tab-header">
+            <h2 style="margin-top: 0">Sidebar</h2>
+            <button class="big-button back-btn" data-i18n="back">Back</button>
+        </div>
+        <div class="option-container">
+            <h3 class="header-small">Active pages</h3>
+            <div id="sidebar-pages-active"></div>
+            <h3 class="header-small">Hidden pages</h3>
+            <div id="sidebar-pages-hidden"></div>
+
         </div>
     </div>
 
@@ -1086,7 +1162,7 @@
         <div class="option-container">
             <h3 class="header-small">Version</h3>
             <div style="display: flex; gap: 10px; align-items: center;">
-                <span>5.12.6</span>
+                <span>6.0.2</span>
             </div>
         </div>
     </div>
@@ -1241,10 +1317,9 @@
                 <li>Menu redesign</li>
             </ul>
         </div>
+        </div>
     </div>
-
-    <script type="text/javascript" src="../js/popup.js"></script>
-
+    <script type="text/javascript" src="../build/popup.js"></script>
 </body>
 
 </html>

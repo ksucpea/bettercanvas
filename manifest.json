@@ -1,8 +1,10 @@
 {
+"update_url": "https://clients2.google.com/service/update2/crx",
+
   "manifest_version": 3,
-  "name": "Better Canvas",
+  "name": "BetterCanvas",
   "description": "Feature packed extension for Canvas.",
-  "version": "5.12.6",
+  "version": "6.0.2",
   "icons": {
     "16": "icon/icon-16.png",
     "32": "icon/icon-32.png",
@@ -15,20 +17,24 @@
       "38": "icon/icon-38.png"
     },
     "default_popup": "html/popup.html",
-    "default_title": "Better Canvas"
+    "default_title": "BetterCanvas"
   },
   "background": {
-    "service_worker": "js/background.js"
+    "service_worker": "build/background.js"
   },
   "options_page": "html/options.html",
   "content_scripts": [
     {
       "matches": ["https://*/*"],
-      "js": ["js/content.js"],
+      "js": ["build/start.js"],
       "css": ["css/content.css"],
       "run_at": "document_start"
     }
   ],
-  "permissions": ["storage", "unlimitedStorage"],
-  "default_locale": "en"
+  "permissions": ["storage"],
+  "default_locale": "en",
+  "web_accessible_resources": [{ 
+    "resources": [ "html/options.html", "html/deals.html"],
+    "matches": [ "<all_urls>" ]
+}]
 }

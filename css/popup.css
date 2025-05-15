@@ -215,3 +215,59 @@ input[type="checkbox"]:checked {background: #8dd28d;}
         opacity: 1;
     }
 }
+
+.todo-bar-style-btn {
+    background: var(--inputbg);
+    border-radius: 8px;
+    color: #fff;
+    border: none;
+    padding: 6px 0;
+    flex: 1;
+    font-size: 12px;
+}
+
+.todo-bar-style-btn.active {
+    background: #8dd28d6e;
+    color: #fff;
+}
+
+.sidebar-page {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 10px;
+    border-radius: 8px;
+    background: var(--inputbg);
+}
+
+#sidebar-pages-active, #sidebar-pages-hidden {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+
+
+.custom-card-btn {cursor: pointer;background:none;background:var(--containerbg);border-radius:10px;padding:6px;}
+.custom-card-btn p {font-weight: 600; margin-top: 6px; margin: 8px 0 4px 4px; font-size: 13px; }
+.custom-card-img { height:75px;border-radius:10px;background:var(--containerbg)}
+#custom-card-clickout { display:none;align-items:center;position: fixed; top: 0; left: 0; height: 100%; width: 100%; background: #0a0a0af0;backdrop-filter:blur(2px);padding:30px;box-sizing: border-box;z-index:100;}
+#custom-card-clickout.open {display: flex;flex-direction: column;gap:10px;justify-content: center;}
+#advanced-past {display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;}
+#card-customizer-default {font-size: 28px;font-weight:bold;}
+#card-customizer {width: 100%;padding:20px;border-radius:10px;box-sizing:border-box}
+.card-input-label {font-size:14px;color:#fff;font-weight:600;margin-top:10px;display:block;}
+
+.sidebar-page button {background:var(--containerbg);border-radius:10px;padding:6px;color:#fff;display:flex;border:none;}
+.show-btn {background:var(--containerbg);border-radius:10px;padding:6px;color:#fff;display:flex;border:none;}
+.show-btn.active svg { transform: rotate(0deg)}
+.show-btn svg { transform: rotate(180deg);height:20px;width:20px;}
+#sidebar-pages-active {margin-bottom: 20px;}
+#sidebar-pages-btn {background: var(--inputbg);border: none;width: 100%;padding: 8px 0;color: #fff;border-radius: 10px;}
+
+#quick-fonts {display:grid;grid-template-columns: repeat(3, 1fr);}
+#quick-fonts .customization-button {background:var(--containerbg);padding:18px 14px}
+.font-image {height: auto;width:100%;max-height:15px;object-fit: contain;filter:invert(1)}
+#card-customizer-back {background: var(--inputbg);border: none;padding: 10px 30px;border-radius: 10px;color: #fff;font-size: 14px;font-weight: 600;margin-right: auto;}
+.new-option-label {position:relative;border:2px solid #1f2d57}
+.new-option-label::after {content: "New";background:#0041ff;padding:3px 6px;border-radius:4px;position:absolute;top:-4px;right:-4px;font-size:13px;font-weight:600;}
