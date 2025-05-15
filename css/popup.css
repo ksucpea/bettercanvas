@@ -20,8 +20,8 @@ h2 {font-size:24px;}
 .header {font-size: 16px;display: flex;align-items: center;gap:12px; margin-bottom:14px;}
 .header h1 { font-weight: 600; font-size:24px; }
 #bclogo {height: 30px;width:30px;filter: grayscale(1) brightness(100)}
-#numAssignmentsSlider, #numTodoItemsSlider {display: block;margin-top: 14px;width: 100%;-webkit-appearance: none; appearance: none;background:var(--inputbg);outline: none;height:6px;border-radius:20px;}
-#numAssignmentsSlider::-webkit-slider-thumb,  #numTodoItemsSlider::-webkit-slider-thumb {-webkit-appearance: none; appearance: none;height: 18px; width: 18px;background: #727272;cursor: pointer;border-radius:30px;}
+#numAssignmentsSlider, #numTodoItemsSlider, #todotimesliderone, #todotimeslidertwo {display: block;margin-top: 14px;width: 100%;-webkit-appearance: none; appearance: none;background:var(--inputbg);outline: none;height:6px;border-radius:20px;}
+#numAssignmentsSlider::-webkit-slider-thumb, #numTodoItemsSlider::-webkit-slider-thumb, #todotimesliderone::-webkit-slider-thumb, #todotimeslidertwo::-webkit-slider-thumb {-webkit-appearance: none; appearance: none;height: 18px; width: 18px;background: #727272;cursor: pointer;border-radius:30px;}
 .option-container {font-size: 14px; margin-top: 8px;background: var(--containerbg);padding: 18px;border-radius: 14px;box-sizing:border-box}
 .options .option-container {padding: 14px;}
 a.option-container {display: block;color:#5ca5f6;font-size: 14px;}

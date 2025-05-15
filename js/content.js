@@ -142,8 +142,10 @@ async function reminderWatch() {
     const container = document.getElementById("bettercanvas-reminders") || makeElement("div", document.body, { "id": "bettercanvas-reminders" });
     container.style.display = "flex";
     container.textContent = "";
-    const alertPeriod = 1000 * 60 * 60 * 6; // 6 hours
-    const alertPeriod2 = 1000 * 60 * 60 * 2; // 2 hours
+    const { num_todo_one: time1 } = await chrome.storage.sync.get("num_todo_one");
+    const { num_todo_two: time2 } = await chrome.storage.sync.get("num_todo_two");
+    const alertPeriod = 1000 * 60 * 60 * time1;
+    const alertPeriod2 = 1000 * 60 * 60 * time2;
     const storage = await chrome.storage.sync.get(["reminders", "reminder_count"]);
     const now = (new Date()).getTime();
     storage["reminders"].forEach((reminder, index) => {
@@ -268,6 +270,7 @@ function applyOptionsChanges(changes) {
                 break;
             case ("dashboard_grades"):
             case ("grade_hover"):
+            case ("grade_letter"):
                 if (!grades) getGrades();
                 insertGrades();
                 break;
@@ -326,6 +329,10 @@ function applyOptionsChanges(changes) {
             case ("remind"):
                 showExampleReminder();
                 break;
+            case ("num_todo_one"):
+            case ("num_todo_two"):
+                reminderWatch();
+                break;               
         }
     });
 }
@@ -1315,15 +1322,29 @@ function insertGrades() {
                         if (course_id === grade.id) {
                             let gradepercent = grade.enrollments[0].has_grading_periods === true ? grade.enrollments[0].current_period_computed_current_score : grade.enrollments[0].computed_current_score;
                             //let gradepercent = grade.enrollments[0].computed_current_score;
-                            let percent = (gradepercent || "--") + "%";
-                            let gradeContainer = cards[i].querySelector(".bettercanvas-card-grade") || makeElement("a", cards[i].querySelector(".ic-DashboardCard__header"), { "className": "bettercanvas-card-grade", "textContent": percent });
-                            if (options.grade_hover === true) {
-                                gradeContainer.classList.add("bettercanvas-hover-only");
+                            if (options.grade_letter === true) {
+                                let percent = (gradepercent || "--") + "% - ";
+                                let letter_card = grade.enrollments[0].has_grading_periods === true ? grade.enrollments[0].current_period_computed_current_grade : grade.enrollments[0].computed_current_grade;
+                                let grade_card = percent + (letter_card || "--");
+                                let gradeContainer = cards[i].querySelector(".bettercanvas-card-grade") || makeElement("a", cards[i].querySelector(".ic-DashboardCard__header"), { "className": "bettercanvas-card-grade", "textContent": grade_card });
+                                if (options.grade_hover === true) {
+                                    gradeContainer.classList.add("bettercanvas-hover-only");
+                                } else {
+                                    gradeContainer.classList.remove("bettercanvas-hover-only");
+                                }
+                                gradeContainer.setAttribute("href", `${domain}/courses/${course_id}/grades`);
+                                gradeContainer.style.display = "block";
                             } else {
-                                gradeContainer.classList.remove("bettercanvas-hover-only");
+                                let percent = (gradepercent || "--") + "%";
+                                let gradeContainer = cards[i].querySelector(".bettercanvas-card-grade") || makeElement("a", cards[i].querySelector(".ic-DashboardCard__header"), { "className": "bettercanvas-card-grade", "textContent": percent });
+                                if (options.grade_hover === true) {
+                                    gradeContainer.classList.add("bettercanvas-hover-only");
+                                } else {
+                                    gradeContainer.classList.remove("bettercanvas-hover-only");
+                                }
+                                gradeContainer.setAttribute("href", `${domain}/courses/${course_id}/grades`);
+                                gradeContainer.style.display = "block";
                             }
-                            gradeContainer.setAttribute("href", `${domain}/courses/${course_id}/grades`);
-                            gradeContainer.style.display = "block";
                         }
                     });
 

@@ -5,13 +5,14 @@
 
 "preserve_hierarchy": true
 
-files: [
-  {
-    "source": "/_locales/en/messages.json",
-    "translation": "/_locales/%locale%/%original_file_name%",
-  }
-]
+files:
+  [
+    {
+      "source": "/_locales/en/messages.json",
+      "translation": "/_locales/%locale%/%original_file_name%",
+    },
+  ]
 
 #files:
-  #- source: /_locales/en/*.json
-    #translation: /_locales/%locale%/%original_file_name%
+#- source: /_locales/en/*.json
+#translation: /_locales/%locale%/%original_file_name%

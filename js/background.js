@@ -46,6 +46,7 @@ chrome.runtime.onInstalled.addListener(function () {
             "custom_assignments": [],
             "custom_assignments_overflow": ["custom_assignments"],
             "grade_hover": false,
+            "grade_letter": false,
             "hide_completed": false,
             "num_todo_items": 4,
             "custom_font": { "link": "", "family": "" },
@@ -91,6 +92,8 @@ chrome.runtime.onInstalled.addListener(function () {
             "gpa_calc_weighted": true,
             "browser_show_likes": false,
             "custom_styles": "",
+            "num_todo_one": 6,
+            "num_todo_two": 2,
         }
     };
 

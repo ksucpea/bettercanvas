@@ -29,6 +29,6 @@
       "run_at": "document_start"
     }
   ],
-  "permissions": ["storage"],
+  "permissions": ["storage", "unlimitedStorage"],
   "default_locale": "en"
 }

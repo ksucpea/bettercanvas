@@ -1,8 +1,13 @@
 name: Badge Creator
 
 on:
-  schedule:
-    - cron: "5 17 * * *"
+  push:
+    branches: 
+      - "main"
+    paths:
+      - /_locales/**/messages.json
+    paths-ignore:
+      - /_locales/en/messages.json
   workflow_dispatch:
 
 jobs:

@@ -164,6 +164,10 @@
                     </div>
                     <div class="sub-options">
                         <div class="sub-option" style="margin-top:5px">
+                            <input type="checkbox" id="grade_letter" name="grade_letter">
+                            <label for="grade_letter" class="sub-text" data-i18n="grade_letter">Show Garde Letter</label>
+                        </div>
+                        <div class="sub-option" style="margin-top:5px">
                             <input type="checkbox" id="grade_hover" name="grade_hover">
                             <label for="grade_hover" class="sub-text" data-i18n="grade_hover">Show only when hovering</label>
                         </div>
@@ -178,6 +182,17 @@
                             <div class="sliderbg"></div>
                         </div>
                         <span class="option-name" data-i18n="todo_remind">Todo Reminders</span>
+                    </div>
+                    <p style="font-size: 11px;color:#8d8d8d">ToDo Reminders Time<br>(Each Number Is 1 Hour):</p>
+                    <div class="sub-options">
+                        <div style="margin-top:5px">
+                            <span class="sub-text">First Alert Time: </span><span id="todotimeone"></span>
+                            <input type="range" min="1" max="24" id="todotimesliderone">
+                        </div>
+                        <div style="margin-top:5px">
+                            <span class="sub-text">Second Alert Time: </span><span id="todotimetwo"></span>
+                            <input type="range" min="1" max="24" id="todotimeslidertwo">
+                        </div>
                     </div>
                     <!--
                     <div class="sub-options">
@@ -557,13 +572,16 @@
                         <div class="changer-container" id="dp_sidebar" style="align-items: flex-start;">
                             <div style="width:160px;margin-top:5px;">
                                 <div>
-                                    <input type="radio" id="radio-sidebar-solid" name="sidebar-background" data-i18n="radio_sidebar_solid">Solid</input>
+                                    <input type="radio" id="radio-sidebar-solid" name="sidebar-background">
+                                    <label for="radio-sidebar-solid" data-i18n="radio_sidebar_solid"></label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="radio-sidebar-gradient" name="sidebar-background" data-i18n="radio_sidebar_gradient">Gradient</input>
+                                    <input type="radio" id="radio-sidebar-gradient" name="sidebar-background">
+                                    <label for="radio-sidebar-gradient" data-i18n="radio_sidebar_gradient"></label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="radio-sidebar-image" name="sidebar-background" data-i18n="radio_sidebar_image">Image</input>
+                                    <input type="radio" id="radio-sidebar-image" name="sidebar-background">
+                                    <label for="radio-sidebar-image" data-i18n="radio_sidebar_image"></label>
                                 </div>
                             </div>
                             <div style="flex: 1">
@@ -740,95 +758,232 @@
                 <button id="revert-colors" class="colors-button" data-i18n="revert_card_colors">Revert to original</button>
                 <button class="preset-button colors-button">
                     <p data-i18n="red_card_color">Reds</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(224, 30, 55);"></div>
+                        <div class="color-preview" style="background: rgb(199, 31, 55);"></div>
+                        <div class="color-preview" style="background: rgb(178, 30, 53);"></div>
+                        <div class="color-preview" style="background: rgb(161, 29, 51);"></div>
+                        <div class="color-preview" style="background: rgb(110, 20, 35);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="oranges_card_color">Oranges</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(255, 201, 113);"></div>
+                        <div class="color-preview" style="background: rgb(255, 182, 39);"></div>
+                        <div class="color-preview" style="background: rgb(255, 149, 5);"></div>
+                        <div class="color-preview" style="background: rgb(226, 113, 29);"></div>
+                        <div class="color-preview" style="background: rgb(204, 88, 3);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="greens_card_color">Greens</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(216, 243, 220);"></div>
+                        <div class="color-preview" style="background: rgb(183, 228, 199);"></div>
+                        <div class="color-preview" style="background: rgb(149, 213, 178);"></div>
+                        <div class="color-preview" style="background: rgb(116, 198, 157);"></div>
+                        <div class="color-preview" style="background: rgb(82, 183, 136);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="blues_card_color">Blues</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(173, 232, 244);"></div>
+                        <div class="color-preview" style="background: rgb(144, 224, 239);"></div>
+                        <div class="color-preview" style="background: rgb(72, 202, 228);"></div>
+                        <div class="color-preview" style="background: rgb(0, 180, 216);"></div>
+                        <div class="color-preview" style="background: rgb(0, 150, 199);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="pinks_card_color">Pinks</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(255, 10, 84);"></div>
+                        <div class="color-preview" style="background: rgb(255, 92, 138);"></div>
+                        <div class="color-preview" style="background: rgb(255, 133, 161);"></div>
+                        <div class="color-preview" style="background: rgb(255, 153, 172);"></div>
+                        <div class="color-preview" style="background: rgb(251, 177, 189);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="purples_card_color">Purples</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(224, 170, 255);"></div>
+                        <div class="color-preview" style="background: rgb(199, 125, 255);"></div>
+                        <div class="color-preview" style="background: rgb(157, 78, 221);"></div>
+                        <div class="color-preview" style="background: rgb(123, 44, 191);"></div>
+                        <div class="color-preview" style="background: rgb(90, 24, 154);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="pastels_card_color">Pastels</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(255, 241, 230);"></div>
+                        <div class="color-preview" style="background: rgb(253, 226, 228);"></div>
+                        <div class="color-preview" style="background: rgb(250, 210, 225);"></div>
+                        <div class="color-preview" style="background: rgb(190, 225, 230);"></div>
+                        <div class="color-preview" style="background: rgb(205, 218, 253);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="mesa_card_color">Mesa</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(246, 189, 96);"></div>
+                        <div class="color-preview" style="background: rgb(242, 132, 130);"></div>
+                        <div class="color-preview" style="background: rgb(245, 202, 195);"></div>
+                        <div class="color-preview" style="background: rgb(132, 165, 157);"></div>
+                        <div class="color-preview" style="background: rgb(247, 237, 226);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="fade_card_color">Fade</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(255, 105, 235);"></div>
+                        <div class="color-preview" style="background: rgb(255, 134, 200);"></div>
+                        <div class="color-preview" style="background: rgb(255, 163, 165);"></div>
+                        <div class="color-preview" style="background: rgb(255, 191, 129);"></div>
+                        <div class="color-preview" style="background: rgb(255, 220, 94);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
-                    <p data-i18n="fade2_card_color">Fade2</p>
-                    <div class="colors-preview"></div>
+                    <p data-i18n="fade2_card_color">Fade 2</p>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(242, 242, 48);"></div>
+                        <div class="color-preview" style="background: rgb(194, 242, 97);"></div>
+                        <div class="color-preview" style="background: rgb(145, 242, 145);"></div>
+                        <div class="color-preview" style="background: rgb(97, 242, 194);"></div>
+                        <div class="color-preview" style="background: rgb(48, 242, 242);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="ocean_card_color">Ocean</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(34, 87, 122);"></div>
+                        <div class="color-preview" style="background: rgb(56, 163, 165);"></div>
+                        <div class="color-preview" style="background: rgb(87, 204, 153);"></div>
+                        <div class="color-preview" style="background: rgb(128, 237, 153);"></div>
+                        <div class="color-preview" style="background: rgb(199, 249, 204);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="watermelon_card_color">Watermelon</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(56, 102, 65);"></div>
+                        <div class="color-preview" style="background: rgb(106, 153, 78);"></div>
+                        <div class="color-preview" style="background: rgb(167, 201, 87);"></div>
+                        <div class="color-preview" style="background: rgb(242, 232, 207);"></div>
+                        <div class="color-preview" style="background: rgb(188, 71, 73);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="army_card_color">Army</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(107, 112, 92);"></div>
+                        <div class="color-preview" style="background: rgb(165, 165, 141);"></div>
+                        <div class="color-preview" style="background: rgb(183, 183, 164);"></div>
+                        <div class="color-preview" style="background: rgb(255, 232, 214);"></div>
+                        <div class="color-preview" style="background: rgb(221, 190, 169);"></div>
+                        <div class="color-preview" style="background: rgb(203, 153, 126);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="rainbow_card_color">Rainbow</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(255, 0, 0);"></div>
+                        <div class="color-preview" style="background: rgb(255, 82, 0);"></div>
+                        <div class="color-preview" style="background: rgb(239, 234, 90);"></div>
+                        <div class="color-preview" style="background: rgb(60, 245, 37);"></div>
+                        <div class="color-preview" style="background: rgb(20, 125, 245);"></div>
+                        <div class="color-preview" style="background: rgb(190, 10, 255);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="sunset_card_color">Sunset</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(234, 172, 139);"></div>
+                        <div class="color-preview" style="background: rgb(229, 107, 111);"></div>
+                        <div class="color-preview" style="background: rgb(181, 101, 118);"></div>
+                        <div class="color-preview" style="background: rgb(109, 89, 122);"></div>
+                        <div class="color-preview" style="background: rgb(53, 80, 112);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="popsicle_card_color">Popsicle</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(112, 214, 255);"></div>
+                        <div class="color-preview" style="background: rgb(255, 112, 166);"></div>
+                        <div class="color-preview" style="background: rgb(255, 151, 112);"></div>
+                        <div class="color-preview" style="background: rgb(255, 214, 112);"></div>
+                        <div class="color-preview" style="background: rgb(233, 255, 112);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="berries_card_color">Berries</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(76, 201, 240);"></div>
+                        <div class="color-preview" style="background: rgb(67, 97, 238);"></div>
+                        <div class="color-preview" style="background: rgb(113, 58, 237);"></div>
+                        <div class="color-preview" style="background: rgb(147, 72, 195);"></div>
+                        <div class="color-preview" style="background: rgb(247, 37, 133);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="fruit_card_color">Fruit</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(125, 223, 100);"></div>
+                        <div class="color-preview" style="background: rgb(192, 223, 133);"></div>
+                        <div class="color-preview" style="background: rgb(222, 185, 134);"></div>
+                        <div class="color-preview" style="background: rgb(219, 108, 121);"></div>
+                        <div class="color-preview" style="background: rgb(237, 77, 110);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="night_card_color">Night</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(37, 23, 26);"></div>
+                        <div class="color-preview" style="background: rgb(75, 36, 74);"></div>
+                        <div class="color-preview" style="background: rgb(83, 58, 123);"></div>
+                        <div class="color-preview" style="background: rgb(105, 105, 179);"></div>
+                        <div class="color-preview" style="background: rgb(127, 134, 198);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="base_card_color">Base</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(227, 181, 5);"></div>
+                        <div class="color-preview" style="background: rgb(149, 25, 12);"></div>
+                        <div class="color-preview" style="background: rgb(97, 3, 69);"></div>
+                        <div class="color-preview" style="background: rgb(16, 126, 125);"></div>
+                        <div class="color-preview" style="background: rgb(4, 75, 127);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="muted_card_color">Muted</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(231, 230, 247);"></div>
+                        <div class="color-preview" style="background: rgb(227, 208, 216);"></div>
+                        <div class="color-preview" style="background: rgb(174, 163, 176);"></div>
+                        <div class="color-preview" style="background: rgb(130, 112, 129);"></div>
+                        <div class="color-preview" style="background: rgb(198, 210, 237);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="candy_card_color">Candy</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(205, 180, 219);"></div>
+                        <div class="color-preview" style="background: rgb(255, 200, 221);"></div>
+                        <div class="color-preview" style="background: rgb(255, 175, 204);"></div>
+                        <div class="color-preview" style="background: rgb(189, 224, 254);"></div>
+                        <div class="color-preview" style="background: rgb(162, 210, 255);"></div>
+                    </div>
                 </button>
                 <button class="preset-button colors-button">
                     <p data-i18n="chess_card_color">Chess</p>
-                    <div class="colors-preview"></div>
+                    <div class="colors-preview">
+                        <div class="color-preview" style="background: rgb(255, 255, 255);"></div>
+                        <div class="color-preview" style="background: rgb(0, 0, 0);"></div>
+                    </div>
                 </button>
             </div>
         </div>
